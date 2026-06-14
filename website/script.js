@@ -87,17 +87,72 @@ function showToast() {
 /* ── Contact form submit ── */
 function submitForm(e) {
   e.preventDefault();
-  showToast();
-  e.target.reset();
+  
+  const form = e.target;
+  const formData = {
+    access_key: "9f69ecb1-7990-4add-aaf3-95f2200b9dc6",
+    name: form.querySelector('input[placeholder="Your Full Name"]').value,
+    phone: form.querySelector('input[placeholder="Mobile Number"]').value,
+    email: form.querySelector('input[placeholder="Email Address"]').value || "Not provided",
+    insurance_type: form.querySelector('select').value,
+    message: form.querySelector('textarea').value || "No additional requirements"
+  };
+  
+  fetch('https://api.web3forms.com/submit', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(formData)
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      showToast();
+      form.reset();
+    } else {
+      console.error('Form submission error:', data);
+    }
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
 }
 
 /* ── Modal form submit ── */
 function submitModal(e) {
   e.preventDefault();
-  document.getElementById('modalOverlay').classList.remove('open');
-  document.body.style.overflow = '';
-  showToast();
-  e.target.reset();
+  
+  const form = e.target;
+  const formData = {
+    access_key: "9f69ecb1-7990-4add-aaf3-95f2200b9dc6",
+    name: form.querySelector('input[placeholder="Your Name"]').value,
+    phone: form.querySelector('input[placeholder="Mobile Number"]').value,
+    insurance_type: form.querySelector('select').value,
+    source: "Modal Quote Form"
+  };
+  
+  fetch('https://api.web3forms.com/submit', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(formData)
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      document.getElementById('modalOverlay').classList.remove('open');
+      document.body.style.overflow = '';
+      showToast();
+      form.reset();
+    } else {
+      console.error('Form submission error:', data);
+    }
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
 }
 
 /* ── Back to top ── */
