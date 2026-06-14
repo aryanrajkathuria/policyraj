@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PolicyRaj – Your Trusted Insurance Advisor</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <span><i class="fa fa-phone"></i> 9013976999 / 8383813408</span>
+      <span><i class="fa fa-envelope"></i> sachin@policyraj.in</span>
+      <span class="topbar-right">
+        <a href="#">Become an Advisor</a>
+        <a href="#">Claims</a>
+        <a href="#contact" class="btn-top">Get a Free Quote</a>
+      </span>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <a href="#" class="logo">
+        <img src="policyraj.png" alt="PolicyRaj Logo" class="logo-img" />
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#insurance">Insurance</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a href="tel:9013976999" class="btn-nav-call"><i class="fa fa-phone"></i> Call Now</a>
+        <button class="btn-nav-quote" onclick="openModal()">Get Quote</button>
+      </div>
+      <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <i class="fa fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-bg-shapes">
+      <div class="shape shape1"></div>
+      <div class="shape shape2"></div>
+    </div>
+    <div class="container hero-inner">
+      <div class="hero-text">
+        <span class="hero-badge">Trusted Since 20+ Years</span>
+        <h1>Protect What<br /><span class="gradient-text">Matters Most</span><br />to You</h1>
+        <p>Sachin Kathuria – Expert insurance advisor helping individuals, families & businesses get the right coverage at the best price.</p>
+        <div class="hero-btns">
+          <button class="btn-primary" onclick="openModal()">Get Free Quote</button>
+          <a href="#services" class="btn-outline">Explore Plans</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><strong>20+</strong><span>Years Experience</span></div>
+          <div class="stat"><strong>5000+</strong><span>Happy Clients</span></div>
+          <div class="stat"><strong>12+</strong><span>Insurance Types</span></div>
+        </div>
+      </div>
+      <div class="hero-card-stack">
+        <div class="insurance-card health">
+          <i class="fa fa-heartbeat"></i>
+          <div>
+            <strong>Health Insurance</strong>
+            <span>Starting ₹500/month</span>
+          </div>
+          <button onclick="openModal()">Buy Now</button>
+        </div>
+        <div class="insurance-card life">
+          <i class="fa fa-shield-alt"></i>
+          <div>
+            <strong>Life Insurance</strong>
+            <span>Starting ₹300/month</span>
+          </div>
+          <button onclick="openModal()">Buy Now</button>
+        </div>
+        <div class="insurance-card motor">
+          <i class="fa fa-car"></i>
+          <div>
+            <strong>Motor Insurance</strong>
+            <span>Starting ₹2500/year</span>
+          </div>
+          <button onclick="openModal()">Buy Now</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSURANCE CATEGORY TABS -->
+  <section class="category-section" id="insurance">
+    <div class="container">
+      <div class="section-header">
+        <h2>Find the Right <span class="gradient-text">Insurance Plan</span></h2>
+        <p>Compare & buy from India's best insurance products</p>
+      </div>
+      <div class="category-tabs">
+        <button class="cat-tab active" onclick="showTab('health')"><i class="fa fa-heartbeat"></i> Health</button>
+        <button class="cat-tab" onclick="showTab('life')"><i class="fa fa-shield-alt"></i> Life</button>
+        <button class="cat-tab" onclick="showTab('motor')"><i class="fa fa-car"></i> Motor</button>
+        <button class="cat-tab" onclick="showTab('travel')"><i class="fa fa-plane"></i> Travel</button>
+        <button class="cat-tab" onclick="showTab('home')"><i class="fa fa-home"></i> Home</button>
+        <button class="cat-tab" onclick="showTab('business')"><i class="fa fa-briefcase"></i> Business</button>
+      </div>
+
+      <!-- Health Tab -->
+      <div class="tab-content active" id="tab-health">
+        <div class="tab-form-grid">
+          <div class="tab-form">
+            <h3>Get Health Insurance Quotes</h3>
+            <div class="form-row">
+              <label>Members to Insure</label>
+              <div class="member-btns">
+                <button class="member-btn active">Self</button>
+                <button class="member-btn">Spouse</button>
+                <button class="member-btn">Son</button>
+                <button class="member-btn">Daughter</button>
+                <button class="member-btn">Parents</button>
+              </div>
+            </div>
+            <div class="form-row">
+              <label>Your Age</label>
+              <input type="number" placeholder="Enter your age" min="18" max="99" />
+            </div>
+            <div class="form-row">
+              <label>Mobile Number</label>
+              <input type="tel" placeholder="Enter mobile number" />
+            </div>
+            <button class="btn-primary" onclick="openModal()">View Plans <i class="fa fa-arrow-right"></i></button>
+          </div>
+          <div class="tab-info">
+            <h4>Why Health Insurance?</h4>
+            <ul>
+              <li><i class="fa fa-check-circle"></i> Covers hospitalization expenses</li>
+              <li><i class="fa fa-check-circle"></i> Cashless treatment at 5000+ hospitals</li>
+              <li><i class="fa fa-check-circle"></i> Tax benefit under Section 80D</li>
+              <li><i class="fa fa-check-circle"></i> Pre & post hospitalization coverage</li>
+              <li><i class="fa fa-check-circle"></i> Annual health check-up included</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Life Tab -->
+      <div class="tab-content" id="tab-life">
+        <div class="tab-form-grid">
+          <div class="tab-form">
+            <h3>Get Life Insurance Quotes</h3>
+            <div class="form-row">
+              <label>Gender</label>
+              <div class="member-btns">
+                <button class="member-btn active">Male</button>
+                <button class="member-btn">Female</button>
+              </div>
+            </div>
+            <div class="form-row">
+              <label>Date of Birth</label>
+              <input type="date" />
+            </div>
+            <div class="form-row">
+              <label>Annual Income</label>
+              <select>
+                <option>Select Income Range</option>
+                <option>Below ₹3 LPA</option>
+                <option>₹3–6 LPA</option>
+                <option>₹6–12 LPA</option>
+                <option>Above ₹12 LPA</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <label>Mobile Number</label>
+              <input type="tel" placeholder="Enter mobile number" />
+            </div>
+            <button class="btn-primary" onclick="openModal()">View Plans <i class="fa fa-arrow-right"></i></button>
+          </div>
+          <div class="tab-info">
+            <h4>Why Life Insurance?</h4>
+            <ul>
+              <li><i class="fa fa-check-circle"></i> Financial security for your family</li>
+              <li><i class="fa fa-check-circle"></i> Cover up to ₹2 Crore</li>
+              <li><i class="fa fa-check-circle"></i> Tax benefit under Section 80C</li>
+              <li><i class="fa fa-check-circle"></i> Term, ULIP, Endowment plans</li>
+              <li><i class="fa fa-check-circle"></i> Whole life coverage options</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Motor Tab -->
+      <div class="tab-content" id="tab-motor">
+        <div class="tab-form-grid">
+          <div class="tab-form">
+            <h3>Get Motor Insurance Quotes</h3>
+            <div class="form-row">
+              <label>Vehicle Type</label>
+              <div class="member-btns">
+                <button class="member-btn active"><i class="fa fa-car"></i> Car</button>
+                <button class="member-btn"><i class="fa fa-motorcycle"></i> Bike</button>
+              </div>
+            </div>
+            <div class="form-row">
+              <label>Vehicle Number</label>
+              <input type="text" placeholder="e.g. DL 5C AB 1234" />
+            </div>
+            <div class="form-row">
+              <label>Mobile Number</label>
+              <input type="tel" placeholder="Enter mobile number" />
+            </div>
+            <button class="btn-primary" onclick="openModal()">View Plans <i class="fa fa-arrow-right"></i></button>
+          </div>
+          <div class="tab-info">
+            <h4>Why Motor Insurance?</h4>
+            <ul>
+              <li><i class="fa fa-check-circle"></i> Mandatory by law in India</li>
+              <li><i class="fa fa-check-circle"></i> Covers accident, theft & damage</li>
+              <li><i class="fa fa-check-circle"></i> Third party liability coverage</li>
+              <li><i class="fa fa-check-circle"></i> Cashless repair at 3000+ garages</li>
+              <li><i class="fa fa-check-circle"></i> Zero depreciation add-on available</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Travel Tab -->
+      <div class="tab-content" id="tab-travel">
+        <div class="tab-form-grid">
+          <div class="tab-form">
+            <h3>Get Travel Insurance Quotes</h3>
+            <div class="form-row">
+              <label>Travel Type</label>
+              <div class="member-btns">
+                <button class="member-btn active">International</button>
+                <button class="member-btn">Domestic</button>
+              </div>
+            </div>
+            <div class="form-row">
+              <label>Departure Date</label>
+              <input type="date" />
+            </div>
+            <div class="form-row">
+              <label>Return Date</label>
+              <input type="date" />
+            </div>
+            <div class="form-row">
+              <label>Mobile Number</label>
+              <input type="tel" placeholder="Enter mobile number" />
+            </div>
+            <button class="btn-primary" onclick="openModal()">View Plans <i class="fa fa-arrow-right"></i></button>
+          </div>
+          <div class="tab-info">
+            <h4>Why Travel Insurance?</h4>
+            <ul>
+              <li><i class="fa fa-check-circle"></i> Emergency medical coverage abroad</li>
+              <li><i class="fa fa-check-circle"></i> Trip cancellation protection</li>
+              <li><i class="fa fa-check-circle"></i> Lost baggage compensation</li>
+              <li><i class="fa fa-check-circle"></i> Flight delay coverage</li>
+              <li><i class="fa fa-check-circle"></i> 24/7 travel assistance</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Home Tab -->
+      <div class="tab-content" id="tab-home">
+        <div class="tab-form-grid">
+          <div class="tab-form">
+            <h3>Get Home Insurance Quotes</h3>
+            <div class="form-row">
+              <label>Property Type</label>
+              <select>
+                <option>Select Property Type</option>
+                <option>Apartment / Flat</option>
+                <option>Independent House</option>
+                <option>Villa</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <label>Property Value</label>
+              <input type="text" placeholder="Enter property value in ₹" />
+            </div>
+            <div class="form-row">
+              <label>Mobile Number</label>
+              <input type="tel" placeholder="Enter mobile number" />
+            </div>
+            <button class="btn-primary" onclick="openModal()">View Plans <i class="fa fa-arrow-right"></i></button>
+          </div>
+          <div class="tab-info">
+            <h4>Why Home Insurance?</h4>
+            <ul>
+              <li><i class="fa fa-check-circle"></i> Protection against fire & floods</li>
+              <li><i class="fa fa-check-circle"></i> Burglary & theft coverage</li>
+              <li><i class="fa fa-check-circle"></i> Covers structure & contents</li>
+              <li><i class="fa fa-check-circle"></i> Earthquake damage protection</li>
+              <li><i class="fa fa-check-circle"></i> Alternate accommodation benefit</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Business Tab -->
+      <div class="tab-content" id="tab-business">
+        <div class="tab-form-grid">
+          <div class="tab-form">
+            <h3>Get Business Insurance Quotes</h3>
+            <div class="form-row">
+              <label>Business Type</label>
+              <select>
+                <option>Select Business Type</option>
+                <option>Manufacturing</option>
+                <option>Retail / Trading</option>
+                <option>IT / Services</option>
+                <option>Healthcare</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <label>Number of Employees</label>
+              <input type="number" placeholder="Enter employee count" />
+            </div>
+            <div class="form-row">
+              <label>Mobile Number</label>
+              <input type="tel" placeholder="Enter mobile number" />
+            </div>
+            <button class="btn-primary" onclick="openModal()">View Plans <i class="fa fa-arrow-right"></i></button>
+          </div>
+          <div class="tab-info">
+            <h4>Why Business Insurance?</h4>
+            <ul>
+              <li><i class="fa fa-check-circle"></i> Group Mediclaim for employees</li>
+              <li><i class="fa fa-check-circle"></i> Workmen compensation coverage</li>
+              <li><i class="fa fa-check-circle"></i> Marine & cargo insurance</li>
+              <li><i class="fa fa-check-circle"></i> Event insurance available</li>
+              <li><i class="fa fa-check-circle"></i> Doctor indemnity coverage</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES GRID -->
+  <section class="services-section" id="services">
+    <div class="container">
+      <div class="section-header">
+        <h2>Our <span class="gradient-text">Insurance Services</span></h2>
+        <p>Comprehensive coverage solutions for every need</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card" onclick="openModal()">
+          <div class="service-icon life-icon"><i class="fa fa-shield-alt"></i></div>
+          <h4>Life Insurance</h4>
+          <p>Term, ULIP, Endowment & Whole Life plans</p>
+          <span class="service-link">Explore <i class="fa fa-arrow-right"></i></span>
+        </div>
+        <div class="service-card" onclick="openModal()">
+          <div class="service-icon health-icon"><i class="fa fa-heartbeat"></i></div>
+          <h4>Health Insurance</h4>
+          <p>Individual, family floater & senior citizen plans</p>
+          <span class="service-link">Explore <i class="fa fa-arrow-right"></i></span>
+        </div>
+        <div class="service-card" onclick="openModal()">
+          <div class="service-icon motor-icon"><i class="fa fa-car"></i></div>
+          <h4>Motor Insurance</h4>
+          <p>Car & bike insurance with cashless repair</p>
+          <span class="service-link">Explore <i class="fa fa-arrow-right"></i></span>
+        </div>
+        <div class="service-card" onclick="openModal()">
+          <div class="service-icon group-icon"><i class="fa fa-users"></i></div>
+          <h4>Group Mediclaim</h4>
+          <p>Corporate health plans for your entire workforce</p>
+          <span class="service-link">Explore <i class="fa fa-arrow-right"></i></span>
+        </div>
+        <div class="service-card" onclick="openModal()">
+          <div class="service-icon event-icon"><i class="fa fa-calendar-alt"></i></div>
+          <h4>Event Insurance</h4>
+          <p>Coverage for weddings, concerts & corporate events</p>
+          <span class="service-link">Explore <i class="fa fa-arrow-right"></i></span>
+        </div>
+        <div class="service-card" onclick="openModal()">
+          <div class="service-icon doctor-icon"><i class="fa fa-user-md"></i></div>
+          <h4>Doctor Indemnity</h4>
+          <p>Professional liability coverage for medical practitioners</p>
+          <span class="service-link">Explore <i class="fa fa-arrow-right"></i></span>
+        </div>
+        <div class="service-card" onclick="openModal()">
+          <div class="service-icon accident-icon"><i class="fa fa-first-aid"></i></div>
+          <h4>Personal Accident</h4>
+          <p>Financial protection against accident & disability</p>
+          <span class="service-link">Explore <i class="fa fa-arrow-right"></i></span>
+        </div>
+        <div class="service-card" onclick="openModal()">
+          <div class="service-icon worker-icon"><i class="fa fa-hard-hat"></i></div>
+          <h4>Workmen Compensation</h4>
+          <p>Statutory coverage for workplace injuries</p>
+          <span class="service-link">Explore <i class="fa fa-arrow-right"></i></span>
+        </div>
+        <div class="service-card" onclick="openModal()">
+          <div class="service-icon invest-icon"><i class="fa fa-chart-line"></i></div>
+          <h4>Life Cum Investment</h4>
+          <p>Grow wealth while securing your life</p>
+          <span class="service-link">Explore <i class="fa fa-arrow-right"></i></span>
+        </div>
+        <div class="service-card" onclick="openModal()">
+          <div class="service-icon travel-icon"><i class="fa fa-plane"></i></div>
+          <h4>Travel Insurance</h4>
+          <p>Domestic & international trip protection</p>
+          <span class="service-link">Explore <i class="fa fa-arrow-right"></i></span>
+        </div>
+        <div class="service-card" onclick="openModal()">
+          <div class="service-icon marine-icon"><i class="fa fa-ship"></i></div>
+          <h4>Marine Insurance</h4>
+          <p>Cargo & freight protection for businesses</p>
+          <span class="service-link">Explore <i class="fa fa-arrow-right"></i></span>
+        </div>
+        <div class="service-card" onclick="openModal()">
+          <div class="service-icon home-icon"><i class="fa fa-home"></i></div>
+          <h4>Home Insurance</h4>
+          <p>Protect your home from fire, theft & natural disasters</p>
+          <span class="service-link">Explore <i class="fa fa-arrow-right"></i></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE US -->
+  <section class="why-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Why Choose <span class="gradient-text">PolicyRaj</span>?</h2>
+        <p>20+ years of trust, expertise & personalized service</p>
+      </div>
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-icon"><i class="fa fa-award"></i></div>
+          <h4>Award Winning Advisor</h4>
+          <p>Recognized globally within the insurance community for excellence & dedicated service.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon"><i class="fa fa-user-tie"></i></div>
+          <h4>Personalized Solutions</h4>
+          <p>We analyze your unique needs and craft tailored coverage that fits your life & budget.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon"><i class="fa fa-hands-helping"></i></div>
+          <h4>Claim Support</h4>
+          <p>End-to-end assistance during claim filing so you get what you deserve, stress-free.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon"><i class="fa fa-globe"></i></div>
+          <h4>All Major Insurers</h4>
+          <p>Compare plans across all leading insurance companies in India under one roof.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section class="about-section" id="about">
+    <div class="container about-inner">
+      <div class="about-img-wrap">
+        <div class="about-img-blob">
+          <div class="advisor-card-big">
+            <div class="advisor-avatar">SK</div>
+            <div class="advisor-details">
+              <strong>Sachin Kathuria</strong>
+              <span>IRDAI Licensed Advisor</span>
+              <span class="star-rating">★★★★★</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="about-text">
+        <span class="section-eyebrow">About the Advisor</span>
+        <h2>Sachin Kathuria – <span class="gradient-text">Your Insurance Expert</span></h2>
+        <p>With over 20 years of experience, Sachin Kathuria has been a trusted name in the insurance industry. He provides expert guidance to individuals, families, and businesses, delivering personalized insurance solutions backed by deep market knowledge.</p>
+        <p>His specialized focus on health insurance gives him a unique understanding of the complex healthcare landscape, enabling him to craft comprehensive solutions that address the diverse needs of every client.</p>
+        <div class="about-badges">
+          <div class="badge"><i class="fa fa-certificate"></i> IRDAI Certified</div>
+          <div class="badge"><i class="fa fa-trophy"></i> Award Winner</div>
+          <div class="badge"><i class="fa fa-star"></i> 20+ Years Exp.</div>
+        </div>
+        <a href="tel:9013976999" class="btn-primary"><i class="fa fa-phone"></i> Talk to Sachin</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>What Our <span class="gradient-text">Clients Say</span></h2>
+        <p>Thousands of happy clients across Delhi & India</p>
+      </div>
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <div class="quote-icon"><i class="fa fa-quote-left"></i></div>
+          <p>"Sachin ji helped me find the best family health plan within my budget. The claim process was smooth and hassle-free. Highly recommended!"</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">RK</div>
+            <div>
+              <strong>Rajesh Kumar</strong>
+              <span>Delhi</span>
+            </div>
+            <div class="stars">★★★★★</div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="quote-icon"><i class="fa fa-quote-left"></i></div>
+          <p>"Got group mediclaim for my 50-member team through PolicyRaj. Great rates, fast processing, and excellent after-sales service."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">PM</div>
+            <div>
+              <strong>Priya Mehta</strong>
+              <span>Noida</span>
+            </div>
+            <div class="stars">★★★★★</div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="quote-icon"><i class="fa fa-quote-left"></i></div>
+          <p>"As a doctor, I needed professional indemnity coverage. Sachin understood my needs perfectly and got me the right plan quickly."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">DS</div>
+            <div>
+              <strong>Dr. Anil Sharma</strong>
+              <span>Gurgaon</span>
+            </div>
+            <div class="stars">★★★★★</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section class="contact-section" id="contact">
+    <div class="container contact-inner">
+      <div class="contact-info">
+        <span class="section-eyebrow">Get in Touch</span>
+        <h2>Ready to <span class="gradient-text">Get Covered?</span></h2>
+        <p>Contact Sachin Kathuria today for a free consultation and personalized insurance plan.</p>
+        <div class="contact-details">
+          <a href="tel:9013976999" class="contact-item">
+            <div class="contact-icon"><i class="fa fa-phone"></i></div>
+            <div>
+              <strong>Call Us</strong>
+              <span>9013976999 / 8383813408</span>
+            </div>
+          </a>
+          <a href="mailto:sachin@policyraj.in" class="contact-item">
+            <div class="contact-icon"><i class="fa fa-envelope"></i></div>
+            <div>
+              <strong>Email Us</strong>
+              <span>sachin@policyraj.in</span>
+            </div>
+          </a>
+          <a href="mailto:sachinkat2002@Yahoo.co.in" class="contact-item">
+            <div class="contact-icon"><i class="fa fa-envelope"></i></div>
+            <div>
+              <strong>Alternate Email</strong>
+              <span>sachinkat2002@Yahoo.co.in</span>
+            </div>
+          </a>
+          <a href="https://policyraj.in" target="_blank" class="contact-item">
+            <div class="contact-icon"><i class="fa fa-globe"></i></div>
+            <div>
+              <strong>Website</strong>
+              <span>policyraj.in</span>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="contact-form-wrap">
+        <form class="contact-form" onsubmit="submitForm(event)">
+          <h3>Request a Free Quote</h3>
+          <div class="form-group">
+            <input type="text" placeholder="Your Full Name" required />
+          </div>
+          <div class="form-group">
+            <input type="tel" placeholder="Mobile Number" required />
+          </div>
+          <div class="form-group">
+            <input type="email" placeholder="Email Address" />
+          </div>
+          <div class="form-group">
+            <select required>
+              <option value="" disabled selected>Insurance Type</option>
+              <option>Health Insurance</option>
+              <option>Life Insurance</option>
+              <option>Motor Insurance</option>
+              <option>Group Mediclaim</option>
+              <option>Travel Insurance</option>
+              <option>Home Insurance</option>
+              <option>Business Insurance</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <textarea placeholder="Any specific requirements or questions?" rows="3"></textarea>
+          </div>
+          <button type="submit" class="btn-primary full-width">Send Request <i class="fa fa-paper-plane"></i></button>
+          <p class="form-note"><i class="fa fa-lock"></i> Your data is secure & will not be shared with anyone.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src="policyraj.png" alt="PolicyRaj" class="footer-logo" />
+        <p>Your trusted partner for all insurance needs. Expert guidance, personalized solutions, and seamless claim support.</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h5>Insurance</h5>
+        <ul>
+          <li><a href="#">Health Insurance</a></li>
+          <li><a href="#">Life Insurance</a></li>
+          <li><a href="#">Motor Insurance</a></li>
+          <li><a href="#">Travel Insurance</a></li>
+          <li><a href="#">Home Insurance</a></li>
+          <li><a href="#">Marine Insurance</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h5>Business</h5>
+        <ul>
+          <li><a href="#">Group Mediclaim</a></li>
+          <li><a href="#">Workmen Compensation</a></li>
+          <li><a href="#">Event Insurance</a></li>
+          <li><a href="#">Doctor Indemnity</a></li>
+          <li><a href="#">Personal Accident</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="#">About Sachin Kathuria</a></li>
+          <li><a href="#">Claims Support</a></li>
+          <li><a href="#">Become an Advisor</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>© 2024 PolicyRaj. All rights reserved. | IRDAI Registered Advisor | Sachin Kathuria</p>
+        <p>Policyraj.in | sachin@policyraj.in</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- QUOTE MODAL -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal()"><i class="fa fa-times"></i></button>
+      <h3>Get Your Free Quote</h3>
+      <p>Fill in your details and Sachin Kathuria will call you back within 2 hours.</p>
+      <form onsubmit="submitModal(event)">
+        <input type="text" placeholder="Your Name" required />
+        <input type="tel" placeholder="Mobile Number" required />
+        <select required>
+          <option value="" disabled selected>Select Insurance Type</option>
+          <option>Health Insurance</option>
+          <option>Life Insurance</option>
+          <option>Motor Insurance</option>
+          <option>Group Mediclaim</option>
+          <option>Travel Insurance</option>
+          <option>Home Insurance</option>
+          <option>Other</option>
+        </select>
+        <button type="submit" class="btn-primary full-width">Get Free Quote <i class="fa fa-arrow-right"></i></button>
+      </form>
+    </div>
+  </div>
+
+  <!-- SUCCESS TOAST -->
+  <div class="toast" id="toast">
+    <i class="fa fa-check-circle"></i> Thank you! We'll contact you shortly.
+  </div>
+
+  <!-- WHATSAPP FLOAT -->
+  <a href="https://wa.me/919013976999" target="_blank" class="whatsapp-float">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- BACK TO TOP -->
+  <button class="back-to-top" id="backToTop" onclick="scrollToTop()">
+    <i class="fa fa-chevron-up"></i>
+  </button>
+
+  <script src="script.js"></script>
+</body>
+</html>
