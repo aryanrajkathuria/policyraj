@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Health Insurance Guide – PolicyRaj</title>
+  <meta name="description" content="Complete guide to health insurance in India. Learn what health insurance covers, why you need it, types of plans, and how to choose the right one. Expert advice by Sachin Kathuria." />
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <span><i class="fa fa-phone"></i> 9013976999 / 8383813408</span>
+      <span><i class="fa fa-envelope"></i> sachin@policyraj.in</span>
+      <span class="topbar-right">
+        <a href="#">Become an Advisor</a>
+        <a href="#">Claims</a>
+        <a href="index.html#contact" class="btn-top">Get a Free Quote</a>
+      </span>
+    </div>
+  </div>
+
+  <nav class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="logo">
+        <img src="policyraj.png" alt="PolicyRaj Logo" class="logo-img" />
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#insurance">Insurance</a></li>
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="index.html#emi">EMI Calculator</a></li>
+        <li><a href="index.html#about">About Us</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a href="tel:9013976999" class="btn-nav-call"><i class="fa fa-phone"></i> Call Now</a>
+        <button class="btn-nav-quote" onclick="openModal()">Get Quote</button>
+      </div>
+      <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <i class="fa fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="service-page-hero">
+    <div class="container">
+      <nav class="breadcrumb">
+        <a href="index.html">Home</a><span>›</span>
+        <a href="index.html#insurance">Insurance</a><span>›</span>
+        <span>Health Insurance</span>
+      </nav>
+      <div class="service-tag"><i class="fa fa-heartbeat"></i> Health Insurance</div>
+      <h1>Your Complete Guide to<br /><span class="gradient-text">Health Insurance</span></h1>
+      <p class="sp-hero-desc">Understand what health insurance covers, why every family needs it, and how to pick the right plan — explained simply for everyone.</p>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="openModal()"><i class="fa fa-shield-alt"></i> Get Free Quote</button>
+        <a href="tel:9013976999" class="btn-outline" style="color:#fff;border-color:rgba(255,255,255,0.45)"><i class="fa fa-phone"></i> Call Now</a>
+      </div>
+      <div class="sp-stat-row">
+        <div class="sp-stat"><strong>₹50K+</strong><span>Avg. hospital bill</span></div>
+        <div class="sp-stat"><strong>5,000+</strong><span>Cashless hospitals</span></div>
+        <div class="sp-stat"><strong>₹75,000</strong><span>Max tax saving</span></div>
+        <div class="sp-stat"><strong>14%</strong><span>Annual cost rise</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT IS HEALTH INSURANCE -->
+  <section class="sp-section-alt">
+    <div class="container">
+      <div class="sp-what-grid">
+        <div class="sp-what-text">
+          <div class="section-header" style="text-align:left">
+            <h2>What is <span class="gradient-text">Health Insurance?</span></h2>
+          </div>
+          <p>Health insurance is a contract between you and an insurance company. You pay a small amount every year called a <strong>premium</strong>, and in return, the insurer pays your medical bills when you get sick, injured, or need surgery.</p>
+          <p>Think of it as a financial safety net. Without health insurance, a single serious illness — like a heart attack, cancer, or accident — can easily cost ₹3–10 lakh or more, wiping out your entire savings overnight.</p>
+          <p>With health insurance, you can focus on getting better instead of worrying about hospital bills.</p>
+        </div>
+        <div class="sp-what-visual">
+          <h4>Key Facts About Healthcare in India</h4>
+          <div class="sp-key-point"><i class="fa fa-arrow-right"></i><span>Medical inflation in India is 14% per year — faster than any other expense</span></div>
+          <div class="sp-key-point"><i class="fa fa-arrow-right"></i><span>A 3-day ICU stay costs ₹1–3 lakh in a private hospital</span></div>
+          <div class="sp-key-point"><i class="fa fa-arrow-right"></i><span>Only 37% of Indians have any form of health insurance</span></div>
+          <div class="sp-key-point"><i class="fa fa-arrow-right"></i><span>Cashless treatment available at 5,000+ network hospitals pan-India</span></div>
+          <div class="sp-key-point"><i class="fa fa-arrow-right"></i><span>Tax deduction of up to ₹75,000 under Section 80D</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY YOU NEED IT -->
+  <section class="sp-section">
+    <div class="container">
+      <div class="sp-section-header section-header">
+        <h2>Why Does Every Family <span class="gradient-text">Need Health Insurance?</span></h2>
+        <p>Here are the top reasons why health insurance is no longer optional — it's essential.</p>
+      </div>
+      <div class="sp-grid-4">
+        <div class="reason-card">
+          <div class="rc-icon"><i class="fa fa-rupee-sign"></i></div>
+          <h4>Skyrocketing Medical Costs</h4>
+          <p>A single surgery in India now costs ₹2–8 lakh. Medical costs are rising 14% every year — much faster than salaries.</p>
+        </div>
+        <div class="reason-card">
+          <div class="rc-icon"><i class="fa fa-users"></i></div>
+          <h4>Protect Your Family</h4>
+          <p>One critical illness in the family can drain decades of savings. A health plan covers the whole family for one annual premium.</p>
+        </div>
+        <div class="reason-card">
+          <div class="rc-icon"><i class="fa fa-piggy-bank"></i></div>
+          <h4>Tax Benefits</h4>
+          <p>Save up to ₹75,000 in taxes every year under Section 80D — ₹25,000 for yourself and ₹50,000 for senior citizen parents.</p>
+        </div>
+        <div class="reason-card">
+          <div class="rc-icon"><i class="fa fa-heart"></i></div>
+          <h4>Mental Peace</h4>
+          <p>When you're covered, you can visit the best hospitals without worrying about the bill. Focus on recovery, not finances.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT'S COVERED -->
+  <section class="sp-section-alt">
+    <div class="container">
+      <div class="sp-section-header section-header">
+        <h2>What Does Health Insurance <span class="gradient-text">Cover?</span></h2>
+        <p>A good health insurance plan covers far more than just hospital stays.</p>
+      </div>
+      <div class="sp-grid-3">
+        <div class="sp-cover-card">
+          <div class="cc-icon cc-blue"><i class="fa fa-hospital"></i></div>
+          <h4>Hospitalisation</h4>
+          <p>Room rent, ICU charges, surgeon fees, doctor visits, nursing charges — all covered when you are admitted for 24+ hours.</p>
+        </div>
+        <div class="sp-cover-card">
+          <div class="cc-icon cc-green"><i class="fa fa-procedures"></i></div>
+          <h4>Day Care Procedures</h4>
+          <p>Over 500+ modern procedures like cataract surgery, chemotherapy, dialysis that don't need 24-hour admission are covered.</p>
+        </div>
+        <div class="sp-cover-card">
+          <div class="cc-icon cc-purple"><i class="fa fa-clock"></i></div>
+          <h4>Pre-Hospitalisation</h4>
+          <p>Medical tests, specialist consultations, and medicines taken 30–60 days before admission are reimbursed.</p>
+        </div>
+        <div class="sp-cover-card">
+          <div class="cc-icon cc-orange"><i class="fa fa-calendar-check"></i></div>
+          <h4>Post-Hospitalisation</h4>
+          <p>Follow-up consultations, medicines, and recovery costs for 60–90 days after discharge are also covered.</p>
+        </div>
+        <div class="sp-cover-card">
+          <div class="cc-icon cc-red"><i class="fa fa-ambulance"></i></div>
+          <h4>Ambulance Charges</h4>
+          <p>Emergency ambulance costs to transport you to the hospital are covered under most health plans.</p>
+        </div>
+        <div class="sp-cover-card">
+          <div class="cc-icon cc-teal"><i class="fa fa-stethoscope"></i></div>
+          <h4>Annual Health Check-up</h4>
+          <p>Free yearly preventive health check-up for all insured members — catch problems early before they become expensive.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TYPES OF PLANS -->
+  <section class="sp-section">
+    <div class="container">
+      <div class="sp-section-header section-header">
+        <h2>Types of <span class="gradient-text">Health Insurance Plans</span></h2>
+        <p>Choose the plan that best fits your age, family size, and health needs.</p>
+      </div>
+      <div class="sp-grid-3">
+        <div class="sp-type-card">
+          <span class="tc-icon" style="color:#1d4ed8">👤</span>
+          <h4>Individual Plan</h4>
+          <p>Covers only one person. Each family member gets their own separate sum insured. Best for single adults or when family members have different health needs.</p>
+          <ul>
+            <li><i class="fa fa-check"></i> Dedicated sum insured per person</li>
+            <li><i class="fa fa-check"></i> Higher coverage per individual</li>
+            <li><i class="fa fa-check"></i> No risk of one illness draining the full cover</li>
+          </ul>
+        </div>
+        <div class="sp-type-card featured">
+          <span class="tc-icon" style="color:#059669">👨‍👩‍👧‍👦</span>
+          <h4>Family Floater Plan</h4>
+          <p>One shared policy for the entire family — spouse, children, and parents. All members share the total sum insured. Best value for young families.</p>
+          <ul>
+            <li><i class="fa fa-check"></i> One premium covers the whole family</li>
+            <li><i class="fa fa-check"></i> Shared pool used by whoever needs it most</li>
+            <li><i class="fa fa-check"></i> More affordable than separate policies</li>
+          </ul>
+        </div>
+        <div class="sp-type-card">
+          <span class="tc-icon" style="color:#b45309">👴</span>
+          <h4>Senior Citizen Plan</h4>
+          <p>Specially designed for people aged 60 and above. Higher premium but covers age-related illnesses, pre-existing conditions, and domiciliary treatment.</p>
+          <ul>
+            <li><i class="fa fa-check"></i> Covers age-related diseases</li>
+            <li><i class="fa fa-check"></i> Available up to age 80–85</li>
+            <li><i class="fa fa-check"></i> Tax benefit of ₹50,000 for parents</li>
+          </ul>
+        </div>
+        <div class="sp-type-card">
+          <span class="tc-icon" style="color:#dc2626">🩺</span>
+          <h4>Critical Illness Plan</h4>
+          <p>Pays a lump sum on diagnosis of serious diseases like cancer, heart attack, kidney failure, or stroke — regardless of actual treatment cost.</p>
+          <ul>
+            <li><i class="fa fa-check"></i> Lump sum payout on diagnosis</li>
+            <li><i class="fa fa-check"></i> Use money for treatment or lost income</li>
+            <li><i class="fa fa-check"></i> Covers 34–64 critical conditions</li>
+          </ul>
+        </div>
+        <div class="sp-type-card">
+          <span class="tc-icon" style="color:#7c3aed">🏥</span>
+          <h4>Super Top-Up Plan</h4>
+          <p>An affordable add-on that activates once your base cover is exhausted. Gives you ₹10–50 lakh additional coverage at very low cost.</p>
+          <ul>
+            <li><i class="fa fa-check"></i> Very affordable premium</li>
+            <li><i class="fa fa-check"></i> Tops up base insurance cover</li>
+            <li><i class="fa fa-check"></i> Ideal for high-cost city hospitals</li>
+          </ul>
+        </div>
+        <div class="sp-type-card">
+          <span class="tc-icon" style="color:#0d9488">🤰</span>
+          <h4>Maternity Cover</h4>
+          <p>Covers delivery costs, pre & post natal care, and newborn baby coverage. Usually available as a rider with a waiting period of 2–4 years.</p>
+          <ul>
+            <li><i class="fa fa-check"></i> Normal & C-section delivery covered</li>
+            <li><i class="fa fa-check"></i> Newborn baby covered from birth</li>
+            <li><i class="fa fa-check"></i> Pre/post-natal expenses included</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW TO CHOOSE -->
+  <section class="sp-section-alt">
+    <div class="container">
+      <div class="sp-section-header section-header">
+        <h2>How to Choose the <span class="gradient-text">Right Plan?</span></h2>
+        <p>Follow these 5 simple steps and you'll never be confused again.</p>
+      </div>
+      <div class="sp-steps">
+        <div class="sp-step">
+          <div class="sp-step-num">1</div>
+          <div class="sp-step-body">
+            <h4>Decide Your Sum Insured</h4>
+            <p>Minimum ₹5 lakh per person. Ideally ₹10–25 lakh for families in cities where private hospital costs are high. Remember — medical costs double every 5–7 years, so cover yourself generously.</p>
+          </div>
+        </div>
+        <div class="sp-step">
+          <div class="sp-step-num">2</div>
+          <div class="sp-step-body">
+            <h4>Check Network Hospitals in Your City</h4>
+            <p>Always verify that the insurer has good cashless tie-ups with quality hospitals in your city. The larger the network, the less hassle during emergencies.</p>
+          </div>
+        </div>
+        <div class="sp-step">
+          <div class="sp-step-num">3</div>
+          <div class="sp-step-body">
+            <h4>Understand the Waiting Period</h4>
+            <p>Most policies have a 30-day initial waiting period (no claims), 2–4 year waiting for pre-existing diseases (diabetes, BP etc.), and 2 years for maternity. Buy early — so waiting periods are served while you're healthy.</p>
+          </div>
+        </div>
+        <div class="sp-step">
+          <div class="sp-step-num">4</div>
+          <div class="sp-step-body">
+            <h4>Check Claim Settlement Ratio</h4>
+            <p>A good insurer settles 95%+ of claims. Lower ratios mean claim rejections. Also check if they offer direct cashless settlement or require reimbursement — cashless is far more convenient.</p>
+          </div>
+        </div>
+        <div class="sp-step">
+          <div class="sp-step-num">5</div>
+          <div class="sp-step-body">
+            <h4>Look for Restoration Benefit</h4>
+            <p>This feature refills your sum insured if it gets exhausted during the year. A must-have for families — if one member uses the full cover in January, others still have coverage for the remaining year.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERT ADVICE -->
+  <section class="sp-section-dark">
+    <div class="container">
+      <div class="sp-section-header section-header" style="margin-bottom:40px">
+        <h2 style="color:#fff">Expert Advice from <span style="color:#F59E0B">Sachin Kathuria</span></h2>
+        <p style="color:rgba(255,255,255,0.65)">20+ years of insurance advisory experience</p>
+      </div>
+      <div class="expert-block">
+        <div class="expert-avatar">SK</div>
+        <div>
+          <p class="expert-quote">Buy health insurance when you are young and healthy. The premium is at its lowest, you won't face rejection due to pre-existing conditions, and waiting periods get served while you're still fit. A family floater of ₹10 lakh for a family of 4 costs just ₹15,000–20,000 per year — less than ₹50 per day — for complete family protection. The biggest mistake I see is people buying insurance after they fall sick. By then, it's either very expensive or the condition gets excluded entirely.</p>
+          <div class="expert-name">— Sachin Kathuria, IRDAI Licensed Insurance Advisor</div>
+          <div class="expert-role">20+ Years Experience | 5,000+ Happy Clients | 5.0★ Google Rating</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="sp-cta-banner">
+    <div class="container">
+      <h2>Ready to Protect Your Family's Health?</h2>
+      <p>Get a free, personalised health insurance recommendation from Sachin Kathuria — India's trusted advisor with 20+ years of experience.</p>
+      <div class="sp-cta-btns">
+        <button class="btn-white" onclick="openModal()"><i class="fa fa-shield-alt"></i> Get Free Quote</button>
+        <a href="tel:9013976999" class="btn-outline-white"><i class="fa fa-phone"></i> Call 9013976999</a>
+        <a href="https://wa.me/919013976999" target="_blank" class="btn-outline-white"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src="policyraj.png" alt="PolicyRaj" class="footer-logo" loading="lazy" />
+        <p>Your trusted partner for all insurance needs. Expert guidance, personalized solutions, and seamless claim support.</p>
+        <div class="social-links">
+          <a href="https://www.facebook.com/policyraj" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://x.com/policyraj" target="_blank"><i class="fab fa-x-twitter"></i></a>
+          <a href="https://www.linkedin.com/company/policyraj" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://www.youtube.com/@policyraj" target="_blank"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h5>Insurance</h5>
+        <ul>
+          <li><a href="health.html">Health Insurance</a></li>
+          <li><a href="life.html">Life Insurance</a></li>
+          <li><a href="motor.html">Motor Insurance</a></li>
+          <li><a href="travel.html">Travel Insurance</a></li>
+          <li><a href="home.html">Home Insurance</a></li>
+          <li><a href="business.html">Business Insurance</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h5>Business</h5>
+        <ul>
+          <li><a href="business.html">Group Mediclaim</a></li>
+          <li><a href="business.html">Workmen Compensation</a></li>
+          <li><a href="business.html">Event Insurance</a></li>
+          <li><a href="business.html">Doctor Indemnity</a></li>
+          <li><a href="#">Personal Accident</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="index.html#about">About Sachin Kathuria</a></li>
+          <li><a href="#">Claims Support</a></li>
+          <li><a href="#">Become an Advisor</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>© 2024 PolicyRaj. All rights reserved. | IRDAI Registered Advisor | Sachin Kathuria</p>
+        <p>Policyraj.in | sachin@policyraj.in</p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal()"><i class="fa fa-times"></i></button>
+      <h3>Get Your Free Quote</h3>
+      <p>Fill in your details and Sachin Kathuria will call you back within 2 hours.</p>
+      <form onsubmit="submitModal(event)">
+        <input type="text" placeholder="Your Name" required />
+        <input type="tel" placeholder="Mobile Number" required />
+        <select required>
+          <option value="" disabled selected>Select Insurance Type</option>
+          <option selected>Health Insurance</option>
+          <option>Life Insurance</option>
+          <option>Motor Insurance</option>
+          <option>Travel Insurance</option>
+          <option>Home Insurance</option>
+          <option>Other</option>
+        </select>
+        <button type="submit" class="btn-primary full-width">Get Free Quote <i class="fa fa-arrow-right"></i></button>
+      </form>
+    </div>
+  </div>
+  <div class="toast" id="toast"><i class="fa fa-check-circle"></i> Thank you! We'll contact you shortly.</div>
+  <a href="https://wa.me/919013976999" target="_blank" class="whatsapp-float"><i class="fab fa-whatsapp"></i></a>
+  <button class="back-to-top" id="backToTop" onclick="scrollToTop()"><i class="fa fa-chevron-up"></i></button>
+
+  <script src="script.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+  <script>
+    document.querySelectorAll('.sp-section-header h2, .section-header h2').forEach(h => {
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('animated'); obs.unobserve(e.target); }});
+      }, { threshold: 0.3 });
+      obs.observe(h);
+    });
+  </script>
+</body>
+</html>

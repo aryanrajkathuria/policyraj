@@ -1,0 +1,61 @@
+name: AWS Deploy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    env:
+      AWS_REGION: ${{ secrets.AWS_REGION }}
+      AWS_ECR_REGISTRY: ${{ secrets.AWS_ECR_REGISTRY }}
+      AWS_ECR_REPOSITORY: ${{ secrets.AWS_ECR_REPOSITORY }}
+      AWS_ECS_CLUSTER: ${{ secrets.AWS_ECS_CLUSTER }}
+      AWS_ECS_SERVICE: ${{ secrets.AWS_ECS_SERVICE }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install backend dependencies
+        run: npm install --prefix backend
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Authenticate Docker to ECR
+        run: |
+          aws ecr get-login-password | docker login --username AWS --password-stdin ${{ env.AWS_ECR_REGISTRY }}
+
+      - name: Build and push Docker image
+        run: |
+          IMAGE_TAG=${GITHUB_SHA::8}
+          IMAGE_URI=${{ env.AWS_ECR_REGISTRY }}/${{ env.AWS_ECR_REPOSITORY }}:$IMAGE_TAG
+          docker build -f Docker/Dockerfile -t "$IMAGE_URI" .
+          docker push "$IMAGE_URI"
+          echo "IMAGE_URI=$IMAGE_URI" >> "$GITHUB_ENV"
+
+      - name: Register ECS task definition
+        run: |
+          jq --arg img "$IMAGE_URI" \
+            '.containerDefinitions[0].image = $img' \
+            aws/ecs-task-def.json > aws/ecs-task-def-generated.json
+          aws ecs register-task-definition --cli-input-json file://aws/ecs-task-def-generated.json
+
+      - name: Force ECS service deployment
+        run: |
+          aws ecs update-service \
+            --cluster ${{ env.AWS_ECS_CLUSTER }} \
+            --service ${{ env.AWS_ECS_SERVICE }} \
+            --force-new-deployment

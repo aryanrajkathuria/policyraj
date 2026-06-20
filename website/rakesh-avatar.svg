@@ -1,0 +1,271 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Background gradient -->
+    <linearGradient id="bgG" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F2460"/>
+      <stop offset="100%" stop-color="#1E54B7"/>
+    </linearGradient>
+    <!-- Skin base -->
+    <radialGradient id="skinG" cx="42%" cy="35%" r="60%">
+      <stop offset="0%"   stop-color="#F0C090"/>
+      <stop offset="55%"  stop-color="#D9935A"/>
+      <stop offset="100%" stop-color="#C07038"/>
+    </radialGradient>
+    <!-- Skin shadow -->
+    <radialGradient id="skinS" cx="50%" cy="50%" r="50%">
+      <stop offset="50%" stop-color="transparent"/>
+      <stop offset="100%" stop-color="rgba(100,40,0,0.18)"/>
+    </radialGradient>
+    <!-- Hair gradient -->
+    <linearGradient id="hairG" x1="20%" y1="0%" x2="80%" y2="100%">
+      <stop offset="0%"   stop-color="#1A0800"/>
+      <stop offset="40%"  stop-color="#2C1200"/>
+      <stop offset="100%" stop-color="#0D0400"/>
+    </linearGradient>
+    <!-- Hair highlight -->
+    <linearGradient id="hairHL" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="transparent"/>
+      <stop offset="35%"  stop-color="rgba(255,200,100,0.10)"/>
+      <stop offset="60%"  stop-color="rgba(255,200,100,0.06)"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </linearGradient>
+    <!-- Shirt gradient -->
+    <linearGradient id="shirtG" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%"   stop-color="#1A3A8F"/>
+      <stop offset="100%" stop-color="#0D2060"/>
+    </linearGradient>
+    <!-- Iris gradient -->
+    <radialGradient id="irisG" cx="38%" cy="35%" r="60%">
+      <stop offset="0%"   stop-color="#5C3210"/>
+      <stop offset="60%"  stop-color="#2E1500"/>
+      <stop offset="100%" stop-color="#100500"/>
+    </radialGradient>
+    <!-- Eye white shadow -->
+    <radialGradient id="eyeG" cx="50%" cy="50%" r="50%">
+      <stop offset="70%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#E8E8F0"/>
+    </radialGradient>
+    <!-- Cheek blush -->
+    <radialGradient id="blushG" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="rgba(210,80,60,0.14)"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </radialGradient>
+    <!-- Clip circle -->
+    <clipPath id="clip">
+      <circle cx="100" cy="100" r="100"/>
+    </clipPath>
+  </defs>
+
+  <!-- BG -->
+  <circle cx="100" cy="100" r="100" fill="url(#bgG)"/>
+  <!-- Subtle BG orbs -->
+  <circle cx="155" cy="38" r="40" fill="rgba(255,255,255,0.04)"/>
+  <circle cx="40"  cy="165" r="28" fill="rgba(255,255,255,0.03)"/>
+
+  <g clip-path="url(#clip)">
+
+    <!-- ═══ SHIRT / BODY ═══════════════════════════ -->
+    <path d="M10,215 Q10,155 52,140 L76,152 L100,147 L124,152 L148,140 Q190,155 190,215 Z"
+          fill="url(#shirtG)"/>
+
+    <!-- Shirt collar — crisp white -->
+    <path d="M76,152 L62,162 L72,180 L100,168 L128,180 L138,162 L124,152 L112,160 L100,156 L88,160 Z"
+          fill="#F5F8FF"/>
+    <!-- Collar shadow -->
+    <path d="M76,152 L88,160 L100,156 L112,160 L124,152 L112,157 L100,153 L88,157 Z"
+          fill="rgba(30,58,138,0.12)"/>
+
+    <!-- Tie knot area -->
+    <path d="M96,155 L100,153 L104,155 L103,162 L100,165 L97,162 Z" fill="#E8EDF8"/>
+
+    <!-- Tie — rich dark red with texture -->
+    <polygon points="100,162 95.5,178 100,186 104.5,178" fill="#C0111A"/>
+    <polygon points="100,162 96.5,172 100,178 103.5,172" fill="#9B0D14"/>
+    <polygon points="97.5,186 100,196 102.5,186 100,190" fill="#8A0C12"/>
+    <!-- Tie highlight -->
+    <polygon points="100,163 99,172 100,175 101,172" fill="rgba(255,255,255,0.10)"/>
+
+    <!-- ═══ NECK ════════════════════════════════════ -->
+    <path d="M84,126 C83,138 85,148 100,151 C115,148 117,138 116,126 Z"
+          fill="url(#skinG)"/>
+    <!-- Neck shadow -->
+    <path d="M84,138 Q87,148 100,151 Q113,148 116,138 Q108,143 100,143 Q92,143 84,138 Z"
+          fill="rgba(140,60,0,0.15)"/>
+
+    <!-- ═══ HEAD SHADOW (depth) ════════════════════ -->
+    <ellipse cx="101" cy="99" rx="47" ry="51" fill="rgba(0,0,0,0.08)"/>
+
+    <!-- ═══ FACE ════════════════════════════════════ -->
+    <!-- Jaw is slightly angular — more defined, masculine -->
+    <path d="
+      M56,90
+      C55,70 60,54 100,52
+      C140,54 145,70 144,90
+      C144,108 140,120 135,128
+      C128,138 115,145 100,146
+      C85,145 72,138 65,128
+      C60,120 56,108 56,90 Z"
+      fill="url(#skinG)"/>
+    <!-- Face depth overlay -->
+    <path d="
+      M56,90
+      C55,70 60,54 100,52
+      C140,54 145,70 144,90
+      C144,108 140,120 135,128
+      C128,138 115,145 100,146
+      C85,145 72,138 65,128
+      C60,120 56,108 56,90 Z"
+      fill="url(#skinS)"/>
+
+    <!-- Forehead highlight -->
+    <ellipse cx="100" cy="72" rx="24" ry="13" fill="rgba(255,210,160,0.18)"/>
+
+    <!-- Chin highlight -->
+    <ellipse cx="100" cy="139" rx="12" ry="6" fill="rgba(255,210,160,0.12)"/>
+
+    <!-- ═══ EARS ═════════════════════════════════════ -->
+    <ellipse cx="56" cy="99" rx="9.5" ry="12" fill="#D4914A"/>
+    <ellipse cx="144" cy="99" rx="9.5" ry="12" fill="#D4914A"/>
+    <!-- Inner ear -->
+    <ellipse cx="55"  cy="99" rx="6"  ry="8"  fill="#B8732E"/>
+    <ellipse cx="145" cy="99" rx="6"  ry="8"  fill="#B8732E"/>
+    <ellipse cx="55"  cy="99" rx="3"  ry="4.5" fill="#9F5F20"/>
+    <ellipse cx="145" cy="99" rx="3"  ry="4.5" fill="#9F5F20"/>
+    <!-- Ear lobe shadow -->
+    <ellipse cx="56"  cy="107" rx="6" ry="4" fill="rgba(0,0,0,0.08)"/>
+    <ellipse cx="144" cy="107" rx="6" ry="4" fill="rgba(0,0,0,0.08)"/>
+
+    <!-- ═══ HAIR — swept side-part style ══════════ -->
+    <!-- Main hair mass -->
+    <path d="
+      M56,93
+      C54,65 58,46 100,44
+      C142,46 146,65 144,93
+      C143,75 138,60 130,55
+      C118,46 100,44 100,44
+      C100,44 82,46 70,55
+      C62,60 57,75 56,93 Z"
+      fill="url(#hairG)"/>
+    <!-- Side parts / temples -->
+    <path d="M56,93 C54,105 57,118 62,126 C59,112 56,100 56,93 Z" fill="url(#hairG)"/>
+    <path d="M144,93 C146,105 143,118 138,126 C141,112 144,100 144,93 Z" fill="url(#hairG)"/>
+    <!-- Side-part sweep across forehead -->
+    <path d="
+      M66,58 C72,50 84,46 100,44
+      C90,46 78,50 72,56
+      C80,52 92,48 100,47
+      C86,49 74,55 70,62 Z"
+      fill="rgba(20,8,0,0.9)"/>
+    <!-- Hair highlight — side part shine -->
+    <path d="M80,52 C86,48 94,46 102,46 C92,46 82,50 78,55 Z"
+          fill="rgba(255,200,120,0.12)"/>
+    <!-- Hairline definition -->
+    <path d="M66,75 C68,66 72,60 80,56 C90,51 100,50 110,51 C120,52 130,57 136,65 C140,70 142,76 142,80"
+          fill="none" stroke="rgba(20,8,0,0.4)" stroke-width="2"/>
+
+    <!-- ═══ EYEBROWS — bold and well-groomed ══════ -->
+    <!-- Left brow — strong arch -->
+    <path d="M70,83 C75,78 82,76 92,78 C85,77 76,79 70,83 Z"
+          fill="#1C0A00"/>
+    <path d="M70,83 C76,79 83,77 92,79"
+          stroke="#1C0A00" stroke-width="5" fill="none"
+          stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- Right brow -->
+    <path d="M108,79 C117,77 124,79 130,83 C124,79 117,78 108,79 Z"
+          fill="#1C0A00"/>
+    <path d="M108,79 C117,77 124,79 130,83"
+          stroke="#1C0A00" stroke-width="5" fill="none"
+          stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- Brow highlights -->
+    <path d="M71,83 C76,79 83,77 91,79"
+          stroke="rgba(90,40,0,0.25)" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path d="M109,79 C117,77 123,79 129,83"
+          stroke="rgba(90,40,0,0.25)" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+    <!-- ═══ EYES — large, expressive ════════════════ -->
+    <!-- Eye socket shadow -->
+    <ellipse cx="83"  cy="97" rx="13" ry="11.5" fill="rgba(120,50,0,0.10)"/>
+    <ellipse cx="117" cy="97" rx="13" ry="11.5" fill="rgba(120,50,0,0.10)"/>
+    <!-- White of eye -->
+    <ellipse cx="83"  cy="97" rx="11.5" ry="10" fill="url(#eyeG)"/>
+    <ellipse cx="117" cy="97" rx="11.5" ry="10" fill="url(#eyeG)"/>
+    <!-- Iris -->
+    <circle cx="83"  cy="97" r="7.5" fill="url(#irisG)"/>
+    <circle cx="117" cy="97" r="7.5" fill="url(#irisG)"/>
+    <!-- Iris rim -->
+    <circle cx="83"  cy="97" r="7.5" fill="none" stroke="rgba(0,0,0,0.30)" stroke-width="0.8"/>
+    <circle cx="117" cy="97" r="7.5" fill="none" stroke="rgba(0,0,0,0.30)" stroke-width="0.8"/>
+    <!-- Pupil -->
+    <circle cx="83"  cy="97" r="4.2" fill="#0A0300"/>
+    <circle cx="117" cy="97" r="4.2" fill="#0A0300"/>
+    <!-- Eye shine — main (large) -->
+    <circle cx="86.5" cy="93.2" r="3"   fill="white" opacity="0.92"/>
+    <circle cx="120.5" cy="93.2" r="3"  fill="white" opacity="0.92"/>
+    <!-- Eye shine — secondary (small) -->
+    <circle cx="80.5" cy="100.5" r="1.3" fill="white" opacity="0.40"/>
+    <circle cx="114.5" cy="100.5" r="1.3" fill="white" opacity="0.40"/>
+    <!-- Upper eyelid crease -->
+    <path d="M71.5,91 C76,87 83,86 94.5,91" stroke="#1C0A00" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+    <path d="M105.5,91 C117,86 124,87 128.5,91" stroke="#1C0A00" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+    <!-- Lower lashes subtle -->
+    <path d="M71.5,103 C76,107 83,108 94.5,103" stroke="rgba(28,10,0,0.18)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+    <path d="M105.5,103 C117,108 124,107 128.5,103" stroke="rgba(28,10,0,0.18)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+
+    <!-- ═══ NOSE — defined, straight bridge ════════ -->
+    <!-- Bridge -->
+    <path d="M97,107 C96,112 95,118 93,123" stroke="rgba(160,70,10,0.28)" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path d="M103,107 C104,112 105,118 107,123" stroke="rgba(160,70,10,0.28)" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <!-- Nose tip -->
+    <ellipse cx="100" cy="124" rx="9" ry="6" fill="rgba(175,85,20,0.22)"/>
+    <!-- Nostrils -->
+    <path d="M91,126 C90,123 92,121 95,122 C94,124 92,125 91,126 Z" fill="rgba(140,55,10,0.55)"/>
+    <path d="M109,126 C110,123 108,121 105,122 C106,124 108,125 109,126 Z" fill="rgba(140,55,10,0.55)"/>
+    <!-- Nose bridge highlight -->
+    <path d="M99,104 C100,110 100.5,117 101,122" stroke="rgba(255,195,120,0.35)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+
+    <!-- ═══ CHEEKS / BLUSH ══════════════════════════ -->
+    <ellipse cx="72"  cy="115" rx="11" ry="7" fill="url(#blushG)"/>
+    <ellipse cx="128" cy="115" rx="11" ry="7" fill="url(#blushG)"/>
+
+    <!-- ═══ MOUTH / SMILE ═══════════════════════════ -->
+    <!-- Upper lip -->
+    <path d="M79,131
+             C83,128 90,127 94,129
+             C97,130 100,129 100,129
+             C100,129 103,130 106,129
+             C110,127 117,128 121,131"
+          fill="#A84030" stroke="#8B2A20" stroke-width="0.5"/>
+    <!-- Cupid's bow dip -->
+    <path d="M95,129 C97,127 100,128 100,128 C100,128 103,127 105,129"
+          fill="#8B2A20"/>
+    <!-- Lower lip — fuller -->
+    <path d="M79,131 C82,136 90,141 100,141 C110,141 118,136 121,131
+             C115,135 108,138 100,138 C92,138 85,135 79,131 Z"
+          fill="#C4604A"/>
+    <!-- Lip highlight -->
+    <path d="M86,135 C90,138 95,139 100,139 C105,139 110,138 114,135"
+          stroke="rgba(255,180,150,0.30)" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <!-- Smile line / teeth -->
+    <path d="M82,131 C87,136 93,139 100,139 C107,139 113,136 118,131"
+          fill="none" stroke="rgba(120,30,15,0.60)" stroke-width="1"/>
+    <!-- Teeth -->
+    <path d="M84,131 C89,136 94,138 100,138 C106,138 111,136 116,131
+             C110,134 105,136 100,136 C95,136 90,134 84,131 Z"
+          fill="#F5F0EC"/>
+    <!-- Teeth center line -->
+    <line x1="100" y1="131" x2="100" y2="137" stroke="rgba(200,150,130,0.20)" stroke-width="0.8"/>
+    <!-- Smile dimples -->
+    <circle cx="77"  cy="130" r="2.5" fill="rgba(185,80,40,0.18)"/>
+    <circle cx="123" cy="130" r="2.5" fill="rgba(185,80,40,0.18)"/>
+
+    <!-- ═══ JAWLINE SHADOW ════════════════════════ -->
+    <path d="M65,128 Q72,140 85,145 Q100,148 115,145 Q128,140 135,128"
+          fill="none" stroke="rgba(120,50,0,0.12)" stroke-width="4"/>
+
+  </g>
+
+  <!-- Outer ring — subtle glow -->
+  <circle cx="100" cy="100" r="97" fill="none" stroke="rgba(255,255,255,0.14)" stroke-width="2.5"/>
+  <!-- Inner highlight arc -->
+  <path d="M45,55 C60,30 80,20 105,20" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="8" stroke-linecap="round"/>
+</svg>

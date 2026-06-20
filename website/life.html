@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Life Insurance Guide – PolicyRaj</title>
+  <meta name="description" content="Complete guide to life insurance in India. Understand term plans, ULIPs, endowment plans, how much coverage you need, and tax benefits. Expert advice by Sachin Kathuria." />
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <span><i class="fa fa-phone"></i> 9013976999 / 8383813408</span>
+      <span><i class="fa fa-envelope"></i> sachin@policyraj.in</span>
+      <span class="topbar-right">
+        <a href="#">Become an Advisor</a>
+        <a href="#">Claims</a>
+        <a href="index.html#contact" class="btn-top">Get a Free Quote</a>
+      </span>
+    </div>
+  </div>
+
+  <nav class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="logo"><img src="policyraj.png" alt="PolicyRaj Logo" class="logo-img" /></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#insurance">Insurance</a></li>
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="index.html#emi">EMI Calculator</a></li>
+        <li><a href="index.html#about">About Us</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a href="tel:9013976999" class="btn-nav-call"><i class="fa fa-phone"></i> Call Now</a>
+        <button class="btn-nav-quote" onclick="openModal()">Get Quote</button>
+      </div>
+      <button class="hamburger" id="hamburger" onclick="toggleMenu()"><i class="fa fa-bars"></i></button>
+    </div>
+  </nav>
+
+  <section class="service-page-hero">
+    <div class="container">
+      <nav class="breadcrumb">
+        <a href="index.html">Home</a><span>›</span>
+        <a href="index.html#insurance">Insurance</a><span>›</span>
+        <span>Life Insurance</span>
+      </nav>
+      <div class="service-tag"><i class="fa fa-shield-alt"></i> Life Insurance</div>
+      <h1>Your Complete Guide to<br /><span class="gradient-text">Life Insurance</span></h1>
+      <p class="sp-hero-desc">Secure your family's financial future even when you're not around. Understand life insurance — what it is, how much you need, and which plan suits you best.</p>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="openModal()"><i class="fa fa-shield-alt"></i> Get Free Quote</button>
+        <a href="tel:9013976999" class="btn-outline" style="color:#fff;border-color:rgba(255,255,255,0.45)"><i class="fa fa-phone"></i> Call Now</a>
+      </div>
+      <div class="sp-stat-row">
+        <div class="sp-stat"><strong>₹1 Cr</strong><span>Cover at ₹8K/year (age 25)</span></div>
+        <div class="sp-stat"><strong>10–15x</strong><span>Annual income coverage</span></div>
+        <div class="sp-stat"><strong>₹1.5 Lakh</strong><span>Tax saving under 80C</span></div>
+        <div class="sp-stat"><strong>2.7%</strong><span>Indians adequately insured</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sp-section-alt">
+    <div class="container">
+      <div class="sp-what-grid">
+        <div class="sp-what-text">
+          <div class="section-header" style="text-align:left">
+            <h2>What is <span class="gradient-text">Life Insurance?</span></h2>
+          </div>
+          <p>Life insurance is a promise — you pay premiums regularly, and if something happens to you, the insurance company pays a large sum (called the <strong>death benefit</strong>) to your family.</p>
+          <p>This money helps your family pay their daily expenses, children's education, home loan EMIs, and other costs — even without your income.</p>
+          <p>Some life insurance plans also build savings or investments over time, giving you money back at maturity if you survive the policy term.</p>
+        </div>
+        <div class="sp-what-visual">
+          <h4>Why Life Insurance is Critical</h4>
+          <div class="sp-key-point"><i class="fa fa-arrow-right"></i><span>If you have dependents (spouse, children, parents), life insurance is not optional</span></div>
+          <div class="sp-key-point"><i class="fa fa-arrow-right"></i><span>A home loan of ₹50 lakh becomes your family's burden if you're not there</span></div>
+          <div class="sp-key-point"><i class="fa fa-arrow-right"></i><span>Your children's college education needs ₹10–30 lakh — life cover ensures they get it</span></div>
+          <div class="sp-key-point"><i class="fa fa-arrow-right"></i><span>Only 2.7% of Indians have adequate life coverage</span></div>
+          <div class="sp-key-point"><i class="fa fa-arrow-right"></i><span>Premium is lowest at young age — a 25-year-old pays just ₹8,000/year for ₹1 Cr cover</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sp-section">
+    <div class="container">
+      <div class="sp-section-header section-header">
+        <h2>Why Do You <span class="gradient-text">Need Life Insurance?</span></h2>
+        <p>These are the situations where life insurance becomes your family's lifeline.</p>
+      </div>
+      <div class="sp-grid-4">
+        <div class="reason-card">
+          <div class="rc-icon"><i class="fa fa-home"></i></div>
+          <h4>Protect Home Loan</h4>
+          <p>If you have a home loan, your family could lose the house if they can't pay the EMIs. Life cover pays off the loan completely.</p>
+        </div>
+        <div class="reason-card">
+          <div class="rc-icon"><i class="fa fa-graduation-cap"></i></div>
+          <h4>Children's Education</h4>
+          <p>Ensure your children's dreams don't stop because of your absence. Life insurance funds their education even without you.</p>
+        </div>
+        <div class="reason-card">
+          <div class="rc-icon"><i class="fa fa-wallet"></i></div>
+          <h4>Replace Lost Income</h4>
+          <p>If you're the primary earner, your family needs a replacement for your income to maintain their lifestyle and meet daily needs.</p>
+        </div>
+        <div class="reason-card">
+          <div class="rc-icon"><i class="fa fa-piggy-bank"></i></div>
+          <h4>Tax Savings</h4>
+          <p>Premium paid for life insurance qualifies for deduction under Section 80C (up to ₹1.5 lakh). The death benefit is tax-free under Section 10(10D).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sp-section-alt">
+    <div class="container">
+      <div class="sp-section-header section-header">
+        <h2>Types of <span class="gradient-text">Life Insurance Plans</span></h2>
+        <p>Choose wisely — each plan serves a different purpose.</p>
+      </div>
+      <div class="sp-grid-3">
+        <div class="sp-type-card featured">
+          <span class="tc-icon" style="color:#1d4ed8">🛡️</span>
+          <h4>Term Insurance Plan</h4>
+          <p>Pure protection. Pays a large sum to your family if you pass away during the policy term. No maturity benefit — but the most affordable and recommended for maximum coverage.</p>
+          <ul>
+            <li><i class="fa fa-check"></i> Highest coverage at lowest cost</li>
+            <li><i class="fa fa-check"></i> Cover up to ₹5 Crore</li>
+            <li><i class="fa fa-check"></i> Simple and transparent</li>
+            <li><i class="fa fa-check"></i> Best for families with dependents</li>
+          </ul>
+        </div>
+        <div class="sp-type-card">
+          <span class="tc-icon" style="color:#059669">📈</span>
+          <h4>ULIP (Unit Linked Plan)</h4>
+          <p>Combines insurance with market-linked investments. Part of your premium goes into mutual fund-like investments. Returns depend on market performance.</p>
+          <ul>
+            <li><i class="fa fa-check"></i> Insurance + investment in one</li>
+            <li><i class="fa fa-check"></i> Potential for market-linked returns</li>
+            <li><i class="fa fa-check"></i> Lock-in period of 5 years</li>
+            <li><i class="fa fa-check"></i> Tax benefits under 80C & 10(10D)</li>
+          </ul>
+        </div>
+        <div class="sp-type-card">
+          <span class="tc-icon" style="color:#b45309">💰</span>
+          <h4>Endowment Plan</h4>
+          <p>Pays a lump sum either on death during the term OR at maturity if you survive. Guaranteed returns with insurance protection — conservative and safe.</p>
+          <ul>
+            <li><i class="fa fa-check"></i> Guaranteed maturity amount</li>
+            <li><i class="fa fa-check"></i> Death + survival benefit</li>
+            <li><i class="fa fa-check"></i> Suitable for risk-averse investors</li>
+          </ul>
+        </div>
+        <div class="sp-type-card">
+          <span class="tc-icon" style="color:#7c3aed">💵</span>
+          <h4>Money Back Plan</h4>
+          <p>Pays out a percentage of the sum insured at regular intervals (every 4–5 years) during the policy term, with full payout at maturity or on death.</p>
+          <ul>
+            <li><i class="fa fa-check"></i> Periodic cash returns</li>
+            <li><i class="fa fa-check"></i> Good for planned expenses</li>
+            <li><i class="fa fa-check"></i> Death benefit continues</li>
+          </ul>
+        </div>
+        <div class="sp-type-card">
+          <span class="tc-icon" style="color:#dc2626">🌳</span>
+          <h4>Whole Life Insurance</h4>
+          <p>Covers you for your entire life — not just a fixed term. Usually until age 99 or 100. Best for wealth transfer and estate planning.</p>
+          <ul>
+            <li><i class="fa fa-check"></i> Lifelong coverage</li>
+            <li><i class="fa fa-check"></i> Builds cash value over time</li>
+            <li><i class="fa fa-check"></i> Estate planning tool</li>
+          </ul>
+        </div>
+        <div class="sp-type-card">
+          <span class="tc-icon" style="color:#0d9488">👶</span>
+          <h4>Child Plans</h4>
+          <p>Specifically designed to secure your child's future — education, marriage, career. Pays out at key milestones even if something happens to the parent.</p>
+          <ul>
+            <li><i class="fa fa-check"></i> Future premiums waived on death</li>
+            <li><i class="fa fa-check"></i> Payout at child's key life stages</li>
+            <li><i class="fa fa-check"></i> Best started when child is young</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sp-section">
+    <div class="container">
+      <div class="sp-section-header section-header">
+        <h2>How Much Coverage <span class="gradient-text">Do You Need?</span></h2>
+        <p>Most people are under-insured. Here is how to calculate the right amount.</p>
+      </div>
+      <div class="sp-steps">
+        <div class="sp-step">
+          <div class="sp-step-num">1</div>
+          <div class="sp-step-body">
+            <h4>10–15 Times Your Annual Income</h4>
+            <p>The simple rule: multiply your annual income by 10 to 15. If you earn ₹8 lakh per year, you need ₹80 lakh to ₹1.2 crore of life cover. This replaces your income for your family over time.</p>
+          </div>
+        </div>
+        <div class="sp-step">
+          <div class="sp-step-num">2</div>
+          <div class="sp-step-body">
+            <h4>Add Your Total Outstanding Loans</h4>
+            <p>Add your home loan, car loan, and personal loan outstanding amounts. Your life cover should be enough to clear all these so your family doesn't inherit your debts.</p>
+          </div>
+        </div>
+        <div class="sp-step">
+          <div class="sp-step-num">3</div>
+          <div class="sp-step-body">
+            <h4>Factor in Future Goals</h4>
+            <p>Your children's education costs, their marriage, your spouse's retirement — include these in your calculation. What does your family need to live comfortably for 20–25 years?</p>
+          </div>
+        </div>
+        <div class="sp-step">
+          <div class="sp-step-num">4</div>
+          <div class="sp-step-body">
+            <h4>Subtract Your Existing Savings & Assets</h4>
+            <p>Subtract existing savings, investments, and EPF balance. The remaining amount is your pure life insurance requirement. Buy that much and you're fully protected.</p>
+          </div>
+        </div>
+        <div class="sp-step">
+          <div class="sp-step-num">5</div>
+          <div class="sp-step-body">
+            <h4>Buy Term Insurance Early</h4>
+            <p>Every year you delay, the premium increases. A 25-year-old pays ~₹8,000/year for ₹1 Cr cover. A 35-year-old pays ~₹16,000 for the same cover. Start today.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sp-section-dark">
+    <div class="container">
+      <div class="sp-section-header section-header" style="margin-bottom:40px">
+        <h2 style="color:#fff">Expert Advice from <span style="color:#F59E0B">Sachin Kathuria</span></h2>
+        <p style="color:rgba(255,255,255,0.65)">20+ years of insurance advisory experience</p>
+      </div>
+      <div class="expert-block">
+        <div class="expert-avatar">SK</div>
+        <div>
+          <p class="expert-quote">Buy term insurance as early as possible and never mix insurance with investment. A ₹1 Crore term plan at age 25 costs just ₹700 per month — that's ₹23 per day for complete peace of mind. Then invest the remaining money in mutual funds or PPF separately for better returns. The biggest financial mistake a family can make is not having enough life insurance. I have seen families lose everything because the earning member passed away without coverage.</p>
+          <div class="expert-name">— Sachin Kathuria, IRDAI Licensed Insurance Advisor</div>
+          <div class="expert-role">20+ Years Experience | 5,000+ Happy Clients | 5.0★ Google Rating</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sp-cta-banner">
+    <div class="container">
+      <h2>Secure Your Family's Future Today</h2>
+      <p>Get a free life insurance recommendation from Sachin Kathuria — 20+ years of experience helping families make the right choice.</p>
+      <div class="sp-cta-btns">
+        <button class="btn-white" onclick="openModal()"><i class="fa fa-shield-alt"></i> Get Free Quote</button>
+        <a href="tel:9013976999" class="btn-outline-white"><i class="fa fa-phone"></i> Call 9013976999</a>
+        <a href="https://wa.me/919013976999" target="_blank" class="btn-outline-white"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src="policyraj.png" alt="PolicyRaj" class="footer-logo" loading="lazy" />
+        <p>Your trusted partner for all insurance needs. Expert guidance, personalized solutions, and seamless claim support.</p>
+        <div class="social-links">
+          <a href="https://www.facebook.com/policyraj" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://x.com/policyraj" target="_blank"><i class="fab fa-x-twitter"></i></a>
+          <a href="https://www.linkedin.com/company/policyraj" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://www.youtube.com/@policyraj" target="_blank"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-links"><h5>Insurance</h5><ul>
+        <li><a href="health.html">Health Insurance</a></li><li><a href="life.html">Life Insurance</a></li>
+        <li><a href="motor.html">Motor Insurance</a></li><li><a href="travel.html">Travel Insurance</a></li>
+        <li><a href="home.html">Home Insurance</a></li><li><a href="business.html">Business Insurance</a></li>
+      </ul></div>
+      <div class="footer-links"><h5>Company</h5><ul>
+        <li><a href="index.html#about">About Sachin Kathuria</a></li>
+        <li><a href="#">Claims Support</a></li><li><a href="#">Become an Advisor</a></li>
+        <li><a href="#">Privacy Policy</a></li><li><a href="#">Terms of Service</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom"><div class="container">
+      <p>© 2024 PolicyRaj. All rights reserved. | IRDAI Registered Advisor | Sachin Kathuria</p>
+    </div></div>
+  </footer>
+
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal()"><i class="fa fa-times"></i></button>
+      <h3>Get Your Free Quote</h3>
+      <p>Fill in your details and Sachin Kathuria will call you back within 2 hours.</p>
+      <form onsubmit="submitModal(event)">
+        <input type="text" placeholder="Your Name" required />
+        <input type="tel" placeholder="Mobile Number" required />
+        <select required>
+          <option value="" disabled selected>Select Insurance Type</option>
+          <option>Health Insurance</option>
+          <option selected>Life Insurance</option>
+          <option>Motor Insurance</option>
+          <option>Travel Insurance</option>
+          <option>Home Insurance</option>
+          <option>Other</option>
+        </select>
+        <button type="submit" class="btn-primary full-width">Get Free Quote <i class="fa fa-arrow-right"></i></button>
+      </form>
+    </div>
+  </div>
+  <div class="toast" id="toast"><i class="fa fa-check-circle"></i> Thank you! We'll contact you shortly.</div>
+  <a href="https://wa.me/919013976999" target="_blank" class="whatsapp-float"><i class="fab fa-whatsapp"></i></a>
+  <button class="back-to-top" id="backToTop" onclick="scrollToTop()"><i class="fa fa-chevron-up"></i></button>
+  <script src="script.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+  <script>
+    document.querySelectorAll('.sp-section-header h2, .section-header h2').forEach(h => {
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('animated'); obs.unobserve(e.target); }});
+      }, { threshold: 0.3 });
+      obs.observe(h);
+    });
+  </script>
+</body>
+</html>
