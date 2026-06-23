@@ -14,7 +14,7 @@
   <div class="topbar">
     <div class="container topbar-inner">
       <span><i class="fa fa-phone"></i> 9013976999 / 8383813408</span>
-      <span><i class="fa fa-envelope"></i> sachin@policyraj.in</span>
+      <span><i class="fa fa-envelope"></i> sachin@policyraj.com</span>
       <span class="topbar-right">
         <a href="#">Become an Advisor</a>
         <a href="#">Claims</a>
@@ -286,35 +286,68 @@
       <div class="footer-links"><h5>Company</h5><ul>
         <li><a href="index.html#about">About Sachin Kathuria</a></li>
         <li><a href="#">Claims Support</a></li><li><a href="#">Become an Advisor</a></li>
-        <li><a href="#">Privacy Policy</a></li><li><a href="#">Terms of Service</a></li>
+        <li><a href="privacy-policy.html">Privacy Policy</a></li><li><a href="#">Terms of Service</a></li>
       </ul></div>
     </div>
-    <div class="footer-bottom"><div class="container">
-      <p>© 2024 PolicyRaj. All rights reserved. | IRDAI Registered Advisor | Sachin Kathuria</p>
-    </div></div>
+                    <div class="footer-disclaimer">
+      <div class="container">
+        <p class="fd-title">Statutory Disclosure &amp; Disclaimer</p>
+        <p><strong>About PolicyRaj:</strong> PolicyRaj is an IRDAI-licensed insurance advisory platform and an authorised channel partner of the insurance companies listed on this website. We facilitate access to insurance products on behalf of our partner insurers and do not underwrite, issue, or guarantee any insurance policy. All policies are issued solely by the respective IRDAI-regulated insurer. All insurance companies featured on this platform are independently licensed and regulated by the Insurance Regulatory and Development Authority of India (IRDAI).</p>
+        <p><strong>Advisory &amp; Risk Disclosure:</strong> All information, premium figures, benefit illustrations, and coverage details on this platform are for general guidance only and are indicative in nature. Actual premiums are subject to the applicant&apos;s age, health status, risk profile, sum insured, and the underwriting norms of the relevant insurer at the time of issuance. For market-linked products such as ULIPs and equity-linked plans, returns are subject to market risk and are not guaranteed — past performance is not indicative of future results. Clients are advised to read the complete policy document, including terms, conditions, exclusions, and waiting periods, before making any insurance decision. PolicyRaj does not provide tax or legal advice; please consult a qualified professional for personalised guidance.</p>
+      </div>
+    </div>
+    <div class="footer-bottom"><div class="container"><p>© 2004–2026 PolicyRaj™. All rights reserved. | Founded by Sachin Kathuria | IRDAI Licensed Advisor</p><p>policyraj.in | sachin@policyraj.com | <a href="privacy-policy.html" style="color:rgba(255,255,255,0.6)">Privacy Policy</a></p><p><a href="https://wa.me/919013976999?text=Hello%20Sachin%2C%20I%20would%20like%20to%20request%20your%20IRDAI%20Licence%20Number%20for%20verification." target="_blank" class="footer-irdai-link"><i class="fa fa-certificate"></i> IRDAI Licence Number available on request</a></p></div></div>
   </footer>
 
-  <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
-    <div class="modal">
-      <button class="modal-close" onclick="closeModal()"><i class="fa fa-times"></i></button>
-      <h3>Get Your Free Quote</h3>
-      <p>Fill in your details and Sachin Kathuria will call you back within 2 hours.</p>
-      <form onsubmit="submitModal(event)">
-        <input type="text" placeholder="Your Name" required />
-        <input type="tel" placeholder="Mobile Number" required />
-        <select required>
-          <option value="" disabled selected>Select Insurance Type</option>
-          <option>Health Insurance</option>
-          <option selected>Life Insurance</option>
-          <option>Motor Insurance</option>
-          <option>Travel Insurance</option>
-          <option>Home Insurance</option>
-          <option>Other</option>
-        </select>
-        <button type="submit" class="btn-primary full-width">Get Free Quote <i class="fa fa-arrow-right"></i></button>
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+    <div class="modal modal--pro">
+      <button class="modal-close" onclick="closeModal()" aria-label="Close"><i class="fa fa-times"></i></button>
+      <div class="modal-header-pro">
+        <div class="modal-icon-wrap"><i class="fa fa-shield-alt"></i></div>
+        <div>
+          <h3>Get Your Free Quote</h3>
+          <p class="modal-tagline">Expert advice, zero obligation</p>
+        </div>
+      </div>
+      <form onsubmit="submitModal(event)" class="modal-form-pro">
+        <div class="modal-field">
+          <label><i class="fa fa-user"></i> Full Name</label>
+          <input type="text" name="name" placeholder="Enter your full name" required />
+        </div>
+        <div class="modal-field">
+          <label><i class="fa fa-phone"></i> Mobile Number</label>
+          <input type="tel" name="phone" placeholder="10-digit mobile number" required maxlength="10" pattern="[6-9][0-9]{9}" />
+        </div>
+        <div class="modal-field">
+          <label><i class="fa fa-shield-alt"></i> Insurance Type</label>
+          <select name="insurance_type" required>
+            <option value="" disabled selected>Select what you need</option>
+            <option>Health Insurance</option>
+            <option>Life Insurance</option>
+            <option>Motor Insurance</option>
+            <option>Group Mediclaim</option>
+            <option>Travel Insurance</option>
+            <option>Home Insurance</option>
+            <option>Other / Not Sure</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-primary full-width modal-submit-btn">
+          <i class="fab fa-whatsapp"></i> Send Request on WhatsApp
+        </button>
+        <p class="modal-submit-note"><i class="fa fa-lock"></i> Your information is 100% confidential &amp; never shared</p>
       </form>
+      <div class="modal-contact-strip">
+        <div class="mcs-item"><i class="fa fa-phone"></i><div><span>Call / WhatsApp</span><strong>9013976999 / 8383813408</strong></div></div>
+        <div class="mcs-item"><i class="fa fa-map-marker-alt"></i><div><span>Office Address</span><strong>8th Floor, Magnum Towers, Golf Course Ext Rd, Sector 58, Gurugram – 122098</strong></div></div>
+        <div class="mcs-item"><i class="fa fa-clock"></i><div><span>Working Hours</span><strong>Mon–Sat, 9 AM – 7 PM</strong></div></div>
+      </div>
+      <div class="modal-response-badge">
+        <i class="fa fa-bolt"></i> Sachin Kathuria will respond <strong>as soon as possible</strong>
+      </div>
     </div>
   </div>
+
+
   <div class="toast" id="toast"><i class="fa fa-check-circle"></i> Thank you! We'll contact you shortly.</div>
   <a href="https://wa.me/919013976999" target="_blank" class="whatsapp-float"><i class="fab fa-whatsapp"></i></a>
   <button class="back-to-top" id="backToTop" onclick="scrollToTop()"><i class="fa fa-chevron-up"></i></button>

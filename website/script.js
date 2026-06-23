@@ -85,76 +85,39 @@ function showToast() {
 }
 
 /* ── Contact form submit ── */
-function submitForm(e) {
+async function submitForm(e) {
   e.preventDefault();
-  
-  const form = e.target;
-  const formData = {
-    name: form.querySelector('input[placeholder="Your Full Name"]').value,
-    phone: form.querySelector('input[placeholder="Mobile Number"]').value,
-    email: form.querySelector('input[placeholder="Email Address"]').value || "Not provided",
-    insurance_type: form.querySelector('select').value,
-    message: form.querySelector('textarea').value || "No additional requirements"
-  };
-  
-  fetch('/api/contact', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(formData)
-  })
-  .then(response => response.json())
-  .then(data => {
-    if (data.success) {
-      showToast();
-      form.reset();
-    } else {
-      console.error('Form submission error:', data);
-      alert(data.message || 'Unable to submit your request.');
-    }
-  })
-  .catch(error => {
-    console.error('Error:', error);
-    alert('Unable to submit your request. Please try again later.');
-  });
+  const form    = e.target;
+  const btn     = form.querySelector('button[type="submit"]');
+  const name    = form.querySelector('input[placeholder="Your Full Name"]').value.trim();
+  const mobile  = form.querySelector('input[placeholder="Mobile Number"]').value.trim();
+  const email   = (form.querySelector('input[placeholder="Email Address"]') || {}).value || '';
+  const insType = form.querySelector('select').value;
+  const message = (form.querySelector('textarea') || {}).value || '';
+
+  if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+
+  await submitQuoteLead({ type: 'contact', name, mobile, email, insuranceType: insType, message });
+
+  showToast();
+  form.reset();
+  if (btn) { btn.disabled = false; btn.textContent = 'Send Request'; }
 }
 
 /* ── Modal form submit ── */
-function submitModal(e) {
+async function submitModal(e) {
   e.preventDefault();
-  
-  const form = e.target;
-  const formData = {
-    name: form.querySelector('input[placeholder="Your Name"]').value,
-    phone: form.querySelector('input[placeholder="Mobile Number"]').value,
-    insurance_type: form.querySelector('select').value,
-    source: "Modal Quote Form"
-  };
-  
-  fetch('/api/quote', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(formData)
-  })
-  .then(response => response.json())
-  .then(data => {
-    if (data.success) {
-      document.getElementById('modalOverlay').classList.remove('open');
-      document.body.style.overflow = '';
-      showToast();
-      form.reset();
-    } else {
-      console.error('Form submission error:', data);
-      alert(data.message || 'Unable to submit your request.');
-    }
-  })
-  .catch(error => {
-    console.error('Error:', error);
-    alert('Unable to submit your request. Please try again later.');
-  });
+  const form    = e.target;
+  const name    = form.querySelector('input[name="name"], input[placeholder="Your Name"]').value.trim();
+  const mobile  = form.querySelector('input[name="phone"], input[placeholder="Mobile Number"]').value.trim();
+  const insType = form.querySelector('select').value;
+
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+  showToast();
+  form.reset();
+
+  await submitQuoteLead({ type: 'contact', name, mobile, insuranceType: insType });
 }
 
 /* ── Back to top ── */
@@ -174,6 +137,14 @@ const observer = new IntersectionObserver((entries) => {
       entry.target.style.opacity = '1';
       entry.target.style.transform = 'translateY(0)';
       observer.unobserve(entry.target);
+      // Clear inline styles after animation so CSS hover/active states work freely
+      const el = entry.target;
+      const dur = parseFloat(el.style.transitionDuration || '0.5') * 1000 + 100;
+      setTimeout(() => {
+        el.style.opacity = '';
+        el.style.transform = '';
+        el.style.transition = '';
+      }, dur || 600);
     }
   });
 }, observerOptions);
@@ -181,7 +152,7 @@ const observer = new IntersectionObserver((entries) => {
 // Apply to cards and sections on load
 document.addEventListener('DOMContentLoaded', () => {
   const animateEls = document.querySelectorAll(
-    '.service-card, .why-card, .testimonial-card, .insurance-card, .calculator-card, .contact-item'
+    '.service-card, .why-card, .testimonial-card, .insurance-card, .calculator-card'
   );
   animateEls.forEach((el, i) => {
     el.style.opacity = '0';
@@ -710,7 +681,7 @@ document.addEventListener('click', function(e) {
    ═══════════════════════════════════════════════════════ */
 
 // Open chatbot and optionally send a question
-function askRakesh(question) {
+function askVeera(question) {
   const win = document.getElementById('chatbotWindow');
   if (win && !win.classList.contains('cb-open')) {
     toggleChat();

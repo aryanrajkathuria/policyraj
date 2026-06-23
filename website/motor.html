@@ -14,7 +14,7 @@
   <div class="topbar">
     <div class="container topbar-inner">
       <span><i class="fa fa-phone"></i> 9013976999 / 8383813408</span>
-      <span><i class="fa fa-envelope"></i> sachin@policyraj.in</span>
+      <span><i class="fa fa-envelope"></i> sachin@policyraj.com</span>
       <span class="topbar-right">
         <a href="#">Become an Advisor</a><a href="#">Claims</a>
         <a href="index.html#contact" class="btn-top">Get a Free Quote</a>
@@ -190,6 +190,244 @@
     </div>
   </section>
 
+  <!-- ═══ MOTOR INSURANCE PROPOSAL FORM ════════════════════════════════ -->
+  <section class="mip-section" id="motor-proposal">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow"><i class="fa fa-car"></i> Motor Insurance Proposal</span>
+        <h2>Fill Your <span class="gradient-text">Vehicle Insurance Details</span></h2>
+        <p class="section-subtitle">Complete the form below — all fields marked <span style="color:var(--secondary)">*</span> are mandatory. Your information is 100% secure and confidential.</p>
+      </div>
+
+      <form class="mip-form" id="mipForm" onsubmit="submitMipForm(event)" novalidate>
+
+        <!-- VEHICLE TYPE TOGGLE -->
+        <div class="mip-type-row">
+          <label class="mip-type-chip mip-type-chip--active" id="typeCarLabel">
+            <input type="radio" name="mipVehicleType" value="Car" checked onchange="setVehicleType(this)" />
+            <i class="fa fa-car"></i> Car Insurance
+          </label>
+          <label class="mip-type-chip" id="typeBikeLabel">
+            <input type="radio" name="mipVehicleType" value="Two-Wheeler" onchange="setVehicleType(this)" />
+            <i class="fa fa-motorcycle"></i> Two-Wheeler Insurance
+          </label>
+        </div>
+
+        <!-- CARD 1: VEHICLE DETAILS -->
+        <div class="mip-card">
+          <div class="mip-card-head">
+            <span class="mip-card-icon"><i class="fa fa-car"></i></span>
+            <h3>Vehicle Details</h3>
+            <span class="mip-card-badge">RC / Registration Info</span>
+          </div>
+          <div class="mip-body">
+
+            <div class="mip-row">
+              <div class="mip-field mip-field--full">
+                <label class="mip-label">Vehicle Registration Number (RC) <span class="mip-req">*</span></label>
+                <input type="text" class="mip-input mip-uppercase" id="mipRC" placeholder="e.g. DL 3C AB 1234" required maxlength="15" oninput="this.value=this.value.toUpperCase()" />
+                <span class="mip-hint">Enter as shown on your RC book — no spaces required</span>
+              </div>
+            </div>
+
+            <div class="mip-row">
+              <div class="mip-field">
+                <label class="mip-label">Vehicle Make <span class="mip-req">*</span></label>
+                <input type="text" class="mip-input" id="mipMake" list="mipMakeList"
+                  placeholder="Type brand — e.g. Maruti, Honda, Hero..." required autocomplete="off" />
+                <datalist id="mipMakeList">
+                  <option value="Maruti Suzuki"><option value="Hyundai"><option value="Tata Motors">
+                  <option value="Honda Cars"><option value="Toyota"><option value="Mahindra">
+                  <option value="Kia"><option value="MG Motor"><option value="Volkswagen">
+                  <option value="Skoda"><option value="Renault"><option value="Nissan">
+                  <option value="Ford"><option value="BMW"><option value="Mercedes-Benz">
+                  <option value="Audi"><option value="Jeep"><option value="Citroen">
+                  <option value="Volvo"><option value="Porsche"><option value="Land Rover">
+                  <option value="Jaguar"><option value="MINI"><option value="Mitsubishi">
+                  <option value="Fiat"><option value="Datsun"><option value="Peugeot">
+                  <option value="Isuzu"><option value="Ferrari"><option value="Lamborghini">
+                  <option value="Rolls-Royce"><option value="Bentley"><option value="Aston Martin">
+                  <option value="Lexus"><option value="Infiniti"><option value="Acura">
+                  <option value="Hero MotoCorp"><option value="Honda Motorcycle">
+                  <option value="Bajaj Auto"><option value="TVS Motor">
+                  <option value="Royal Enfield"><option value="Suzuki Motorcycle">
+                  <option value="Yamaha"><option value="KTM"><option value="Ola Electric">
+                  <option value="Ather Energy"><option value="Revolt Motors"><option value="Jawa">
+                  <option value="Yezdi"><option value="Benelli"><option value="Kawasaki">
+                  <option value="Ducati"><option value="Harley-Davidson"><option value="BMW Motorrad">
+                  <option value="Triumph"><option value="Vespa"><option value="Aprilia">
+                  <option value="Piaggio"><option value="Keeway"><option value="CF Moto">
+                  <option value="Indian Motorcycle"><option value="Norton"><option value="Moto Guzzi">
+                </datalist>
+                <span class="mip-hint">Start typing to see suggestions</span>
+              </div>
+              <div class="mip-field">
+                <label class="mip-label">Vehicle Model <span class="mip-req">*</span></label>
+                <input type="text" class="mip-input" id="mipModel" placeholder="e.g. Swift, Activa 6G, Pulsar 150" required />
+              </div>
+            </div>
+
+            <div class="mip-row">
+              <div class="mip-field">
+                <label class="mip-label">Manufacturing Year <span class="mip-req">*</span></label>
+                <input type="number" class="mip-input" id="mipYear" list="mipYearList"
+                  placeholder="e.g. 2020" min="1990" required autocomplete="off" />
+                <datalist id="mipYearList"></datalist>
+              </div>
+              <div class="mip-field">
+                <label class="mip-label">Fuel Type <span class="mip-req">*</span></label>
+                <div class="mip-chip-group" id="mipFuelGroup">
+                  <label class="mip-chip"><input type="radio" name="mipFuel" value="Petrol" /><i class="fa fa-gas-pump"></i> Petrol</label>
+                  <label class="mip-chip"><input type="radio" name="mipFuel" value="Diesel" /><i class="fa fa-oil-can"></i> Diesel</label>
+                  <label class="mip-chip"><input type="radio" name="mipFuel" value="CNG" /><i class="fa fa-leaf"></i> CNG</label>
+                  <label class="mip-chip"><input type="radio" name="mipFuel" value="Electric" /><i class="fa fa-bolt"></i> Electric</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="mip-row">
+              <div class="mip-field">
+                <label class="mip-label">Engine Number <span class="mip-req">*</span></label>
+                <input type="text" class="mip-input mip-uppercase" id="mipEngine" placeholder="As on RC book" required oninput="this.value=this.value.toUpperCase()" />
+              </div>
+              <div class="mip-field">
+                <label class="mip-label">Chassis Number <span class="mip-req">*</span></label>
+                <input type="text" class="mip-input mip-uppercase" id="mipChassis" placeholder="17-character VIN / Chassis No." required maxlength="17" oninput="this.value=this.value.toUpperCase()" />
+              </div>
+            </div>
+
+            <div class="mip-row">
+              <div class="mip-field">
+                <label class="mip-label">Cover Type <span class="mip-req">*</span></label>
+                <div class="mip-chip-group" id="mipCoverGroup">
+                  <label class="mip-chip"><input type="radio" name="mipCover" value="Third Party" /><i class="fa fa-shield-alt"></i> Third Party</label>
+                  <label class="mip-chip"><input type="radio" name="mipCover" value="Comprehensive" /><i class="fa fa-car-crash"></i> Comprehensive</label>
+                  <label class="mip-chip"><input type="radio" name="mipCover" value="Own Damage" /><i class="fa fa-tools"></i> Own Damage</label>
+                </div>
+              </div>
+              <div class="mip-field">
+                <label class="mip-label">Previous Policy Expired? <span class="mip-req">*</span></label>
+                <div class="mip-chip-group" id="mipExpiredGroup">
+                  <label class="mip-chip mip-chip--yes"><input type="radio" name="mipExpired" value="Yes" /> <i class="fa fa-times-circle"></i> Yes</label>
+                  <label class="mip-chip mip-chip--no"><input type="radio" name="mipExpired" value="No" /> <i class="fa fa-check-circle"></i> No (Active)</label>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- CARD 2: OWNER DETAILS -->
+        <div class="mip-card">
+          <div class="mip-card-head">
+            <span class="mip-card-icon mip-card-icon--owner"><i class="fa fa-user"></i></span>
+            <h3>Vehicle Owner Details</h3>
+            <span class="mip-card-badge">RC Owner Info</span>
+          </div>
+          <div class="mip-body">
+
+            <div class="mip-row">
+              <div class="mip-field mip-field--full">
+                <label class="mip-label">Owner's Full Name <span class="mip-req">*</span> <span class="mip-secondary-badge">As on RC</span></label>
+                <input type="text" class="mip-input" id="mipOwnerName" placeholder="Enter name exactly as on RC book" required />
+              </div>
+            </div>
+
+            <div class="mip-row">
+              <div class="mip-field">
+                <label class="mip-label">Primary Mobile Number <span class="mip-req">*</span></label>
+                <div class="mip-input-unit">
+                  <span class="mip-unit mip-unit--left">+91</span>
+                  <input type="tel" class="mip-input mip-input--with-prefix" id="mipMobile1" placeholder="10-digit mobile number" required maxlength="10" pattern="[6-9][0-9]{9}" />
+                </div>
+              </div>
+              <div class="mip-field">
+                <label class="mip-label">Email ID <span class="mip-req">*</span></label>
+                <input type="email" class="mip-input" id="mipEmail" placeholder="your@email.com" required />
+              </div>
+            </div>
+
+            <div class="mip-row">
+              <div class="mip-field">
+                <label class="mip-label">Date of Birth <span class="mip-req">*</span></label>
+                <input type="date" class="mip-input" id="mipOwnerDob" onchange="calcMipAge('mipOwnerDob','mipOwnerAge')" required />
+              </div>
+              <div class="mip-field">
+                <label class="mip-label">Age</label>
+                <input type="number" class="mip-input mip-readonly" id="mipOwnerAge" placeholder="Auto-filled from DOB" readonly />
+              </div>
+            </div>
+
+            <div class="mip-row">
+              <div class="mip-field">
+                <label class="mip-label">Gender <span class="mip-req">*</span></label>
+                <div class="mip-chip-group" id="mipGenderGroup">
+                  <label class="mip-chip"><input type="radio" name="mipGender" value="Male" /><i class="fa fa-mars"></i> Male</label>
+                  <label class="mip-chip"><input type="radio" name="mipGender" value="Female" /><i class="fa fa-venus"></i> Female</label>
+                </div>
+              </div>
+              <div class="mip-field">
+                <label class="mip-label">Marital Status <span class="mip-req">*</span></label>
+                <div class="mip-chip-group" id="mipMaritalGroup">
+                  <label class="mip-chip"><input type="radio" name="mipMarital" value="Married" /><i class="fa fa-ring"></i> Married</label>
+                  <label class="mip-chip"><input type="radio" name="mipMarital" value="Single" /><i class="fa fa-user"></i> Single</label>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- CARD 3: NOMINEE DETAILS -->
+        <div class="mip-card">
+          <div class="mip-card-head">
+            <span class="mip-card-icon mip-card-icon--nominee"><i class="fa fa-user-friends"></i></span>
+            <h3>Nominee Details</h3>
+            <span class="mip-card-badge">Claim Beneficiary</span>
+          </div>
+          <div class="mip-body">
+
+            <div class="mip-row">
+              <div class="mip-field">
+                <label class="mip-label">Nominee Full Name <span class="mip-req">*</span></label>
+                <input type="text" class="mip-input" id="mipNomName" placeholder="Enter nominee's full name" required />
+              </div>
+              <div class="mip-field">
+                <label class="mip-label">Relationship <span class="mip-req">*</span></label>
+                <select class="mip-input mip-select" id="mipNomRelation" required>
+                  <option value="">Select Relationship</option>
+                  <option>Spouse</option><option>Father</option><option>Mother</option>
+                  <option>Son</option><option>Daughter</option><option>Brother</option>
+                  <option>Sister</option><option>Other</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="mip-row">
+              <div class="mip-field">
+                <label class="mip-label">Nominee Date of Birth <span class="mip-req">*</span></label>
+                <input type="date" class="mip-input" id="mipNomDob" onchange="calcMipAge('mipNomDob','mipNomAge')" required />
+              </div>
+              <div class="mip-field">
+                <label class="mip-label">Nominee Age</label>
+                <input type="number" class="mip-input mip-readonly" id="mipNomAge" placeholder="Auto-filled from DOB" readonly />
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- SUBMIT -->
+        <div class="mip-submit-row">
+          <p class="mip-privacy-note"><i class="fa fa-lock"></i> Your data is encrypted and 100% safe. We never share your information.</p>
+          <button type="submit" class="btn-primary mip-submit-btn"><i class="fa fa-paper-plane"></i> Submit Vehicle Insurance Proposal</button>
+          <p class="mip-callback-note">Our advisor will call you within 2 hours with the best quotes.</p>
+        </div>
+
+      </form>
+    </div>
+  </section>
+
   <footer class="footer">
     <div class="container footer-inner">
       <div class="footer-brand">
@@ -209,33 +447,72 @@
       </ul></div>
       <div class="footer-links"><h5>Company</h5><ul>
         <li><a href="index.html#about">About Sachin Kathuria</a></li>
-        <li><a href="#">Claims Support</a></li><li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Claims Support</a></li><li><a href="privacy-policy.html">Privacy Policy</a></li>
       </ul></div>
     </div>
-    <div class="footer-bottom"><div class="container"><p>© 2024 PolicyRaj. All rights reserved. | IRDAI Registered Advisor</p></div></div>
+                    <div class="footer-disclaimer">
+      <div class="container">
+        <p class="fd-title">Statutory Disclosure &amp; Disclaimer</p>
+        <p><strong>About PolicyRaj:</strong> PolicyRaj is an IRDAI-licensed insurance advisory platform and an authorised channel partner of the insurance companies listed on this website. We facilitate access to insurance products on behalf of our partner insurers and do not underwrite, issue, or guarantee any insurance policy. All policies are issued solely by the respective IRDAI-regulated insurer. All insurance companies featured on this platform are independently licensed and regulated by the Insurance Regulatory and Development Authority of India (IRDAI).</p>
+        <p><strong>Advisory &amp; Risk Disclosure:</strong> All information, premium figures, benefit illustrations, and coverage details on this platform are for general guidance only and are indicative in nature. Actual premiums are subject to the applicant&apos;s age, health status, risk profile, sum insured, and the underwriting norms of the relevant insurer at the time of issuance. For market-linked products such as ULIPs and equity-linked plans, returns are subject to market risk and are not guaranteed — past performance is not indicative of future results. Clients are advised to read the complete policy document, including terms, conditions, exclusions, and waiting periods, before making any insurance decision. PolicyRaj does not provide tax or legal advice; please consult a qualified professional for personalised guidance.</p>
+      </div>
+    </div>
+    <div class="footer-bottom"><div class="container"><p>© 2004–2026 PolicyRaj™. All rights reserved. | Founded by Sachin Kathuria | IRDAI Licensed Advisor</p><p>policyraj.in | sachin@policyraj.com | <a href="privacy-policy.html" style="color:rgba(255,255,255,0.6)">Privacy Policy</a></p><p><a href="https://wa.me/919013976999?text=Hello%20Sachin%2C%20I%20would%20like%20to%20request%20your%20IRDAI%20Licence%20Number%20for%20verification." target="_blank" class="footer-irdai-link"><i class="fa fa-certificate"></i> IRDAI Licence Number available on request</a></p></div></div>
   </footer>
 
-  <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
-    <div class="modal">
-      <button class="modal-close" onclick="closeModal()"><i class="fa fa-times"></i></button>
-      <h3>Get Your Free Quote</h3>
-      <p>Fill in your details and Sachin Kathuria will call you back within 2 hours.</p>
-      <form onsubmit="submitModal(event)">
-        <input type="text" placeholder="Your Name" required />
-        <input type="tel" placeholder="Mobile Number" required />
-        <select required>
-          <option value="" disabled selected>Select Insurance Type</option>
-          <option>Health Insurance</option><option>Life Insurance</option>
-          <option selected>Motor Insurance</option><option>Travel Insurance</option>
-          <option>Home Insurance</option><option>Other</option>
-        </select>
-        <button type="submit" class="btn-primary full-width">Get Free Quote <i class="fa fa-arrow-right"></i></button>
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+    <div class="modal modal--pro">
+      <button class="modal-close" onclick="closeModal()" aria-label="Close"><i class="fa fa-times"></i></button>
+      <div class="modal-header-pro">
+        <div class="modal-icon-wrap"><i class="fa fa-shield-alt"></i></div>
+        <div>
+          <h3>Get Your Free Quote</h3>
+          <p class="modal-tagline">Expert advice, zero obligation</p>
+        </div>
+      </div>
+      <form onsubmit="submitModal(event)" class="modal-form-pro">
+        <div class="modal-field">
+          <label><i class="fa fa-user"></i> Full Name</label>
+          <input type="text" name="name" placeholder="Enter your full name" required />
+        </div>
+        <div class="modal-field">
+          <label><i class="fa fa-phone"></i> Mobile Number</label>
+          <input type="tel" name="phone" placeholder="10-digit mobile number" required maxlength="10" pattern="[6-9][0-9]{9}" />
+        </div>
+        <div class="modal-field">
+          <label><i class="fa fa-shield-alt"></i> Insurance Type</label>
+          <select name="insurance_type" required>
+            <option value="" disabled selected>Select what you need</option>
+            <option>Health Insurance</option>
+            <option>Life Insurance</option>
+            <option>Motor Insurance</option>
+            <option>Group Mediclaim</option>
+            <option>Travel Insurance</option>
+            <option>Home Insurance</option>
+            <option>Other / Not Sure</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-primary full-width modal-submit-btn">
+          <i class="fab fa-whatsapp"></i> Send Request on WhatsApp
+        </button>
+        <p class="modal-submit-note"><i class="fa fa-lock"></i> Your information is 100% confidential &amp; never shared</p>
       </form>
+      <div class="modal-contact-strip">
+        <div class="mcs-item"><i class="fa fa-phone"></i><div><span>Call / WhatsApp</span><strong>9013976999 / 8383813408</strong></div></div>
+        <div class="mcs-item"><i class="fa fa-map-marker-alt"></i><div><span>Office Address</span><strong>8th Floor, Magnum Towers, Golf Course Ext Rd, Sector 58, Gurugram – 122098</strong></div></div>
+        <div class="mcs-item"><i class="fa fa-clock"></i><div><span>Working Hours</span><strong>Mon–Sat, 9 AM – 7 PM</strong></div></div>
+      </div>
+      <div class="modal-response-badge">
+        <i class="fa fa-bolt"></i> Sachin Kathuria will respond <strong>as soon as possible</strong>
+      </div>
     </div>
   </div>
+
+
   <div class="toast" id="toast"><i class="fa fa-check-circle"></i> Thank you! We'll contact you shortly.</div>
   <a href="https://wa.me/919013976999" target="_blank" class="whatsapp-float"><i class="fab fa-whatsapp"></i></a>
   <button class="back-to-top" id="backToTop" onclick="scrollToTop()"><i class="fa fa-chevron-up"></i></button>
+  <script src="js/quote-api.js"></script>
   <script src="script.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
   <script>
@@ -245,6 +522,139 @@
       }, { threshold: 0.3 });
       obs.observe(h);
     });
+
+    /* ── Motor Proposal Form ── */
+
+    /* Populate year datalist */
+    (function() {
+      const dl = document.getElementById('mipYearList');
+      const cur = new Date().getFullYear();
+      document.getElementById('mipYear').max = cur;
+      for (let y = cur; y >= 1990; y--) {
+        const o = document.createElement('option');
+        o.value = y;
+        dl.appendChild(o);
+      }
+      /* Set DOB max = today */
+      const today = new Date().toISOString().split('T')[0];
+      document.getElementById('mipOwnerDob').max = today;
+      document.getElementById('mipNomDob').max = today;
+    })();
+
+    /* Vehicle type chip toggle */
+    function setVehicleType(radio) {
+      document.querySelectorAll('.mip-type-chip').forEach(c => c.classList.remove('mip-type-chip--active'));
+      radio.closest('.mip-type-chip').classList.add('mip-type-chip--active');
+    }
+
+    /* Age auto-calculate */
+    function calcMipAge(dobId, ageId) {
+      const dob = new Date(document.getElementById(dobId).value);
+      if (isNaN(dob)) return;
+      const today = new Date();
+      let age = today.getFullYear() - dob.getFullYear();
+      const m = today.getMonth() - dob.getMonth();
+      if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) age--;
+      document.getElementById(ageId).value = age >= 0 ? age : '';
+    }
+
+    /* ── Chip toggle (select / deselect) ── */
+    document.addEventListener('click', function(e) {
+      if (e.target.type === 'radio') return; /* ignore synthetic radio clicks */
+      const chip = e.target.closest('.mip-chip');
+      if (!chip) return;
+      const radio = chip.querySelector('input[type="radio"]');
+      if (!radio) return;
+      const group = chip.closest('.mip-chip-group');
+      if (chip.classList.contains('mip-chip--active')) {
+        /* already active → deselect */
+        radio.checked = false;
+        chip.classList.remove('mip-chip--active');
+      } else {
+        /* not active → select, deselect siblings */
+        if (group) group.querySelectorAll('.mip-chip').forEach(c => c.classList.remove('mip-chip--active'));
+        chip.classList.add('mip-chip--active');
+      }
+    });
+
+    /* Form submit */
+    function submitMipForm(e) {
+      e.preventDefault();
+      const form = document.getElementById('mipForm');
+      const radioRequired = ['mipVehicleType','mipFuel','mipCover','mipExpired','mipGender','mipMarital'];
+      let valid = true;
+      radioRequired.forEach(name => {
+        const checked = form.querySelector(`input[name="${name}"]:checked`);
+        const firstInput = form.querySelector(`input[name="${name}"]`);
+        if (!firstInput) return;
+        const group = firstInput.closest('.mip-chip-group') || firstInput.closest('.mip-type-row');
+        if (!checked) {
+          if (group) group.classList.add('mip-chip-group--error');
+          valid = false;
+        } else {
+          if (group) group.classList.remove('mip-chip-group--error');
+        }
+      });
+      if (!form.checkValidity() || !valid) {
+        form.querySelectorAll(':invalid').forEach(el => el.classList.add('mip-input--error'));
+        const first = form.querySelector('.mip-input--error, .mip-chip-group--error');
+        if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+
+      const g = id => (document.getElementById(id) || {}).value || '';
+      const r = name => { const el = form.querySelector(`input[name="${name}"]:checked`); return el ? el.value : ''; };
+
+      const waMsg =
+        `🚗 *New Motor Insurance Proposal — PolicyRaj*\n\n` +
+        `*── VEHICLE DETAILS ──*\n` +
+        `🚙 Type: ${r('mipVehicleType')}\n` +
+        `📋 RC Number: ${g('mipRC')}\n` +
+        `🏭 Make / Model: ${g('mipMake')} ${g('mipModel')} (${g('mipYear')})\n` +
+        `⛽ Fuel: ${r('mipFuel')}\n` +
+        `🔧 Engine No: ${g('mipEngine')}\n` +
+        `🔩 Chassis No: ${g('mipChassis')}\n` +
+        `🛡 Cover Type: ${r('mipCover')} | Policy Expired: ${r('mipExpired')}\n\n` +
+        `*── OWNER DETAILS ──*\n` +
+        `👤 Name: ${g('mipOwnerName')}\n` +
+        `📞 Mobile: +91 ${g('mipMobile1')}\n` +
+        `📧 Email: ${g('mipEmail')}\n` +
+        `🗓 DOB: ${g('mipOwnerDob')} (Age ${g('mipOwnerAge')})\n` +
+        `⚧ Gender: ${r('mipGender')} | Marital: ${r('mipMarital')}\n\n` +
+        `*── NOMINEE ──*\n` +
+        `👥 ${g('mipNomName')} | ${g('mipNomRelation')} | Age ${g('mipNomAge')}\n\n` +
+        `_Please prepare a motor insurance quote at the earliest._`;
+
+      const btn = form.querySelector('.mip-submit-btn');
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Submitting...';
+
+      submitQuoteLead({
+        type: 'motor',
+        name: g('mipOwnerName'), mobile: g('mipMobile1'), email: g('mipEmail'),
+        vehicleType: r('mipVehicleType'), rcNumber: g('mipRC'),
+        make: g('mipMake'), model: g('mipModel'), year: g('mipYear'),
+        fuel: r('mipFuel'), engineNo: g('mipEngine'), chassisNo: g('mipChassis'),
+        coverType: r('mipCover'), policyExpired: r('mipExpired'),
+        dob: g('mipOwnerDob'), age: g('mipOwnerAge'),
+        gender: r('mipGender'), marital: r('mipMarital'),
+        nomineeName: g('mipNomName'), nomineeRelation: g('mipNomRelation'), nomineeAge: g('mipNomAge'),
+      }).then(() => {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fa fa-check-circle"></i> Proposal Submitted!';
+        btn.style.background = 'linear-gradient(135deg,#059669,#10b981)';
+        const toast = document.getElementById('toast');
+        toast.innerHTML = '<i class="fa fa-check-circle"></i> Motor proposal received! Sachin will call you within 2 hours.';
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 5000);
+        form.reset();
+        document.getElementById('mipOwnerAge').value = '';
+        document.getElementById('mipNomAge').value = '';
+        form.querySelectorAll('.mip-chip').forEach(c => c.classList.remove('mip-chip--active'));
+        document.querySelectorAll('.mip-type-chip').forEach((c,i) => { if(i===0) c.classList.add('mip-type-chip--active'); else c.classList.remove('mip-type-chip--active'); });
+        setTimeout(() => { btn.innerHTML = '<i class="fa fa-paper-plane"></i> Submit Vehicle Insurance Proposal'; btn.style.background = ''; }, 4000);
+      });
+    }
   </script>
 </body>
 </html>

@@ -1,0 +1,1426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Insurance Blog &amp; Articles – PolicyRaj</title>
+  <meta name="description" content="Learn about insurance, investments and tax saving with expert articles by Sachin Kathuria. Free insurance education covering health, life, motor, travel and more." />
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    /* ── BLOG PAGE STYLES ── */
+
+    /* Hero */
+    .blog-hero {
+      background: var(--gradient-hero);
+      padding: 72px 0 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    .blog-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+    .blog-hero-inner {
+      position: relative;
+      z-index: 1;
+    }
+    .blog-hero .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.83rem;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .blog-hero .breadcrumb a {
+      color: rgba(255,255,255,0.6);
+      transition: color var(--transition);
+    }
+    .blog-hero .breadcrumb a:hover { color: #fff; }
+    .blog-hero .breadcrumb i { font-size: 0.7rem; }
+    .blog-hero .breadcrumb span:last-child { color: #fff; }
+
+    .blog-hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.22);
+      color: #93c5fd;
+      padding: 6px 18px;
+      border-radius: 99px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .blog-hero h1 {
+      color: #fff;
+      font-size: clamp(1.9rem, 4.5vw, 3rem);
+      font-weight: 800;
+      line-height: 1.18;
+      margin-bottom: 16px;
+      max-width: 780px;
+    }
+    .blog-hero h1 span {
+      background: linear-gradient(90deg, #93c5fd, #c4b5fd);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .blog-hero-subtitle {
+      color: rgba(255,255,255,0.75);
+      font-size: 1.05rem;
+      max-width: 580px;
+      margin-bottom: 32px;
+      line-height: 1.7;
+    }
+    .blog-hero-stats {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .blog-hero-stat {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      color: rgba(255,255,255,0.85);
+      font-size: 0.88rem;
+      font-weight: 500;
+    }
+    .blog-hero-stat i {
+      color: #93c5fd;
+      font-size: 0.95rem;
+    }
+
+    /* ── CATEGORY FILTERS ── */
+    .blog-filters-section {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 18px 0;
+      position: sticky;
+      top: 72px;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(30,58,138,0.06);
+    }
+    .blog-filters {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .blog-filter-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 20px;
+      border-radius: 99px;
+      border: 1.5px solid var(--border);
+      background: var(--white);
+      color: var(--text-light);
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition);
+      font-family: 'IBM Plex Sans', sans-serif;
+      white-space: nowrap;
+      touch-action: manipulation;
+      min-height: 44px;
+    }
+    .blog-filter-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: #EFF6FF;
+    }
+    .blog-filter-btn.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(30,58,138,0.25);
+    }
+    .blog-filter-btn .cat-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .blog-filter-btn.active .cat-dot { background: rgba(255,255,255,0.7); }
+
+    /* Category dot colors */
+    .dot-health   { background: #2563EB; }
+    .dot-life     { background: #7C3AED; }
+    .dot-motor    { background: #EA580C; }
+    .dot-invest   { background: #059669; }
+    .dot-tax      { background: #DC2626; }
+
+    /* ── MAIN CONTENT AREA ── */
+    .blog-content-section {
+      padding: 56px 0 80px;
+      background: var(--off-white);
+    }
+
+    /* ── FEATURED ARTICLE ── */
+    .featured-article {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      border-left: 5px solid var(--primary);
+      box-shadow: var(--shadow);
+      padding: 36px 40px;
+      margin-bottom: 52px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 40px;
+      align-items: center;
+      transition: box-shadow var(--transition), transform var(--transition);
+      cursor: pointer;
+    }
+    .featured-article:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-3px);
+    }
+    .featured-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(135deg, #FBBF24, #F59E0B);
+      color: #78350F;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 99px;
+      margin-bottom: 14px;
+    }
+    .featured-category-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #EFF6FF;
+      color: var(--primary);
+      font-size: 0.76rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 99px;
+      margin-left: 8px;
+    }
+    .featured-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(1.25rem, 2.5vw, 1.65rem);
+      font-weight: 700;
+      color: var(--text);
+      margin: 12px 0 14px;
+      line-height: 1.35;
+    }
+    .featured-excerpt {
+      color: var(--text-light);
+      font-size: 0.97rem;
+      line-height: 1.75;
+      margin-bottom: 24px;
+      max-width: 700px;
+    }
+    .featured-meta {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+    .featured-author {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .author-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--gradient);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.78rem;
+      font-weight: 800;
+      flex-shrink: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+    .author-info span { display: block; }
+    .author-name { font-weight: 600; font-size: 0.88rem; color: var(--text); }
+    .author-role { font-size: 0.78rem; color: var(--text-light); }
+    .meta-divider { width: 1px; height: 28px; background: var(--border); }
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      color: var(--gray);
+    }
+    .meta-item i { font-size: 0.75rem; }
+    .featured-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gradient);
+      color: #fff;
+      padding: 13px 28px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      transition: all var(--transition);
+      box-shadow: var(--shadow);
+      touch-action: manipulation;
+      min-height: 44px;
+      text-decoration: none;
+    }
+    .featured-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hover);
+    }
+    .featured-visual {
+      width: 200px;
+      height: 200px;
+      background: var(--gradient-soft);
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .featured-visual-icon {
+      font-size: 5.5rem;
+      color: var(--primary);
+      opacity: 0.18;
+    }
+    .featured-visual-inner {
+      position: absolute;
+      text-align: center;
+      color: var(--primary);
+    }
+    .featured-visual-inner i {
+      font-size: 3rem;
+      opacity: 0.6;
+      display: block;
+      margin-bottom: 8px;
+    }
+    .featured-visual-inner span {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      opacity: 0.7;
+      text-transform: uppercase;
+    }
+
+    /* ── SECTION TITLE ── */
+    .blog-section-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .blog-section-title h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .article-count {
+      font-size: 0.82rem;
+      color: var(--text-light);
+      background: var(--gray-light);
+      padding: 5px 14px;
+      border-radius: 99px;
+      font-weight: 600;
+    }
+
+    /* ── ARTICLE GRID ── */
+    .article-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    /* ── ARTICLE CARD ── */
+    .article-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: transform var(--transition), box-shadow var(--transition);
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .article-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+    .article-card-top {
+      height: 6px;
+      flex-shrink: 0;
+    }
+    .card-top-health   { background: linear-gradient(90deg, #2563EB, #60A5FA); }
+    .card-top-life     { background: linear-gradient(90deg, #7C3AED, #A78BFA); }
+    .card-top-motor    { background: linear-gradient(90deg, #EA580C, #FB923C); }
+    .card-top-invest   { background: linear-gradient(90deg, #059669, #34D399); }
+    .card-top-tax      { background: linear-gradient(90deg, #DC2626, #F87171); }
+
+    .article-card-body {
+      padding: 22px 22px 16px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .article-cat-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 4px 12px;
+      border-radius: 99px;
+      margin-bottom: 14px;
+      width: fit-content;
+    }
+    .chip-health { background: #EFF6FF; color: #2563EB; }
+    .chip-life   { background: #F5F3FF; color: #7C3AED; }
+    .chip-motor  { background: #FFF7ED; color: #EA580C; }
+    .chip-invest { background: #ECFDF5; color: #059669; }
+    .chip-tax    { background: #FEF2F2; color: #DC2626; }
+
+    .article-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.4;
+      margin-bottom: 10px;
+      transition: color var(--transition);
+    }
+    .article-card:hover .article-title { color: var(--primary); }
+
+    .article-excerpt {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      line-height: 1.65;
+      flex: 1;
+      margin-bottom: 16px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .article-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 22px;
+      border-top: 1px solid var(--border);
+      background: #FAFBFF;
+    }
+    .article-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .article-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.77rem;
+      color: var(--gray);
+    }
+    .article-meta-item i { font-size: 0.7rem; }
+    .read-time-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--gray-light);
+      color: var(--gray-dark);
+      font-size: 0.74rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 99px;
+    }
+    .article-arrow {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--gray-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      font-size: 0.8rem;
+      transition: all var(--transition);
+    }
+    .article-card:hover .article-arrow {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    /* Hidden state for filter */
+    .article-card.hidden { display: none; }
+
+    /* ── NO RESULTS ── */
+    .no-results {
+      text-align: center;
+      padding: 48px 24px;
+      grid-column: 1/-1;
+      color: var(--text-light);
+      display: none;
+    }
+    .no-results i {
+      font-size: 2.5rem;
+      color: var(--border);
+      margin-bottom: 12px;
+      display: block;
+    }
+    .no-results.visible { display: block; }
+
+    /* ── CTA SECTION ── */
+    .blog-cta-section {
+      padding: 72px 0;
+      background: var(--white);
+      border-top: 1px solid var(--border);
+    }
+    .blog-cta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+    .cta-ask-box {
+      background: var(--gradient);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-ask-box::before {
+      content: '';
+      position: absolute;
+      top: -30px;
+      right: -30px;
+      width: 180px;
+      height: 180px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .cta-ask-box-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 12px;
+    }
+    .cta-ask-box h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+      line-height: 1.3;
+    }
+    .cta-ask-box p {
+      color: rgba(255,255,255,0.78);
+      font-size: 0.93rem;
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+    .cta-phone-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #fff;
+      color: var(--primary);
+      padding: 14px 28px;
+      border-radius: 50px;
+      font-weight: 800;
+      font-size: 1rem;
+      transition: all var(--transition);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.18);
+      touch-action: manipulation;
+      min-height: 44px;
+      text-decoration: none;
+    }
+    .cta-phone-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    }
+    .cta-phone-btn i { color: var(--primary); }
+    .cta-consult-note {
+      margin-top: 14px;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.55);
+    }
+
+    /* Newsletter box */
+    .newsletter-box {
+      background: var(--off-white);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+    }
+    .newsletter-box-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+    .newsletter-box h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 10px;
+      line-height: 1.35;
+    }
+    .newsletter-box p {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      line-height: 1.65;
+      margin-bottom: 24px;
+    }
+    .newsletter-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .newsletter-input {
+      width: 100%;
+      padding: 14px 18px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 1rem;
+      font-family: 'IBM Plex Sans', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      transition: border-color var(--transition);
+      outline: none;
+    }
+    .newsletter-input:focus { border-color: var(--primary); }
+    .newsletter-input::placeholder { color: var(--gray); }
+    .newsletter-submit {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--gradient);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius);
+      padding: 14px 28px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all var(--transition);
+      font-family: 'IBM Plex Sans', sans-serif;
+      touch-action: manipulation;
+      min-height: 44px;
+    }
+    .newsletter-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hover);
+    }
+    .newsletter-disclaimer {
+      font-size: 0.76rem;
+      color: var(--gray);
+      margin-top: 8px;
+    }
+    .newsletter-perks {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+    .newsletter-perk {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      color: var(--text-light);
+    }
+    .newsletter-perk i {
+      color: #059669;
+      font-size: 0.85rem;
+      width: 16px;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .article-grid { grid-template-columns: repeat(2, 1fr); }
+      .featured-article { grid-template-columns: 1fr; }
+      .featured-visual { display: none; }
+    }
+
+    @media (max-width: 900px) {
+      .blog-cta-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .blog-hero { padding: 52px 0 44px; }
+      .blog-hero-stats { gap: 18px; }
+      .featured-article { padding: 24px 20px; }
+      .blog-filters-section { top: 0; }
+    }
+
+    @media (max-width: 600px) {
+      .article-grid { grid-template-columns: 1fr; }
+      .blog-cta-grid { grid-template-columns: 1fr; }
+      .cta-ask-box, .newsletter-box { padding: 28px 22px; }
+      .blog-filters { gap: 8px; }
+      .blog-filter-btn { padding: 8px 14px; font-size: 0.82rem; }
+      .blog-section-title { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (max-width: 480px) {
+      .blog-hero h1 { font-size: 1.7rem; }
+      .featured-meta { gap: 12px; }
+      .meta-divider { display: none; }
+    }
+
+    /* ── REDUCED MOTION ── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <span><i class="fa fa-phone"></i> 9013976999 / 8383813408</span>
+      <span><i class="fa fa-envelope"></i> sachin@policyraj.com</span>
+      <span class="topbar-right">
+        <a href="ai-scan.html" class="topbar-ai-link"><i class="fa fa-robot"></i> AI Doc Scanner</a>
+        <a href="claims.html">Claims</a>
+        <a href="index.html#contact" class="btn-top">Get a Free Quote</a>
+      </span>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="logo">
+        <img src="policyraj.png" alt="PolicyRaj Logo" class="logo-img" />
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li class="nav-dropdown">
+          <a href="index.html#insurance" class="nav-dropdown-trigger">Insurance <i class="fa fa-chevron-down nav-chevron"></i></a>
+          <ul class="nav-dropdown-menu">
+            <li><a href="health.html"><i class="fa fa-heartbeat"></i> Health Insurance</a></li>
+            <li><a href="life.html"><i class="fa fa-shield-alt"></i> Life Insurance</a></li>
+            <li><a href="motor.html"><i class="fa fa-car"></i> Motor Insurance</a></li>
+            <li><a href="travel.html"><i class="fa fa-plane"></i> Travel Insurance</a></li>
+            <li><a href="home.html"><i class="fa fa-home"></i> Home Insurance</a></li>
+            <li><a href="business.html"><i class="fa fa-briefcase"></i> Business Insurance</a></li>
+          </ul>
+        </li>
+        <li class="nav-dropdown">
+          <a href="index.html#investments" class="nav-dropdown-trigger">Investments <i class="fa fa-chevron-down nav-chevron"></i></a>
+          <ul class="nav-dropdown-menu">
+            <li><a href="child-plan.html"><i class="fa fa-child"></i> Child Plans</a></li>
+            <li><a href="pension-plan.html"><i class="fa fa-umbrella"></i> Pension Plans</a></li>
+            <li><a href="tax-saving.html"><i class="fa fa-piggy-bank"></i> Tax Saving</a></li>
+            <li><a href="endowment-policy.html"><i class="fa fa-shield-alt"></i> Endowment Policy</a></li>
+            <li><a href="money-back-policy.html"><i class="fa fa-undo"></i> Money Back Policy</a></li>
+            <li><a href="annuity-plans.html"><i class="fa fa-infinity"></i> Annuity Plans</a></li>
+          </ul>
+        </li>
+        <li class="nav-dropdown">
+          <a href="insurance-companies.html" class="nav-dropdown-trigger">Companies <i class="fa fa-chevron-down nav-chevron"></i></a>
+          <ul class="nav-dropdown-menu">
+            <li><a href="insurance-companies.html"><i class="fa fa-building"></i> All Companies</a></li>
+            <li><a href="hdfc-ergo.html"><i class="fa fa-star"></i> HDFC ERGO</a></li>
+            <li><a href="icici-lombard.html"><i class="fa fa-star"></i> ICICI Lombard</a></li>
+            <li><a href="bajaj-allianz.html"><i class="fa fa-star"></i> Bajaj Allianz</a></li>
+            <li><a href="hdfc-life.html"><i class="fa fa-star"></i> HDFC Life</a></li>
+            <li><a href="lic-india.html"><i class="fa fa-star"></i> LIC of India</a></li>
+          </ul>
+        </li>
+        <li class="nav-dropdown">
+          <a href="#" class="nav-dropdown-trigger">Tools <i class="fa fa-chevron-down nav-chevron"></i></a>
+          <ul class="nav-dropdown-menu">
+            <li><a href="ai-scan.html"><i class="fa fa-robot"></i> AI Doc Scanner</a></li>
+            <li><a href="compare.html"><i class="fa fa-balance-scale"></i> Compare Plans</a></li>
+            <li><a href="index.html#calculators"><i class="fa fa-calculator"></i> Calculators</a></li>
+            <li><a href="index.html#emi"><i class="fa fa-percent"></i> EMI Calculator</a></li>
+          </ul>
+        </li>
+        <li class="nav-dropdown">
+          <a href="#" class="nav-dropdown-trigger">Learn <i class="fa fa-chevron-down nav-chevron"></i></a>
+          <ul class="nav-dropdown-menu">
+            <li><a href="blog.html"><i class="fa fa-newspaper"></i> Blog &amp; Articles</a></li>
+            <li><a href="claims.html"><i class="fa fa-file-alt"></i> Claims Guide</a></li>
+            <li><a href="faq.html"><i class="fa fa-question-circle"></i> FAQ</a></li>
+          </ul>
+        </li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a href="tel:9013976999" class="btn-nav-call"><i class="fa fa-phone"></i> Call Now</a>
+        <button class="btn-nav-quote" onclick="openModal()">Get Quote</button>
+      </div>
+      <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <i class="fa fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="blog-hero">
+    <div class="container blog-hero-inner">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+        <a href="#">Learn</a>
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+        <span>Blog &amp; Articles</span>
+      </nav>
+      <div class="blog-hero-badge">
+        <i class="fa fa-book-open" aria-hidden="true"></i>
+        Knowledge Hub
+      </div>
+      <h1>Insurance Knowledge Hub —<br /><span>Learn Before You Buy</span></h1>
+      <p class="blog-hero-subtitle">Expert articles by Sachin Kathuria. Understand insurance simply, make better decisions for you and your family.</p>
+      <div class="blog-hero-stats">
+        <div class="blog-hero-stat">
+          <i class="fa fa-newspaper" aria-hidden="true"></i>
+          <span>50+ Articles</span>
+        </div>
+        <div class="blog-hero-stat">
+          <i class="fa fa-user-tie" aria-hidden="true"></i>
+          <span>Expert Advice</span>
+        </div>
+        <div class="blog-hero-stat">
+          <i class="fa fa-unlock" aria-hidden="true"></i>
+          <span>Free to Read</span>
+        </div>
+        <div class="blog-hero-stat">
+          <i class="fa fa-calendar-check" aria-hidden="true"></i>
+          <span>Updated 2024</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORY FILTER TABS -->
+  <div class="blog-filters-section" id="blogFilters">
+    <div class="container">
+      <div class="blog-filters" role="group" aria-label="Filter articles by category">
+        <button class="blog-filter-btn active" data-filter="all" onclick="filterArticles('all', this)">
+          <i class="fa fa-th-large" aria-hidden="true"></i> All Articles
+        </button>
+        <button class="blog-filter-btn" data-filter="health" onclick="filterArticles('health', this)">
+          <span class="cat-dot dot-health" aria-hidden="true"></span> Health
+        </button>
+        <button class="blog-filter-btn" data-filter="life" onclick="filterArticles('life', this)">
+          <span class="cat-dot dot-life" aria-hidden="true"></span> Life
+        </button>
+        <button class="blog-filter-btn" data-filter="motor" onclick="filterArticles('motor', this)">
+          <span class="cat-dot dot-motor" aria-hidden="true"></span> Motor
+        </button>
+        <button class="blog-filter-btn" data-filter="invest" onclick="filterArticles('invest', this)">
+          <span class="cat-dot dot-invest" aria-hidden="true"></span> Investments
+        </button>
+        <button class="blog-filter-btn" data-filter="tax" onclick="filterArticles('tax', this)">
+          <span class="cat-dot dot-tax" aria-hidden="true"></span> Tax &amp; Claims
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <section class="blog-content-section">
+    <div class="container">
+
+      <!-- FEATURED ARTICLE -->
+      <article class="featured-article" role="article" onclick="window.location='health.html'" tabindex="0" onkeydown="if(event.key==='Enter')window.location='health.html'">
+        <div class="featured-content">
+          <div>
+            <span class="featured-label"><i class="fa fa-star" aria-hidden="true"></i> Must Read</span>
+            <span class="featured-category-chip"><span class="cat-dot dot-health" style="width:7px;height:7px;display:inline-block;border-radius:50%;margin-right:4px;" aria-hidden="true"></span>Health</span>
+          </div>
+          <h2 class="featured-title">How Much Health Insurance Coverage Do You Actually Need in 2024?</h2>
+          <p class="featured-excerpt">Medical inflation in India is running at 14% per year. A ₹5 lakh cover that felt sufficient 5 years ago now barely covers a 3-day hospital stay in a metro city. Here's how to calculate the right coverage for your family and why most Indians are dangerously underinsured...</p>
+          <div class="featured-meta">
+            <div class="featured-author">
+              <div class="author-avatar" aria-hidden="true">SK</div>
+              <div class="author-info">
+                <span class="author-name">Sachin Kathuria</span>
+                <span class="author-role">IRDAI-Licensed Advisor</span>
+              </div>
+            </div>
+            <div class="meta-divider" aria-hidden="true"></div>
+            <div class="meta-item"><i class="fa fa-calendar" aria-hidden="true"></i> December 2024</div>
+            <div class="meta-item"><i class="fa fa-clock" aria-hidden="true"></i> 8 min read</div>
+          </div>
+          <a href="health.html" class="featured-cta" onclick="event.stopPropagation()">
+            Read Full Article <i class="fa fa-arrow-right" aria-hidden="true"></i>
+          </a>
+        </div>
+        <div class="featured-visual" aria-hidden="true">
+          <i class="fa fa-heartbeat featured-visual-icon"></i>
+          <div class="featured-visual-inner">
+            <i class="fa fa-shield-alt"></i>
+            <span>Health Cover</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ARTICLE GRID HEADER -->
+      <div class="blog-section-title">
+        <h2>All Articles</h2>
+        <span class="article-count" id="articleCountLabel">12 Articles</span>
+      </div>
+
+      <!-- ARTICLE GRID -->
+      <div class="article-grid" id="articleGrid">
+
+        <!-- Card 1: Health -->
+        <a href="health.html" class="article-card" data-category="health" aria-label="Read article: How to Choose the Right Health Insurance Plan">
+          <div class="article-card-top card-top-health" aria-hidden="true"></div>
+          <div class="article-card-body">
+            <span class="article-cat-chip chip-health"><i class="fa fa-heartbeat" aria-hidden="true"></i> Health</span>
+            <h3 class="article-title">How to Choose the Right Health Insurance Plan</h3>
+            <p class="article-excerpt">With 30+ health insurers and 200+ plans in India, choosing the right one is overwhelming. Here's a simple 5-step framework to pick the plan that fits your family perfectly.</p>
+          </div>
+          <div class="article-card-footer">
+            <div class="article-meta-row">
+              <div class="article-meta-item"><i class="fa fa-calendar" aria-hidden="true"></i> Nov 2024</div>
+              <div class="read-time-badge"><i class="fa fa-clock" aria-hidden="true"></i> 5 min</div>
+            </div>
+            <div class="article-arrow" aria-hidden="true"><i class="fa fa-arrow-right"></i></div>
+          </div>
+        </a>
+
+        <!-- Card 2: Life -->
+        <a href="life.html" class="article-card" data-category="life" aria-label="Read article: Term Insurance: Why ₹1 Crore Cover May Not Be Enough">
+          <div class="article-card-top card-top-life" aria-hidden="true"></div>
+          <div class="article-card-body">
+            <span class="article-cat-chip chip-life"><i class="fa fa-shield-alt" aria-hidden="true"></i> Life</span>
+            <h3 class="article-title">Term Insurance: Why ₹1 Crore Cover May Not Be Enough</h3>
+            <p class="article-excerpt">Most Indians underestimate how much life cover they need. With rising inflation and EMI burdens, here's the calculation you must do before buying any term plan.</p>
+          </div>
+          <div class="article-card-footer">
+            <div class="article-meta-row">
+              <div class="article-meta-item"><i class="fa fa-calendar" aria-hidden="true"></i> Nov 2024</div>
+              <div class="read-time-badge"><i class="fa fa-clock" aria-hidden="true"></i> 6 min</div>
+            </div>
+            <div class="article-arrow" aria-hidden="true"><i class="fa fa-arrow-right"></i></div>
+          </div>
+        </a>
+
+        <!-- Card 3: Motor -->
+        <a href="motor.html" class="article-card" data-category="motor" aria-label="Read article: Zero Depreciation Car Insurance: Worth the Extra Premium?">
+          <div class="article-card-top card-top-motor" aria-hidden="true"></div>
+          <div class="article-card-body">
+            <span class="article-cat-chip chip-motor"><i class="fa fa-car" aria-hidden="true"></i> Motor</span>
+            <h3 class="article-title">Zero Depreciation Car Insurance: Worth the Extra Premium?</h3>
+            <p class="article-excerpt">Standard motor insurance pays only the depreciated value of parts. Zero dep pays full value. Here's when it makes sense to pay extra — and when it doesn't.</p>
+          </div>
+          <div class="article-card-footer">
+            <div class="article-meta-row">
+              <div class="article-meta-item"><i class="fa fa-calendar" aria-hidden="true"></i> Oct 2024</div>
+              <div class="read-time-badge"><i class="fa fa-clock" aria-hidden="true"></i> 4 min</div>
+            </div>
+            <div class="article-arrow" aria-hidden="true"><i class="fa fa-arrow-right"></i></div>
+          </div>
+        </a>
+
+        <!-- Card 4: Tax & Claims -->
+        <a href="tax-saving.html" class="article-card" data-category="tax" aria-label="Read article: Section 80D: Save Up to ₹75,000 in Tax with Health Insurance">
+          <div class="article-card-top card-top-tax" aria-hidden="true"></div>
+          <div class="article-card-body">
+            <span class="article-cat-chip chip-tax"><i class="fa fa-file-invoice" aria-hidden="true"></i> Tax &amp; Claims</span>
+            <h3 class="article-title">Section 80D: Save Up to ₹75,000 in Tax with Health Insurance</h3>
+            <p class="article-excerpt">Many people don't realize health insurance premiums qualify for tax deductions under Section 80D. Here's how to maximize your deduction this financial year.</p>
+          </div>
+          <div class="article-card-footer">
+            <div class="article-meta-row">
+              <div class="article-meta-item"><i class="fa fa-calendar" aria-hidden="true"></i> Oct 2024</div>
+              <div class="read-time-badge"><i class="fa fa-clock" aria-hidden="true"></i> 5 min</div>
+            </div>
+            <div class="article-arrow" aria-hidden="true"><i class="fa fa-arrow-right"></i></div>
+          </div>
+        </a>
+
+        <!-- Card 5: Health -->
+        <a href="health.html" class="article-card" data-category="health" aria-label="Read article: What is a Family Floater Plan? Benefits and Pitfalls">
+          <div class="article-card-top card-top-health" aria-hidden="true"></div>
+          <div class="article-card-body">
+            <span class="article-cat-chip chip-health"><i class="fa fa-heartbeat" aria-hidden="true"></i> Health</span>
+            <h3 class="article-title">What is a Family Floater Plan? Benefits &amp; Pitfalls</h3>
+            <p class="article-excerpt">A family floater covers the entire family under one sum insured. It's cheaper, but has one critical risk most families ignore — here's what you need to know.</p>
+          </div>
+          <div class="article-card-footer">
+            <div class="article-meta-row">
+              <div class="article-meta-item"><i class="fa fa-calendar" aria-hidden="true"></i> Oct 2024</div>
+              <div class="read-time-badge"><i class="fa fa-clock" aria-hidden="true"></i> 4 min</div>
+            </div>
+            <div class="article-arrow" aria-hidden="true"><i class="fa fa-arrow-right"></i></div>
+          </div>
+        </a>
+
+        <!-- Card 6: Tax & Claims -->
+        <a href="claims.html" class="article-card" data-category="tax" aria-label="Read article: How to File a Health Insurance Claim in 5 Easy Steps">
+          <div class="article-card-top card-top-tax" aria-hidden="true"></div>
+          <div class="article-card-body">
+            <span class="article-cat-chip chip-tax"><i class="fa fa-file-alt" aria-hidden="true"></i> Tax &amp; Claims</span>
+            <h3 class="article-title">How to File a Health Insurance Claim in 5 Easy Steps</h3>
+            <p class="article-excerpt">Whether cashless or reimbursement, the claims process can feel daunting. Here's everything you need to know to get your claim approved without delays.</p>
+          </div>
+          <div class="article-card-footer">
+            <div class="article-meta-row">
+              <div class="article-meta-item"><i class="fa fa-calendar" aria-hidden="true"></i> Sep 2024</div>
+              <div class="read-time-badge"><i class="fa fa-clock" aria-hidden="true"></i> 5 min</div>
+            </div>
+            <div class="article-arrow" aria-hidden="true"><i class="fa fa-arrow-right"></i></div>
+          </div>
+        </a>
+
+        <!-- Card 7: Investments -->
+        <a href="tax-saving.html" class="article-card" data-category="invest" aria-label="Read article: NPS vs PPF vs ELSS: Which Tax Saving Investment Wins?">
+          <div class="article-card-top card-top-invest" aria-hidden="true"></div>
+          <div class="article-card-body">
+            <span class="article-cat-chip chip-invest"><i class="fa fa-chart-line" aria-hidden="true"></i> Investments</span>
+            <h3 class="article-title">NPS vs PPF vs ELSS: Which Tax Saving Investment Wins?</h3>
+            <p class="article-excerpt">Three of India's most popular tax-saving instruments compared on returns, liquidity, risk and tax efficiency. An honest, data-driven guide by Sachin Kathuria.</p>
+          </div>
+          <div class="article-card-footer">
+            <div class="article-meta-row">
+              <div class="article-meta-item"><i class="fa fa-calendar" aria-hidden="true"></i> Sep 2024</div>
+              <div class="read-time-badge"><i class="fa fa-clock" aria-hidden="true"></i> 7 min</div>
+            </div>
+            <div class="article-arrow" aria-hidden="true"><i class="fa fa-arrow-right"></i></div>
+          </div>
+        </a>
+
+        <!-- Card 8: Health -->
+        <a href="health.html" class="article-card" data-category="health" aria-label="Read article: Why Your Employer's Group Health Insurance is NOT Enough">
+          <div class="article-card-top card-top-health" aria-hidden="true"></div>
+          <div class="article-card-body">
+            <span class="article-cat-chip chip-health"><i class="fa fa-heartbeat" aria-hidden="true"></i> Health</span>
+            <h3 class="article-title">Why Your Employer's Group Health Insurance is NOT Enough</h3>
+            <p class="article-excerpt">Group mediclaim from your employer sounds great — but it covers only 3-5 lakhs and stops the moment you change jobs. Here's why you need your own policy.</p>
+          </div>
+          <div class="article-card-footer">
+            <div class="article-meta-row">
+              <div class="article-meta-item"><i class="fa fa-calendar" aria-hidden="true"></i> Aug 2024</div>
+              <div class="read-time-badge"><i class="fa fa-clock" aria-hidden="true"></i> 5 min</div>
+            </div>
+            <div class="article-arrow" aria-hidden="true"><i class="fa fa-arrow-right"></i></div>
+          </div>
+        </a>
+
+        <!-- Card 9: Motor -->
+        <a href="motor.html" class="article-card" data-category="motor" aria-label="Read article: Motor Insurance Renewal Tips: Don't Make These Mistakes">
+          <div class="article-card-top card-top-motor" aria-hidden="true"></div>
+          <div class="article-card-body">
+            <span class="article-cat-chip chip-motor"><i class="fa fa-car" aria-hidden="true"></i> Motor</span>
+            <h3 class="article-title">Motor Insurance Renewal Tips: Don't Make These Mistakes</h3>
+            <p class="article-excerpt">Most people renew motor insurance in 5 minutes without reviewing it. Here are 7 mistakes that cost you at claim time — and how to avoid every single one.</p>
+          </div>
+          <div class="article-card-footer">
+            <div class="article-meta-row">
+              <div class="article-meta-item"><i class="fa fa-calendar" aria-hidden="true"></i> Aug 2024</div>
+              <div class="read-time-badge"><i class="fa fa-clock" aria-hidden="true"></i> 4 min</div>
+            </div>
+            <div class="article-arrow" aria-hidden="true"><i class="fa fa-arrow-right"></i></div>
+          </div>
+        </a>
+
+        <!-- Card 10: Investments -->
+        <a href="child-plan.html" class="article-card" data-category="invest" aria-label="Read article: Child Education Plans vs Mutual Funds: What Experts Say">
+          <div class="article-card-top card-top-invest" aria-hidden="true"></div>
+          <div class="article-card-body">
+            <span class="article-cat-chip chip-invest"><i class="fa fa-chart-line" aria-hidden="true"></i> Investments</span>
+            <h3 class="article-title">Child Education Plans vs Mutual Funds: What Experts Say</h3>
+            <p class="article-excerpt">Are child plans from insurance companies good investments? Sachin Kathuria gives an honest, unbiased comparison on returns, flexibility and risk profile.</p>
+          </div>
+          <div class="article-card-footer">
+            <div class="article-meta-row">
+              <div class="article-meta-item"><i class="fa fa-calendar" aria-hidden="true"></i> Jul 2024</div>
+              <div class="read-time-badge"><i class="fa fa-clock" aria-hidden="true"></i> 6 min</div>
+            </div>
+            <div class="article-arrow" aria-hidden="true"><i class="fa fa-arrow-right"></i></div>
+          </div>
+        </a>
+
+        <!-- Card 11: Tax & Claims -->
+        <a href="claims.html" class="article-card" data-category="tax" aria-label="Read article: Top 5 Reasons Your Insurance Claim Gets Rejected">
+          <div class="article-card-top card-top-tax" aria-hidden="true"></div>
+          <div class="article-card-body">
+            <span class="article-cat-chip chip-tax"><i class="fa fa-times-circle" aria-hidden="true"></i> Tax &amp; Claims</span>
+            <h3 class="article-title">Top 5 Reasons Your Insurance Claim Gets Rejected</h3>
+            <p class="article-excerpt">Understanding why claims fail is the first step to preventing it. These 5 reasons account for 80% of all rejections — and most are completely avoidable.</p>
+          </div>
+          <div class="article-card-footer">
+            <div class="article-meta-row">
+              <div class="article-meta-item"><i class="fa fa-calendar" aria-hidden="true"></i> Jul 2024</div>
+              <div class="read-time-badge"><i class="fa fa-clock" aria-hidden="true"></i> 5 min</div>
+            </div>
+            <div class="article-arrow" aria-hidden="true"><i class="fa fa-arrow-right"></i></div>
+          </div>
+        </a>
+
+        <!-- Card 12: Health (Travel) -->
+        <a href="travel.html" class="article-card" data-category="health" aria-label="Read article: Travel Insurance for Europe: Everything You Need to Know">
+          <div class="article-card-top card-top-health" aria-hidden="true"></div>
+          <div class="article-card-body">
+            <span class="article-cat-chip chip-health"><i class="fa fa-plane" aria-hidden="true"></i> Health</span>
+            <h3 class="article-title">Travel Insurance for Europe: Everything You Need to Know</h3>
+            <p class="article-excerpt">Schengen visa requires minimum €30,000 medical cover. Here's what to look for in a travel insurance plan for Europe and how to pick the right one fast.</p>
+          </div>
+          <div class="article-card-footer">
+            <div class="article-meta-row">
+              <div class="article-meta-item"><i class="fa fa-calendar" aria-hidden="true"></i> Jun 2024</div>
+              <div class="read-time-badge"><i class="fa fa-clock" aria-hidden="true"></i> 4 min</div>
+            </div>
+            <div class="article-arrow" aria-hidden="true"><i class="fa fa-arrow-right"></i></div>
+          </div>
+        </a>
+
+        <!-- No results fallback -->
+        <div class="no-results" id="noResults" aria-live="polite">
+          <i class="fa fa-search" aria-hidden="true"></i>
+          <p>No articles found in this category yet.</p>
+        </div>
+
+      </div><!-- /.article-grid -->
+    </div><!-- /.container -->
+  </section>
+
+  <!-- CTA SECTION -->
+  <section class="blog-cta-section">
+    <div class="container">
+      <div class="blog-cta-grid">
+
+        <!-- Ask Expert -->
+        <div class="cta-ask-box">
+          <div class="cta-ask-box-eyebrow">Free Consultation</div>
+          <h3>Have an Insurance Question?</h3>
+          <p>Ask Sachin Kathuria directly — free 15-minute consultation. No sales pitch, just honest, unbiased advice from an IRDAI-licensed advisor with 20+ years of experience.</p>
+          <a href="tel:9013976999" class="cta-phone-btn">
+            <i class="fa fa-phone" aria-hidden="true"></i> Call 9013976999
+          </a>
+          <p class="cta-consult-note">Or WhatsApp: <a href="https://wa.me/919013976999" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.75);text-decoration:underline;">+91 90139 76999</a></p>
+        </div>
+
+        <!-- Newsletter -->
+        <div class="newsletter-box">
+          <div class="newsletter-box-eyebrow">Weekly Tips</div>
+          <h3>Get Weekly Insurance Insights</h3>
+          <p>Join 5,000+ readers who get practical insurance tips, claim alerts and policy updates every week — straight from Sachin's desk.</p>
+          <div class="newsletter-perks">
+            <div class="newsletter-perk"><i class="fa fa-check-circle" aria-hidden="true"></i> No spam, unsubscribe anytime</div>
+            <div class="newsletter-perk"><i class="fa fa-check-circle" aria-hidden="true"></i> Practical tips you can act on</div>
+            <div class="newsletter-perk"><i class="fa fa-check-circle" aria-hidden="true"></i> Exclusive claim alert updates</div>
+          </div>
+          <form class="newsletter-form" onsubmit="handleNewsletterSubmit(event)" novalidate>
+            <label for="newsletterEmail" class="sr-only">Your email address</label>
+            <input
+              type="email"
+              id="newsletterEmail"
+              class="newsletter-input"
+              placeholder="Your email address"
+              required
+              autocomplete="email"
+            />
+            <button type="submit" class="newsletter-submit">
+              <i class="fa fa-envelope" aria-hidden="true"></i> Subscribe — It's Free
+            </button>
+          </form>
+          <p class="newsletter-disclaimer">By subscribing you agree to receive insurance tips from PolicyRaj. We respect your privacy.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <img src="policyraj.png" alt="PolicyRaj" class="footer-logo" loading="lazy" />
+        <p>Expert insurance advisory by Sachin Kathuria — IRDAI-licensed with 20+ years of experience helping individuals, families and businesses get the right coverage.</p>
+        <div class="footer-social">
+          <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+          <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+          <a href="#" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+          <a href="https://www.youtube.com/@policyraj" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h5>Insurance</h5>
+        <ul>
+          <li><a href="health.html">Health Insurance</a></li>
+          <li><a href="life.html">Life Insurance</a></li>
+          <li><a href="motor.html">Motor Insurance</a></li>
+          <li><a href="travel.html">Travel Insurance</a></li>
+          <li><a href="home.html">Home Insurance</a></li>
+          <li><a href="business.html">Business Insurance</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h5>Tools &amp; Learn</h5>
+        <ul>
+          <li><a href="compare.html">Compare Plans</a></li>
+          <li><a href="claims.html">Claims Guide</a></li>
+          <li><a href="blog.html">Blog &amp; Articles</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="ai-scan.html">AI Doc Scanner</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="index.html#about">About Sachin Kathuria</a></li>
+          <li><a href="claims.html">Claims Support</a></li>
+          <li><a href="insurance-companies.html">Our Partners</a></li>
+          <li><a href="index.html#contact">Contact Us</a></li>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+                    <div class="footer-disclaimer">
+      <div class="container">
+        <p class="fd-title">Statutory Disclosure &amp; Disclaimer</p>
+        <p><strong>About PolicyRaj:</strong> PolicyRaj is an IRDAI-licensed insurance advisory platform and an authorised channel partner of the insurance companies listed on this website. We facilitate access to insurance products on behalf of our partner insurers and do not underwrite, issue, or guarantee any insurance policy. All policies are issued solely by the respective IRDAI-regulated insurer. All insurance companies featured on this platform are independently licensed and regulated by the Insurance Regulatory and Development Authority of India (IRDAI).</p>
+        <p><strong>Advisory &amp; Risk Disclosure:</strong> All information, premium figures, benefit illustrations, and coverage details on this platform are for general guidance only and are indicative in nature. Actual premiums are subject to the applicant&apos;s age, health status, risk profile, sum insured, and the underwriting norms of the relevant insurer at the time of issuance. For market-linked products such as ULIPs and equity-linked plans, returns are subject to market risk and are not guaranteed — past performance is not indicative of future results. Clients are advised to read the complete policy document, including terms, conditions, exclusions, and waiting periods, before making any insurance decision. PolicyRaj does not provide tax or legal advice; please consult a qualified professional for personalised guidance.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>© 2004–2026 PolicyRaj™. All rights reserved. | Founded by Sachin Kathuria | IRDAI Licensed Advisor</p>
+        <p>policyraj.in | sachin@policyraj.com | <a href="privacy-policy.html" style="color:rgba(255,255,255,0.6)">Privacy Policy</a></p>
+        <p><a href="https://wa.me/919013976999?text=Hello%20Sachin%2C%20I%20would%20like%20to%20request%20your%20IRDAI%20Licence%20Number%20for%20verification." target="_blank" class="footer-irdai-link"><i class="fa fa-certificate"></i> IRDAI Licence Number available on request</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODAL -->
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+    <div class="modal modal--pro">
+      <button class="modal-close" onclick="closeModal()" aria-label="Close"><i class="fa fa-times"></i></button>
+      <div class="modal-header-pro">
+        <div class="modal-icon-wrap"><i class="fa fa-shield-alt"></i></div>
+        <div>
+          <h3>Get Your Free Quote</h3>
+          <p class="modal-tagline">Expert advice, zero obligation</p>
+        </div>
+      </div>
+      <form onsubmit="submitModal(event)" class="modal-form-pro">
+        <div class="modal-field">
+          <label><i class="fa fa-user"></i> Full Name</label>
+          <input type="text" name="name" placeholder="Enter your full name" required />
+        </div>
+        <div class="modal-field">
+          <label><i class="fa fa-phone"></i> Mobile Number</label>
+          <input type="tel" name="phone" placeholder="10-digit mobile number" required maxlength="10" pattern="[6-9][0-9]{9}" />
+        </div>
+        <div class="modal-field">
+          <label><i class="fa fa-shield-alt"></i> Insurance Type</label>
+          <select name="insurance_type" required>
+            <option value="" disabled selected>Select what you need</option>
+            <option>Health Insurance</option>
+            <option>Life Insurance</option>
+            <option>Motor Insurance</option>
+            <option>Group Mediclaim</option>
+            <option>Travel Insurance</option>
+            <option>Home Insurance</option>
+            <option>Other / Not Sure</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-primary full-width modal-submit-btn">
+          <i class="fab fa-whatsapp"></i> Send Request on WhatsApp
+        </button>
+        <p class="modal-submit-note"><i class="fa fa-lock"></i> Your information is 100% confidential &amp; never shared</p>
+      </form>
+      <div class="modal-contact-strip">
+        <div class="mcs-item"><i class="fa fa-phone"></i><div><span>Call / WhatsApp</span><strong>9013976999 / 8383813408</strong></div></div>
+        <div class="mcs-item"><i class="fa fa-map-marker-alt"></i><div><span>Office Address</span><strong>8th Floor, Magnum Towers, Golf Course Ext Rd, Sector 58, Gurugram – 122098</strong></div></div>
+        <div class="mcs-item"><i class="fa fa-clock"></i><div><span>Working Hours</span><strong>Mon–Sat, 9 AM – 7 PM</strong></div></div>
+      </div>
+      <div class="modal-response-badge">
+        <i class="fa fa-bolt"></i> Sachin Kathuria will respond <strong>as soon as possible</strong>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="toast" id="toast" role="alert" aria-live="assertive"><i class="fa fa-check-circle" aria-hidden="true"></i> Thank you! We'll contact you shortly.</div>
+
+  <!-- FLOATING BUTTONS -->
+  <a href="https://wa.me/919013976999" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Chat on WhatsApp">
+    <i class="fab fa-whatsapp" aria-hidden="true"></i>
+  </a>
+  <button class="back-to-top" id="backToTop" onclick="scrollToTop()" aria-label="Back to top">
+    <i class="fa fa-chevron-up" aria-hidden="true"></i>
+  </button>
+
+  <!-- CHATBOT -->
+  <div class="chatbot-btn" id="chatbotBtn" onclick="toggleChat()" title="Chat with Veera – PolicyRaj AI" role="button" tabindex="0" aria-label="Open chat with Veera AI">
+    <img src="rakesh-avatar.svg" alt="Veera AI" class="chatbot-btn-avatar" />
+    <span class="chatbot-badge" id="chatbotBadge" style="display:none" aria-label="1 new message">1</span>
+  </div>
+  <div class="chatbot-window" id="chatbotWindow" role="dialog" aria-label="Veera AI Assistant">
+    <div class="chatbot-header">
+      <div class="chatbot-avatar-wrap">
+        <img src="rakesh-avatar.svg" alt="Veera" class="chatbot-header-avatar" />
+        <span class="chatbot-online-dot" aria-hidden="true"></span>
+      </div>
+      <div class="chatbot-hinfo">
+        <span class="chatbot-name">Veera</span>
+        <span class="chatbot-status"><span class="pulse-dot" aria-hidden="true"></span> AI Assistant · PolicyRaj</span>
+      </div>
+      <button class="chatbot-close-btn" onclick="toggleChat()" title="Close" aria-label="Close chat"><i class="fa fa-times" aria-hidden="true"></i></button>
+    </div>
+    <div class="chatbot-messages" id="chatbotMessages"></div>
+    <div class="chatbot-quick-replies" id="chatbotQuickReplies"></div>
+    <div class="chatbot-input-row">
+      <input type="text" id="chatbotInput" placeholder="Ask Veera anything..." onkeydown="handleChatKey(event)" autocomplete="off" aria-label="Type a message" style="font-size:16px;" />
+      <button class="chatbot-send-btn" onclick="sendChatMessage()" aria-label="Send message"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+    </div>
+    <div class="chatbot-footer-note"><i class="fa fa-robot" aria-hidden="true"></i> Veera — PolicyRaj AI Assistant</div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="script.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+  <script src="chatbot.js"></script>
+  <script>
+    /* ── BLOG PAGE JS ── */
+
+    /* Category filter */
+    function filterArticles(category, btn) {
+      // Update active button
+      document.querySelectorAll('.blog-filter-btn').forEach(function(b) {
+        b.classList.remove('active');
+      });
+      btn.classList.add('active');
+
+      const cards = document.querySelectorAll('.article-grid .article-card');
+      let visibleCount = 0;
+
+      cards.forEach(function(card) {
+        if (category === 'all' || card.dataset.category === category) {
+          card.classList.remove('hidden');
+          visibleCount++;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+
+      // Update count label
+      const label = document.getElementById('articleCountLabel');
+      if (label) {
+        label.textContent = visibleCount + (visibleCount === 1 ? ' Article' : ' Articles');
+      }
+
+      // Show/hide no-results
+      const noResults = document.getElementById('noResults');
+      if (noResults) {
+        if (visibleCount === 0) {
+          noResults.classList.add('visible');
+        } else {
+          noResults.classList.remove('visible');
+        }
+      }
+    }
+
+    /* Newsletter submit — calls AWS Lambda via API Gateway */
+    const NEWSLETTER_API_URL = 'PASTE_YOUR_API_GATEWAY_URL_HERE';
+
+    async function handleNewsletterSubmit(e) {
+      e.preventDefault();
+      const input  = document.getElementById('newsletterEmail');
+      const btn    = e.target.querySelector('.newsletter-submit');
+      const email  = (input.value || '').trim();
+      if (!email) return;
+
+      // Loading state
+      const originalHtml = btn.innerHTML;
+      btn.disabled  = true;
+      btn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Subscribing...';
+
+      try {
+        const res = await fetch(NEWSLETTER_API_URL, {
+          method:  'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body:    JSON.stringify({ email }),
+        });
+        const data = await res.json();
+
+        if (res.ok) {
+          input.value   = '';
+          btn.innerHTML = '<i class="fa fa-check-circle"></i> Subscribed!';
+          btn.style.background = 'linear-gradient(135deg,#059669,#10b981)';
+          const toast = document.getElementById('toast');
+          if (toast) {
+            toast.innerHTML = '<i class="fa fa-check-circle"></i> Subscribed! Check your inbox for a welcome email.';
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 4000);
+          }
+          setTimeout(() => {
+            btn.disabled  = false;
+            btn.innerHTML = originalHtml;
+            btn.style.background = '';
+          }, 5000);
+        } else {
+          throw new Error(data.error || 'Subscription failed');
+        }
+      } catch (err) {
+        btn.disabled  = false;
+        btn.innerHTML = originalHtml;
+        const toast = document.getElementById('toast');
+        if (toast) {
+          toast.innerHTML = '<i class="fa fa-exclamation-circle"></i> Something went wrong. Please try again.';
+          toast.classList.add('show');
+          setTimeout(() => toast.classList.remove('show'), 3500);
+        }
+        console.error('Newsletter error:', err);
+      }
+    }
+
+    /* Keyboard nav: featured article enter key (already inline, also here for robustness) */
+    document.querySelectorAll('.article-card').forEach(function(card) {
+      card.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          card.click();
+        }
+      });
+    });
+  </script>
+</body>
+</html>

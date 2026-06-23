@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Compare Insurance Plans – PolicyRaj</title>
+  <meta name="description" content="Compare top health, life, motor and travel insurance plans side by side. Find the best plan for your needs with expert guidance from Sachin Kathuria at PolicyRaj." />
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    /* =============================================
+       COMPARE PAGE — PAGE-SPECIFIC STYLES
+    ============================================= */
+
+    /* ---- Tab Filter Bar ---- */
+    .cmp-tabs-section {
+      background: var(--off-white);
+      padding: 0;
+      position: sticky;
+      top: 64px;
+      z-index: 40;
+      border-bottom: 2px solid var(--border);
+      box-shadow: 0 2px 12px rgba(26,60,143,0.07);
+    }
+
+    .cmp-tabs-inner {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+
+    .cmp-tabs-inner::-webkit-scrollbar { display: none; }
+
+    .cmp-tab {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 18px 28px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--gray-dark);
+      background: none;
+      border: none;
+      border-bottom: 3px solid transparent;
+      cursor: pointer;
+      white-space: nowrap;
+      touch-action: manipulation;
+      transition: color var(--transition), border-color var(--transition), background var(--transition);
+      min-height: 56px;
+    }
+
+    .cmp-tab i {
+      font-size: 1rem;
+      transition: color var(--transition);
+    }
+
+    .cmp-tab:hover {
+      color: var(--primary);
+      background: rgba(30,58,138,0.04);
+    }
+
+    .cmp-tab.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+      background: rgba(30,58,138,0.06);
+    }
+
+    .cmp-tab.active i { color: var(--primary); }
+
+    /* ---- Table Wrapper ---- */
+    .cmp-section {
+      padding: 64px 0 80px;
+    }
+
+    .cmp-panel { display: none; }
+    .cmp-panel.active { display: block; }
+
+    .cmp-panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .cmp-panel-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(1.25rem, 3vw, 1.6rem);
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .cmp-panel-title span { color: var(--primary); }
+
+    .cmp-panel-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(30,58,138,0.08);
+      color: var(--primary);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-family: 'IBM Plex Sans', sans-serif;
+    }
+
+    .cmp-table-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+
+    .cmp-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 680px;
+      background: var(--white);
+    }
+
+    /* Table Header */
+    .cmp-table thead tr {
+      background: var(--gradient);
+    }
+
+    .cmp-table thead th {
+      padding: 20px 20px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #fff;
+      text-align: center;
+      vertical-align: middle;
+      border-right: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .cmp-table thead th:first-child {
+      text-align: left;
+      width: 200px;
+      min-width: 170px;
+    }
+
+    .cmp-table thead th:last-child { border-right: none; }
+
+    .cmp-th-plan-name {
+      display: block;
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .cmp-th-plan-sub {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 400;
+      opacity: 0.82;
+    }
+
+    .cmp-th-icon {
+      display: block;
+      font-size: 1.3rem;
+      margin-bottom: 6px;
+      opacity: 0.9;
+    }
+
+    /* Table Body */
+    .cmp-table tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background var(--transition);
+    }
+
+    .cmp-table tbody tr:last-child { border-bottom: none; }
+
+    .cmp-table tbody tr:hover { background: rgba(30,58,138,0.03); }
+
+    .cmp-table tbody td {
+      padding: 15px 20px;
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 0.875rem;
+      color: var(--text);
+      text-align: center;
+      vertical-align: middle;
+      border-right: 1px solid var(--border);
+    }
+
+    .cmp-table tbody td:first-child {
+      text-align: left;
+      font-weight: 600;
+      color: var(--gray-dark);
+      background: rgba(241,244,249,0.6);
+      border-right: 2px solid var(--border);
+      font-size: 0.83rem;
+    }
+
+    .cmp-table tbody td:last-child { border-right: none; }
+
+    /* Alternating row tint */
+    .cmp-table tbody tr:nth-child(even) td:not(:first-child) {
+      background: rgba(238,242,255,0.35);
+    }
+
+    /* "Best For" highlighted row */
+    .cmp-table tbody tr.cmp-best-row td {
+      background: linear-gradient(90deg, rgba(30,58,138,0.07), rgba(67,56,202,0.07)) !important;
+      font-weight: 700;
+    }
+
+    .cmp-table tbody tr.cmp-best-row td:first-child {
+      color: var(--primary);
+      background: linear-gradient(90deg, rgba(30,58,138,0.10), rgba(67,56,202,0.06)) !important;
+    }
+
+    .cmp-best-tag {
+      display: inline-block;
+      background: var(--gradient);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-family: 'Poppins', sans-serif;
+      white-space: nowrap;
+    }
+
+    /* Check / Cross */
+    .cmp-yes {
+      color: #16a34a;
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .cmp-no {
+      color: #bdc6d4;
+      font-size: 0.82rem;
+      font-style: italic;
+    }
+
+    .cmp-addon {
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 600;
+      background: rgba(244,162,97,0.12);
+      padding: 2px 8px;
+      border-radius: 10px;
+      white-space: nowrap;
+    }
+
+    /* Claim settlement badge */
+    .cmp-csr {
+      display: inline-block;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--primary);
+    }
+
+    .cmp-csr-high { color: #16a34a; }
+
+    /* Premium highlight */
+    .cmp-premium {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+
+    .cmp-premium sub {
+      font-size: 0.68rem;
+      font-weight: 400;
+      color: var(--text-light);
+    }
+
+    /* ---- Expert Recommendation Banner ---- */
+    .cmp-expert-section {
+      padding: 0 0 64px;
+    }
+
+    .cmp-expert-banner {
+      background: var(--gradient);
+      border-radius: var(--radius-lg);
+      padding: 48px 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      flex-wrap: wrap;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cmp-expert-banner::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 260px;
+      height: 260px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 50%;
+    }
+
+    .cmp-expert-banner::after {
+      content: '';
+      position: absolute;
+      bottom: -80px;
+      right: 120px;
+      width: 180px;
+      height: 180px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 50%;
+    }
+
+    .cmp-expert-text { position: relative; }
+
+    .cmp-expert-eyebrow {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      color: rgba(255,255,255,0.9);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-family: 'IBM Plex Sans', sans-serif;
+      margin-bottom: 14px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .cmp-expert-text h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(1.3rem, 3vw, 1.75rem);
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+
+    .cmp-expert-text p {
+      color: rgba(255,255,255,0.8);
+      font-size: 0.95rem;
+      max-width: 560px;
+      line-height: 1.6;
+    }
+
+    .cmp-expert-ctas {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .btn-expert-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: var(--gradient-gold);
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 700;
+      padding: 14px 28px;
+      border-radius: var(--radius);
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      touch-action: manipulation;
+      transition: transform var(--transition), box-shadow var(--transition);
+      min-height: 48px;
+      white-space: nowrap;
+    }
+
+    .btn-expert-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-gold);
+    }
+
+    .btn-expert-call {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: rgba(255,255,255,0.14);
+      color: #fff;
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 12px 24px;
+      border-radius: var(--radius);
+      border: 1.5px solid rgba(255,255,255,0.4);
+      cursor: pointer;
+      text-decoration: none;
+      touch-action: manipulation;
+      transition: background var(--transition), border-color var(--transition);
+      min-height: 48px;
+      white-space: nowrap;
+    }
+
+    .btn-expert-call:hover {
+      background: rgba(255,255,255,0.22);
+      border-color: #fff;
+    }
+
+    /* ---- Why Compare Section ---- */
+    .cmp-why-section {
+      padding: 0 0 80px;
+    }
+
+    .cmp-why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .cmp-why-card {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 36px 30px;
+      text-align: center;
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+      cursor: default;
+    }
+
+    .cmp-why-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-hover);
+      border-color: rgba(30,58,138,0.2);
+    }
+
+    .cmp-why-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 1.4rem;
+    }
+
+    .cmp-why-icon-blue {
+      background: rgba(30,58,138,0.1);
+      color: var(--primary);
+    }
+
+    .cmp-why-icon-gold {
+      background: rgba(180,83,9,0.1);
+      color: var(--cta-gold);
+    }
+
+    .cmp-why-icon-green {
+      background: rgba(22,163,74,0.1);
+      color: #16a34a;
+    }
+
+    .cmp-why-card h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+
+    .cmp-why-card p {
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 0.88rem;
+      color: var(--text-light);
+      line-height: 1.65;
+    }
+
+    /* ---- Mobile Scroll Hint ---- */
+    .cmp-scroll-hint {
+      display: none;
+      align-items: center;
+      gap: 7px;
+      font-size: 0.78rem;
+      color: var(--text-light);
+      font-family: 'IBM Plex Sans', sans-serif;
+      margin-bottom: 10px;
+    }
+
+    /* =============================================
+       RESPONSIVE
+    ============================================= */
+
+    @media (max-width: 1024px) {
+      .cmp-expert-banner { padding: 40px 36px; }
+    }
+
+    @media (max-width: 900px) {
+      .cmp-why-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .cmp-tabs-section { top: 56px; }
+      .cmp-tab { padding: 14px 18px; font-size: 0.85rem; }
+      .cmp-expert-banner { padding: 36px 24px; }
+      .cmp-expert-ctas { flex-direction: row; flex-wrap: wrap; }
+      .cmp-scroll-hint { display: flex; }
+      .cmp-section { padding: 48px 0 64px; }
+    }
+
+    @media (max-width: 600px) {
+      .cmp-why-grid { grid-template-columns: 1fr; }
+      .cmp-expert-banner { flex-direction: column; align-items: flex-start; }
+      .cmp-expert-ctas { width: 100%; }
+      .btn-expert-primary, .btn-expert-call { width: 100%; justify-content: center; }
+      .cmp-panel-header { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (max-width: 480px) {
+      .cmp-table thead th { padding: 14px 14px; font-size: 0.8rem; }
+      .cmp-table tbody td { padding: 12px 14px; font-size: 0.8rem; }
+      .cmp-table thead th:first-child { min-width: 130px; }
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <span><i class="fa fa-phone"></i> 9013976999 / 8383813408</span>
+      <span><i class="fa fa-envelope"></i> sachin@policyraj.com</span>
+      <span class="topbar-right">
+        <a href="ai-scan.html" class="topbar-ai-link"><i class="fa fa-robot"></i> AI Doc Scanner</a>
+        <a href="claims.html">Claims</a>
+        <a href="index.html#contact" class="btn-top">Get a Free Quote</a>
+      </span>
+    </div>
+  </div>
+
+  <nav class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="logo">
+        <img src="policyraj.png" alt="PolicyRaj Logo" class="logo-img" />
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li class="nav-dropdown">
+          <a href="index.html#insurance" class="nav-dropdown-trigger">Insurance <i class="fa fa-chevron-down nav-chevron"></i></a>
+          <ul class="nav-dropdown-menu">
+            <li><a href="health.html"><i class="fa fa-heartbeat"></i> Health Insurance</a></li>
+            <li><a href="life.html"><i class="fa fa-shield-alt"></i> Life Insurance</a></li>
+            <li><a href="motor.html"><i class="fa fa-car"></i> Motor Insurance</a></li>
+            <li><a href="travel.html"><i class="fa fa-plane"></i> Travel Insurance</a></li>
+            <li><a href="home.html"><i class="fa fa-home"></i> Home Insurance</a></li>
+            <li><a href="business.html"><i class="fa fa-briefcase"></i> Business Insurance</a></li>
+          </ul>
+        </li>
+        <li class="nav-dropdown">
+          <a href="index.html#investments" class="nav-dropdown-trigger">Investments <i class="fa fa-chevron-down nav-chevron"></i></a>
+          <ul class="nav-dropdown-menu">
+            <li><a href="child-plan.html"><i class="fa fa-child"></i> Child Plans</a></li>
+            <li><a href="pension-plan.html"><i class="fa fa-umbrella"></i> Pension Plans</a></li>
+            <li><a href="tax-saving.html"><i class="fa fa-piggy-bank"></i> Tax Saving</a></li>
+            <li><a href="endowment-policy.html"><i class="fa fa-shield-alt"></i> Endowment Policy</a></li>
+            <li><a href="money-back-policy.html"><i class="fa fa-undo"></i> Money Back Policy</a></li>
+            <li><a href="annuity-plans.html"><i class="fa fa-infinity"></i> Annuity Plans</a></li>
+          </ul>
+        </li>
+        <li class="nav-dropdown">
+          <a href="insurance-companies.html" class="nav-dropdown-trigger">Companies <i class="fa fa-chevron-down nav-chevron"></i></a>
+          <ul class="nav-dropdown-menu">
+            <li><a href="insurance-companies.html"><i class="fa fa-building"></i> All Companies</a></li>
+            <li><a href="hdfc-ergo.html"><i class="fa fa-star"></i> HDFC ERGO</a></li>
+            <li><a href="icici-lombard.html"><i class="fa fa-star"></i> ICICI Lombard</a></li>
+            <li><a href="bajaj-allianz.html"><i class="fa fa-star"></i> Bajaj Allianz</a></li>
+            <li><a href="hdfc-life.html"><i class="fa fa-star"></i> HDFC Life</a></li>
+            <li><a href="lic-india.html"><i class="fa fa-star"></i> LIC of India</a></li>
+          </ul>
+        </li>
+        <li class="nav-dropdown">
+          <a href="#" class="nav-dropdown-trigger">Tools <i class="fa fa-chevron-down nav-chevron"></i></a>
+          <ul class="nav-dropdown-menu">
+            <li><a href="ai-scan.html"><i class="fa fa-robot"></i> AI Doc Scanner</a></li>
+            <li><a href="compare.html"><i class="fa fa-balance-scale"></i> Compare Plans</a></li>
+            <li><a href="index.html#calculators"><i class="fa fa-calculator"></i> Calculators</a></li>
+            <li><a href="index.html#emi"><i class="fa fa-percent"></i> EMI Calculator</a></li>
+          </ul>
+        </li>
+        <li class="nav-dropdown">
+          <a href="#" class="nav-dropdown-trigger">Learn <i class="fa fa-chevron-down nav-chevron"></i></a>
+          <ul class="nav-dropdown-menu">
+            <li><a href="blog.html"><i class="fa fa-newspaper"></i> Blog &amp; Articles</a></li>
+            <li><a href="claims.html"><i class="fa fa-file-alt"></i> Claims Guide</a></li>
+            <li><a href="faq.html"><i class="fa fa-question-circle"></i> FAQ</a></li>
+          </ul>
+        </li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a href="tel:9013976999" class="btn-nav-call"><i class="fa fa-phone"></i> Call Now</a>
+        <button class="btn-nav-quote" onclick="openModal()">Get Quote</button>
+      </div>
+      <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <i class="fa fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ==================== HERO ==================== -->
+  <section class="service-page-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a><span>›</span>
+        <a href="#">Tools</a><span>›</span>
+        <span>Compare Plans</span>
+      </nav>
+      <div class="service-tag"><i class="fa fa-balance-scale"></i> Compare Plans</div>
+      <h1>Compare Insurance Plans —<br /><span class="gradient-text">Find Your Perfect Fit</span></h1>
+      <p class="sp-hero-desc">Side-by-side comparison of India's top insurance plans. Honest facts, no bias — so you pick with confidence.</p>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="openModal()"><i class="fa fa-shield-alt"></i> Get Free Quote</button>
+        <a href="tel:9013976999" class="btn-outline" style="color:#fff;border-color:rgba(255,255,255,0.45)"><i class="fa fa-phone"></i> Call Expert</a>
+      </div>
+      <div class="sp-stat-row">
+        <div class="sp-stat"><strong>500+</strong><span>Plans Available</span></div>
+        <div class="sp-stat"><strong>20+</strong><span>Insurers</span></div>
+        <div class="sp-stat"><strong>Free</strong><span>Expert Advice</span></div>
+        <div class="sp-stat"><strong>20+</strong><span>Years Experience</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TAB BAR ==================== -->
+  <div class="cmp-tabs-section" id="cmpTabsBar">
+    <div class="container">
+      <div class="cmp-tabs-inner" role="tablist" aria-label="Insurance type">
+        <button class="cmp-tab active" role="tab" aria-selected="true" aria-controls="panel-health" id="tab-health" onclick="switchTab('health')">
+          <i class="fa fa-heartbeat"></i> Health
+        </button>
+        <button class="cmp-tab" role="tab" aria-selected="false" aria-controls="panel-life" id="tab-life" onclick="switchTab('life')">
+          <i class="fa fa-shield-alt"></i> Life
+        </button>
+        <button class="cmp-tab" role="tab" aria-selected="false" aria-controls="panel-motor" id="tab-motor" onclick="switchTab('motor')">
+          <i class="fa fa-car"></i> Motor
+        </button>
+        <button class="cmp-tab" role="tab" aria-selected="false" aria-controls="panel-travel" id="tab-travel" onclick="switchTab('travel')">
+          <i class="fa fa-plane"></i> Travel
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== COMPARISON TABLES ==================== -->
+  <section class="cmp-section">
+    <div class="container">
+
+      <!-- ===== HEALTH PANEL ===== -->
+      <div class="cmp-panel active" id="panel-health" role="tabpanel" aria-labelledby="tab-health">
+        <div class="cmp-panel-header">
+          <div class="cmp-panel-title"><i class="fa fa-heartbeat" style="color:var(--secondary);margin-right:8px"></i>Health Insurance — <span>Plan Comparison</span></div>
+          <span class="cmp-panel-badge"><i class="fa fa-info-circle"></i> Premiums indicative for family of 4, age 35</span>
+        </div>
+        <p class="cmp-scroll-hint" aria-hidden="true"><i class="fa fa-arrows-alt-h"></i> Scroll right to see all plans</p>
+        <div class="cmp-table-wrap">
+          <table class="cmp-table" aria-label="Health insurance plan comparison">
+            <thead>
+              <tr>
+                <th scope="col">Feature</th>
+                <th scope="col">
+                  <span class="cmp-th-icon"><i class="fa fa-star" style="color:#fbbf24"></i></span>
+                  <span class="cmp-th-plan-name">Niva Bupa ReAssure 2.0</span>
+                  <span class="cmp-th-plan-sub">Niva Bupa Health Insurance</span>
+                </th>
+                <th scope="col">
+                  <span class="cmp-th-icon"><i class="fa fa-shield-alt" style="color:#60a5fa"></i></span>
+                  <span class="cmp-th-plan-name">HDFC ERGO Optima Secure</span>
+                  <span class="cmp-th-plan-sub">HDFC ERGO General Insurance</span>
+                </th>
+                <th scope="col">
+                  <span class="cmp-th-icon"><i class="fa fa-certificate" style="color:#fb923c"></i></span>
+                  <span class="cmp-th-plan-name">Bajaj Allianz Health Guard</span>
+                  <span class="cmp-th-plan-sub">Bajaj Allianz General Insurance</span>
+                </th>
+                <th scope="col">
+                  <span class="cmp-th-icon"><i class="fa fa-check-double" style="color:#4ade80"></i></span>
+                  <span class="cmp-th-plan-name">ICICI Lombard iHealth Plus</span>
+                  <span class="cmp-th-plan-sub">ICICI Lombard General Insurance</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Sum Insured</td>
+                <td>₹5L – ₹1 Cr</td>
+                <td>₹5L – ₹2 Cr</td>
+                <td>₹3L – ₹50L</td>
+                <td>₹3L – ₹50L</td>
+              </tr>
+              <tr>
+                <td>Premium (Family of 4)</td>
+                <td><span class="cmp-premium">~₹18,000<sub>/yr</sub></span></td>
+                <td><span class="cmp-premium">~₹22,000<sub>/yr</sub></span></td>
+                <td><span class="cmp-premium">~₹15,000<sub>/yr</sub></span></td>
+                <td><span class="cmp-premium">~₹16,000<sub>/yr</sub></span></td>
+              </tr>
+              <tr>
+                <td>Claim Settlement Ratio</td>
+                <td><span class="cmp-csr">94.0%</span></td>
+                <td><span class="cmp-csr cmp-csr-high">99.5%</span></td>
+                <td><span class="cmp-csr cmp-csr-high">98.4%</span></td>
+                <td><span class="cmp-csr">97.8%</span></td>
+              </tr>
+              <tr>
+                <td>Cashless Hospitals</td>
+                <td>10,000+</td>
+                <td>13,000+</td>
+                <td>8,500+</td>
+                <td>9,500+</td>
+              </tr>
+              <tr>
+                <td>Room Rent Limit</td>
+                <td><span class="cmp-yes">No limit</span></td>
+                <td><span class="cmp-yes">No limit</span></td>
+                <td>1% of SI</td>
+                <td>Shared room</td>
+              </tr>
+              <tr>
+                <td>No Claim Bonus</td>
+                <td>50% per year</td>
+                <td>50% per year</td>
+                <td>25% per year</td>
+                <td>25% per year</td>
+              </tr>
+              <tr>
+                <td>Restoration Benefit</td>
+                <td><span class="cmp-yes">Unlimited</span></td>
+                <td>Once per year</td>
+                <td><span class="cmp-no">Not available</span></td>
+                <td>Once per year</td>
+              </tr>
+              <tr>
+                <td>Pre-existing Disease Wait</td>
+                <td>2 years</td>
+                <td>3 years</td>
+                <td>2 years</td>
+                <td>3 years</td>
+              </tr>
+              <tr>
+                <td>Maternity Cover</td>
+                <td><span class="cmp-yes"><i class="fa fa-check"></i></span></td>
+                <td><span class="cmp-yes"><i class="fa fa-check"></i></span></td>
+                <td><span class="cmp-addon">Add-on</span></td>
+                <td><span class="cmp-yes"><i class="fa fa-check"></i></span></td>
+              </tr>
+              <tr>
+                <td>Day Care Procedures</td>
+                <td>540+</td>
+                <td>600+</td>
+                <td>450+</td>
+                <td>500+</td>
+              </tr>
+              <tr>
+                <td>OPD Cover</td>
+                <td><span class="cmp-addon">Add-on</span></td>
+                <td><span class="cmp-addon">Add-on</span></td>
+                <td><span class="cmp-no">Not available</span></td>
+                <td><span class="cmp-addon">Add-on</span></td>
+              </tr>
+              <tr class="cmp-best-row">
+                <td>Best For</td>
+                <td><span class="cmp-best-tag">Restoration lovers</span></td>
+                <td><span class="cmp-best-tag">High coverage</span></td>
+                <td><span class="cmp-best-tag">Budget families</span></td>
+                <td><span class="cmp-best-tag">Wide network</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size:0.75rem;color:var(--text-light);margin-top:12px;font-family:'IBM Plex Sans',sans-serif;">
+          <i class="fa fa-info-circle"></i> Premiums are indicative and vary by age, city, and sum insured. Data sourced from IRDAI annual reports and insurer websites. Consult Sachin Kathuria for a personalised quote.
+        </p>
+      </div><!-- /health panel -->
+
+      <!-- ===== LIFE PANEL ===== -->
+      <div class="cmp-panel" id="panel-life" role="tabpanel" aria-labelledby="tab-life">
+        <div class="cmp-panel-header">
+          <div class="cmp-panel-title"><i class="fa fa-shield-alt" style="color:var(--primary);margin-right:8px"></i>Life Insurance — <span>Term Plan Comparison</span></div>
+          <span class="cmp-panel-badge"><i class="fa fa-info-circle"></i> Premium: ₹1 Cr cover, 30-yr-old, 30-yr term</span>
+        </div>
+        <p class="cmp-scroll-hint" aria-hidden="true"><i class="fa fa-arrows-alt-h"></i> Scroll right to see all plans</p>
+        <div class="cmp-table-wrap">
+          <table class="cmp-table" aria-label="Life insurance plan comparison">
+            <thead>
+              <tr>
+                <th scope="col">Feature</th>
+                <th scope="col">
+                  <span class="cmp-th-icon"><i class="fa fa-star" style="color:#fbbf24"></i></span>
+                  <span class="cmp-th-plan-name">HDFC Life Click2Protect</span>
+                  <span class="cmp-th-plan-sub">HDFC Life Insurance Co.</span>
+                </th>
+                <th scope="col">
+                  <span class="cmp-th-icon"><i class="fa fa-landmark" style="color:#60a5fa"></i></span>
+                  <span class="cmp-th-plan-name">LIC Tech Term</span>
+                  <span class="cmp-th-plan-sub">LIC of India</span>
+                </th>
+                <th scope="col">
+                  <span class="cmp-th-icon"><i class="fa fa-check-double" style="color:#4ade80"></i></span>
+                  <span class="cmp-th-plan-name">ICICI Pru iProtect Smart</span>
+                  <span class="cmp-th-plan-sub">ICICI Prudential Life</span>
+                </th>
+                <th scope="col">
+                  <span class="cmp-th-icon"><i class="fa fa-university" style="color:#fb923c"></i></span>
+                  <span class="cmp-th-plan-name">SBI Life eShield Next</span>
+                  <span class="cmp-th-plan-sub">SBI Life Insurance Co.</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Coverage Available</td>
+                <td>₹25L – ₹10 Cr</td>
+                <td>₹25L – No Limit</td>
+                <td>₹25L – No Limit</td>
+                <td>₹25L – ₹5 Cr</td>
+              </tr>
+              <tr>
+                <td>Annual Premium (₹1 Cr)</td>
+                <td><span class="cmp-premium">~₹10,000<sub>/yr</sub></span></td>
+                <td><span class="cmp-premium">~₹8,500<sub>/yr</sub></span></td>
+                <td><span class="cmp-premium">~₹9,200<sub>/yr</sub></span></td>
+                <td><span class="cmp-premium">~₹9,800<sub>/yr</sub></span></td>
+              </tr>
+              <tr>
+                <td>Claim Settlement Ratio</td>
+                <td><span class="cmp-csr cmp-csr-high">99.3%</span></td>
+                <td><span class="cmp-csr cmp-csr-high">98.7%</span></td>
+                <td><span class="cmp-csr">97.9%</span></td>
+                <td><span class="cmp-csr">97.3%</span></td>
+              </tr>
+              <tr>
+                <td>Policy Term</td>
+                <td>5 – 40 years</td>
+                <td>10 – 50 years</td>
+                <td>5 – 40 years</td>
+                <td>5 – 30 years</td>
+              </tr>
+              <tr>
+                <td>Premium Payment Mode</td>
+                <td>Regular / Limited</td>
+                <td>Regular</td>
+                <td>Regular / Limited</td>
+                <td>Regular</td>
+              </tr>
+              <tr>
+                <td>Accidental Death Benefit</td>
+                <td><span class="cmp-addon">Add-on</span></td>
+                <td><span class="cmp-addon">Add-on</span></td>
+                <td><span class="cmp-yes">Included</span></td>
+                <td><span class="cmp-addon">Add-on</span></td>
+              </tr>
+              <tr>
+                <td>Critical Illness Rider</td>
+                <td><span class="cmp-yes"><i class="fa fa-check"></i></span></td>
+                <td><span class="cmp-no">Not available</span></td>
+                <td><span class="cmp-yes"><i class="fa fa-check"></i></span></td>
+                <td><span class="cmp-yes"><i class="fa fa-check"></i></span></td>
+              </tr>
+              <tr>
+                <td>Return of Premium</td>
+                <td><span class="cmp-no">Not available</span></td>
+                <td><span class="cmp-no">Not available</span></td>
+                <td><span class="cmp-addon">Add-on</span></td>
+                <td><span class="cmp-yes"><i class="fa fa-check"></i></span></td>
+              </tr>
+              <tr>
+                <td>Waiver of Premium</td>
+                <td><span class="cmp-yes"><i class="fa fa-check"></i></span></td>
+                <td><span class="cmp-yes"><i class="fa fa-check"></i></span></td>
+                <td><span class="cmp-yes"><i class="fa fa-check"></i></span></td>
+                <td><span class="cmp-yes"><i class="fa fa-check"></i></span></td>
+              </tr>
+              <tr>
+                <td>Online Discount</td>
+                <td>15 – 20%</td>
+                <td>5 – 10%</td>
+                <td>10 – 15%</td>
+                <td>10 – 15%</td>
+              </tr>
+              <tr class="cmp-best-row">
+                <td>Best For</td>
+                <td><span class="cmp-best-tag">High CSR</span></td>
+                <td><span class="cmp-best-tag">Govt trust</span></td>
+                <td><span class="cmp-best-tag">Feature-rich</span></td>
+                <td><span class="cmp-best-tag">Returns seekers</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size:0.75rem;color:var(--text-light);margin-top:12px;font-family:'IBM Plex Sans',sans-serif;">
+          <i class="fa fa-info-circle"></i> Premiums are indicative for a healthy non-smoker male aged 30. CSR figures from IRDAI Annual Report 2022–23.
+        </p>
+      </div><!-- /life panel -->
+
+      <!-- ===== MOTOR PANEL ===== -->
+      <div class="cmp-panel" id="panel-motor" role="tabpanel" aria-labelledby="tab-motor">
+        <div class="cmp-panel-header">
+          <div class="cmp-panel-title"><i class="fa fa-car" style="color:var(--accent);margin-right:8px"></i>Motor Insurance — <span>Comprehensive Plan Comparison</span></div>
+          <span class="cmp-panel-badge"><i class="fa fa-info-circle"></i> Private car — Comprehensive coverage</span>
+        </div>
+        <p class="cmp-scroll-hint" aria-hidden="true"><i class="fa fa-arrows-alt-h"></i> Scroll right to see all plans</p>
+        <div class="cmp-table-wrap">
+          <table class="cmp-table" aria-label="Motor insurance plan comparison">
+            <thead>
+              <tr>
+                <th scope="col">Feature</th>
+                <th scope="col">
+                  <span class="cmp-th-icon"><i class="fa fa-shield-alt" style="color:#60a5fa"></i></span>
+                  <span class="cmp-th-plan-name">HDFC ERGO Comprehensive</span>
+                  <span class="cmp-th-plan-sub">HDFC ERGO General Insurance</span>
+                </th>
+                <th scope="col">
+                  <span class="cmp-th-icon"><i class="fa fa-certificate" style="color:#fb923c"></i></span>
+                  <span class="cmp-th-plan-name">Bajaj Allianz Comprehensive</span>
+                  <span class="cmp-th-plan-sub">Bajaj Allianz General Insurance</span>
+                </th>
+                <th scope="col">
+                  <span class="cmp-th-icon"><i class="fa fa-check-double" style="color:#4ade80"></i></span>
+                  <span class="cmp-th-plan-name">ICICI Lombard Comprehensive</span>
+                  <span class="cmp-th-plan-sub">ICICI Lombard General Insurance</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Own Damage Cover</td>
+                <td><span class="cmp-yes"><i class="fa fa-check"></i></span></td>
+                <td><span class="cmp-yes"><i class="fa fa-check"></i></span></td>
+                <td><span class="cmp-yes"><i class="fa fa-check"></i></span></td>
+              </tr>
+              <tr>
+                <td>Third Party Cover</td>
+                <td><span class="cmp-yes"><i class="fa fa-check"></i></span></td>
+                <td><span class="cmp-yes"><i class="fa fa-check"></i></span></td>
+                <td><span class="cmp-yes"><i class="fa fa-check"></i></span></td>
+              </tr>
+              <tr>
+                <td>Zero Depreciation</td>
+                <td><span class="cmp-addon">Add-on</span></td>
+                <td><span class="cmp-addon">Add-on</span></td>
+                <td><span class="cmp-addon">Add-on</span></td>
+              </tr>
+              <tr>
+                <td>NCB Protection</td>
+                <td><span class="cmp-addon">Add-on</span></td>
+                <td><span class="cmp-addon">Add-on</span></td>
+                <td><span class="cmp-addon">Add-on</span></td>
+              </tr>
+              <tr>
+                <td>Engine Protection</td>
+                <td><span class="cmp-addon">Add-on</span></td>
+                <td><span class="cmp-addon">Add-on</span></td>
+                <td><span class="cmp-addon">Add-on</span></td>
+              </tr>
+              <tr>
+                <td>Roadside Assistance</td>
+                <td><span class="cmp-yes"><i class="fa fa-check"></i></span></td>
+                <td><span class="cmp-addon">Add-on</span></td>
+                <td><span class="cmp-yes"><i class="fa fa-check"></i></span></td>
+              </tr>
+              <tr>
+                <td>Cashless Garages</td>
+                <td>6,500+</td>
+                <td>6,700+</td>
+                <td>7,000+</td>
+              </tr>
+              <tr>
+                <td>Claim Settlement Ratio</td>
+                <td><span class="cmp-csr cmp-csr-high">99.5%</span></td>
+                <td><span class="cmp-csr">98.4%</span></td>
+                <td><span class="cmp-csr">97.8%</span></td>
+              </tr>
+              <tr>
+                <td>Daily Allowance</td>
+                <td><span class="cmp-addon">Add-on</span></td>
+                <td><span class="cmp-addon">Add-on</span></td>
+                <td><span class="cmp-yes"><i class="fa fa-check"></i></span></td>
+              </tr>
+              <tr class="cmp-best-row">
+                <td>Best For</td>
+                <td><span class="cmp-best-tag">Trust &amp; network</span></td>
+                <td><span class="cmp-best-tag">Claim ratio</span></td>
+                <td><span class="cmp-best-tag">Garage network</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size:0.75rem;color:var(--text-light);margin-top:12px;font-family:'IBM Plex Sans',sans-serif;">
+          <i class="fa fa-info-circle"></i> Coverage details and add-on availability may vary by vehicle type and variant. Premium depends on IDV, age of vehicle, and city.
+        </p>
+      </div><!-- /motor panel -->
+
+      <!-- ===== TRAVEL PANEL ===== -->
+      <div class="cmp-panel" id="panel-travel" role="tabpanel" aria-labelledby="tab-travel">
+        <div class="cmp-panel-header">
+          <div class="cmp-panel-title"><i class="fa fa-plane" style="color:#818cf8;margin-right:8px"></i>Travel Insurance — <span>International Plan Comparison</span></div>
+          <span class="cmp-panel-badge"><i class="fa fa-info-circle"></i> International travel — Individual adult</span>
+        </div>
+        <p class="cmp-scroll-hint" aria-hidden="true"><i class="fa fa-arrows-alt-h"></i> Scroll right to see all plans</p>
+        <div class="cmp-table-wrap">
+          <table class="cmp-table" aria-label="Travel insurance plan comparison">
+            <thead>
+              <tr>
+                <th scope="col">Feature</th>
+                <th scope="col">
+                  <span class="cmp-th-icon"><i class="fa fa-globe" style="color:#60a5fa"></i></span>
+                  <span class="cmp-th-plan-name">Tata AIG Travel Guard</span>
+                  <span class="cmp-th-plan-sub">Tata AIG General Insurance</span>
+                </th>
+                <th scope="col">
+                  <span class="cmp-th-icon"><i class="fa fa-shield-alt" style="color:#fbbf24"></i></span>
+                  <span class="cmp-th-plan-name">HDFC ERGO Travel</span>
+                  <span class="cmp-th-plan-sub">HDFC ERGO General Insurance</span>
+                </th>
+                <th scope="col">
+                  <span class="cmp-th-icon"><i class="fa fa-certificate" style="color:#4ade80"></i></span>
+                  <span class="cmp-th-plan-name">Bajaj Allianz Travel</span>
+                  <span class="cmp-th-plan-sub">Bajaj Allianz General Insurance</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Medical Coverage</td>
+                <td>Up to $5,00,000</td>
+                <td>Up to $2,50,000</td>
+                <td>Up to $5,00,000</td>
+              </tr>
+              <tr>
+                <td>Trip Cancellation</td>
+                <td><span class="cmp-yes"><i class="fa fa-check"></i></span></td>
+                <td><span class="cmp-yes"><i class="fa fa-check"></i></span></td>
+                <td><span class="cmp-yes"><i class="fa fa-check"></i></span></td>
+              </tr>
+              <tr>
+                <td>Lost Baggage Cover</td>
+                <td>Up to $1,000</td>
+                <td>Up to $500</td>
+                <td>Up to $1,000</td>
+              </tr>
+              <tr>
+                <td>Flight Delay Cover</td>
+                <td><span class="cmp-yes"><i class="fa fa-check"></i></span></td>
+                <td><span class="cmp-yes"><i class="fa fa-check"></i></span></td>
+                <td><span class="cmp-yes"><i class="fa fa-check"></i></span></td>
+              </tr>
+              <tr>
+                <td>Schengen Visa Approved</td>
+                <td><span class="cmp-yes"><i class="fa fa-check"></i></span></td>
+                <td><span class="cmp-yes"><i class="fa fa-check"></i></span></td>
+                <td><span class="cmp-yes"><i class="fa fa-check"></i></span></td>
+              </tr>
+              <tr>
+                <td>Adventure Sports Cover</td>
+                <td><span class="cmp-addon">Add-on</span></td>
+                <td><span class="cmp-no">Not available</span></td>
+                <td><span class="cmp-addon">Add-on</span></td>
+              </tr>
+              <tr>
+                <td>COVID-19 Cover</td>
+                <td><span class="cmp-yes"><i class="fa fa-check"></i></span></td>
+                <td><span class="cmp-yes"><i class="fa fa-check"></i></span></td>
+                <td><span class="cmp-yes"><i class="fa fa-check"></i></span></td>
+              </tr>
+              <tr>
+                <td>24×7 Assistance</td>
+                <td><span class="cmp-yes"><i class="fa fa-check"></i></span></td>
+                <td><span class="cmp-yes"><i class="fa fa-check"></i></span></td>
+                <td><span class="cmp-yes"><i class="fa fa-check"></i></span></td>
+              </tr>
+              <tr class="cmp-best-row">
+                <td>Best For</td>
+                <td><span class="cmp-best-tag">Comprehensive cover</span></td>
+                <td><span class="cmp-best-tag">Budget travel</span></td>
+                <td><span class="cmp-best-tag">Adventure travel</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size:0.75rem;color:var(--text-light);margin-top:12px;font-family:'IBM Plex Sans',sans-serif;">
+          <i class="fa fa-info-circle"></i> Dollar amounts are in USD. Premium and exact coverage vary by trip duration, destination, and age of traveller.
+        </p>
+      </div><!-- /travel panel -->
+
+    </div>
+  </section>
+
+  <!-- ==================== EXPERT RECOMMENDATION BANNER ==================== -->
+  <section class="cmp-expert-section">
+    <div class="container">
+      <div class="cmp-expert-banner">
+        <div class="cmp-expert-text">
+          <span class="cmp-expert-eyebrow"><i class="fa fa-user-tie"></i> Expert Guidance</span>
+          <h2>Not Sure Which Plan to Choose?</h2>
+          <p>Sachin Kathuria will personally analyse your specific needs, family profile, and budget — then recommend the single best plan for you. No jargon, no upselling. Just honest advice from an IRDAI-licensed expert with 20+ years of experience.</p>
+        </div>
+        <div class="cmp-expert-ctas">
+          <button class="btn-expert-primary" onclick="openModal()">
+            <i class="fa fa-comments"></i> Get Free Advice
+          </button>
+          <a href="tel:9013976999" class="btn-expert-call">
+            <i class="fa fa-phone"></i> Call 9013976999
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== WHY COMPARE WITH POLICYRAJ ==================== -->
+  <section class="cmp-why-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Our Promise</span>
+        <h2>Why Compare With <span class="gradient-text">PolicyRaj?</span></h2>
+        <p class="section-subtitle">We give you the full picture — no hidden agenda, just the truth about every plan.</p>
+      </div>
+      <div class="cmp-why-grid">
+        <div class="cmp-why-card">
+          <div class="cmp-why-icon cmp-why-icon-blue">
+            <i class="fa fa-balance-scale"></i>
+          </div>
+          <h3>Unbiased Advice</h3>
+          <p>We compare plans from 20+ insurers based purely on merit — features, claim ratios, and real customer value. Your best interest always comes first.</p>
+        </div>
+        <div class="cmp-why-card">
+          <div class="cmp-why-icon cmp-why-icon-gold">
+            <i class="fa fa-award"></i>
+          </div>
+          <h3>Expert Analysis</h3>
+          <p>Sachin Kathuria's 20+ years of experience means you get analysis that goes beyond the brochure — including fine print, exclusions, and real claim experiences.</p>
+        </div>
+        <div class="cmp-why-card">
+          <div class="cmp-why-icon cmp-why-icon-green">
+            <i class="fa fa-file-medical-alt"></i>
+          </div>
+          <h3>Claim Support Included</h3>
+          <p>We don't disappear after the sale. When you need to file a claim, we walk you through every step — paperwork, follow-ups, and escalation if needed.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <img src="policyraj.png" alt="PolicyRaj" class="footer-logo" />
+        <p>Expert insurance advisory by Sachin Kathuria — IRDAI-licensed with 20+ years of experience helping individuals, families and businesses get the right coverage.</p>
+        <div class="footer-social">
+          <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+          <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+          <a href="https://www.youtube.com/@policyraj" target="_blank"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h5>Insurance</h5>
+        <ul>
+          <li><a href="health.html">Health Insurance</a></li>
+          <li><a href="life.html">Life Insurance</a></li>
+          <li><a href="motor.html">Motor Insurance</a></li>
+          <li><a href="travel.html">Travel Insurance</a></li>
+          <li><a href="home.html">Home Insurance</a></li>
+          <li><a href="business.html">Business Insurance</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h5>Tools &amp; Learn</h5>
+        <ul>
+          <li><a href="compare.html">Compare Plans</a></li>
+          <li><a href="claims.html">Claims Guide</a></li>
+          <li><a href="blog.html">Blog &amp; Articles</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="ai-scan.html">AI Doc Scanner</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="index.html#about">About Sachin Kathuria</a></li>
+          <li><a href="claims.html">Claims Support</a></li>
+          <li><a href="insurance-companies.html">Our Partners</a></li>
+          <li><a href="index.html#contact">Contact Us</a></li>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+                    <div class="footer-disclaimer">
+      <div class="container">
+        <p class="fd-title">Statutory Disclosure &amp; Disclaimer</p>
+        <p><strong>About PolicyRaj:</strong> PolicyRaj is an IRDAI-licensed insurance advisory platform and an authorised channel partner of the insurance companies listed on this website. We facilitate access to insurance products on behalf of our partner insurers and do not underwrite, issue, or guarantee any insurance policy. All policies are issued solely by the respective IRDAI-regulated insurer. All insurance companies featured on this platform are independently licensed and regulated by the Insurance Regulatory and Development Authority of India (IRDAI).</p>
+        <p><strong>Advisory &amp; Risk Disclosure:</strong> All information, premium figures, benefit illustrations, and coverage details on this platform are for general guidance only and are indicative in nature. Actual premiums are subject to the applicant&apos;s age, health status, risk profile, sum insured, and the underwriting norms of the relevant insurer at the time of issuance. For market-linked products such as ULIPs and equity-linked plans, returns are subject to market risk and are not guaranteed — past performance is not indicative of future results. Clients are advised to read the complete policy document, including terms, conditions, exclusions, and waiting periods, before making any insurance decision. PolicyRaj does not provide tax or legal advice; please consult a qualified professional for personalised guidance.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>© 2004–2026 PolicyRaj™. All rights reserved. | Founded by Sachin Kathuria | IRDAI Licensed Advisor</p>
+        <p>policyraj.in | sachin@policyraj.com | <a href="privacy-policy.html" style="color:rgba(255,255,255,0.6)">Privacy Policy</a></p>
+        <p><a href="https://wa.me/919013976999?text=Hello%20Sachin%2C%20I%20would%20like%20to%20request%20your%20IRDAI%20Licence%20Number%20for%20verification." target="_blank" class="footer-irdai-link"><i class="fa fa-certificate"></i> IRDAI Licence Number available on request</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== MODAL ==================== -->
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+    <div class="modal modal--pro">
+      <button class="modal-close" onclick="closeModal()" aria-label="Close"><i class="fa fa-times"></i></button>
+      <div class="modal-header-pro">
+        <div class="modal-icon-wrap"><i class="fa fa-shield-alt"></i></div>
+        <div>
+          <h3>Get Your Free Quote</h3>
+          <p class="modal-tagline">Expert advice, zero obligation</p>
+        </div>
+      </div>
+      <form onsubmit="submitModal(event)" class="modal-form-pro">
+        <div class="modal-field">
+          <label><i class="fa fa-user"></i> Full Name</label>
+          <input type="text" name="name" placeholder="Enter your full name" required />
+        </div>
+        <div class="modal-field">
+          <label><i class="fa fa-phone"></i> Mobile Number</label>
+          <input type="tel" name="phone" placeholder="10-digit mobile number" required maxlength="10" pattern="[6-9][0-9]{9}" />
+        </div>
+        <div class="modal-field">
+          <label><i class="fa fa-shield-alt"></i> Insurance Type</label>
+          <select name="insurance_type" required>
+            <option value="" disabled selected>Select what you need</option>
+            <option>Health Insurance</option>
+            <option>Life Insurance</option>
+            <option>Motor Insurance</option>
+            <option>Group Mediclaim</option>
+            <option>Travel Insurance</option>
+            <option>Home Insurance</option>
+            <option>Other / Not Sure</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-primary full-width modal-submit-btn">
+          <i class="fab fa-whatsapp"></i> Send Request on WhatsApp
+        </button>
+        <p class="modal-submit-note"><i class="fa fa-lock"></i> Your information is 100% confidential &amp; never shared</p>
+      </form>
+      <div class="modal-contact-strip">
+        <div class="mcs-item"><i class="fa fa-phone"></i><div><span>Call / WhatsApp</span><strong>9013976999 / 8383813408</strong></div></div>
+        <div class="mcs-item"><i class="fa fa-map-marker-alt"></i><div><span>Office Address</span><strong>8th Floor, Magnum Towers, Golf Course Ext Rd, Sector 58, Gurugram – 122098</strong></div></div>
+        <div class="mcs-item"><i class="fa fa-clock"></i><div><span>Working Hours</span><strong>Mon–Sat, 9 AM – 7 PM</strong></div></div>
+      </div>
+      <div class="modal-response-badge">
+        <i class="fa fa-bolt"></i> Sachin Kathuria will respond <strong>as soon as possible</strong>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="toast" id="toast"><i class="fa fa-check-circle"></i> Thank you! We'll contact you shortly.</div>
+
+  <a href="https://wa.me/919013976999" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+  <button class="back-to-top" id="backToTop" onclick="scrollToTop()" aria-label="Back to top"><i class="fa fa-chevron-up"></i></button>
+
+  <!-- ==================== CHATBOT ==================== -->
+  <div class="chatbot-btn" id="chatbotBtn" onclick="toggleChat()" title="Chat with Veera – PolicyRaj AI">
+    <img src="rakesh-avatar.svg" alt="Veera AI" class="chatbot-btn-avatar" />
+    <span class="chatbot-badge" id="chatbotBadge" style="display:none">1</span>
+  </div>
+  <div class="chatbot-window" id="chatbotWindow">
+    <div class="chatbot-header">
+      <div class="chatbot-avatar-wrap">
+        <img src="rakesh-avatar.svg" alt="Veera" class="chatbot-header-avatar" />
+        <span class="chatbot-online-dot"></span>
+      </div>
+      <div class="chatbot-hinfo">
+        <span class="chatbot-name">Veera</span>
+        <span class="chatbot-status"><span class="pulse-dot"></span> AI Assistant · PolicyRaj</span>
+      </div>
+      <button class="chatbot-close-btn" onclick="toggleChat()" title="Close" aria-label="Close chat"><i class="fa fa-times"></i></button>
+    </div>
+    <div class="chatbot-messages" id="chatbotMessages"></div>
+    <div class="chatbot-quick-replies" id="chatbotQuickReplies"></div>
+    <div class="chatbot-input-row">
+      <input type="text" id="chatbotInput" placeholder="Ask Veera anything..." onkeydown="handleChatKey(event)" autocomplete="off" />
+      <button class="chatbot-send-btn" onclick="sendChatMessage()" aria-label="Send message"><i class="fa fa-paper-plane"></i></button>
+    </div>
+    <div class="chatbot-footer-note"><i class="fa fa-robot"></i> Veera — PolicyRaj AI Assistant</div>
+  </div>
+
+  <script src="script.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+  <script src="chatbot.js"></script>
+
+  <script>
+    /* =============================================
+       COMPARE PAGE — TAB SWITCHING
+    ============================================= */
+    function switchTab(tabId) {
+      // Update tab buttons
+      document.querySelectorAll('.cmp-tab').forEach(function(btn) {
+        const isActive = btn.id === 'tab-' + tabId;
+        btn.classList.toggle('active', isActive);
+        btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      });
+
+      // Update panels
+      document.querySelectorAll('.cmp-panel').forEach(function(panel) {
+        panel.classList.toggle('active', panel.id === 'panel-' + tabId);
+      });
+
+      // Scroll tab button into view on mobile
+      const activeTab = document.getElementById('tab-' + tabId);
+      if (activeTab) {
+        activeTab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
+    }
+  </script>
+</body>
+</html>

@@ -27,7 +27,7 @@ policyraj-1/
 │   ├── index.html            ← Main landing page
 │   ├── style.css             ← Single global stylesheet
 │   ├── script.js             ← Page-level JS (navbar, calculators, forms)
-│   ├── chatbot.js            ← Rakesh AI chatbot (IIFE, 262 KB entries)
+│   ├── chatbot.js            ← Veera AI chatbot (IIFE, 262 KB entries)
 │   ├── rakesh-avatar.svg     ← Chatbot avatar
 │   ├── policyraj.png         ← Logo
 │   ├── ai-scan.html          ← AI document scanner page
@@ -230,7 +230,7 @@ Follow the existing project naming pattern (not strict BEM, but consistent):
 .section-subtitle { }  /* text below h2 */
 
 /* Component prefix matching section */
-.aq-card { }           /* Ask Rakesh cards */
+.aq-card { }           /* Ask Veera cards */
 .cb-bubble { }         /* Chatbot bubbles */
 .clc-logo { }          /* Company listing cards */
 ```
@@ -273,7 +273,7 @@ The chatbot is wrapped in an IIFE to prevent global scope pollution:
 - `window.toggleChat`
 - `window.sendChatMessage`
 - `window.handleChatKey`
-- `window.askRakesh` (defined in script.js — connects Q&A section to chatbot)
+- `window.askVeera` (defined in script.js — connects Q&A section to chatbot)
 
 ### Knowledge Base (KB) Entry Format
 
@@ -523,7 +523,7 @@ Phone:           9013976999 / 8383813408
 Email:           sachin@policyraj.in / aryanrajkathuria@gmail.com
 WhatsApp:        https://wa.me/919013976999
 Website:         https://policyraj.in/
-AI Bot name:     Rakesh
+AI Bot name:     Veera
 Bot avatar:      rakesh-avatar.svg
 Logo:            policyraj.png
 ```

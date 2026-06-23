@@ -1,0 +1,1584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Insurance FAQ – Frequently Asked Questions – PolicyRaj</title>
+  <meta name="description" content="Answers to all your insurance questions — health, life, motor, travel and claims. Expert FAQ by Sachin Kathuria, IRDAI-licensed insurance advisor at PolicyRaj." />
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    /* ═══════════════════════════════════════════
+       FAQ PAGE — PAGE-SPECIFIC STYLES
+    ═══════════════════════════════════════════ */
+
+    /* ─── FAQ SEARCH ─── */
+    .faq-search-section {
+      background: var(--white);
+      padding: 32px 0 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .faq-search-wrap {
+      max-width: 700px;
+      margin: 0 auto;
+      padding-bottom: 32px;
+    }
+    .faq-search-box {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .faq-search-box i {
+      position: absolute;
+      left: 20px;
+      color: var(--gray);
+      font-size: 1.1rem;
+      pointer-events: none;
+    }
+    .faq-search-input {
+      width: 100%;
+      padding: 16px 20px 16px 52px;
+      border: 2px solid var(--border);
+      border-radius: 50px;
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 1rem;
+      color: var(--text);
+      background: var(--off-white);
+      transition: border-color var(--transition), box-shadow var(--transition);
+      outline: none;
+      min-height: 56px;
+    }
+    .faq-search-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(30,58,138,0.10);
+      background: var(--white);
+    }
+    .faq-search-input::placeholder {
+      color: var(--gray);
+    }
+    .faq-search-clear {
+      position: absolute;
+      right: 16px;
+      background: none;
+      border: none;
+      color: var(--gray);
+      cursor: pointer;
+      font-size: 1rem;
+      padding: 8px;
+      display: none;
+      transition: color var(--transition);
+      min-height: 44px;
+      min-width: 44px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      touch-action: manipulation;
+    }
+    .faq-search-clear:hover { color: var(--secondary); }
+    .faq-search-clear.visible { display: flex; }
+
+    /* ─── CATEGORY TABS ─── */
+    .faq-tabs-section {
+      background: var(--white);
+      padding: 24px 0;
+      position: sticky;
+      top: 72px;
+      z-index: 100;
+      border-bottom: 2px solid var(--border);
+      box-shadow: 0 4px 16px rgba(30,58,138,0.07);
+    }
+    .faq-tab-bar {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .faq-tab-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 22px;
+      border: 2px solid var(--border);
+      background: var(--white);
+      border-radius: 50px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-light);
+      cursor: pointer;
+      transition: var(--transition);
+      min-height: 44px;
+      touch-action: manipulation;
+      white-space: nowrap;
+    }
+    .faq-tab-btn i {
+      font-size: 0.9rem;
+    }
+    .faq-tab-btn .faq-tab-count {
+      background: var(--gray-light);
+      color: var(--gray-dark);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 99px;
+      transition: var(--transition);
+    }
+    .faq-tab-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: #f0f4ff;
+      transform: translateY(-2px);
+    }
+    .faq-tab-btn:hover .faq-tab-count {
+      background: rgba(30,58,138,0.12);
+      color: var(--primary);
+    }
+    .faq-tab-btn.active {
+      background: var(--gradient);
+      border-color: transparent;
+      color: #fff;
+      box-shadow: 0 6px 24px rgba(30,58,138,0.28);
+      transform: translateY(-2px);
+    }
+    .faq-tab-btn.active .faq-tab-count {
+      background: rgba(255,255,255,0.22);
+      color: #fff;
+    }
+
+    /* ─── FAQ MAIN SECTION ─── */
+    .faq-main-section {
+      padding: 60px 0 80px;
+    }
+    .faq-layout {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    /* ─── CATEGORY GROUP ─── */
+    .faq-category-group {
+      margin-bottom: 52px;
+    }
+    .faq-category-heading {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid var(--border);
+    }
+    .faq-category-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .faq-category-icon.general  { background: var(--gradient); }
+    .faq-category-icon.health   { background: linear-gradient(135deg, #e63946, #f43f5e); }
+    .faq-category-icon.life     { background: linear-gradient(135deg, #5b21b6, #7c3aed); }
+    .faq-category-icon.motor    { background: linear-gradient(135deg, #92400e, #d97706); }
+    .faq-category-icon.claims   { background: linear-gradient(135deg, #0369a1, #0ea5e9); }
+    .faq-category-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .faq-category-title span {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--gray);
+      margin-left: 6px;
+    }
+
+    /* ─── ACCORDION ─── */
+    .faq-accordion {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .faq-item {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+    .faq-item:hover {
+      border-color: rgba(30,58,138,0.30);
+      box-shadow: var(--shadow);
+    }
+    .faq-item.active {
+      border-color: var(--primary);
+      border-left: 4px solid var(--primary);
+      box-shadow: var(--shadow);
+    }
+    .faq-question {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 20px 24px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      width: 100%;
+      text-align: left;
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.4;
+      min-height: 64px;
+      touch-action: manipulation;
+      transition: background var(--transition), color var(--transition);
+    }
+    .faq-question:hover {
+      background: #f8faff;
+      color: var(--primary);
+    }
+    .faq-item.active .faq-question {
+      color: var(--primary);
+      background: #f0f4ff;
+    }
+    .faq-question-text {
+      flex: 1;
+    }
+    .faq-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 0.85rem;
+      color: var(--gray);
+      transition: var(--transition);
+      background: var(--white);
+    }
+    .faq-question:hover .faq-icon {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: #f0f4ff;
+    }
+    .faq-item.active .faq-icon {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+      transform: rotate(45deg);
+    }
+    .faq-answer-wrap {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+    .faq-item.active .faq-answer-wrap {
+      max-height: 600px;
+    }
+    .faq-answer {
+      padding: 0 24px 24px 24px;
+      color: var(--text-light);
+      font-size: 0.97rem;
+      line-height: 1.75;
+      border-top: 1px solid var(--border);
+      margin-top: 0;
+      padding-top: 20px;
+    }
+    .faq-answer a {
+      color: var(--primary);
+      font-weight: 600;
+      text-decoration: underline;
+    }
+    .faq-answer strong {
+      color: var(--text);
+    }
+
+    /* ─── NO RESULTS ─── */
+    .faq-no-results {
+      text-align: center;
+      padding: 60px 20px;
+      display: none;
+    }
+    .faq-no-results i {
+      font-size: 3rem;
+      color: var(--gray);
+      margin-bottom: 16px;
+    }
+    .faq-no-results h3 {
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .faq-no-results p {
+      color: var(--text-light);
+      max-width: 400px;
+      margin: 0 auto 20px;
+    }
+
+    /* ─── SEARCH RESULT COUNT ─── */
+    .faq-result-info {
+      text-align: center;
+      padding: 12px 0 28px;
+      font-size: 0.9rem;
+      color: var(--gray);
+      display: none;
+    }
+    .faq-result-info strong { color: var(--primary); }
+
+    /* ─── CTA BOTTOM ─── */
+    .faq-cta-section {
+      background: var(--gradient);
+      padding: 64px 0;
+      text-align: center;
+    }
+    .faq-cta-section h2 {
+      color: #fff;
+      margin-bottom: 12px;
+    }
+    .faq-cta-section p {
+      color: rgba(255,255,255,0.85);
+      font-size: 1.05rem;
+      max-width: 560px;
+      margin: 0 auto 32px;
+    }
+    .faq-cta-btns {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .btn-faq-chat {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255,255,255,0.18);
+      border: 2px solid rgba(255,255,255,0.55);
+      color: #fff;
+      border-radius: 50px;
+      padding: 14px 32px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      min-height: 52px;
+      touch-action: manipulation;
+    }
+    .btn-faq-chat:hover {
+      background: rgba(255,255,255,0.30);
+      border-color: #fff;
+      transform: translateY(-2px);
+    }
+    .btn-faq-call {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #fff;
+      color: var(--primary);
+      border: 2px solid #fff;
+      border-radius: 50px;
+      padding: 14px 32px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+      min-height: 52px;
+      text-decoration: none;
+      touch-action: manipulation;
+    }
+    .btn-faq-call:hover {
+      background: var(--off-white);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+
+    /* ─── STATS ROW ─── */
+    .faq-hero-stats {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+    .faq-hero-stat {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255,255,255,0.85);
+      font-size: 0.92rem;
+      font-weight: 500;
+    }
+    .faq-hero-stat i {
+      color: var(--accent);
+      font-size: 1rem;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      .faq-tabs-section {
+        top: 0;
+        padding: 16px 0;
+      }
+      .faq-tab-bar {
+        gap: 8px;
+        justify-content: flex-start;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding: 0 24px;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+      .faq-tab-bar::-webkit-scrollbar { display: none; }
+      .faq-tab-btn {
+        padding: 8px 16px;
+        font-size: 0.82rem;
+        flex-shrink: 0;
+      }
+      .faq-main-section { padding: 40px 0 60px; }
+      .faq-question {
+        padding: 16px 18px;
+        font-size: 0.95rem;
+      }
+      .faq-answer {
+        padding: 0 18px 20px;
+        padding-top: 16px;
+      }
+      .faq-category-heading { gap: 10px; margin-bottom: 18px; }
+      .faq-cta-section { padding: 48px 0; }
+      .faq-hero-stats { gap: 16px; }
+    }
+
+    @media (max-width: 480px) {
+      .faq-search-input { font-size: 16px; }
+      .faq-cta-btns { flex-direction: column; align-items: stretch; }
+      .btn-faq-chat, .btn-faq-call { justify-content: center; }
+      .faq-hero-stats { flex-direction: column; gap: 10px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .faq-answer-wrap { transition: none; }
+      .faq-item, .faq-tab-btn, .faq-question { transition: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <span><i class="fa fa-phone"></i> 9013976999 / 8383813408</span>
+      <span><i class="fa fa-envelope"></i> sachin@policyraj.com</span>
+      <span class="topbar-right">
+        <a href="ai-scan.html" class="topbar-ai-link"><i class="fa fa-robot"></i> AI Doc Scanner</a>
+        <a href="claims.html">Claims</a>
+        <a href="index.html#contact" class="btn-top">Get a Free Quote</a>
+      </span>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="logo">
+        <img src="policyraj.png" alt="PolicyRaj Logo" class="logo-img" />
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li class="nav-dropdown">
+          <a href="index.html#insurance" class="nav-dropdown-trigger">Insurance <i class="fa fa-chevron-down nav-chevron"></i></a>
+          <ul class="nav-dropdown-menu">
+            <li><a href="health.html"><i class="fa fa-heartbeat"></i> Health Insurance</a></li>
+            <li><a href="life.html"><i class="fa fa-shield-alt"></i> Life Insurance</a></li>
+            <li><a href="motor.html"><i class="fa fa-car"></i> Motor Insurance</a></li>
+            <li><a href="travel.html"><i class="fa fa-plane"></i> Travel Insurance</a></li>
+            <li><a href="home.html"><i class="fa fa-home"></i> Home Insurance</a></li>
+            <li><a href="business.html"><i class="fa fa-briefcase"></i> Business Insurance</a></li>
+          </ul>
+        </li>
+        <li class="nav-dropdown">
+          <a href="index.html#investments" class="nav-dropdown-trigger">Investments <i class="fa fa-chevron-down nav-chevron"></i></a>
+          <ul class="nav-dropdown-menu">
+            <li><a href="child-plan.html"><i class="fa fa-child"></i> Child Plans</a></li>
+            <li><a href="pension-plan.html"><i class="fa fa-umbrella"></i> Pension Plans</a></li>
+            <li><a href="tax-saving.html"><i class="fa fa-piggy-bank"></i> Tax Saving</a></li>
+            <li><a href="endowment-policy.html"><i class="fa fa-shield-alt"></i> Endowment Policy</a></li>
+            <li><a href="money-back-policy.html"><i class="fa fa-undo"></i> Money Back Policy</a></li>
+            <li><a href="annuity-plans.html"><i class="fa fa-infinity"></i> Annuity Plans</a></li>
+          </ul>
+        </li>
+        <li class="nav-dropdown">
+          <a href="insurance-companies.html" class="nav-dropdown-trigger">Companies <i class="fa fa-chevron-down nav-chevron"></i></a>
+          <ul class="nav-dropdown-menu">
+            <li><a href="insurance-companies.html"><i class="fa fa-building"></i> All Companies</a></li>
+            <li><a href="hdfc-ergo.html"><i class="fa fa-star"></i> HDFC ERGO</a></li>
+            <li><a href="icici-lombard.html"><i class="fa fa-star"></i> ICICI Lombard</a></li>
+            <li><a href="bajaj-allianz.html"><i class="fa fa-star"></i> Bajaj Allianz</a></li>
+            <li><a href="hdfc-life.html"><i class="fa fa-star"></i> HDFC Life</a></li>
+            <li><a href="lic-india.html"><i class="fa fa-star"></i> LIC of India</a></li>
+          </ul>
+        </li>
+        <li class="nav-dropdown">
+          <a href="#" class="nav-dropdown-trigger">Tools <i class="fa fa-chevron-down nav-chevron"></i></a>
+          <ul class="nav-dropdown-menu">
+            <li><a href="ai-scan.html"><i class="fa fa-robot"></i> AI Doc Scanner</a></li>
+            <li><a href="compare.html"><i class="fa fa-balance-scale"></i> Compare Plans</a></li>
+            <li><a href="index.html#calculators"><i class="fa fa-calculator"></i> Calculators</a></li>
+            <li><a href="index.html#emi"><i class="fa fa-percent"></i> EMI Calculator</a></li>
+          </ul>
+        </li>
+        <li class="nav-dropdown">
+          <a href="#" class="nav-dropdown-trigger">Learn <i class="fa fa-chevron-down nav-chevron"></i></a>
+          <ul class="nav-dropdown-menu">
+            <li><a href="blog.html"><i class="fa fa-newspaper"></i> Blog &amp; Articles</a></li>
+            <li><a href="claims.html"><i class="fa fa-file-alt"></i> Claims Guide</a></li>
+            <li><a href="faq.html"><i class="fa fa-question-circle"></i> FAQ</a></li>
+          </ul>
+        </li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a href="tel:9013976999" class="btn-nav-call"><i class="fa fa-phone"></i> Call Now</a>
+        <button class="btn-nav-quote" onclick="openModal()">Get Quote</button>
+      </div>
+      <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <i class="fa fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="service-page-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <i class="fa fa-chevron-right"></i>
+        <a href="#">Learn</a>
+        <i class="fa fa-chevron-right"></i>
+        <span>FAQ</span>
+      </nav>
+      <div class="sp-hero-badge"><i class="fa fa-question-circle"></i> FAQ</div>
+      <h1>Frequently Asked Questions —<br /><span class="gradient-text">Insurance Made Simple</span></h1>
+      <p class="sp-hero-sub">Clear, honest answers from Sachin Kathuria. No jargon, no sales pitch — just straightforward guidance to help you make the right decision.</p>
+      <div class="faq-hero-stats">
+        <div class="faq-hero-stat"><i class="fa fa-check-circle"></i> 40+ Questions Answered</div>
+        <div class="faq-hero-stat"><i class="fa fa-th-large"></i> 5 Categories</div>
+        <div class="faq-hero-stat"><i class="fa fa-user-shield"></i> Expert Verified</div>
+        <div class="faq-hero-stat"><i class="fa fa-calendar-check"></i> Updated 2024</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEARCH BAR -->
+  <div class="faq-search-section">
+    <div class="container">
+      <div class="faq-search-wrap">
+        <div class="faq-search-box">
+          <i class="fa fa-search"></i>
+          <input
+            type="search"
+            class="faq-search-input"
+            id="faqSearch"
+            placeholder="Search your question... e.g. 'waiting period', 'NCB', 'claim rejection'"
+            autocomplete="off"
+            aria-label="Search FAQ questions"
+          />
+          <button class="faq-search-clear" id="faqSearchClear" aria-label="Clear search" onclick="clearSearch()">
+            <i class="fa fa-times"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CATEGORY TABS -->
+  <div class="faq-tabs-section">
+    <div class="container">
+      <div class="faq-tab-bar" role="tablist" aria-label="FAQ Categories">
+        <button class="faq-tab-btn active" data-filter="all" role="tab" aria-selected="true" onclick="filterFAQ('all', this)">
+          <i class="fa fa-th-large"></i> All <span class="faq-tab-count">40</span>
+        </button>
+        <button class="faq-tab-btn" data-filter="general" role="tab" aria-selected="false" onclick="filterFAQ('general', this)">
+          <i class="fa fa-info-circle"></i> General <span class="faq-tab-count">8</span>
+        </button>
+        <button class="faq-tab-btn" data-filter="health" role="tab" aria-selected="false" onclick="filterFAQ('health', this)">
+          <i class="fa fa-heartbeat"></i> Health <span class="faq-tab-count">8</span>
+        </button>
+        <button class="faq-tab-btn" data-filter="life" role="tab" aria-selected="false" onclick="filterFAQ('life', this)">
+          <i class="fa fa-shield-alt"></i> Life <span class="faq-tab-count">8</span>
+        </button>
+        <button class="faq-tab-btn" data-filter="motor" role="tab" aria-selected="false" onclick="filterFAQ('motor', this)">
+          <i class="fa fa-car"></i> Motor <span class="faq-tab-count">8</span>
+        </button>
+        <button class="faq-tab-btn" data-filter="claims" role="tab" aria-selected="false" onclick="filterFAQ('claims', this)">
+          <i class="fa fa-file-invoice"></i> Claims <span class="faq-tab-count">8</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN FAQ SECTION -->
+  <main class="faq-main-section" id="faq-top">
+    <div class="container">
+      <div class="faq-layout">
+
+        <!-- Search result info bar -->
+        <div class="faq-result-info" id="faqResultInfo"></div>
+
+        <!-- ══════════════════════════════════
+             GENERAL (8 questions)
+        ══════════════════════════════════ -->
+        <div class="faq-category-group" id="group-general" data-group="general">
+          <div class="faq-category-heading">
+            <div class="faq-category-icon general"><i class="fa fa-info-circle"></i></div>
+            <h2 class="faq-category-title">General <span>About PolicyRaj &amp; Advisory</span></h2>
+          </div>
+          <div class="faq-accordion">
+
+            <div class="faq-item" data-category="general">
+              <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+                <span class="faq-question-text">What is PolicyRaj and what does it do?</span>
+                <span class="faq-icon"><i class="fa fa-plus"></i></span>
+              </button>
+              <div class="faq-answer-wrap" role="region">
+                <div class="faq-answer">
+                  PolicyRaj is an insurance advisory firm run by <strong>Sachin Kathuria</strong>, an IRDAI-licensed advisor with <strong>20+ years of experience</strong>. We help individuals, families, and businesses find the right insurance plans at the best price — without any bias toward specific insurers. Our service is completely free for clients; we earn commissions from insurance companies when policies are issued. Call <a href="tel:9013976999">9013976999</a> for a free consultation.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item" data-category="general">
+              <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+                <span class="faq-question-text">Is PolicyRaj's advice really free?</span>
+                <span class="faq-icon"><i class="fa fa-plus"></i></span>
+              </button>
+              <div class="faq-answer-wrap" role="region">
+                <div class="faq-answer">
+                  Yes, <strong>completely free</strong>. We are compensated by the insurance companies (as IRDAI-licensed agents), not by you. You get expert, unbiased guidance at zero cost. There are no hidden fees or consultation charges, ever.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item" data-category="general">
+              <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+                <span class="faq-question-text">How many insurance companies does PolicyRaj work with?</span>
+                <span class="faq-icon"><i class="fa fa-plus"></i></span>
+              </button>
+              <div class="faq-answer-wrap" role="region">
+                <div class="faq-answer">
+                  We are empanelled with <strong>20+ leading insurers</strong> including HDFC ERGO, ICICI Lombard, Bajaj Allianz, Niva Bupa, Tata AIG, HDFC Life, LIC, and many more. This gives us access to <strong>500+ plans</strong>, so we can always find the best fit for you.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item" data-category="general">
+              <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+                <span class="faq-question-text">Can PolicyRaj help me with my existing insurance policy?</span>
+                <span class="faq-icon"><i class="fa fa-plus"></i></span>
+              </button>
+              <div class="faq-answer-wrap" role="region">
+                <div class="faq-answer">
+                  Absolutely! We help with <strong>renewals, policy reviews, coverage upgrades</strong>, and most importantly — <strong>claims support</strong>. Sachin Kathuria personally assists clients with claim disputes and follow-ups. Call <a href="tel:9013976999">9013976999</a>.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item" data-category="general">
+              <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+                <span class="faq-question-text">How quickly can I get covered after consulting PolicyRaj?</span>
+                <span class="faq-icon"><i class="fa fa-plus"></i></span>
+              </button>
+              <div class="faq-answer-wrap" role="region">
+                <div class="faq-answer">
+                  For most policies, you can get covered within <strong>24–48 hours</strong>. Term life and health insurance can often be issued digitally the same day. Sachin will guide you through the fastest route based on your situation.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item" data-category="general">
+              <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+                <span class="faq-question-text">Does PolicyRaj sell policies online?</span>
+                <span class="faq-icon"><i class="fa fa-plus"></i></span>
+              </button>
+              <div class="faq-answer-wrap" role="region">
+                <div class="faq-answer">
+                  We primarily work via <strong>phone consultation</strong> to ensure you get personalized advice, not a cookie-cutter plan. After understanding your needs, we help you buy directly from the insurer — either online or offline. Call <a href="tel:9013976999">9013976999</a> or WhatsApp at <a href="https://wa.me/919013976999" target="_blank">919013976999</a>.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item" data-category="general">
+              <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+                <span class="faq-question-text">What is an IRDAI-licensed advisor?</span>
+                <span class="faq-icon"><i class="fa fa-plus"></i></span>
+              </button>
+              <div class="faq-answer-wrap" role="region">
+                <div class="faq-answer">
+                  <strong>IRDAI</strong> (Insurance Regulatory and Development Authority of India) is the government regulator for the insurance industry. An IRDAI-licensed advisor is a certified professional authorized to sell and advise on insurance products. Sachin Kathuria holds an active IRDAI license with <strong>20+ years of practice</strong>.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item" data-category="general">
+              <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+                <span class="faq-question-text">I already have insurance. Should I still consult PolicyRaj?</span>
+                <span class="faq-icon"><i class="fa fa-plus"></i></span>
+              </button>
+              <div class="faq-answer-wrap" role="region">
+                <div class="faq-answer">
+                  Yes! Many people are <strong>underinsured</strong> (too little coverage) or <strong>overpaying</strong>. A free policy review by Sachin Kathuria often reveals gaps in coverage or better alternatives — saving money or adding important protection you didn't have.
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /.faq-accordion -->
+        </div><!-- /.faq-category-group GENERAL -->
+
+
+        <!-- ══════════════════════════════════
+             HEALTH (8 questions)
+        ══════════════════════════════════ -->
+        <div class="faq-category-group" id="group-health" data-group="health">
+          <div class="faq-category-heading">
+            <div class="faq-category-icon health"><i class="fa fa-heartbeat"></i></div>
+            <h2 class="faq-category-title">Health Insurance <span>Coverage, Premiums &amp; Claims</span></h2>
+          </div>
+          <div class="faq-accordion">
+
+            <div class="faq-item" data-category="health">
+              <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+                <span class="faq-question-text">What is the difference between individual and family floater health insurance?</span>
+                <span class="faq-icon"><i class="fa fa-plus"></i></span>
+              </button>
+              <div class="faq-answer-wrap" role="region">
+                <div class="faq-answer">
+                  An <strong>individual plan</strong> gives each person their own sum insured. A <strong>family floater</strong> gives one combined sum insured shared by the whole family. Floaters are cheaper but riskier — if one member uses most of the sum insured, others are left with less. If anyone in the family has a chronic condition, separate individual plans are safer.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item" data-category="health">
+              <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+                <span class="faq-question-text">How much health insurance cover is enough in 2024?</span>
+                <span class="faq-icon"><i class="fa fa-plus"></i></span>
+              </button>
+              <div class="faq-answer-wrap" role="region">
+                <div class="faq-answer">
+                  For a family of 4 in a metro city, minimum <strong>₹10–15 lakh</strong>. For a nuclear family in a tier-2 city, <strong>₹5–10 lakh</strong> is a reasonable start. However, medical inflation is <strong>14% per year</strong>, so we always recommend a top-up or super top-up plan to extend coverage affordably. Call Sachin at <a href="tel:9013976999">9013976999</a> for a personalized recommendation.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item" data-category="health">
+              <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+                <span class="faq-question-text">What is a waiting period in health insurance?</span>
+                <span class="faq-icon"><i class="fa fa-plus"></i></span>
+              </button>
+              <div class="faq-answer-wrap" role="region">
+                <div class="faq-answer">
+                  Waiting periods are time limits before you can claim for specific conditions. There are 3 types:<br /><br />
+                  <strong>1. Initial waiting period</strong> — 30 days for most claims, except accidents.<br />
+                  <strong>2. Pre-existing disease waiting period</strong> — usually 2–4 years.<br />
+                  <strong>3. Specific disease waiting period</strong> — certain conditions like hernia, cataract may have 1–2 year waits.<br /><br />
+                  Always check your policy's waiting periods before buying.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item" data-category="health">
+              <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+                <span class="faq-question-text">Does health insurance cover pre-existing diseases?</span>
+                <span class="faq-icon"><i class="fa fa-plus"></i></span>
+              </button>
+              <div class="faq-answer-wrap" role="region">
+                <div class="faq-answer">
+                  Yes, but <strong>only after the waiting period</strong> (usually 2–4 years depending on the insurer and plan). This is why it's critical to buy health insurance early — before you develop any conditions. Once you have a pre-existing disease, it will have a waiting period and some conditions may be permanently excluded.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item" data-category="health">
+              <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+                <span class="faq-question-text">What is a TPA in health insurance?</span>
+                <span class="faq-icon"><i class="fa fa-plus"></i></span>
+              </button>
+              <div class="faq-answer-wrap" role="region">
+                <div class="faq-answer">
+                  <strong>TPA</strong> stands for Third Party Administrator. They are intermediaries hired by insurers to process health claims. They manage the cashless network hospitals, verify your coverage, and process reimbursement claims. When you're hospitalized, the hospital's TPA desk coordinates with your insurer on your behalf.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item" data-category="health">
+              <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+                <span class="faq-question-text">Can I port my health insurance from one company to another?</span>
+                <span class="faq-icon"><i class="fa fa-plus"></i></span>
+              </button>
+              <div class="faq-answer-wrap" role="region">
+                <div class="faq-answer">
+                  Yes! IRDAI allows <strong>portability</strong> — you can move to a different insurer at renewal without losing your no-claim bonus or waiting period credits. Apply at least <strong>45 days before your renewal date</strong>. PolicyRaj can help you identify if porting makes sense for you.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item" data-category="health">
+              <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+                <span class="faq-question-text">Is maternity covered under health insurance?</span>
+                <span class="faq-icon"><i class="fa fa-plus"></i></span>
+              </button>
+              <div class="faq-answer-wrap" role="region">
+                <div class="faq-answer">
+                  Most standard health insurance plans <strong>don't include maternity</strong> in the base plan — it's usually an add-on rider or available only in premium plans. There's also a waiting period of <strong>2–4 years</strong> for maternity coverage. If you're planning a family, buy a plan with maternity cover well in advance. Some plans like Niva Bupa ReAssure 2.0 include it as standard.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item" data-category="health">
+              <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+                <span class="faq-question-text">What does 'No Claim Bonus' (NCB) mean in health insurance?</span>
+                <span class="faq-icon"><i class="fa fa-plus"></i></span>
+              </button>
+              <div class="faq-answer-wrap" role="region">
+                <div class="faq-answer">
+                  NCB rewards you for <strong>not making claims</strong> — your sum insured increases by 10–50% each claim-free year, at no extra cost. For example, if you have ₹5 lakh cover and get 50% NCB over 2 years, your effective cover becomes <strong>₹7.5 lakh without paying extra premium</strong>. Some plans offer 'NCB Super' which grows even faster.
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /.faq-accordion -->
+        </div><!-- /.faq-category-group HEALTH -->
+
+
+        <!-- ══════════════════════════════════
+             LIFE (8 questions)
+        ══════════════════════════════════ -->
+        <div class="faq-category-group" id="group-life" data-group="life">
+          <div class="faq-category-heading">
+            <div class="faq-category-icon life"><i class="fa fa-shield-alt"></i></div>
+            <h2 class="faq-category-title">Life Insurance <span>Term Plans, ULIPs &amp; More</span></h2>
+          </div>
+          <div class="faq-accordion">
+
+            <div class="faq-item" data-category="life">
+              <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+                <span class="faq-question-text">What is the difference between term insurance and life insurance?</span>
+                <span class="faq-icon"><i class="fa fa-plus"></i></span>
+              </button>
+              <div class="faq-answer-wrap" role="region">
+                <div class="faq-answer">
+                  <strong>'Life insurance'</strong> is a broad category covering term plans, ULIPs, endowment plans, money-back plans, and more. <strong>Term insurance</strong> is the purest form — it pays a lump sum only if you die during the policy term. It has no savings component but gives maximum coverage for minimum premium. Sachin recommends term insurance as the foundation of financial planning.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item" data-category="life">
+              <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+                <span class="faq-question-text">How much life insurance (term cover) do I need?</span>
+                <span class="faq-icon"><i class="fa fa-plus"></i></span>
+              </button>
+              <div class="faq-answer-wrap" role="region">
+                <div class="faq-answer">
+                  The thumb rule is <strong>10–15x your annual income</strong>. If you earn ₹8 lakh per year, aim for ₹80 lakh–₹1.2 crore cover. But also factor in: outstanding loans (home loan, car loan), children's education costs, spouse's income dependency, and inflation. Sachin can calculate the exact amount you need — call <a href="tel:9013976999">9013976999</a>.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item" data-category="life">
+              <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+                <span class="faq-question-text">Can I buy life insurance if I smoke or have diabetes?</span>
+                <span class="faq-icon"><i class="fa fa-plus"></i></span>
+              </button>
+              <div class="faq-answer-wrap" role="region">
+                <div class="faq-answer">
+                  Yes, but with conditions. <strong>Smokers pay 25–50% higher premiums.</strong> Diabetics (Type 2, well-controlled) can usually buy term insurance after medical tests — with a loading on premium. The key is to <strong>disclose everything honestly</strong>. Non-disclosure is the #1 reason claims get rejected.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item" data-category="life">
+              <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+                <span class="faq-question-text">What is a nominee in life insurance?</span>
+                <span class="faq-icon"><i class="fa fa-plus"></i></span>
+              </button>
+              <div class="faq-answer-wrap" role="region">
+                <div class="faq-answer">
+                  The <strong>nominee</strong> is the person who receives the death benefit when the policyholder dies. You must designate a nominee when buying the policy. The nominee can be a spouse, child, parent, or any person you choose. You can <strong>change the nominee at any time</strong> by submitting a nominee change form to the insurer.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item" data-category="life">
+              <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+                <span class="faq-question-text">What happens if I miss a premium payment?</span>
+                <span class="faq-icon"><i class="fa fa-plus"></i></span>
+              </button>
+              <div class="faq-answer-wrap" role="region">
+                <div class="faq-answer">
+                  There's a <strong>grace period</strong> — usually 15 days for monthly plans and 30 days for annual plans. If you pay within the grace period, coverage continues normally. If you miss the grace period, the policy <strong>lapses</strong>. A lapsed policy can often be revived within 2–5 years by paying all dues plus interest and sometimes a medical re-evaluation.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item" data-category="life">
+              <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+                <span class="faq-question-text">Is term insurance maturity amount taxable?</span>
+                <span class="faq-icon"><i class="fa fa-plus"></i></span>
+              </button>
+              <div class="faq-answer-wrap" role="region">
+                <div class="faq-answer">
+                  Term insurance has no maturity benefit (unless you have <strong>TROP — Return of Premium</strong> variant). For TROP and other life plans, maturity proceeds are tax-free under <strong>Section 10(10D)</strong> if the premium is less than 10% of the sum assured. The <strong>death benefit is always fully tax-free</strong>.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item" data-category="life">
+              <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+                <span class="faq-question-text">What is ULIP and should I buy it?</span>
+                <span class="faq-icon"><i class="fa fa-plus"></i></span>
+              </button>
+              <div class="faq-answer-wrap" role="region">
+                <div class="faq-answer">
+                  <strong>ULIP</strong> (Unit Linked Insurance Plan) combines insurance and investment. A part of your premium buys life cover; the rest is invested in equity/debt funds. ULIPs have high charges in early years and are locked in for 5 years. <strong>Sachin's recommendation:</strong> buy term insurance separately and invest in mutual funds separately — you'll get better returns and clarity.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item" data-category="life">
+              <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+                <span class="faq-question-text">What is the claim settlement ratio (CSR) and why does it matter?</span>
+                <span class="faq-icon"><i class="fa fa-plus"></i></span>
+              </button>
+              <div class="faq-answer-wrap" role="region">
+                <div class="faq-answer">
+                  <strong>CSR</strong> is the percentage of death claims an insurer settles out of all claims received in a year. A 98% CSR means the insurer settled 98 out of 100 claims. HDFC Life leads with 99.3%, LIC at 98.7%. <strong>Choose insurers with 97%+ CSR.</strong> However, note that most rejections are due to non-disclosure by the policyholder, not insurer bad faith.
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /.faq-accordion -->
+        </div><!-- /.faq-category-group LIFE -->
+
+
+        <!-- ══════════════════════════════════
+             MOTOR (8 questions)
+        ══════════════════════════════════ -->
+        <div class="faq-category-group" id="group-motor" data-group="motor">
+          <div class="faq-category-heading">
+            <div class="faq-category-icon motor"><i class="fa fa-car"></i></div>
+            <h2 class="faq-category-title">Motor Insurance <span>Car, Bike &amp; Commercial Vehicles</span></h2>
+          </div>
+          <div class="faq-accordion">
+
+            <div class="faq-item" data-category="motor">
+              <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+                <span class="faq-question-text">Is motor insurance mandatory in India?</span>
+                <span class="faq-icon"><i class="fa fa-plus"></i></span>
+              </button>
+              <div class="faq-answer-wrap" role="region">
+                <div class="faq-answer">
+                  <strong>Third-party (TP) liability insurance</strong> is mandatory under the Motor Vehicles Act, 1988. Driving without at least TP cover can result in fines up to <strong>₹2,000</strong> for a first offence and <strong>₹4,000</strong> subsequently. Own damage cover is optional but highly recommended.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item" data-category="motor">
+              <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+                <span class="faq-question-text">What is the difference between third-party and comprehensive motor insurance?</span>
+                <span class="faq-icon"><i class="fa fa-plus"></i></span>
+              </button>
+              <div class="faq-answer-wrap" role="region">
+                <div class="faq-answer">
+                  <strong>Third-party (TP) insurance</strong> only covers damage to other vehicles/property and injuries to third parties — it does not cover your own vehicle. <strong>Comprehensive insurance</strong> covers both third-party liability AND damage to your own vehicle (fire, theft, accident, natural calamities). Comprehensive is strongly recommended.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item" data-category="motor">
+              <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+                <span class="faq-question-text">What is zero depreciation motor insurance?</span>
+                <span class="faq-icon"><i class="fa fa-plus"></i></span>
+              </button>
+              <div class="faq-answer-wrap" role="region">
+                <div class="faq-answer">
+                  Standard motor insurance deducts <strong>depreciation</strong> on car parts at the time of claim — meaning you pay part of the repair cost. <strong>Zero depreciation (zero dep)</strong> add-on covers the full cost of parts without any depreciation deduction. It costs 15–20% extra but is well worth it for cars under <strong>5 years old</strong>.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item" data-category="motor">
+              <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+                <span class="faq-question-text">What is NCB (No Claim Bonus) in motor insurance?</span>
+                <span class="faq-icon"><i class="fa fa-plus"></i></span>
+              </button>
+              <div class="faq-answer-wrap" role="region">
+                <div class="faq-answer">
+                  NCB is a <strong>discount on premium</strong> for each claim-free year. After 1 year without claims: 20% discount, 2 years: 25%, 3 years: 35%, 4 years: 45%, 5 years: <strong>50% (maximum).</strong> NCB is linked to the driver, not the car — so you can transfer it when you buy a new car. Never make small claims; it's often worth paying out of pocket to protect your NCB.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item" data-category="motor">
+              <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+                <span class="faq-question-text">What is IDV (Insured Declared Value) in motor insurance?</span>
+                <span class="faq-icon"><i class="fa fa-plus"></i></span>
+              </button>
+              <div class="faq-answer-wrap" role="region">
+                <div class="faq-answer">
+                  <strong>IDV</strong> is the current market value of your vehicle — the maximum amount the insurer pays in case of total loss or theft. IDV decreases as the car ages (depreciation). Always insure for the <strong>correct IDV</strong> — under-insuring saves premium but gives you less money when you actually claim.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item" data-category="motor">
+              <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+                <span class="faq-question-text">What documents do I need to file a motor claim?</span>
+                <span class="faq-icon"><i class="fa fa-plus"></i></span>
+              </button>
+              <div class="faq-answer-wrap" role="region">
+                <div class="faq-answer">
+                  You need: (1) Duly filled <strong>claim form</strong>, (2) <strong>RC copy</strong>, (3) <strong>Driving license</strong>, (4) <strong>Policy copy</strong>, (5) <strong>FIR copy</strong> (for theft or accidents with third-party injury), (6) <strong>Photos of damage</strong>. For reimbursement claims, also keep original repair bills.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item" data-category="motor">
+              <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+                <span class="faq-question-text">How does the cashless garage facility work?</span>
+                <span class="faq-icon"><i class="fa fa-plus"></i></span>
+              </button>
+              <div class="faq-answer-wrap" role="region">
+                <div class="faq-answer">
+                  If your car is repaired at a <strong>network garage</strong> (partnered with your insurer), the insurer pays the garage directly — you only pay the deductible and non-covered items. Locate your insurer's network garages via their app or website <strong>before taking your vehicle</strong>.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item" data-category="motor">
+              <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+                <span class="faq-question-text">Should I file a claim for minor dents and scratches?</span>
+                <span class="faq-icon"><i class="fa fa-plus"></i></span>
+              </button>
+              <div class="faq-answer-wrap" role="region">
+                <div class="faq-answer">
+                  <strong>Avoid it if possible.</strong> A small claim (say ₹5,000–₹10,000) can cause you to lose NCB worth much more over 5 years. For example, losing 5 years of NCB could mean paying <strong>₹15,000–₹25,000 extra</strong> in future premiums. Pay minor repairs out of pocket and protect your NCB.
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /.faq-accordion -->
+        </div><!-- /.faq-category-group MOTOR -->
+
+
+        <!-- ══════════════════════════════════
+             CLAIMS (8 questions)
+        ══════════════════════════════════ -->
+        <div class="faq-category-group" id="group-claims" data-group="claims">
+          <div class="faq-category-heading">
+            <div class="faq-category-icon claims"><i class="fa fa-file-invoice"></i></div>
+            <h2 class="faq-category-title">Claims &amp; Tax Benefits <span>Process, Timelines &amp; Disputes</span></h2>
+          </div>
+          <div class="faq-accordion">
+
+            <div class="faq-item" data-category="claims">
+              <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+                <span class="faq-question-text">How long does an insurer take to settle a claim?</span>
+                <span class="faq-icon"><i class="fa fa-plus"></i></span>
+              </button>
+              <div class="faq-answer-wrap" role="region">
+                <div class="faq-answer">
+                  <strong>Health reimbursement claims:</strong> 30 days from receipt of all documents.<br />
+                  <strong>Cashless health claims:</strong> 4–6 hours for pre-authorization.<br />
+                  <strong>Life insurance death claims:</strong> 30 days (extendable to 90 days if investigation needed).<br />
+                  <strong>Motor claims:</strong> 7–14 days for survey, repair, and payment.<br /><br />
+                  Delays beyond these timescales can be escalated.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item" data-category="claims">
+              <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+                <span class="faq-question-text">What is the time limit to file a claim after a loss?</span>
+                <span class="faq-icon"><i class="fa fa-plus"></i></span>
+              </button>
+              <div class="faq-answer-wrap" role="region">
+                <div class="faq-answer">
+                  <strong>Health claims:</strong> Within 30 days of discharge for reimbursement; inform within 24 hours for emergencies (cashless).<br />
+                  <strong>Life claims:</strong> No strict limit, but sooner is better.<br />
+                  <strong>Motor claims:</strong> Inform insurer within <strong>24–48 hours</strong> of accident.<br />
+                  <strong>Travel claims:</strong> Within 30 days of returning from trip.<br /><br />
+                  Missing these limits can result in claim rejection — always inform promptly.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item" data-category="claims">
+              <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+                <span class="faq-question-text">Can my insurer reject a claim even after years of premium payment?</span>
+                <span class="faq-icon"><i class="fa fa-plus"></i></span>
+              </button>
+              <div class="faq-answer-wrap" role="region">
+                <div class="faq-answer">
+                  Yes, if: (1) The claim falls under <strong>policy exclusions</strong>, (2) You <strong>didn't disclose pre-existing conditions</strong> at time of buying, (3) The policy has <strong>lapsed</strong>, (4) The <strong>waiting period</strong> hasn't passed. This is why full disclosure and understanding exclusions are critical. Call PolicyRaj for help if a claim is rejected — Sachin can assist with escalations and Ombudsman complaints.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item" data-category="claims">
+              <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+                <span class="faq-question-text">What is the Insurance Ombudsman and when should I approach them?</span>
+                <span class="faq-icon"><i class="fa fa-plus"></i></span>
+              </button>
+              <div class="faq-answer-wrap" role="region">
+                <div class="faq-answer">
+                  The <strong>Insurance Ombudsman</strong> is a free, independent dispute resolution body for insurance complaints. Approach them if: your claim is unfairly rejected, the insurer delays settlement beyond timelines, or partial payment is made without explanation. File online at <strong>cioins.co.in</strong> or visit your nearest Ombudsman office. PolicyRaj can help you prepare the complaint.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item" data-category="claims">
+              <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+                <span class="faq-question-text">What should I do if my motor vehicle is stolen?</span>
+                <span class="faq-icon"><i class="fa fa-plus"></i></span>
+              </button>
+              <div class="faq-answer-wrap" role="region">
+                <div class="faq-answer">
+                  <strong>Immediately:</strong> (1) File <strong>FIR at the nearest police station</strong>, (2) Inform your insurer within 24 hours, (3) Submit all keys and RC copy. After <strong>90 days</strong> of the FIR (non-traceable certificate), the insurer settles the IDV value. Never delay the FIR — it's the most critical step.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item" data-category="claims">
+              <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+                <span class="faq-question-text">What is a pre-authorization for cashless health claims?</span>
+                <span class="faq-icon"><i class="fa fa-plus"></i></span>
+              </button>
+              <div class="faq-answer-wrap" role="region">
+                <div class="faq-answer">
+                  <strong>Pre-authorization (pre-auth)</strong> is the approval you need from your insurer/TPA before a planned hospitalization can be processed as cashless. For planned surgeries, apply <strong>3–5 days in advance</strong>. For emergencies, the hospital contacts TPA within hours. The insurer/TPA approves the type of room and treatment based on your policy. Always carry your health card.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item" data-category="claims">
+              <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+                <span class="faq-question-text">My health claim was rejected. What can I do?</span>
+                <span class="faq-icon"><i class="fa fa-plus"></i></span>
+              </button>
+              <div class="faq-answer-wrap" role="region">
+                <div class="faq-answer">
+                  <strong>Step 1:</strong> Request written rejection reason from the insurer.<br />
+                  <strong>Step 2:</strong> Check if the rejection reason is valid per your policy.<br />
+                  <strong>Step 3:</strong> File a formal grievance with the insurer (they must respond in <strong>15 days</strong>).<br />
+                  <strong>Step 4:</strong> If still unresolved, file with IRDAI's IGMS portal (<strong>igms.irda.gov.in</strong>).<br />
+                  <strong>Step 5:</strong> Approach Insurance Ombudsman.<br /><br />
+                  Call Sachin at <a href="tel:9013976999">9013976999</a> — he helps clients through this process at no charge.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item" data-category="claims">
+              <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+                <span class="faq-question-text">Is there any tax benefit on insurance premiums?</span>
+                <span class="faq-icon"><i class="fa fa-plus"></i></span>
+              </button>
+              <div class="faq-answer-wrap" role="region">
+                <div class="faq-answer">
+                  Yes! <strong>Health insurance premiums</strong> qualify for deduction under <strong>Section 80D</strong>: ₹25,000/year for self &amp; family, plus ₹25,000 for parents (₹50,000 if parents are senior citizens). <strong>Life insurance premiums</strong> qualify under <strong>Section 80C</strong> (up to ₹1.5 lakh). These can save you <strong>₹15,000–₹46,800 in taxes annually</strong> depending on your tax bracket.
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /.faq-accordion -->
+        </div><!-- /.faq-category-group CLAIMS -->
+
+        <!-- No results message -->
+        <div class="faq-no-results" id="faqNoResults">
+          <i class="fa fa-search"></i>
+          <h3>No results found</h3>
+          <p>We couldn't find a match for your search. Try a different keyword or browse by category above.</p>
+          <button class="btn-outline" onclick="clearSearch()"><i class="fa fa-times"></i> Clear Search</button>
+        </div>
+
+      </div><!-- /.faq-layout -->
+    </div><!-- /.container -->
+  </main>
+
+  <!-- STILL HAVE QUESTIONS CTA -->
+  <section class="faq-cta-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow" style="color:rgba(255,255,255,0.75)">Still Have Questions?</span>
+        <h2 style="color:#fff;">Didn't Find Your Answer?</h2>
+        <p>Ask Veera (our AI) or speak directly with Sachin Kathuria — IRDAI-licensed advisor with 20+ years of experience. No charge, no obligation.</p>
+      </div>
+      <div class="faq-cta-btns">
+        <button class="btn-faq-chat" onclick="toggleChat()">
+          <i class="fa fa-robot"></i> Chat with Veera
+        </button>
+        <a href="tel:9013976999" class="btn-faq-call">
+          <i class="fa fa-phone"></i> Call 9013976999
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <img src="policyraj.png" alt="PolicyRaj" class="footer-logo" />
+        <p>Expert insurance advisory by Sachin Kathuria — IRDAI-licensed with 20+ years of experience helping individuals, families and businesses get the right coverage.</p>
+        <div class="footer-social">
+          <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+          <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+          <a href="https://www.youtube.com/@policyraj" target="_blank"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h5>Insurance</h5>
+        <ul>
+          <li><a href="health.html">Health Insurance</a></li>
+          <li><a href="life.html">Life Insurance</a></li>
+          <li><a href="motor.html">Motor Insurance</a></li>
+          <li><a href="travel.html">Travel Insurance</a></li>
+          <li><a href="home.html">Home Insurance</a></li>
+          <li><a href="business.html">Business Insurance</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h5>Tools &amp; Learn</h5>
+        <ul>
+          <li><a href="compare.html">Compare Plans</a></li>
+          <li><a href="claims.html">Claims Guide</a></li>
+          <li><a href="blog.html">Blog &amp; Articles</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="ai-scan.html">AI Doc Scanner</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="index.html#about">About Sachin Kathuria</a></li>
+          <li><a href="claims.html">Claims Support</a></li>
+          <li><a href="insurance-companies.html">Our Partners</a></li>
+          <li><a href="index.html#contact">Contact Us</a></li>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+                    <div class="footer-disclaimer">
+      <div class="container">
+        <p class="fd-title">Statutory Disclosure &amp; Disclaimer</p>
+        <p><strong>About PolicyRaj:</strong> PolicyRaj is an IRDAI-licensed insurance advisory platform and an authorised channel partner of the insurance companies listed on this website. We facilitate access to insurance products on behalf of our partner insurers and do not underwrite, issue, or guarantee any insurance policy. All policies are issued solely by the respective IRDAI-regulated insurer. All insurance companies featured on this platform are independently licensed and regulated by the Insurance Regulatory and Development Authority of India (IRDAI).</p>
+        <p><strong>Advisory &amp; Risk Disclosure:</strong> All information, premium figures, benefit illustrations, and coverage details on this platform are for general guidance only and are indicative in nature. Actual premiums are subject to the applicant&apos;s age, health status, risk profile, sum insured, and the underwriting norms of the relevant insurer at the time of issuance. For market-linked products such as ULIPs and equity-linked plans, returns are subject to market risk and are not guaranteed — past performance is not indicative of future results. Clients are advised to read the complete policy document, including terms, conditions, exclusions, and waiting periods, before making any insurance decision. PolicyRaj does not provide tax or legal advice; please consult a qualified professional for personalised guidance.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>© 2004–2026 PolicyRaj™. All rights reserved. | Founded by Sachin Kathuria | IRDAI Licensed Advisor</p>
+        <p>policyraj.in | sachin@policyraj.com | <a href="privacy-policy.html" style="color:rgba(255,255,255,0.6)">Privacy Policy</a></p>
+        <p><a href="https://wa.me/919013976999?text=Hello%20Sachin%2C%20I%20would%20like%20to%20request%20your%20IRDAI%20Licence%20Number%20for%20verification." target="_blank" class="footer-irdai-link"><i class="fa fa-certificate"></i> IRDAI Licence Number available on request</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODAL -->
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+    <div class="modal modal--pro">
+      <button class="modal-close" onclick="closeModal()" aria-label="Close"><i class="fa fa-times"></i></button>
+      <div class="modal-header-pro">
+        <div class="modal-icon-wrap"><i class="fa fa-shield-alt"></i></div>
+        <div>
+          <h3>Get Your Free Quote</h3>
+          <p class="modal-tagline">Expert advice, zero obligation</p>
+        </div>
+      </div>
+      <form onsubmit="submitModal(event)" class="modal-form-pro">
+        <div class="modal-field">
+          <label><i class="fa fa-user"></i> Full Name</label>
+          <input type="text" name="name" placeholder="Enter your full name" required />
+        </div>
+        <div class="modal-field">
+          <label><i class="fa fa-phone"></i> Mobile Number</label>
+          <input type="tel" name="phone" placeholder="10-digit mobile number" required maxlength="10" pattern="[6-9][0-9]{9}" />
+        </div>
+        <div class="modal-field">
+          <label><i class="fa fa-shield-alt"></i> Insurance Type</label>
+          <select name="insurance_type" required>
+            <option value="" disabled selected>Select what you need</option>
+            <option>Health Insurance</option>
+            <option>Life Insurance</option>
+            <option>Motor Insurance</option>
+            <option>Group Mediclaim</option>
+            <option>Travel Insurance</option>
+            <option>Home Insurance</option>
+            <option>Other / Not Sure</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-primary full-width modal-submit-btn">
+          <i class="fab fa-whatsapp"></i> Send Request on WhatsApp
+        </button>
+        <p class="modal-submit-note"><i class="fa fa-lock"></i> Your information is 100% confidential &amp; never shared</p>
+      </form>
+      <div class="modal-contact-strip">
+        <div class="mcs-item"><i class="fa fa-phone"></i><div><span>Call / WhatsApp</span><strong>9013976999 / 8383813408</strong></div></div>
+        <div class="mcs-item"><i class="fa fa-map-marker-alt"></i><div><span>Office Address</span><strong>8th Floor, Magnum Towers, Golf Course Ext Rd, Sector 58, Gurugram – 122098</strong></div></div>
+        <div class="mcs-item"><i class="fa fa-clock"></i><div><span>Working Hours</span><strong>Mon–Sat, 9 AM – 7 PM</strong></div></div>
+      </div>
+      <div class="modal-response-badge">
+        <i class="fa fa-bolt"></i> Sachin Kathuria will respond <strong>as soon as possible</strong>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="toast" id="toast"><i class="fa fa-check-circle"></i> Thank you! We'll contact you shortly.</div>
+
+  <!-- WHATSAPP FLOAT -->
+  <a href="https://wa.me/919013976999" target="_blank" class="whatsapp-float"><i class="fab fa-whatsapp"></i></a>
+  <!-- BACK TO TOP -->
+  <button class="back-to-top" id="backToTop" onclick="scrollToTop()"><i class="fa fa-chevron-up"></i></button>
+
+  <!-- CHATBOT WIDGET -->
+  <div class="chatbot-btn" id="chatbotBtn" onclick="toggleChat()" title="Chat with Veera – PolicyRaj AI">
+    <img src="rakesh-avatar.svg" alt="Veera AI" class="chatbot-btn-avatar" />
+    <span class="chatbot-badge" id="chatbotBadge" style="display:none">1</span>
+  </div>
+  <div class="chatbot-window" id="chatbotWindow">
+    <div class="chatbot-header">
+      <div class="chatbot-avatar-wrap">
+        <img src="rakesh-avatar.svg" alt="Veera" class="chatbot-header-avatar" />
+        <span class="chatbot-online-dot"></span>
+      </div>
+      <div class="chatbot-hinfo">
+        <span class="chatbot-name">Veera</span>
+        <span class="chatbot-status"><span class="pulse-dot"></span> AI Assistant · PolicyRaj</span>
+      </div>
+      <button class="chatbot-close-btn" onclick="toggleChat()" title="Close"><i class="fa fa-times"></i></button>
+    </div>
+    <div class="chatbot-messages" id="chatbotMessages"></div>
+    <div class="chatbot-quick-replies" id="chatbotQuickReplies"></div>
+    <div class="chatbot-input-row">
+      <input type="text" id="chatbotInput" placeholder="Ask Veera anything..." onkeydown="handleChatKey(event)" autocomplete="off" />
+      <button class="chatbot-send-btn" onclick="sendChatMessage()"><i class="fa fa-paper-plane"></i></button>
+    </div>
+    <div class="chatbot-footer-note"><i class="fa fa-robot"></i> Veera — PolicyRaj AI Assistant</div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="script.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+  <script src="chatbot.js"></script>
+
+  <script>
+    /* ═══════════════════════════════════════════
+       FAQ PAGE — INLINE JS
+    ═══════════════════════════════════════════ */
+
+    /* ── ACCORDION ── */
+    function toggleFAQ(btn) {
+      const item = btn.closest('.faq-item');
+      const isActive = item.classList.contains('active');
+
+      // Close all open items
+      document.querySelectorAll('.faq-item.active').forEach(function(openItem) {
+        openItem.classList.remove('active');
+        openItem.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+      });
+
+      // If the clicked item wasn't already open, open it
+      if (!isActive) {
+        item.classList.add('active');
+        btn.setAttribute('aria-expanded', 'true');
+
+        // Smooth scroll into view on mobile if needed
+        const rect = item.getBoundingClientRect();
+        if (rect.top < 120) {
+          item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      }
+    }
+
+    /* ── CATEGORY TAB FILTER ── */
+    function filterFAQ(category, clickedBtn) {
+      // Update tab active state
+      document.querySelectorAll('.faq-tab-btn').forEach(function(btn) {
+        btn.classList.remove('active');
+        btn.setAttribute('aria-selected', 'false');
+      });
+      clickedBtn.classList.add('active');
+      clickedBtn.setAttribute('aria-selected', 'true');
+
+      // Clear search when switching tabs
+      const searchInput = document.getElementById('faqSearch');
+      if (searchInput.value) {
+        searchInput.value = '';
+        document.getElementById('faqSearchClear').classList.remove('visible');
+        document.getElementById('faqResultInfo').style.display = 'none';
+      }
+
+      const groups = document.querySelectorAll('.faq-category-group');
+
+      if (category === 'all') {
+        groups.forEach(function(group) {
+          group.style.display = '';
+        });
+        document.querySelectorAll('.faq-item').forEach(function(item) {
+          item.style.display = '';
+        });
+      } else {
+        groups.forEach(function(group) {
+          const groupCat = group.getAttribute('data-group');
+          if (groupCat === category) {
+            group.style.display = '';
+          } else {
+            group.style.display = 'none';
+          }
+        });
+      }
+
+      // Close any open accordions when switching tabs
+      document.querySelectorAll('.faq-item.active').forEach(function(item) {
+        item.classList.remove('active');
+        item.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+      });
+
+      document.getElementById('faqNoResults').style.display = 'none';
+
+      // Scroll to FAQ top
+      const faqTop = document.getElementById('faq-top');
+      if (faqTop) {
+        faqTop.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    /* ── SEARCH ── */
+    (function initSearch() {
+      const searchInput = document.getElementById('faqSearch');
+      const clearBtn = document.getElementById('faqSearchClear');
+      const resultInfo = document.getElementById('faqResultInfo');
+      const noResults = document.getElementById('faqNoResults');
+
+      let searchTimer;
+
+      searchInput.addEventListener('input', function() {
+        clearTimeout(searchTimer);
+        searchTimer = setTimeout(doSearch, 220);
+      });
+
+      function doSearch() {
+        const query = searchInput.value.trim().toLowerCase();
+
+        // Show/hide clear button
+        if (query.length > 0) {
+          clearBtn.classList.add('visible');
+        } else {
+          clearBtn.classList.remove('visible');
+        }
+
+        if (query === '') {
+          // Reset to "all" view
+          resetToAll();
+          resultInfo.style.display = 'none';
+          noResults.style.display = 'none';
+          return;
+        }
+
+        // Reset tabs to "All" visually when searching
+        document.querySelectorAll('.faq-tab-btn').forEach(function(btn) {
+          btn.classList.remove('active');
+          btn.setAttribute('aria-selected', 'false');
+        });
+        const allTab = document.querySelector('.faq-tab-btn[data-filter="all"]');
+        if (allTab) {
+          allTab.classList.add('active');
+          allTab.setAttribute('aria-selected', 'true');
+        }
+
+        // Show all groups during search
+        document.querySelectorAll('.faq-category-group').forEach(function(g) {
+          g.style.display = '';
+        });
+
+        // Filter items
+        const allItems = document.querySelectorAll('.faq-item');
+        let matchCount = 0;
+
+        allItems.forEach(function(item) {
+          const questionText = item.querySelector('.faq-question-text');
+          const answerText = item.querySelector('.faq-answer');
+          const qStr = questionText ? questionText.textContent.toLowerCase() : '';
+          const aStr = answerText ? answerText.textContent.toLowerCase() : '';
+
+          if (qStr.includes(query) || aStr.includes(query)) {
+            item.style.display = '';
+            matchCount++;
+          } else {
+            item.style.display = 'none';
+            // Close if it was open
+            if (item.classList.contains('active')) {
+              item.classList.remove('active');
+              item.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+            }
+          }
+        });
+
+        // Hide empty groups
+        document.querySelectorAll('.faq-category-group').forEach(function(group) {
+          const visibleItems = group.querySelectorAll('.faq-item:not([style*="display: none"])');
+          group.style.display = visibleItems.length > 0 ? '' : 'none';
+        });
+
+        // Show result info or no-results
+        if (matchCount === 0) {
+          noResults.style.display = 'block';
+          resultInfo.style.display = 'none';
+        } else {
+          noResults.style.display = 'none';
+          resultInfo.innerHTML = 'Showing <strong>' + matchCount + '</strong> result' + (matchCount !== 1 ? 's' : '') + ' for "<strong>' + escapeHtml(query) + '</strong>"';
+          resultInfo.style.display = 'block';
+        }
+      }
+
+      function resetToAll() {
+        document.querySelectorAll('.faq-item').forEach(function(item) {
+          item.style.display = '';
+        });
+        document.querySelectorAll('.faq-category-group').forEach(function(g) {
+          g.style.display = '';
+        });
+        document.querySelectorAll('.faq-tab-btn').forEach(function(btn) {
+          btn.classList.remove('active');
+          btn.setAttribute('aria-selected', 'false');
+        });
+        const allTab = document.querySelector('.faq-tab-btn[data-filter="all"]');
+        if (allTab) {
+          allTab.classList.add('active');
+          allTab.setAttribute('aria-selected', 'true');
+        }
+      }
+
+      function escapeHtml(str) {
+        return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      }
+    })();
+
+    function clearSearch() {
+      const searchInput = document.getElementById('faqSearch');
+      searchInput.value = '';
+      searchInput.dispatchEvent(new Event('input'));
+      searchInput.focus();
+    }
+  </script>
+
+</body>
+</html>

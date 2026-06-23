@@ -20,6 +20,48 @@
       --scan-line: rgba(6,182,212,0.8);
     }
 
+    /* ── GEMINI ENGINE BAR ───────────────────────────────── */
+    .ai-engine-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 10px;
+      padding: 10px 14px; margin-bottom: 12px; gap: 10px; flex-wrap: wrap;
+    }
+    .aeb-status { display: flex; align-items: center; gap: 8px; font-size: 0.84rem; color: #334155; }
+    .aeb-dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+    .aeb-dot--off { background: #94a3b8; }
+    .aeb-dot--on  { background: #10b981; box-shadow: 0 0 0 3px rgba(16,185,129,0.2); }
+    .aeb-setup-btn {
+      font-size: 0.78rem; font-weight: 600; color: #1E3A8A;
+      background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px;
+      padding: 5px 12px; cursor: pointer; white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+    .aeb-setup-btn:hover { background: #1E3A8A; color: #fff; }
+    .gemini-setup-panel {
+      display: none; background: linear-gradient(135deg,#f0fdf4,#ecfdf5);
+      border: 1.5px solid #6ee7b7; border-radius: 12px; padding: 20px;
+      margin-bottom: 14px;
+    }
+    .gsp-head { font-family: 'Poppins',sans-serif; font-size: 0.95rem; font-weight: 700; color: #064e3b; margin-bottom: 8px; }
+    .gsp-head i { color: #10b981; margin-right: 6px; }
+    .gsp-desc { font-size: 0.82rem; color: #065f46; margin-bottom: 12px; line-height: 1.55; }
+    .gsp-steps { font-size: 0.82rem; color: #065f46; padding-left: 18px; margin-bottom: 14px; line-height: 1.8; }
+    .gsp-input-row { display: flex; gap: 8px; margin-bottom: 10px; }
+    .gsp-key-input {
+      flex: 1; padding: 10px 14px; border: 1.5px solid #6ee7b7; border-radius: 8px;
+      font-size: 0.85rem; background: #fff; font-family: monospace; color: #1e293b;
+    }
+    .gsp-key-input:focus { outline: none; border-color: #10b981; box-shadow: 0 0 0 3px rgba(16,185,129,0.15); }
+    .gsp-save-btn {
+      padding: 10px 18px; background: #10b981; color: #fff; border: none;
+      border-radius: 8px; font-weight: 700; font-size: 0.85rem; cursor: pointer; white-space: nowrap;
+    }
+    .gsp-save-btn:hover { background: #059669; }
+    .gsp-footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+    .gsp-clear-btn { font-size: 0.78rem; color: #dc2626; background: none; border: none; cursor: pointer; padding: 0; }
+    .gsp-privacy { font-size: 0.75rem; color: #6b7280; }
+    .gsp-privacy i { margin-right: 4px; color: #10b981; }
+
     /* ── HERO ───────────────────────────────────────────────── */
     .scan-hero {
       background: linear-gradient(135deg, #060D2B 0%, #0F1E5A 40%, #1E3A8A 100%);
@@ -543,6 +585,31 @@
             <button class="doctype-btn" data-type="driving" onclick="setDocType(this)"><i class="fa fa-id-badge"></i> License</button>
           </div>
 
+          <!-- AI Engine selector -->
+          <div class="ai-engine-bar" id="aiEngineBar">
+            <div class="aeb-status" id="aebStatus">
+              <span class="aeb-dot aeb-dot--off" id="aebDot"></span>
+              <span id="aebLabel">AI Engine: <strong>Tesseract (basic)</strong></span>
+            </div>
+            <button class="aeb-setup-btn" onclick="toggleGeminiPanel()"><i class="fa fa-cog"></i> Setup Gemini AI</button>
+          </div>
+          <div class="gemini-setup-panel" id="geminiSetupPanel">
+            <div class="gsp-head"><i class="fa fa-brain"></i> Google Gemini Vision — Near-100% Accuracy</div>
+            <p class="gsp-desc">Gemini AI reads Indian documents (DL, Aadhaar, PAN, RC) with near-perfect accuracy. <strong>Free — 1,500 scans/day.</strong></p>
+            <ol class="gsp-steps">
+              <li>Go to <strong>aistudio.google.com</strong> → click <em>Get API key</em> → Create key</li>
+              <li>Copy the key and paste below</li>
+            </ol>
+            <div class="gsp-input-row">
+              <input type="password" id="geminiKeyInput" class="gsp-key-input" placeholder="Paste your Gemini API key here (AIza...)" autocomplete="off" />
+              <button class="gsp-save-btn" onclick="saveGeminiKey()"><i class="fa fa-check"></i> Save</button>
+            </div>
+            <div class="gsp-footer">
+              <button class="gsp-clear-btn" onclick="clearGeminiKey()"><i class="fa fa-times"></i> Remove key &amp; use Tesseract</button>
+              <span class="gsp-privacy"><i class="fa fa-lock"></i> Key stored only in your browser</span>
+            </div>
+          </div>
+
           <!-- Scan button -->
           <button class="btn-scan-now" id="btnScanNow" onclick="startScan()" disabled>
             <i class="fa fa-brain scan-icon"></i>
@@ -841,6 +908,156 @@
     }
     function resetSteps() { advanceStep(1); }
 
+    /* ─── GEMINI AI ENGINE ───────────────────────────── */
+    const GEMINI_MODEL = 'gemini-2.0-flash';
+    let geminiKey = localStorage.getItem('pr_gemini_key') || '';
+
+    function refreshEngineUI() {
+      const dot   = document.getElementById('aebDot');
+      const label = document.getElementById('aebLabel');
+      if (geminiKey) {
+        dot.className   = 'aeb-dot aeb-dot--on';
+        label.innerHTML = 'AI Engine: <strong style="color:#10b981">Gemini Vision ✓ (high accuracy)</strong>';
+      } else {
+        dot.className   = 'aeb-dot aeb-dot--off';
+        label.innerHTML = 'AI Engine: <strong>Tesseract (basic)</strong>';
+      }
+    }
+    refreshEngineUI();
+
+    function toggleGeminiPanel() {
+      const p = document.getElementById('geminiSetupPanel');
+      p.style.display = p.style.display === 'block' ? 'none' : 'block';
+      if (geminiKey) document.getElementById('geminiKeyInput').value = geminiKey;
+    }
+
+    function saveGeminiKey() {
+      const v = document.getElementById('geminiKeyInput').value.trim();
+      if (!v.startsWith('AIza')) { showToast('Invalid key — should start with "AIza"', true); return; }
+      geminiKey = v;
+      localStorage.setItem('pr_gemini_key', v);
+      refreshEngineUI();
+      document.getElementById('geminiSetupPanel').style.display = 'none';
+      showToast('Gemini AI activated — near-100% accuracy enabled!');
+    }
+
+    function clearGeminiKey() {
+      geminiKey = '';
+      localStorage.removeItem('pr_gemini_key');
+      document.getElementById('geminiKeyInput').value = '';
+      refreshEngineUI();
+      document.getElementById('geminiSetupPanel').style.display = 'none';
+      showToast('Reverted to Tesseract OCR');
+    }
+
+    async function scanWithGemini(imgDataUrl, docType) {
+      const docNames = {
+        driving:'Driving License', aadhaar:'Aadhaar Card', pan:'PAN Card',
+        rc:'Vehicle RC (Registration Certificate)', policy:'Insurance Policy document', passport:'Passport'
+      };
+      const prompt = `You are an expert OCR system for Indian government and insurance documents.
+Carefully examine this ${docNames[docType] || docType} image and extract ALL readable text.
+Return a single valid JSON object with only the fields you can confidently read.
+
+Expected fields by document type:
+- Driving License: dlNo, name, fatherName, dob, dlValidity, bloodGroup, vehicleClass, address, pincode
+- Aadhaar Card: aadhaar (12-digit number with spaces), name, dob, gender, address, pincode
+- PAN Card: pan (10-character), name, fatherName, dob
+- Vehicle RC: vehicleNo, name, vehicleMake, vehicleModel, fuelType, engineNo, chassisNo
+- Insurance Policy: policyNo, name, insurer, sumAssured, policyStart, policyExpiry, insuranceType
+- Passport: passportNo, name, dob, nationality, passportExpiry
+
+Rules:
+- Return ONLY raw JSON — no markdown, no \`\`\`json, no explanation
+- Dates must be in DD-MM-YYYY format
+- Omit any field you cannot read clearly — do not guess
+- For dlNo include spaces/hyphens as printed on the card
+- For vehicleClass extract all authorised categories (MCWG, LMV, HMV etc.)`;
+
+      const base64 = imgDataUrl.replace(/^data:image\/\w+;base64,/, '');
+      const mime   = imgDataUrl.startsWith('data:image/png') ? 'image/png' : 'image/jpeg';
+
+      const res = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${geminiKey}`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            contents: [{ parts: [
+              { text: prompt },
+              { inlineData: { mimeType: mime, data: base64 } }
+            ]}],
+            generationConfig: { temperature: 0.05, maxOutputTokens: 1024 }
+          })
+        }
+      );
+
+      if (!res.ok) {
+        const e = await res.json().catch(() => ({}));
+        const msg = e?.error?.message || ('HTTP ' + res.status);
+        if (res.status === 400 && /API_KEY_INVALID/i.test(msg)) throw new Error('INVALID_KEY');
+        throw new Error(msg);
+      }
+
+      const payload = await res.json();
+      const raw     = payload.candidates?.[0]?.content?.parts?.[0]?.text || '{}';
+      const jsonStr = raw.match(/\{[\s\S]*\}/)?.[0] || '{}';
+      return JSON.parse(jsonStr);
+    }
+
+    /* ─── IMAGE PREPROCESSING ───────────────────────── */
+    function preprocessImage(dataUrl) {
+      return new Promise(resolve => {
+        const img = new Image();
+        img.onload = () => {
+          /* Scale up small images for better OCR */
+          const scale = Math.max(1, Math.min(3, 2400 / Math.max(img.width, img.height)));
+          const canvas = document.createElement('canvas');
+          canvas.width  = img.width  * scale;
+          canvas.height = img.height * scale;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+          /* Grayscale + contrast boost */
+          const id = ctx.getImageData(0, 0, canvas.width, canvas.height);
+          const d  = id.data;
+          for (let i = 0; i < d.length; i += 4) {
+            const gray = 0.299 * d[i] + 0.587 * d[i+1] + 0.114 * d[i+2];
+            /* Contrast factor 1.7, pivot 128 */
+            const v = Math.min(255, Math.max(0, 128 + (gray - 128) * 1.7));
+            d[i] = d[i+1] = d[i+2] = v;
+          }
+          ctx.putImageData(id, 0, 0);
+          resolve(canvas.toDataURL('image/png'));
+        };
+        img.src = dataUrl;
+      });
+    }
+
+    /* ─── TESSERACT HELPER ───────────────────────────── */
+    async function runTesseract() {
+      document.getElementById('scanProgressText').textContent = 'Enhancing image quality...';
+      const enhanced = await preprocessImage(imageData);
+      document.getElementById('scanProgressText').textContent = 'Initialising OCR engine...';
+      const { data } = await Tesseract.recognize(enhanced, 'eng', {
+        tessedit_pageseg_mode: '6',
+        preserve_interword_spaces: '1',
+        logger: m => {
+          if (m.status === 'recognizing text') {
+            const pct = Math.round(m.progress * 100);
+            document.getElementById('scanProgressBar').style.width = pct + '%';
+            document.getElementById('scanProgressText').textContent = 'Reading text... ' + pct + '%';
+          } else if (m.status) {
+            document.getElementById('scanProgressText').textContent = m.status;
+          }
+        }
+      });
+      document.getElementById('scanProgressBar').style.width = '100%';
+      document.getElementById('scanProgressText').textContent = 'Extracting fields...';
+      window._lastRawOcr = data.text;
+      return extractFields(data.text, selectedDocType);
+    }
+
     /* ─── MAIN SCAN ──────────────────────────────────── */
     window.startScan = async function() {
       if (!imageData) return;
@@ -851,42 +1068,53 @@
       btn.disabled = true;
       document.getElementById('scanBtnText').textContent = 'Scanning...';
 
-      // Scanning line animation
       const previewWrap = document.getElementById('imgPreviewWrap');
       previewWrap.classList.add('scanning');
       document.getElementById('scanLineEl').classList.add('active');
-
       document.getElementById('scanEmptyState').style.display = 'none';
       document.getElementById('scanProgressWrap').classList.add('active');
       document.getElementById('scanResultsArea').classList.remove('active');
 
       try {
-        const { data: { text } } = await Tesseract.recognize(
-          imageData, 'eng',
-          {
-            logger: m => {
-              if (m.status === 'recognizing text') {
-                const pct = Math.round(m.progress * 100);
-                document.getElementById('scanProgressBar').style.width = pct + '%';
-                document.getElementById('scanProgressText').textContent = 'Reading text... ' + pct + '%';
-              } else if (m.status) {
-                document.getElementById('scanProgressText').textContent = m.status;
-              }
+        if (geminiKey) {
+          /* ── GEMINI PATH ── */
+          document.getElementById('scanProgressText').textContent = 'Sending to Gemini AI...';
+          document.getElementById('scanProgressBar').style.width = '30%';
+
+          let fields;
+          try {
+            fields = await scanWithGemini(imageData, selectedDocType);
+            document.getElementById('scanProgressBar').style.width = '100%';
+            document.getElementById('scanProgressText').textContent = 'Extracting fields...';
+          } catch (geminiErr) {
+            if (geminiErr.message === 'INVALID_KEY') {
+              showToast('Gemini API key is invalid. Check your key and try again.', true);
+              document.getElementById('scanEmptyState').style.display = '';
+              return;
             }
+            /* Network error or quota — fall back to Tesseract */
+            console.warn('Gemini failed, falling back to Tesseract:', geminiErr);
+            showToast('Gemini unavailable — using Tesseract fallback', true);
+            fields = await runTesseract();
           }
-        );
 
-        document.getElementById('scanProgressBar').style.width = '100%';
-        document.getElementById('scanProgressText').textContent = 'Extracting fields...';
+          await new Promise(r => setTimeout(r, 300));
+          scanResultData = fields;
+          renderResults(fields, JSON.stringify(fields, null, 2));
+          advanceStep(3);
 
-        await new Promise(r => setTimeout(r, 400));
-        const fields = extractFields(text, selectedDocType);
-        scanResultData = fields;
-        renderResults(fields, text);
-        advanceStep(3);
+        } else {
+          /* ── TESSERACT PATH ── */
+          const fields = await runTesseract();
+          scanResultData = fields;
+          /* rawText stored in closure by runTesseract */
+          renderResults(fields, window._lastRawOcr || '');
+          advanceStep(3);
+        }
 
       } catch(err) {
-        showToast('Scan failed. Try a clearer image.', true);
+        console.error('Scan error:', err);
+        showToast('Scan failed: ' + err.message, true);
         document.getElementById('scanEmptyState').style.display = '';
       } finally {
         btn.classList.remove('scanning');
@@ -900,145 +1128,246 @@
 
     /* ─── FIELD EXTRACTION ───────────────────────────── */
     function extractFields(rawText, docType) {
-      const t = rawText;
+      /* Normalise OCR quirks: l→1 in number-only contexts handled per-field */
+      const t   = rawText;
+      const lines = t.split('\n').map(l => l.trim()).filter(Boolean);
       const fields = {};
 
-      // Universal patterns
-      const mobileM = t.match(/\b[6-9]\d{9}\b/);
-      if (mobileM) fields.mobile = mobileM[0];
+      /* ── Helpers ── */
+      function cleanName(s) {
+        return String(s).replace(/[^A-Za-z .]/g,'').trim()
+          .replace(/\s+/g,' ')
+          .split(' ').filter(Boolean)
+          .map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()).join(' ');
+      }
+
+      /* Find value after keyword on the same line OR the next non-empty line */
+      function after(kws, src) {
+        for (const kw of kws) {
+          const re = new RegExp(kw + '[:\\s]*(.+)', 'i');
+          for (let i = 0; i < lines.length; i++) {
+            const m = lines[i].match(re);
+            if (m && m[1].trim().length > 1) return m[1].trim();
+            /* keyword alone on a line → take next line */
+            if (new RegExp('^' + kw + '\\s*$','i').test(lines[i]) && lines[i+1]) return lines[i+1];
+          }
+        }
+        return null;
+      }
+
+      /* Date patterns — handles DD-MM-YYYY, DD/MM/YYYY, DD-Mon-YYYY, YYYY-MM-DD */
+      const dateREs = [
+        /\b(\d{1,2}[-\/]\d{1,2}[-\/]\d{4})\b/,
+        /\b(\d{4}[-\/]\d{1,2}[-\/]\d{1,2})\b/,
+        /\b(\d{1,2}[-\s](?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[-\s]\d{4})\b/i,
+        /\b(\d{1,2}[-\s](?:January|February|March|April|May|June|July|August|September|October|November|December)[-\s]\d{4})\b/i,
+      ];
+      function findDate(src) {
+        for (const re of dateREs) { const m = src.match(re); if (m) return m[1]; }
+        return null;
+      }
+
+      /* ── Universal fields ── */
+      const mobileM = t.match(/\b([6-9]\d{9})\b/);
+      if (mobileM) fields.mobile = mobileM[1];
 
       const emailM = t.match(/[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}/);
       if (emailM) fields.email = emailM[0];
 
-      const dobM = t.match(/\b(\d{1,2}[\-\/]\d{1,2}[\-\/]\d{4}|\d{4}[\-\/]\d{1,2}[\-\/]\d{1,2})\b/);
-      if (dobM) fields.dob = dobM[0];
+      /* PIN code: 6-digit, not part of a longer number */
+      const pinM = t.match(/(?<!\d)([1-9]\d{5})(?!\d)/g);
+      if (pinM) fields.pincode = pinM[pinM.length - 1];
 
-      const pinM = t.match(/\b[1-9][0-9]{5}\b/);
-      if (pinM) fields.pincode = pinM[0];
+      /* ════════════════ DRIVING LICENSE ═════════════ */
+      if (docType === 'driving') {
+        /* DL Number — Indian formats: HR9B 20340000987 / DL0120110012345 / MH 12 2011 0012345 */
+        const dlPatterns = [
+          /\b([A-Z]{2}[-\s]?[0-9A-Z]{2}[-\s]?\d{4}[-\s]?\d{7})\b/i,
+          /\b([A-Z]{2}\d{2}[-\s]?\d{11})\b/i,
+          /\b([A-Z]{2}[-\s]?[0-9A-Z]{2}[-\s]?\d{7,13})\b/i,
+          /(?:DL\s*(?:No|Num|Number|#)\.?)[:\s]*([A-Z0-9][-A-Z0-9\s]{6,20})/i,
+          /(?:Licence?\s*No|License\s*No)[:\s]*([A-Z0-9][-A-Z0-9\s]{6,20})/i,
+          /(?:DLNUMBER|DL NUMBER)[:\s]*([A-Z0-9][-A-Z0-9\s]{6,20})/i,
+        ];
+        for (const p of dlPatterns) {
+          const m = t.match(p);
+          if (m) { fields.dlNo = (m[1] || m[0]).replace(/\s+/g,' ').trim(); break; }
+        }
 
-      if (docType === 'aadhaar') {
-        const uidM = t.match(/\b(\d{4}\s?\d{4}\s?\d{4})\b/);
-        if (uidM) fields.aadhaar = uidM[0].replace(/\s/g,'').replace(/(\d{4})(\d{4})(\d{4})/,'$1 $2 $3');
+        /* Name — after NAME keyword, or after S/W/D line */
+        const nameVal = after(['NAME','Holder Name','Holder','Licence Holder'], t);
+        if (nameVal) fields.name = cleanName(nameVal);
 
-        // Name: usually first line in caps or after "To"
-        const nameM = t.match(/^([A-Z][a-zA-Z]+(?: [A-Z][a-zA-Z]+){1,3})/m) ||
-                      t.match(/(?:Name|NAME)[:\s]+([A-Za-z ]+?)[\n\r]/i);
-        if (nameM) fields.name = cleanName(nameM[1]);
+        /* Father / Spouse name (S/W/D line) */
+        for (let i = 0; i < lines.length; i++) {
+          if (/^S\/W\/D/i.test(lines[i])) {
+            const inline = lines[i].replace(/^S\/W\/D\s*(of)?\s*/i,'').trim();
+            const val = inline || lines[i+1] || '';
+            if (val.length > 2) { fields.fatherName = cleanName(val); break; }
+          }
+        }
 
-        // Gender
-        if (/female/i.test(t)) fields.gender = 'Female';
-        else if (/male/i.test(t)) fields.gender = 'Male';
+        /* DOB */
+        const dobLine = lines.find(l => /\bDOB\b|date.of.birth/i.test(l)) || '';
+        fields.dob = findDate(dobLine) || findDate(after(['DOB','Date of Birth','D\.O\.B'],t)||'') || '';
 
-        // Address (lines after DOB/UID)
-        const addrM = t.match(/(?:Address|ADDR)[:\s]+([^\n]+(?:\n[^\n]+){0,3})/i);
-        if (addrM) fields.address = addrM[1].replace(/\s*\n\s*/g, ', ').trim();
+        /* Validity */
+        const validLine = lines.find(l => /valid|validity|expiry|NT\b/i.test(l)) || '';
+        const allDates  = [...t.matchAll(/\b(\d{1,2}[-\/]\d{1,2}[-\/]\d{4}|\d{1,2}[-\s](?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[-\s]\d{4})\b/gi)].map(m=>m[1]);
+        if (allDates.length >= 2) fields.dlValidity = allDates[allDates.length - 1]; /* last date = expiry */
+        else fields.dlValidity = findDate(validLine) || '';
 
+        /* Blood group */
+        const bgM = t.match(/\b(A|B|AB|O)\s*[+-]\b/i);
+        if (bgM) fields.bloodGroup = bgM[0].replace(/\s/g,'').toUpperCase();
+
+        /* Vehicle class */
+        const vcM = t.match(/\b(MCWG|LMV|HMV|HGMV|TRANS|3WNT|3WT|2W|MGV|HTV|PSV)\b/g);
+        if (vcM) fields.vehicleClass = [...new Set(vcM)].join(', ');
+
+        /* Address */
+        const addrKw = after(['Address','ADDR'],t);
+        if (addrKw) fields.address = addrKw.replace(/\s*\n\s*/g,', ').trim();
+
+      /* ════════════════ AADHAAR ══════════════════════ */
+      } else if (docType === 'aadhaar') {
+        /* UID: 12 digits in groups of 4 */
+        const uidM = t.match(/\b(\d{4})\s+(\d{4})\s+(\d{4})\b/) ||
+                     t.match(/\b(\d{4})(\d{4})(\d{4})\b/);
+        if (uidM) fields.aadhaar = uidM[1]+' '+uidM[2]+' '+uidM[3];
+
+        const nameVal = after(['Name','NAME','To'],t);
+        if (nameVal) fields.name = cleanName(nameVal);
+
+        if (/female/i.test(t))      fields.gender = 'Female';
+        else if (/\bmale\b/i.test(t)) fields.gender = 'Male';
+
+        fields.dob = findDate(after(['DOB','Year of Birth','YOB','Date of Birth'],t)||t) || '';
+
+        const addrM = t.match(/(?:Address|S\/o|C\/o)[:\s]+([^\n]+(?:\n[^\n]+){0,4})/i);
+        if (addrM) fields.address = addrM[1].replace(/\s*\n\s*/g,', ').trim();
+
+      /* ════════════════ PAN ══════════════════════════ */
       } else if (docType === 'pan') {
-        const panM = t.match(/[A-Z]{5}[0-9]{4}[A-Z]/);
-        if (panM) fields.pan = panM[0];
+        const panM = t.match(/\b([A-Z]{5}[0-9]{4}[A-Z])\b/);
+        if (panM) fields.pan = panM[1];
 
-        const nameM = t.match(/^([A-Z][a-zA-Z]+(?: [A-Z][a-zA-Z]+){1,3})/m) ||
-                      t.match(/(?:Name|NAME)[:\s]+([A-Za-z ]+?)[\n\r]/i);
-        if (nameM) fields.name = cleanName(nameM[1]);
+        const nameVal = after(['Name','NAME'],t);
+        if (nameVal) fields.name = cleanName(nameVal);
 
-        const fNameM = t.match(/(?:Father|FATHER)['\s]+(?:Name|NAME)[:\s]+([A-Za-z ]+?)[\n\r]/i);
-        if (fNameM) fields.fatherName = cleanName(fNameM[1]);
+        const fVal = after(["Father'?s? Name","Father Name","FATHER'?S? NAME"],t);
+        if (fVal) fields.fatherName = cleanName(fVal);
 
+        fields.dob = findDate(t) || '';
+
+      /* ════════════════ VEHICLE RC ═══════════════════ */
       } else if (docType === 'rc') {
-        const rcM = t.match(/[A-Z]{2}\s?\d{2}\s?[A-Z]{1,2}\s?\d{4}/i);
-        if (rcM) fields.vehicleNo = rcM[0].toUpperCase().replace(/\s/g,'').replace(/^(.{2})(.{2})(.{1,2})(.{4})$/,'$1 $2 $3 $4');
+        /* Vehicle reg number: AA 00 AA 0000 */
+        const rcM = t.match(/\b([A-Z]{2}\s?\d{2}\s?[A-Z]{1,3}\s?\d{4})\b/i);
+        if (rcM) fields.vehicleNo = rcM[1].toUpperCase().replace(/\s/g,'');
 
-        const ownerM = t.match(/(?:Owner|OWNER|Registered Owner)[:\s]+([A-Za-z ]+?)[\n\r]/i);
-        if (ownerM) fields.name = cleanName(ownerM[1]);
+        const ownerVal = after(['Owner','OWNER','Registered Owner','Owner Name'],t);
+        if (ownerVal) fields.name = cleanName(ownerVal);
 
-        const makeM = t.match(/(?:Make|Maker|MAKE|Manufacturer)[:\s]+([A-Za-z ]+?)[\n\r]/i);
-        if (makeM) fields.vehicleMake = makeM[1].trim();
+        const makeVal = after(['Make','Maker','MAKE','Manufacturer','Mfr'],t);
+        if (makeVal) fields.vehicleMake = makeVal.split('\n')[0].trim();
 
-        const modelM = t.match(/(?:Model|MODEL)[:\s]+([A-Za-z0-9 ]+?)[\n\r]/i);
-        if (modelM) fields.vehicleModel = modelM[1].trim();
+        const modelVal = after(['Model','MODEL','Variant'],t);
+        if (modelVal) fields.vehicleModel = modelVal.split('\n')[0].trim();
 
-        const fuelM = t.match(/(?:Fuel|FUEL)[:\s]+([A-Za-z]+)/i) || t.match(/\b(PETROL|DIESEL|CNG|ELECTRIC|EV)\b/i);
-        if (fuelM) fields.fuelType = fuelM[1].toUpperCase();
+        const fuelM = t.match(/\b(PETROL|DIESEL|CNG|ELECTRIC|EV|LPG)\b/i)
+                   || t.match(/(?:Fuel)[:\s]+([A-Za-z]+)/i);
+        if (fuelM) fields.fuelType = (fuelM[1]||fuelM[0]).toUpperCase();
 
-        const engM = t.match(/(?:Engine No|Chasis No)[:\s]+([A-Z0-9]+)/i);
+        const engM = t.match(/(?:Engine\s*No\.?)[:\s]+([A-Z0-9]+)/i);
         if (engM) fields.engineNo = engM[1];
 
+        const chsM = t.match(/(?:Chassis\s*No\.?|Chasis\s*No\.?)[:\s]+([A-Z0-9]+)/i);
+        if (chsM) fields.chassisNo = chsM[1];
+
+      /* ════════════════ POLICY ═══════════════════════ */
       } else if (docType === 'policy') {
-        const polM = t.match(/(?:Policy\s*(?:No|Number|#)?)[:\s]+([A-Z0-9\-\/]{6,20})/i);
+        const polM = t.match(/(?:Policy\s*(?:No|Number|#))[:\s]+([A-Z0-9\-\/]{6,25})/i);
         if (polM) fields.policyNo = polM[1].trim();
 
-        const insuredM = t.match(/(?:Insured|Policyholder|Name)[:\s]+([A-Za-z ]+?)[\n\r]/i);
-        if (insuredM) fields.name = cleanName(insuredM[1]);
+        const insuredVal = after(['Insured','Policyholder','Policy Holder','Name of Insured'],t);
+        if (insuredVal) fields.name = cleanName(insuredVal);
 
-        const sumM = t.match(/(?:Sum Assured|Cover|Sum Insured)[:\s]+(?:Rs\.?|INR|₹)?\s*([0-9,]+)/i);
+        const sumM = t.match(/(?:Sum\s*(?:Assured|Insured)|Cover\s*Amount|IDV)[:\s]*(?:Rs\.?|INR|₹)?\s*([0-9,]+)/i);
         if (sumM) fields.sumAssured = '₹' + sumM[1];
 
-        const startM = t.match(/(?:Policy Start|Commencement|Start Date|Issue Date)[:\s]+(\d{1,2}[\-\/]\d{1,2}[\-\/]\d{4})/i);
-        if (startM) fields.policyStart = startM[1];
+        const startVal = after(['Policy Start','Start Date','Commencement','From Date','Issue Date'],t);
+        if (startVal) fields.policyStart = findDate(startVal)||'';
 
-        const endM = t.match(/(?:Policy End|Expiry|Renewal|End Date)[:\s]+(\d{1,2}[\-\/]\d{1,2}[\-\/]\d{4})/i);
-        if (endM) fields.policyExpiry = endM[1];
+        const endVal = after(['Policy End','Expiry Date','End Date','Valid Till','Renewal Date'],t);
+        if (endVal) fields.policyExpiry = findDate(endVal)||'';
 
-        const insurerM = t.match(/(?:Insurance|Insurer)[:\s]+([A-Za-z ]+?(?:Ltd|Limited|Co\.))/i);
+        const insurerM = t.match(/([A-Za-z ]+(?:Insurance|Assurance|Insurer)[A-Za-z ]*(?:Ltd|Limited|Co\.)?)/i);
         if (insurerM) fields.insurer = insurerM[1].trim();
 
-        // Detect insurance type
-        if (/health|mediclaim|hospitali/i.test(t)) fields.insuranceType = 'Health Insurance';
-        else if (/motor|vehicle|car|bike/i.test(t)) fields.insuranceType = 'Motor Insurance';
-        else if (/life|term|ulip/i.test(t)) fields.insuranceType = 'Life Insurance';
-        else if (/travel/i.test(t)) fields.insuranceType = 'Travel Insurance';
-        else if (/home|property/i.test(t)) fields.insuranceType = 'Home Insurance';
+        if (/health|mediclaim|hospitali/i.test(t))       fields.insuranceType = 'Health Insurance';
+        else if (/motor|vehicle|car|bike/i.test(t))      fields.insuranceType = 'Motor Insurance';
+        else if (/life|term|ulip/i.test(t))              fields.insuranceType = 'Life Insurance';
+        else if (/travel/i.test(t))                      fields.insuranceType = 'Travel Insurance';
+        else if (/home|property/i.test(t))               fields.insuranceType = 'Home Insurance';
 
-      } else if (docType === 'driving') {
-        const dlM = t.match(/(?:DL No|DL Number|Licence No)[:\s]+([A-Z0-9\-]+)/i) ||
-                    t.match(/[A-Z]{2}\d{2}\s?\d{11}/);
-        if (dlM) fields.dlNo = dlM[1] || dlM[0];
-
-        const nameM = t.match(/(?:Name|NAME)[:\s]+([A-Za-z ]+?)[\n\r]/i);
-        if (nameM) fields.name = cleanName(nameM[1]);
-
-        const validM = t.match(/(?:Valid|Validity|Valid Till)[:\s]+(\d{1,2}[\-\/]\d{1,2}[\-\/]\d{4})/i);
-        if (validM) fields.dlValidity = validM[1];
-
+      /* ════════════════ PASSPORT ═════════════════════ */
       } else if (docType === 'passport') {
-        const ppM = t.match(/[A-Z]\d{7}/);
-        if (ppM) fields.passportNo = ppM[0];
+        const ppM = t.match(/\b([A-Z]\d{7})\b/);
+        if (ppM) fields.passportNo = ppM[1];
 
-        const nameM = t.match(/^([A-Z][a-zA-Z]+(?: [A-Z][a-zA-Z]+){1,3})/m);
-        if (nameM) fields.name = cleanName(nameM[1]);
+        /* MRZ line: surname<<given name */
+        const mrzM = t.match(/([A-Z]{2,})<<([A-Z<]+)/);
+        if (mrzM) {
+          fields.name = cleanName(mrzM[1] + ' ' + mrzM[2].replace(/</g,' '));
+        } else {
+          const nameVal = after(['Surname','Given Name','Name','NAME'],t);
+          if (nameVal) fields.name = cleanName(nameVal);
+        }
 
-        const natM = t.match(/(?:Nationality)[:\s]+([A-Za-z ]+?)[\n\r]/i) || (t.includes('INDIAN') ? ['','INDIAN'] : null);
-        if (natM) fields.nationality = natM[1].trim();
+        fields.dob = findDate(after(['Date of Birth','DOB','Birth'],t)||'') || '';
 
-        const expM = t.match(/(?:Expiry|Date of Expiry)[:\s]+(\d{1,2}[\-\/]\d{1,2}[\-\/]\d{4})/i);
-        if (expM) fields.passportExpiry = expM[1];
+        const natVal = after(['Nationality'],t) || (/INDIAN/i.test(t) ? 'Indian' : '');
+        if (natVal) fields.nationality = natVal.trim();
+
+        const expVal = after(['Date of Expiry','Expiry','Valid Till'],t);
+        if (expVal) fields.passportExpiry = findDate(expVal)||'';
       }
 
-      // Fallback name detection
+      /* ── Fallback name ── */
       if (!fields.name) {
-        const anyName = t.match(/\b([A-Z][a-z]+(?: [A-Z][a-z]+){1,2})\b/);
-        if (anyName) fields.name = anyName[1];
+        /* Look for a line with 2-4 ALL CAPS words — common on Indian govt docs */
+        const capsLine = lines.find(l => /^[A-Z]{2,}(?:\s+[A-Z]{2,}){1,3}$/.test(l));
+        if (capsLine) fields.name = cleanName(capsLine);
       }
+
+      /* Remove empty fields */
+      Object.keys(fields).forEach(k => { if (!fields[k]) delete fields[k]; });
 
       return fields;
     }
 
     function cleanName(str) {
-      return str.replace(/[^A-Za-z ]/g,'').trim().replace(/\s+/g,' ')
-                .split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()).join(' ');
+      return String(str).replace(/[^A-Za-z .]/g,'').trim().replace(/\s+/g,' ')
+        .split(' ').filter(Boolean)
+        .map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()).join(' ');
     }
 
     /* ─── RENDER RESULTS ─────────────────────────────── */
     const fieldLabels = {
       name: 'Full Name', mobile: 'Mobile Number', email: 'Email Address',
       dob: 'Date of Birth', gender: 'Gender', pincode: 'PIN Code',
-      aadhaar: 'Aadhaar Number', pan: 'PAN Number', fatherName: "Father's Name",
-      address: 'Address', vehicleNo: 'Vehicle Number', vehicleMake: 'Vehicle Make',
-      vehicleModel: 'Vehicle Model', fuelType: 'Fuel Type', engineNo: 'Engine No.',
+      bloodGroup: 'Blood Group', address: 'Address',
+      fatherName: "Father's / Spouse Name",
+      aadhaar: 'Aadhaar Number', pan: 'PAN Number',
+      vehicleNo: 'Vehicle Registration No.', vehicleMake: 'Vehicle Make',
+      vehicleModel: 'Vehicle Model', fuelType: 'Fuel Type',
+      engineNo: 'Engine Number', chassisNo: 'Chassis Number',
       policyNo: 'Policy Number', sumAssured: 'Sum Assured / Cover',
       policyStart: 'Policy Start Date', policyExpiry: 'Policy Expiry Date',
       insurer: 'Insurance Company', insuranceType: 'Insurance Type',
       dlNo: 'Driving License No.', dlValidity: 'DL Valid Till',
+      vehicleClass: 'Authorised Vehicle Class',
       passportNo: 'Passport Number', nationality: 'Nationality',
       passportExpiry: 'Passport Expiry'
     };
@@ -1048,12 +1377,33 @@
       container.innerHTML = '';
 
       const keys = Object.keys(fields);
+
       if (keys.length === 0) {
-        container.innerHTML = '<p style="color:#64748B;text-align:center;padding:20px 0">No structured fields detected. Try a clearer image or select the correct document type.</p>';
-        document.getElementById('scanSuccessText').textContent = 'Scan complete — low confidence result. Please try a clearer photo.';
+        document.getElementById('scanSuccessText').textContent = 'Scan complete — no fields auto-detected. Please fill manually below or try a clearer photo.';
+        /* Show raw OCR text so user understands what was read */
+        container.innerHTML = `
+          <div style="background:#fef9c3;border:1px solid #fde047;border-radius:10px;padding:14px 16px;margin-bottom:16px;font-size:0.82rem;color:#713f12">
+            <strong><i class="fa fa-lightbulb"></i> Tip:</strong> For best results — hold camera directly above the document, ensure bright even lighting, and avoid shadows or glare.
+          </div>
+          <details style="margin-bottom:16px">
+            <summary style="cursor:pointer;font-size:0.82rem;font-weight:600;color:#475569;padding:8px 0">
+              <i class="fa fa-eye"></i> Show raw text OCR extracted (for debugging)
+            </summary>
+            <pre style="margin-top:8px;padding:12px;background:#f1f5f9;border-radius:8px;font-size:0.75rem;color:#334155;white-space:pre-wrap;max-height:200px;overflow-y:auto">${escHtml(rawText || '(no text extracted)')}</pre>
+          </details>`;
       } else {
         document.getElementById('scanSuccessText').textContent =
-          keys.length + ' field' + (keys.length !== 1 ? 's' : '') + ' extracted — review and edit below before filling the form.';
+          keys.length + ' field' + (keys.length !== 1 ? 's' : '') + ' extracted — review and edit below, then click Fill Form.';
+
+        /* Raw text collapsible */
+        const details = document.createElement('details');
+        details.style.cssText = 'margin-bottom:16px';
+        details.innerHTML = `
+          <summary style="cursor:pointer;font-size:0.8rem;font-weight:600;color:#64748b;padding:6px 0">
+            <i class="fa fa-code"></i> Show raw OCR text
+          </summary>
+          <pre style="margin-top:8px;padding:12px;background:#f1f5f9;border-radius:8px;font-size:0.72rem;color:#334155;white-space:pre-wrap;max-height:180px;overflow-y:auto">${escHtml(rawText)}</pre>`;
+        container.appendChild(details);
       }
 
       keys.forEach(key => {
@@ -1069,7 +1419,7 @@
         container.appendChild(div);
       });
 
-      // Always show mobile if not found
+      /* Always show mobile if not found */
       if (!fields.mobile) {
         const div = document.createElement('div');
         div.className = 'result-field';
@@ -1140,5 +1490,55 @@
     });
   })();
   </script>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src="policyraj.png" alt="PolicyRaj" class="footer-logo" loading="lazy" />
+        <p>Founded in 2004 by Sachin Kathuria. Your trusted insurance advisory partner for 22 years.</p>
+      </div>
+      <div class="footer-links">
+        <h5>Insurance</h5>
+        <ul>
+          <li><a href="health.html">Health Insurance</a></li>
+          <li><a href="life.html">Life Insurance</a></li>
+          <li><a href="motor.html">Motor Insurance</a></li>
+          <li><a href="travel.html">Travel Insurance</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h5>Tools</h5>
+        <ul>
+          <li><a href="compare.html">Compare Plans</a></li>
+          <li><a href="claims.html">Claims Guide</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="tel:9013976999">9013976999</a></li>
+          <li><a href="mailto:sachin@policyraj.com">sachin@policyraj.com</a></li>
+          <li><a href="https://wa.me/919013976999" target="_blank">WhatsApp</a></li>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-disclaimer">
+      <div class="container">
+        <p class="fd-title">Statutory Disclosure &amp; Disclaimer</p>
+        <p><strong>About PolicyRaj:</strong> PolicyRaj is an IRDAI-licensed insurance advisory platform and an authorised channel partner of the insurance companies listed on this website. All policies are issued solely by the respective IRDAI-regulated insurer.</p>
+        <p><strong>Advisory &amp; Risk Disclosure:</strong> All information on this platform is for general guidance only. Actual premiums are subject to the applicant's profile and insurer underwriting norms. Please read the complete policy document before making any insurance decision.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>© 2004–2026 PolicyRaj™. All rights reserved. | Founded by Sachin Kathuria | IRDAI Licensed Advisor</p>
+        <p>sachin@policyraj.com | <a href="privacy-policy.html" style="color:rgba(255,255,255,0.6)">Privacy Policy</a></p>
+      </div>
+    </div>
+  </footer>
+  <a href="https://wa.me/919013976999" target="_blank" class="whatsapp-float"><i class="fab fa-whatsapp"></i></a>
 </body>
 </html>

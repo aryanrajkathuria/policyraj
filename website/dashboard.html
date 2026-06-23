@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Dashboard – PolicyRaj</title>
+  <meta name="description" content="Manage your insurance policies, track claims, and download documents — all in one place." />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="dashboard.css" />
+</head>
+<body>
+
+<!-- ── TOP NAVBAR ── -->
+<header class="db-header">
+  <div class="db-header-left">
+    <button class="db-menu-btn" onclick="toggleSidebar()" aria-label="Toggle menu"><i class="fa fa-bars"></i></button>
+    <a href="index.html" class="db-logo">
+      <img src="policyraj.png" alt="PolicyRaj" />
+    </a>
+  </div>
+  <div class="db-header-right">
+    <a href="tel:9013976999" class="db-help-link"><i class="fa fa-headset"></i> Get Help</a>
+    <div class="db-avatar-wrap" onclick="toggleProfileMenu()">
+      <div class="db-avatar" id="dbAvatar">SK</div>
+      <div class="db-profile-menu" id="dbProfileMenu">
+        <div class="db-pm-name" id="dbPmName">Loading…</div>
+        <div class="db-pm-email" id="dbPmEmail"></div>
+        <hr class="db-pm-divider" />
+        <a href="#" class="db-pm-item"><i class="fa fa-user-edit"></i> Edit Profile</a>
+        <a href="#" class="db-pm-item" onclick="handleLogout(event)"><i class="fa fa-sign-out-alt"></i> Sign Out</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ── LAYOUT ── -->
+<div class="db-wrap">
+
+  <!-- SIDEBAR -->
+  <aside class="db-sidebar" id="dbSidebar">
+    <nav class="db-nav">
+      <button class="db-nav-item active" onclick="showTab('overview', this)">
+        <i class="fa fa-th-large"></i><span>Overview</span>
+      </button>
+      <button class="db-nav-item" onclick="showTab('policies', this)">
+        <i class="fa fa-shield-alt"></i><span>My Policies</span>
+      </button>
+      <button class="db-nav-item" onclick="showTab('claims', this)">
+        <i class="fa fa-file-medical-alt"></i><span>Claims</span>
+      </button>
+      <button class="db-nav-item" onclick="showTab('renewals', this)">
+        <i class="fa fa-calendar-alt"></i><span>Renewals</span>
+      </button>
+      <button class="db-nav-item" onclick="showTab('documents', this)">
+        <i class="fa fa-folder-open"></i><span>Documents</span>
+      </button>
+    </nav>
+
+    <div class="db-sidebar-bottom">
+      <a href="index.html" class="db-nav-item" style="text-decoration:none">
+        <i class="fa fa-home"></i><span>Back to Website</span>
+      </a>
+      <button class="db-nav-item db-signout-btn" onclick="handleLogout(event)">
+        <i class="fa fa-sign-out-alt"></i><span>Sign Out</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="db-main" id="dbMain">
+
+    <!-- ── OVERVIEW TAB ── -->
+    <div class="db-tab active" id="tab-overview">
+      <div class="db-page-header">
+        <div>
+          <h1 class="db-page-title">Good morning, <span id="greetName">there</span> 👋</h1>
+          <p class="db-page-sub">Here's a summary of your insurance portfolio</p>
+        </div>
+        <a href="index.html#contact" class="db-btn-primary"><i class="fa fa-plus"></i> Add Policy</a>
+      </div>
+
+      <!-- Stats -->
+      <div class="db-stats-grid">
+        <div class="db-stat-card db-stat-blue">
+          <div class="db-stat-icon"><i class="fa fa-shield-alt"></i></div>
+          <div class="db-stat-body"><div class="db-stat-num" id="statPolicies">—</div><div class="db-stat-label">Active Policies</div></div>
+        </div>
+        <div class="db-stat-card db-stat-orange">
+          <div class="db-stat-icon"><i class="fa fa-calendar-alt"></i></div>
+          <div class="db-stat-body"><div class="db-stat-num" id="statRenewals">—</div><div class="db-stat-label">Due for Renewal</div></div>
+        </div>
+        <div class="db-stat-card db-stat-red">
+          <div class="db-stat-icon"><i class="fa fa-file-medical-alt"></i></div>
+          <div class="db-stat-body"><div class="db-stat-num" id="statClaims">—</div><div class="db-stat-label">Open Claims</div></div>
+        </div>
+        <div class="db-stat-card db-stat-green">
+          <div class="db-stat-icon"><i class="fa fa-download"></i></div>
+          <div class="db-stat-body"><div class="db-stat-num" id="statDocs">—</div><div class="db-stat-label">Documents</div></div>
+        </div>
+      </div>
+
+      <!-- Quick actions -->
+      <h2 class="db-section-title">Quick Actions</h2>
+      <div class="db-quick-grid">
+        <button class="db-quick-card" onclick="showTab('policies', null)">
+          <i class="fa fa-shield-alt"></i>
+          <strong>View Policies</strong>
+          <span>See all your active covers</span>
+        </button>
+        <button class="db-quick-card" onclick="showTab('claims', null)">
+          <i class="fa fa-file-medical-alt"></i>
+          <strong>Track Claim</strong>
+          <span>Check your claim status</span>
+        </button>
+        <a href="https://wa.me/919013976999" target="_blank" class="db-quick-card">
+          <i class="fab fa-whatsapp" style="color:#22c55e"></i>
+          <strong>WhatsApp Sachin</strong>
+          <span>Get expert advice instantly</span>
+        </a>
+        <button class="db-quick-card" onclick="showTab('renewals', null)">
+          <i class="fa fa-bell"></i>
+          <strong>Renewal Reminders</strong>
+          <span>Never miss a due date</span>
+        </button>
+      </div>
+
+      <!-- Browse Website -->
+      <h2 class="db-section-title" style="margin-top:28px">Browse PolicyRaj</h2>
+      <div class="db-browse-grid">
+        <a href="health.html" class="db-browse-card"><i class="fa fa-heartbeat" style="color:#ef4444"></i><span>Health Insurance</span></a>
+        <a href="life.html"   class="db-browse-card"><i class="fa fa-heart"     style="color:#3b82f6"></i><span>Life Insurance</span></a>
+        <a href="motor.html"  class="db-browse-card"><i class="fa fa-car"       style="color:#f97316"></i><span>Motor Insurance</span></a>
+        <a href="index.html#insurance" class="db-browse-card"><i class="fa fa-th-large" style="color:#8b5cf6"></i><span>All Products</span></a>
+        <a href="blog.html"   class="db-browse-card"><i class="fa fa-rss"       style="color:#10b981"></i><span>Blog & Tips</span></a>
+        <a href="index.html#contact" class="db-browse-card"><i class="fa fa-envelope"  style="color:#f59e0b"></i><span>Contact Us</span></a>
+      </div>
+
+      <!-- Advisor card -->
+      <div class="db-advisor-card">
+        <div class="db-advisor-avatar"><i class="fa fa-user-tie"></i></div>
+        <div class="db-advisor-body">
+          <div class="db-advisor-label">Your Dedicated Advisor</div>
+          <div class="db-advisor-name">Sachin Kathuria</div>
+          <div class="db-advisor-sub">IRDAI Licensed · 22 Years Experience · Est. 2004</div>
+        </div>
+        <div class="db-advisor-actions">
+          <a href="tel:9013976999" class="db-btn-outline"><i class="fa fa-phone"></i> Call</a>
+          <a href="https://wa.me/919013976999" target="_blank" class="db-btn-outline db-btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── POLICIES TAB ── -->
+    <div class="db-tab" id="tab-policies">
+      <div class="db-page-header">
+        <div>
+          <h1 class="db-page-title">My Policies</h1>
+          <p class="db-page-sub">All your active insurance covers</p>
+        </div>
+        <a href="index.html#insurance" class="db-btn-primary"><i class="fa fa-plus"></i> Get New Policy</a>
+      </div>
+      <div class="db-empty-state" id="policiesEmpty">
+        <div class="db-empty-icon"><i class="fa fa-shield-alt"></i></div>
+        <h3>No policies added yet</h3>
+        <p>Contact Sachin to add your existing policies or get a new one</p>
+        <a href="https://wa.me/919013976999?text=Hi+Sachin%2C+I+want+to+add+my+policies+to+PolicyRaj+dashboard" target="_blank" class="db-btn-primary" style="display:inline-flex;margin-top:8px"><i class="fab fa-whatsapp"></i> Contact Sachin</a>
+      </div>
+      <div class="db-policies-grid" id="policiesGrid"></div>
+    </div>
+
+    <!-- ── CLAIMS TAB ── -->
+    <div class="db-tab" id="tab-claims">
+      <div class="db-page-header">
+        <div>
+          <h1 class="db-page-title">Claims</h1>
+          <p class="db-page-sub">Track the status of your insurance claims</p>
+        </div>
+        <a href="https://wa.me/919013976999?text=Hi+Sachin%2C+I+need+help+filing+a+claim" target="_blank" class="db-btn-primary"><i class="fa fa-plus"></i> File New Claim</a>
+      </div>
+      <div class="db-empty-state">
+        <div class="db-empty-icon"><i class="fa fa-file-medical-alt"></i></div>
+        <h3>No claims found</h3>
+        <p>When you file a claim, it will appear here with real-time status updates</p>
+        <a href="https://wa.me/919013976999?text=Hi+Sachin%2C+I+need+to+file+a+claim" target="_blank" class="db-btn-primary" style="display:inline-flex;margin-top:8px"><i class="fab fa-whatsapp"></i> File a Claim</a>
+      </div>
+    </div>
+
+    <!-- ── RENEWALS TAB ── -->
+    <div class="db-tab" id="tab-renewals">
+      <div class="db-page-header">
+        <div>
+          <h1 class="db-page-title">Renewals</h1>
+          <p class="db-page-sub">Never miss a premium due date</p>
+        </div>
+      </div>
+      <div class="db-empty-state">
+        <div class="db-empty-icon"><i class="fa fa-calendar-alt"></i></div>
+        <h3>No upcoming renewals</h3>
+        <p>Your renewal reminders will appear here 60 days before your policy expires</p>
+        <a href="https://wa.me/919013976999?text=Hi+Sachin%2C+can+you+check+my+renewal+dates" target="_blank" class="db-btn-primary" style="display:inline-flex;margin-top:8px"><i class="fab fa-whatsapp"></i> Ask Sachin</a>
+      </div>
+    </div>
+
+    <!-- ── DOCUMENTS TAB ── -->
+    <div class="db-tab" id="tab-documents">
+      <div class="db-page-header">
+        <div>
+          <h1 class="db-page-title">Documents</h1>
+          <p class="db-page-sub">Download policy certificates, receipts & more</p>
+        </div>
+      </div>
+      <div class="db-empty-state">
+        <div class="db-empty-icon"><i class="fa fa-folder-open"></i></div>
+        <h3>No documents uploaded yet</h3>
+        <p>Your policy documents and payment receipts will be stored here securely</p>
+        <a href="https://wa.me/919013976999?text=Hi+Sachin%2C+can+you+upload+my+policy+documents" target="_blank" class="db-btn-primary" style="display:inline-flex;margin-top:8px"><i class="fab fa-whatsapp"></i> Request Documents</a>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- Profile menu overlay -->
+<div class="db-overlay" id="dbOverlay" onclick="closeMenus()"></div>
+
+<script>
+  // Load user session directly from localStorage — no module needed
+  (function () {
+    const token   = localStorage.getItem('pr_id_token');
+    const session = JSON.parse(localStorage.getItem('pr_dev_session') || 'null');
+
+    if (!token || !session) {
+      window.location.href = 'login.html';
+      return;
+    }
+
+    const name     = session.name || session.email || 'User';
+    const firstName = name.split(' ')[0];
+    const initials  = name.split(' ').map(p => p[0]).join('').slice(0, 2).toUpperCase();
+
+    // DOM is already ready (script is at bottom of body)
+    document.getElementById('greetName').textContent  = firstName;
+    document.getElementById('dbAvatar').textContent   = initials;
+    document.getElementById('dbPmName').textContent   = name;
+    document.getElementById('dbPmEmail').textContent  = session.email || '';
+    document.getElementById('statPolicies').textContent = '0';
+    document.getElementById('statRenewals').textContent = '0';
+    document.getElementById('statClaims').textContent   = '0';
+    document.getElementById('statDocs').textContent     = '0';
+
+    window.handleLogout = function (e) {
+      if (e) e.preventDefault();
+      localStorage.removeItem('pr_id_token');
+      localStorage.removeItem('pr_dev_session');
+      window.location.href = 'index.html';
+    };
+  })();
+</script>
+
+<script>
+  // Tab switching
+  window.showTab = (tabId, btn) => {
+    document.querySelectorAll('.db-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('tab-' + tabId).classList.add('active');
+    if (btn) {
+      document.querySelectorAll('.db-nav-item').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+    // Close sidebar on mobile
+    if (window.innerWidth < 900) {
+      document.getElementById('dbSidebar').classList.remove('open');
+      document.getElementById('dbOverlay').classList.remove('show');
+    }
+  };
+
+  // Sidebar toggle (mobile)
+  window.toggleSidebar = () => {
+    const sidebar = document.getElementById('dbSidebar');
+    const overlay = document.getElementById('dbOverlay');
+    sidebar.classList.toggle('open');
+    overlay.classList.toggle('show');
+  };
+
+  // Profile menu
+  window.toggleProfileMenu = () => {
+    document.getElementById('dbProfileMenu').classList.toggle('show');
+  };
+
+  window.closeMenus = () => {
+    document.getElementById('dbProfileMenu').classList.remove('show');
+    document.getElementById('dbSidebar').classList.remove('open');
+    document.getElementById('dbOverlay').classList.remove('show');
+  };
+
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.db-avatar-wrap')) {
+      document.getElementById('dbProfileMenu').classList.remove('show');
+    }
+  });
+</script>
+
+</body>
+</html>
