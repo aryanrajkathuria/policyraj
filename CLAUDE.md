@@ -118,13 +118,13 @@ border-radius: 12px;
 /* Gradients */
 --gradient: linear-gradient(135deg, #1E3A8A 0%, #4338ca 100%)
 --gradient-gold: linear-gradient(135deg, #92400E 0%, #B45309 40%, #F59E0B 100%)
---gradient-hero: linear-gradient(135deg, #060d24 0%, #0f2460 55%, #1a3c8f 100%)
+--gradient-hero: linear-gradient(150deg, #05070f 0%, #0c1c4e 55%, #16357f 100%)
 --gradient-soft: linear-gradient(135deg, #eef2ff 0%, #e8efff 100%)
 
 /* Neutrals */
 --white: #ffffff
---off-white: #F8FAFC
---gray-light: #f1f4f9
+--off-white: #fbfbfd
+--gray-light: #f5f5f7
 --gray: #8896a5
 --gray-dark: #3d4f65
 --text: #0F172A
@@ -132,8 +132,8 @@ border-radius: 12px;
 --border: #dde3ee
 
 /* Effects */
---shadow: 0 4px 24px rgba(26,60,143,0.10)
---shadow-hover: 0 12px 40px rgba(26,60,143,0.22)
+--shadow: 0 1px 2px rgba(15,23,42,0.05), 0 8px 28px rgba(26,60,143,0.09)
+--shadow-hover: 0 2px 8px rgba(15,23,42,0.06), 0 24px 56px rgba(26,60,143,0.18)
 --shadow-gold: 0 8px 32px rgba(180,83,9,0.35)
 --radius: 12px
 --radius-lg: 20px

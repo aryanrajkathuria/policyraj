@@ -11,18 +11,18 @@
   --cta-gold-light: #D97706;
   --gradient: linear-gradient(135deg, #1E3A8A 0%, #4338ca 100%);
   --gradient-gold: linear-gradient(135deg, #92400E 0%, #B45309 40%, #F59E0B 100%);
-  --gradient-hero: linear-gradient(135deg, #060d24 0%, #0f2460 55%, #1a3c8f 100%);
+  --gradient-hero: linear-gradient(150deg, #05070f 0%, #0c1c4e 55%, #16357f 100%);
   --gradient-soft: linear-gradient(135deg, #eef2ff 0%, #e8efff 100%);
   --white: #ffffff;
-  --off-white: #F8FAFC;
-  --gray-light: #f1f4f9;
+  --off-white: #fbfbfd;
+  --gray-light: #f5f5f7;
   --gray: #8896a5;
   --gray-dark: #3d4f65;
   --text: #0F172A;
   --text-light: #475569;
   --border: #dde3ee;
-  --shadow: 0 4px 24px rgba(26, 60, 143, 0.10);
-  --shadow-hover: 0 12px 40px rgba(26, 60, 143, 0.22);
+  --shadow: 0 1px 2px rgba(15, 23, 42, 0.05), 0 8px 28px rgba(26, 60, 143, 0.09);
+  --shadow-hover: 0 2px 8px rgba(15, 23, 42, 0.06), 0 24px 56px rgba(26, 60, 143, 0.18);
   --shadow-gold: 0 8px 32px rgba(180, 83, 9, 0.35);
   --radius: 12px;
   --radius-lg: 20px;
@@ -1177,6 +1177,7 @@ h4 { font-size: 1.1rem; font-weight: 600; }
   background: rgba(26,60,143,0.16);
   color: var(--primary);
 }
+.result-box {
   display: grid;
   gap: 14px;
   margin-top: 24px;
@@ -4917,3 +4918,35 @@ h3 { letter-spacing: -0.01em; }
 
 /* ── One CTA color — topbar button joins the gold system (was alarm red) ── */
 .btn-top { background: var(--gradient-gold); }
+
+/* ═══════════════════════════════════════════════
+   APPLE-CLEAN LIGHT THEME — depth & air
+   Near-white ground, near-black feature sections,
+   layered shadows, generous section rhythm.
+   ═══════════════════════════════════════════════ */
+
+/* ── Air: generous vertical rhythm on all main sections ── */
+section[class*="-section"] {
+  padding-top: clamp(64px, 8vw, 112px);
+  padding-bottom: clamp(64px, 8vw, 112px);
+}
+.lp-stats-section { padding-top: 36px; padding-bottom: 36px; }
+.section-header { margin-bottom: 56px; }
+
+/* ── Feature sections go near-black with a soft blue glow ── */
+.insurance-details-section,
+.testimonials-section {
+  background:
+    radial-gradient(1100px 520px at 85% -10%, rgba(58, 98, 214, 0.30), transparent 62%),
+    linear-gradient(160deg, #05070f 0%, #0a142e 62%, #12255e 100%);
+}
+
+/* ── Card depth — lift with layered shadow (tilt takes over where loaded) ── */
+.service-card, .why-card, .aq-card, .clc-logo, .sp-cover-card, .blog-card {
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+}
+.service-card:hover, .why-card:hover, .aq-card:hover,
+.clc-logo:hover, .sp-cover-card:hover, .blog-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+}
