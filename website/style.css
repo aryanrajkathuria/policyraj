@@ -4847,3 +4847,73 @@ html, body { overflow-x: hidden; max-width: 100%; }
   .lp-header-inner .logo-img { height: 34px; }
   .lp-header-ctas .btn-primary { padding: 9px 16px; font-size: 0.82rem; }
 }
+
+/* ═══════════════════════════════════════════════
+   DESIGN SYSTEM 2.0 — PROFESSIONAL POLISH LAYER
+   Top-brand typography, focus states & refinements.
+   Uses existing tokens only; overrides via cascade.
+   ═══════════════════════════════════════════════ */
+
+/* ── Type rendering ── */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* ── Display type scale — tighter tracking, balanced wrapping ── */
+h1 {
+  font-size: clamp(2.3rem, 5.2vw, 3.9rem);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+h2 {
+  font-size: clamp(1.65rem, 3.5vw, 2.5rem);
+  letter-spacing: -0.02em;
+  line-height: 1.14;
+  text-wrap: balance;
+}
+h3 { letter-spacing: -0.01em; }
+.hero-text p, .section-subtitle, .section-header p { font-size: 1.06rem; line-height: 1.75; }
+.section-header p { max-width: 620px; margin-left: auto; margin-right: auto; }
+
+/* ── Eyebrow — refined bronze micro-label (was alarm red) ── */
+.section-eyebrow {
+  color: var(--cta-gold);
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  font-weight: 700;
+}
+
+/* ── Text selection ── */
+::selection { background: var(--primary); color: #fff; }
+
+/* ── Visible keyboard focus (WCAG 2.4.7) ── */
+:focus-visible {
+  outline: 3px solid rgba(30, 58, 138, 0.5);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+.btn-primary:focus-visible, .btn-outline:focus-visible {
+  outline: 3px solid rgba(180, 83, 9, 0.55);
+  outline-offset: 3px;
+}
+
+/* ── Numerals — stats align like a ledger ── */
+.stat strong, .trust-text strong, .calculator-result strong,
+.lp-stats-grid strong { font-variant-numeric: tabular-nums; }
+
+/* ── Glass navbar — premium sticky treatment ── */
+.navbar {
+  background: rgba(255, 255, 255, 0.88);
+  -webkit-backdrop-filter: saturate(180%) blur(14px);
+  backdrop-filter: saturate(180%) blur(14px);
+}
+
+/* ── Buttons — micro-refinements ── */
+.btn-primary, .btn-outline { letter-spacing: 0.01em; touch-action: manipulation; }
+
+/* ── One CTA color — topbar button joins the gold system (was alarm red) ── */
+.btn-top { background: var(--gradient-gold); }

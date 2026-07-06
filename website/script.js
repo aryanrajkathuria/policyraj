@@ -615,7 +615,7 @@ function initVanillaTilt() {
 function initCounters() {
   const stats = document.querySelectorAll('.hero-stats .stat strong');
   const cfg = [
-    { target: 20,   suffix: '+',  decimals: 0 },
+    { target: 22,   suffix: '+',  decimals: 0 },
     { target: 5000, suffix: '+',  decimals: 0 },
     { target: 5.0,  suffix: ' ★', decimals: 1 },
     { target: 173,  suffix: '+',  decimals: 0 },
