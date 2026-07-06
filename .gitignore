@@ -8,3 +8,7 @@ yarn-debug.log*
 yarn-error.log*
 coverage/
 aws/ecs-task-def-generated.json
+
+# Debug screenshots from local testing (root-level PNGs are never site assets)
+/*.png
+website/ss-*.png

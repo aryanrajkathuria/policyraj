@@ -489,6 +489,44 @@ function calculateMacro(e) {
   document.getElementById('macFat').textContent = `${fat} g`;
 }
 
+function calculateLoanEmi(e) {
+  e.preventDefault();
+  const P = Number(document.getElementById('loanCalcAmount').value);
+  const annualRate = Number(document.getElementById('loanCalcRate').value);
+  const years = Number(document.getElementById('loanCalcTenure').value);
+  if (!P || !annualRate || !years) return;
+  const r = annualRate / 12 / 100;
+  const n = years * 12;
+  const emi = (P * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+  const total = emi * n;
+  const interest = total - P;
+  const fmt = v => '₹' + Math.round(v).toLocaleString('en-IN');
+  document.getElementById('loanEmiResult').textContent = fmt(emi);
+  document.getElementById('loanTotal').textContent = fmt(total);
+  document.getElementById('loanInterest').textContent = fmt(interest);
+}
+
+function calculateStudentLoan(e) {
+  e.preventDefault();
+  const P = Number(document.getElementById('studLoanAmount').value);
+  const annualRate = Number(document.getElementById('studLoanRate').value);
+  const moratoriumYears = Number(document.getElementById('studMoratorium').value);
+  const repayYears = Number(document.getElementById('studRepayment').value);
+  if (!P || !annualRate || !repayYears) return;
+  const r = annualRate / 12 / 100;
+  const moratoriumMonths = Math.round(moratoriumYears * 12);
+  // Interest accrues during moratorium (simple interest on outstanding)
+  const balanceAfter = P * Math.pow(1 + r, moratoriumMonths);
+  const n = repayYears * 12;
+  const emi = (balanceAfter * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+  const totalPaid = emi * n;
+  const totalInterest = (balanceAfter - P) + (totalPaid - balanceAfter);
+  const fmt = v => '₹' + Math.round(v).toLocaleString('en-IN');
+  document.getElementById('studEmiResult').textContent = fmt(emi);
+  document.getElementById('studBalance').textContent = fmt(balanceAfter);
+  document.getElementById('studInterest').textContent = fmt(totalInterest);
+}
+
 /* ── Active nav link on scroll ── */
 const sections = document.querySelectorAll('section[id]');
 const navLinksAll = document.querySelectorAll('.nav-links a');

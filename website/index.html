@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
+<!-- Designed & Developed by Aryan Raj Kathuria | github.com/aryanrajkathuria -->
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -107,6 +108,7 @@
         <li class="nav-dropdown">
           <a href="#about" class="nav-dropdown-trigger">About Us <i class="fa fa-chevron-down nav-chevron"></i></a>
           <ul class="nav-dropdown-menu">
+            <li><a href="landing.html"><i class="fa fa-award"></i> Why PolicyRaj</a></li>
             <li><a href="#about"><i class="fa fa-star"></i> Our Story</a></li>
             <li><a href="#about"><i class="fa fa-user-tie"></i> Meet Our Advisor</a></li>
             <li><a href="#about"><i class="fa fa-certificate"></i> IRDAI License</a></li>
@@ -119,14 +121,13 @@
           <ul class="nav-dropdown-menu">
             <li><a href="tel:9013976999"><i class="fa fa-phone"></i> Call Sachin</a></li>
             <li><a href="https://wa.me/919013976999" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
-            <li><a href="mailto:sachin@policyraj.in"><i class="fa fa-envelope"></i> Email Us</a></li>
+            <li><a href="mailto:sachin@policyraj.com"><i class="fa fa-envelope"></i> Email Us</a></li>
             <li><a href="#contact"><i class="fa fa-calendar-check"></i> Book Appointment</a></li>
           </ul>
         </li>
       </ul>
       <div class="nav-cta">
         <a href="tel:9013976999" class="btn-nav-call"><i class="fa fa-phone"></i> Call Now</a>
-        <a href="login.html" class="btn-nav-login" id="navAuthBtn"><i class="fa fa-user"></i> Login</a>
         <button class="btn-nav-quote" onclick="openModal()">Get Free Quote</button>
       </div>
       <button class="hamburger" id="hamburger" onclick="toggleMenu()">
@@ -145,14 +146,14 @@
       <div class="hero-text">
         <span class="hero-badge"><i class="fab fa-google" style="color:#93c5fd"></i> &nbsp;5.0★ Rated on Google &nbsp;·&nbsp; 173 Reviews &nbsp;·&nbsp; Est. 2004</span>
         <h1>Protect What<br /><span class="gradient-text">Matters Most</span><br />to You</h1>
-        <p>PolicyRaj is a professional insurance advisory platform and authorised channel partner of India's leading IRDAI-regulated insurers — helping individuals, families, and businesses find the right coverage with unbiased expert guidance.</p>
+        <p><strong>PolicyRaj&#8482;</strong> is the personal advisory brand of <strong>Sachin Kathuria</strong>, an IRDAI-licensed individual insurance advisor with 22+ years of experience — helping families, businesses, and NRIs find the right coverage with completely unbiased expert guidance.</p>
         <div class="hero-btns">
           <button class="btn-primary" onclick="openModal()">Get Free Quote</button>
           <a href="#services" class="btn-outline">Explore Plans</a>
         </div>
         <div class="hero-stats">
           <div class="stat"><strong>20+</strong><span>Years Experience</span></div>
-          <div class="stat"><strong>5000+</strong><span>Happy Clients</span></div>
+          <div class="stat"><strong>5000+</strong><span>Families Served</span></div>
           <div class="stat"><strong>5.0 ★</strong><span>Google Rating</span></div>
           <div class="stat"><strong>173+</strong><span>Google Reviews</span></div>
         </div>
@@ -315,7 +316,7 @@
           <p>Get a personalized insurance quote in under 2 minutes. Sachin Kathuria will respond as soon as possible with the best options tailored for you.</p>
           <div class="aif-features-list">
             <span><i class="fa fa-check-circle"></i> 2-Hour Callback</span>
-            <span><i class="fa fa-check-circle"></i> 100% Free Consultation</span>
+            <span><i class="fa fa-check-circle"></i> Complimentary Consultation</span>
             <span><i class="fa fa-check-circle"></i> IRDAI-Licensed Advice</span>
           </div>
           <div class="aif-cta aif-cta-green">
@@ -910,6 +911,11 @@
             <button class="calc-item" onclick="selectCalculator('compound')"><i class="fa fa-percent"></i><span>Compound Interest</span></button>
           </div>
           <div class="calc-category">
+            <div class="calc-category-title"><i class="fa fa-hand-holding-usd"></i> Loans</div>
+            <button class="calc-item" onclick="selectCalculator('loanEmi')"><i class="fa fa-rupee-sign"></i><span>Loan EMI</span></button>
+            <button class="calc-item" onclick="selectCalculator('studentLoan')"><i class="fa fa-graduation-cap"></i><span>Student Loan</span></button>
+          </div>
+          <div class="calc-category">
             <div class="calc-category-title"><i class="fa fa-heartbeat"></i> Health & Wellness</div>
             <button class="calc-item" onclick="selectCalculator('bmi')"><i class="fa fa-weight"></i><span>BMI Calculator</span></button>
             <button class="calc-item" onclick="selectCalculator('idealWeight')"><i class="fa fa-balance-scale"></i><span>Ideal Weight</span></button>
@@ -1233,6 +1239,60 @@
               <div><span>Days Remaining</span><strong id="ddDays">0</strong></div>
             </div>
           </div>
+          <div class="calc-panel" id="calc-loanEmi">
+            <h3><i class="fa fa-rupee-sign" style="color:var(--primary);margin-right:8px;"></i>Loan EMI Calculator</h3>
+            <p>Calculate your monthly EMI for any loan — home, car, personal, or business.</p>
+            <form class="calculator-form" onsubmit="calculateLoanEmi(event)">
+              <div class="form-group">
+                <label for="loanCalcAmount">Loan Amount (₹)</label>
+                <input id="loanCalcAmount" type="number" min="1000" step="1000" placeholder="e.g. 500000" required />
+              </div>
+              <div class="form-group">
+                <label for="loanCalcRate">Annual Interest Rate (%)</label>
+                <input id="loanCalcRate" type="number" min="0.1" step="0.1" placeholder="e.g. 10.5" required />
+              </div>
+              <div class="form-group">
+                <label for="loanCalcTenure">Loan Tenure (years)</label>
+                <input id="loanCalcTenure" type="number" min="1" max="30" step="1" placeholder="e.g. 5" required />
+              </div>
+              <button class="btn-primary" type="submit">Calculate EMI</button>
+            </form>
+            <div class="result-box">
+              <div><span>Monthly EMI</span><strong id="loanEmiResult">₹0</strong></div>
+              <div><span>Total Payable</span><strong id="loanTotal">₹0</strong></div>
+              <div><span>Total Interest</span><strong id="loanInterest">₹0</strong></div>
+            </div>
+          </div>
+
+          <div class="calc-panel" id="calc-studentLoan">
+            <h3><i class="fa fa-graduation-cap" style="color:var(--primary);margin-right:8px;"></i>Student Loan Calculator</h3>
+            <p>Plan your education loan repayment including moratorium period during your course.</p>
+            <form class="calculator-form" onsubmit="calculateStudentLoan(event)">
+              <div class="form-group">
+                <label for="studLoanAmount">Total Education Loan (₹)</label>
+                <input id="studLoanAmount" type="number" min="10000" step="5000" placeholder="e.g. 1000000" required />
+              </div>
+              <div class="form-group">
+                <label for="studLoanRate">Annual Interest Rate (%)</label>
+                <input id="studLoanRate" type="number" min="0.1" step="0.1" placeholder="e.g. 8.5" required />
+              </div>
+              <div class="form-group">
+                <label for="studMoratorium">Moratorium Period (years)</label>
+                <input id="studMoratorium" type="number" min="0" max="10" step="0.5" placeholder="Course duration + 6 months, e.g. 4" required />
+              </div>
+              <div class="form-group">
+                <label for="studRepayment">Repayment Tenure (years)</label>
+                <input id="studRepayment" type="number" min="1" max="15" step="1" placeholder="e.g. 7" required />
+              </div>
+              <button class="btn-primary" type="submit">Calculate</button>
+            </form>
+            <div class="result-box">
+              <div><span>Monthly EMI</span><strong id="studEmiResult">₹0</strong></div>
+              <div><span>Balance After Moratorium</span><strong id="studBalance">₹0</strong></div>
+              <div><span>Total Interest Paid</span><strong id="studInterest">₹0</strong></div>
+            </div>
+          </div>
+
           <div class="calc-panel" id="calc-macro">
             <h3>Macro Calculator</h3>
             <p>Plan your daily macronutrient distribution.</p>
@@ -1421,7 +1481,7 @@
       <div class="about-text">
         <span class="section-eyebrow">About PolicyRaj</span>
         <h2>Sachin Kathuria – <span class="gradient-text">Founder, PolicyRaj</span></h2>
-        <p>PolicyRaj was founded in <strong>2004 by Sachin Kathuria</strong>, an IRDAI-licensed insurance advisor with over 22 years of industry experience. What began as a personal advisory practice has grown into a registered insurance advisory platform and authorised channel partner of India's leading IRDAI-regulated insurance companies — offering clients a single destination to explore, compare, and understand insurance products across health, life, motor, travel, home, and business categories. The <strong>PolicyRaj trademark was formally registered in 2015</strong>, marking the brand's commitment to long-term, professional service.</p>
+        <p><strong>PolicyRaj&#8482;</strong> is a registered trademark of <strong>Sachin Kathuria</strong> (TM registered 2015), an IRDAI-licensed individual insurance advisor with 22+ years of experience. PolicyRaj is not a company or insurance provider — it is the personal advisory brand under which Sachin Kathuria operates as an independent, IRDAI-licensed advisor and authorised channel partner of India's leading IRDAI-regulated insurance companies. All policies are issued solely by the respective insurer. PolicyRaj facilitates expert, unbiased advisory for individuals, families, NRIs, and businesses across health, life, motor, travel, home, and business insurance.</p>
         <p>Our advisory approach is built on transparency and personalisation — we assess each client's requirements, present suitable options from our channel partner insurers, assist with documentation, and provide continued support through claims and renewals. Sachin's specialised expertise in health insurance enables PolicyRaj to offer particularly in-depth guidance in this domain.</p>
         <p>Over the course of his distinguished career, Sachin Kathuria has earned <strong>international recognition as one of India's most accomplished insurance professionals</strong>. He has been conferred prestigious awards across <strong>more than 20 countries</strong> — acknowledged at global insurance forums, international industry conclaves, and cross-border advisory summits for his outstanding contribution to client welfare, ethical advisory practice, and financial literacy. These global accolades are a testament to a career built not merely on numbers, but on trust — placing PolicyRaj among a rare class of advisory firms whose credibility extends well beyond Indian borders.</p>
         <div class="intl-awards-strip">
@@ -1995,15 +2055,21 @@
                 <div class="footer-disclaimer">
       <div class="container">
         <p class="fd-title">Statutory Disclosure &amp; Disclaimer</p>
-        <p><strong>About PolicyRaj:</strong> PolicyRaj is an IRDAI-licensed insurance advisory platform and an authorised channel partner of the insurance companies listed on this website. We facilitate access to insurance products on behalf of our partner insurers and do not underwrite, issue, or guarantee any insurance policy. All policies are issued solely by the respective IRDAI-regulated insurer. All insurance companies featured on this platform are independently licensed and regulated by the Insurance Regulatory and Development Authority of India (IRDAI).</p>
+        <p><strong>About PolicyRaj:</strong> PolicyRaj&#8482; is a registered trademark of <strong>Sachin Kathuria</strong>, an IRDAI-licensed individual insurance advisor (License available on request). PolicyRaj is not an insurance company and does not underwrite, issue, or guarantee any insurance policy. All advisory services are provided solely by Sachin Kathuria in his individual capacity as an IRDAI-licensed advisor. All policies are issued by the respective IRDAI-regulated insurance companies. PolicyRaj facilitates access and advisory — it is not a corporate entity, insurer, or broker.</p>
         <p><strong>Advisory &amp; Risk Disclosure:</strong> All information, premium figures, benefit illustrations, and coverage details on this platform are for general guidance only and are indicative in nature. Actual premiums are subject to the applicant&apos;s age, health status, risk profile, sum insured, and the underwriting norms of the relevant insurer at the time of issuance. For market-linked products such as ULIPs and equity-linked plans, returns are subject to market risk and are not guaranteed — past performance is not indicative of future results. Clients are advised to read the complete policy document, including terms, conditions, exclusions, and waiting periods, before making any insurance decision. PolicyRaj does not provide tax or legal advice; please consult a qualified professional for personalised guidance.</p>
       </div>
     </div>
     <div class="footer-bottom">
       <div class="container">
-        <p>© 2004–2026 PolicyRaj™. All rights reserved. | Founded by Sachin Kathuria | IRDAI Licensed Advisor</p>
+        <p>© 2004–2026 <strong>PolicyRaj&#8482;</strong> — A registered trademark of <strong>Sachin Kathuria</strong>, IRDAI-Licensed Individual Insurance Advisor. All rights reserved.</p>
+        <p>PolicyRaj is not an insurance company. It does not underwrite or issue policies. All policies are issued by IRDAI-regulated insurers.</p>
         <p>policyraj.in | sachin@policyraj.com | <a href="privacy-policy.html" style="color:rgba(255,255,255,0.6)">Privacy Policy</a></p>
         <p><a href="https://wa.me/919013976999?text=Hello%20Sachin%2C%20I%20would%20like%20to%20request%20your%20IRDAI%20Licence%20Number%20for%20verification." target="_blank" class="footer-irdai-link"><i class="fa fa-certificate"></i> IRDAI Licence Number available on request</a></p>
+        <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;">
+          <span style="font-size:0.82rem;color:rgba(255,255,255,0.55);letter-spacing:0.03em;">Designed &amp; Developed by</span>
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=aryanrajkathuria@gmail.com&su=Enquiry%20from%20PolicyRaj%20Website" target="_blank" style="font-size:0.88rem;font-weight:700;color:#fff;text-decoration:none;font-family:'Poppins',sans-serif;letter-spacing:0.02em;">Aryan Raj Kathuria</a>
+          <a href="https://github.com/aryanrajkathuria" target="_blank" style="display:inline-flex;align-items:center;gap:6px;font-size:0.8rem;color:rgba(255,255,255,0.6);text-decoration:none;border:1px solid rgba(255,255,255,0.2);padding:4px 12px;border-radius:20px;transition:0.2s ease;" onmouseover="this.style.borderColor='rgba(255,255,255,0.5)';this.style.color='#fff'" onmouseout="this.style.borderColor='rgba(255,255,255,0.2)';this.style.color='rgba(255,255,255,0.6)'"><i class="fab fa-github"></i> GitHub</a>
+        </div>
       </div>
     </div>
   </footer>
@@ -2110,7 +2176,6 @@
   <script src="js/quote-api.js"></script>
   <script src="script.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
-  <script src="js/auth-nav.js"></script>
   <script src="chatbot.js"></script>
 
   <!-- AI AUTOFILL: pick up data stored by ai-scan.html -->
@@ -2170,3 +2235,5 @@
   </script>
 </body>
 </html>
+
+

@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
+<!-- Designed & Developed by Aryan Raj Kathuria | github.com/aryanrajkathuria -->
 <html lang="en">
 <head>
   <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -44,7 +45,7 @@
       <h1>Your Complete Guide to<br /><span class="gradient-text">Child Plans</span></h1>
       <p class="sp-hero-desc">Engineering will cost ₹15–40 lakh by 2035. An MBA could cross ₹50 lakh. A child plan ensures your child never has to compromise on their dreams — no matter what happens to you.</p>
       <div class="hero-btns">
-        <button class="btn-primary" onclick="openModal()"><i class="fa fa-child"></i> Get Free Advice</button>
+        <button class="btn-primary" onclick="openModal()"><i class="fa fa-child"></i> Get Expert Advice</button>
         <a href="tel:9013976999" class="btn-outline" style="color:#fff;border-color:rgba(255,255,255,0.45)"><i class="fa fa-phone"></i> Call Now</a>
       </div>
       <div class="sp-stat-row">
@@ -137,16 +138,16 @@
       <div>
         <p class="expert-quote">The biggest mistake parents make is waiting. I've met parents who said "I'll start a child plan when my child is 10." By then, they've lost 10 years of compounding. If you start a child plan when your child is born, ₹3,000–5,000 per month is enough to build a ₹1 crore+ corpus by age 18. Wait till the child is 10, and you need ₹12,000–15,000 per month for the same target. The second biggest mistake: not adding the Premium Waiver benefit. This is the most important rider in a child plan — without it, if something happens to you, the policy lapses and your child gets nothing. Always add this rider.</p>
         <div class="expert-name">— Sachin Kathuria, IRDAI Licensed Insurance Advisor</div>
-        <div class="expert-role">20+ Years Experience | 5,000+ Happy Clients | 5.0★ Google Rating</div>
+        <div class="expert-role">20+ Years Experience | 5,000+ Families Served | 5.0★ Google Rating</div>
       </div>
     </div>
   </div></section>
 
   <section class="sp-cta-banner"><div class="container">
     <h2>Secure Your Child's Future Today</h2>
-    <p>Get a personalized child plan recommendation based on your child's age, your budget, and your goals. Free consultation — no obligation.</p>
+    <p>Get a personalized child plan recommendation based on your child's age, your budget, and your goals. Complimentary consultation — at your complete convenience.</p>
     <div class="sp-cta-btns">
-      <button class="btn-white" onclick="openModal()"><i class="fa fa-child"></i> Get Free Advice</button>
+      <button class="btn-white" onclick="openModal()"><i class="fa fa-child"></i> Get Expert Advice</button>
       <a href="tel:9013976999" class="btn-outline-white"><i class="fa fa-phone"></i> Call 9013976999</a>
       <a href="https://wa.me/919013976999" target="_blank" class="btn-outline-white"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
     </div>
@@ -168,7 +169,7 @@
   </div>                <div class="footer-disclaimer">
       <div class="container">
         <p class="fd-title">Statutory Disclosure &amp; Disclaimer</p>
-        <p><strong>About PolicyRaj:</strong> PolicyRaj is an IRDAI-licensed insurance advisory platform and an authorised channel partner of the insurance companies listed on this website. We facilitate access to insurance products on behalf of our partner insurers and do not underwrite, issue, or guarantee any insurance policy. All policies are issued solely by the respective IRDAI-regulated insurer. All insurance companies featured on this platform are independently licensed and regulated by the Insurance Regulatory and Development Authority of India (IRDAI).</p>
+        <p><strong>About PolicyRaj:</strong> PolicyRaj&#8482; is a registered trademark of <strong>Sachin Kathuria</strong>, an IRDAI-licensed individual insurance advisor (License available on request). PolicyRaj is not an insurance company and does not underwrite, issue, or guarantee any insurance policy. All advisory services are provided solely by Sachin Kathuria in his individual capacity as an IRDAI-licensed advisor. All policies are issued by the respective IRDAI-regulated insurance companies. PolicyRaj facilitates access and advisory — it is not a corporate entity, insurer, or broker.</p>
         <p><strong>Advisory &amp; Risk Disclosure:</strong> All information, premium figures, benefit illustrations, and coverage details on this platform are for general guidance only and are indicative in nature. Actual premiums are subject to the applicant&apos;s age, health status, risk profile, sum insured, and the underwriting norms of the relevant insurer at the time of issuance. For market-linked products such as ULIPs and equity-linked plans, returns are subject to market risk and are not guaranteed — past performance is not indicative of future results. Clients are advised to read the complete policy document, including terms, conditions, exclusions, and waiting periods, before making any insurance decision. PolicyRaj does not provide tax or legal advice; please consult a qualified professional for personalised guidance.</p>
       </div>
     </div>
@@ -181,14 +182,49 @@
     <form onsubmit="submitModal(event)">
       <input type="text" placeholder="Your Name" required /><input type="tel" placeholder="Mobile Number" required />
       <select required><option value="" disabled selected>Child's Age</option><option>0–2 years</option><option>3–5 years</option><option>6–10 years</option><option>11–15 years</option><option>16+ years</option></select>
-      <button type="submit" class="btn-primary full-width">Get Free Advice <i class="fa fa-arrow-right"></i></button>
+      <button type="submit" class="btn-primary full-width">Get Expert Advice <i class="fa fa-arrow-right"></i></button>
     </form>
   </div></div>
   <div class="toast" id="toast"><i class="fa fa-check-circle"></i> Thank you! We'll contact you shortly.</div>
   <a href="https://wa.me/919013976999" target="_blank" class="whatsapp-float"><i class="fab fa-whatsapp"></i></a>
   <button class="back-to-top" id="backToTop" onclick="scrollToTop()"><i class="fa fa-chevron-up"></i></button>
+
+  <!-- AI CHATBOT WIDGET — RAKESH -->
+  <div class="chatbot-btn" id="chatbotBtn" onclick="toggleChat()" title="Chat with Veera – PolicyRaj AI">
+    <img src="rakesh-avatar.svg" alt="Veera AI" class="chatbot-btn-avatar" />
+    <span class="chatbot-badge" id="chatbotBadge" style="display:none">1</span>
+  </div>
+
+  <div class="chatbot-window" id="chatbotWindow">
+    <div class="chatbot-header">
+      <div class="chatbot-avatar-wrap">
+        <img src="rakesh-avatar.svg" alt="Veera" class="chatbot-header-avatar" />
+        <span class="chatbot-online-dot"></span>
+      </div>
+      <div class="chatbot-hinfo">
+        <span class="chatbot-name">Veera</span>
+        <span class="chatbot-status"><span class="pulse-dot"></span> AI Assistant · PolicyRaj</span>
+      </div>
+      <button class="chatbot-close-btn" onclick="toggleChat()" title="Close"><i class="fa fa-times"></i></button>
+    </div>
+
+    <div class="chatbot-messages" id="chatbotMessages"></div>
+
+    <div class="chatbot-quick-replies" id="chatbotQuickReplies"></div>
+
+    <div class="chatbot-input-row">
+      <input type="text" id="chatbotInput" placeholder="Ask Veera anything..." onkeydown="handleChatKey(event)" autocomplete="off" />
+      <button class="chatbot-send-btn" onclick="sendChatMessage()"><i class="fa fa-paper-plane"></i></button>
+    </div>
+
+    <div class="chatbot-footer-note"><i class="fa fa-info-circle"></i> Veera provides general information only — not professional insurance or financial advice. Consult Sachin Kathuria for personalised guidance.</div>
+  </div>
+
+  <script src="js/quote-api.js"></script>
   <script src="script.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
   <script>document.querySelectorAll('.sp-section-header h2,.section-header h2').forEach(h=>{new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('animated');})},{threshold:0.3}).observe(h);});</script>
+  <script src="chatbot.js"></script>
 </body>
 </html>
+

@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
+<!-- Designed & Developed by Aryan Raj Kathuria | github.com/aryanrajkathuria -->
 <html lang="en">
 <head>
   <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -71,7 +72,7 @@
         <div class="cab-stat"><strong>1,500+</strong><span>Offices Nationwide</span></div>
         <div class="cab-stat"><strong>2 min</strong><span>Motor Policy Renewal</span></div>
       </div>
-      <p style="color:rgba(255,255,255,0.75);font-size:0.84rem;margin:16px 0 0">PolicyRaj is an <strong style="color:#fff">authorized IRDAI agent</strong> for Bajaj Allianz. Get expert plan selection with same-price guarantee.</p>
+      <p style="color:rgba(255,255,255,0.75);font-size:0.84rem;margin:16px 0 0">Sachin Kathuria is an <strong style="color:#fff">IRDAI-licensed advisor</strong> and authorised channel partner of Bajaj Allianz. Get expert plan selection with same-price guarantee.</p>
     </div>
   </div></div></section>
 
@@ -212,7 +213,7 @@
             <div class="footer-disclaimer">
       <div class="container">
         <p class="fd-title">Statutory Disclosure &amp; Disclaimer</p>
-        <p><strong>About PolicyRaj:</strong> PolicyRaj is an IRDAI-licensed insurance advisory platform and an authorised channel partner of the insurance companies listed on this website. We facilitate access to insurance products on behalf of our partner insurers and do not underwrite, issue, or guarantee any insurance policy. All policies are issued solely by the respective IRDAI-regulated insurer. All insurance companies featured on this platform are independently licensed and regulated by the Insurance Regulatory and Development Authority of India (IRDAI).</p>
+        <p><strong>About PolicyRaj:</strong> PolicyRaj&#8482; is a registered trademark of <strong>Sachin Kathuria</strong>, an IRDAI-licensed individual insurance advisor (License available on request). PolicyRaj is not an insurance company and does not underwrite, issue, or guarantee any insurance policy. All advisory services are provided solely by Sachin Kathuria in his individual capacity as an IRDAI-licensed advisor. All policies are issued by the respective IRDAI-regulated insurance companies. PolicyRaj facilitates access and advisory — it is not a corporate entity, insurer, or broker.</p>
         <p><strong>Advisory &amp; Risk Disclosure:</strong> All information, premium figures, benefit illustrations, and coverage details on this platform are for general guidance only and are indicative in nature. Actual premiums are subject to the applicant&apos;s age, health status, risk profile, sum insured, and the underwriting norms of the relevant insurer at the time of issuance. For market-linked products such as ULIPs and equity-linked plans, returns are subject to market risk and are not guaranteed — past performance is not indicative of future results. Clients are advised to read the complete policy document, including terms, conditions, exclusions, and waiting periods, before making any insurance decision. PolicyRaj does not provide tax or legal advice; please consult a qualified professional for personalised guidance.</p>
       </div>
     </div>
@@ -233,6 +234,42 @@
   <div class="toast" id="toast"><i class="fa fa-check-circle"></i> Thank you! We'll contact you shortly.</div>
   <a href="https://wa.me/919013976999" target="_blank" class="whatsapp-float"><i class="fab fa-whatsapp"></i></a>
   <button class="back-to-top" id="backToTop" onclick="scrollToTop()"><i class="fa fa-chevron-up"></i></button>
+
+  <!-- AI CHATBOT WIDGET — RAKESH -->
+  <div class="chatbot-btn" id="chatbotBtn" onclick="toggleChat()" title="Chat with Veera – PolicyRaj AI">
+    <img src="rakesh-avatar.svg" alt="Veera AI" class="chatbot-btn-avatar" />
+    <span class="chatbot-badge" id="chatbotBadge" style="display:none">1</span>
+  </div>
+
+  <div class="chatbot-window" id="chatbotWindow">
+    <div class="chatbot-header">
+      <div class="chatbot-avatar-wrap">
+        <img src="rakesh-avatar.svg" alt="Veera" class="chatbot-header-avatar" />
+        <span class="chatbot-online-dot"></span>
+      </div>
+      <div class="chatbot-hinfo">
+        <span class="chatbot-name">Veera</span>
+        <span class="chatbot-status"><span class="pulse-dot"></span> AI Assistant · PolicyRaj</span>
+      </div>
+      <button class="chatbot-close-btn" onclick="toggleChat()" title="Close"><i class="fa fa-times"></i></button>
+    </div>
+
+    <div class="chatbot-messages" id="chatbotMessages"></div>
+
+    <div class="chatbot-quick-replies" id="chatbotQuickReplies"></div>
+
+    <div class="chatbot-input-row">
+      <input type="text" id="chatbotInput" placeholder="Ask Veera anything..." onkeydown="handleChatKey(event)" autocomplete="off" />
+      <button class="chatbot-send-btn" onclick="sendChatMessage()"><i class="fa fa-paper-plane"></i></button>
+    </div>
+
+    <div class="chatbot-footer-note"><i class="fa fa-info-circle"></i> Veera provides general information only — not professional insurance or financial advice. Consult Sachin Kathuria for personalised guidance.</div>
+  </div>
+
+  <script src="js/quote-api.js"></script>
   <script src="script.js"></script>
+  <script src="chatbot.js"></script>
 </body>
 </html>
+
+

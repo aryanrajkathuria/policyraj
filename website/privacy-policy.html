@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
+<!-- Designed & Developed by Aryan Raj Kathuria | github.com/aryanrajkathuria -->
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -30,7 +31,7 @@
   <div class="topbar">
     <div class="container topbar-inner">
       <span><i class="fa fa-phone"></i> 9013976999 / 8383813408</span>
-      <span><i class="fa fa-envelope"></i> sachin@policyraj.in</span>
+      <span><i class="fa fa-envelope"></i> sachin@policyraj.com</span>
       <span class="topbar-right">
         <a href="claims.html">Claims</a>
         <a href="index.html#contact" class="btn-top">Get a Free Quote</a>
@@ -123,7 +124,7 @@
           <li>Ask us to correct or delete your information</li>
           <li>Opt out of further communications at any time</li>
         </ul>
-        <p>To exercise any of these rights, contact us at <a href="mailto:sachin@policyraj.in">sachin@policyraj.in</a> or call <a href="tel:9013976999">9013976999</a>.</p>
+        <p>To exercise any of these rights, contact us at <a href="mailto:sachin@policyraj.com">sachin@policyraj.com</a> or call <a href="tel:9013976999">9013976999</a>.</p>
 
         <h2><i class="fa fa-external-link-alt"></i> 8. Third-Party Links</h2>
         <p>This website contains links to insurer websites and third-party services. We are not responsible for the privacy practices of those sites. We encourage you to read their privacy policies before submitting any personal information.</p>
@@ -135,7 +136,7 @@
         <p>For any privacy-related questions or concerns, please contact:</p>
         <ul>
           <li><strong>Sachin Kathuria</strong> — IRDAI Licensed Insurance Advisor</li>
-          <li>Email: <a href="mailto:sachin@policyraj.in">sachin@policyraj.in</a></li>
+          <li>Email: <a href="mailto:sachin@policyraj.com">sachin@policyraj.com</a></li>
           <li>Phone: <a href="tel:9013976999">9013976999</a></li>
           <li>Office: 8th Floor, Magnum Towers, Golf Course Ext Rd, Sector 58, Gurugram – 122098</li>
           <li>Website: <a href="https://policyraj.in">policyraj.in</a></li>
@@ -167,5 +168,37 @@
     </div>
   </footer>
 
+  <!-- AI CHATBOT WIDGET — RAKESH -->
+  <div class="chatbot-btn" id="chatbotBtn" onclick="toggleChat()" title="Chat with Veera – PolicyRaj AI">
+    <img src="rakesh-avatar.svg" alt="Veera AI" class="chatbot-btn-avatar" />
+    <span class="chatbot-badge" id="chatbotBadge" style="display:none">1</span>
+  </div>
+
+  <div class="chatbot-window" id="chatbotWindow">
+    <div class="chatbot-header">
+      <div class="chatbot-avatar-wrap">
+        <img src="rakesh-avatar.svg" alt="Veera" class="chatbot-header-avatar" />
+        <span class="chatbot-online-dot"></span>
+      </div>
+      <div class="chatbot-hinfo">
+        <span class="chatbot-name">Veera</span>
+        <span class="chatbot-status"><span class="pulse-dot"></span> AI Assistant · PolicyRaj</span>
+      </div>
+      <button class="chatbot-close-btn" onclick="toggleChat()" title="Close"><i class="fa fa-times"></i></button>
+    </div>
+
+    <div class="chatbot-messages" id="chatbotMessages"></div>
+
+    <div class="chatbot-quick-replies" id="chatbotQuickReplies"></div>
+
+    <div class="chatbot-input-row">
+      <input type="text" id="chatbotInput" placeholder="Ask Veera anything..." onkeydown="handleChatKey(event)" autocomplete="off" />
+      <button class="chatbot-send-btn" onclick="sendChatMessage()"><i class="fa fa-paper-plane"></i></button>
+    </div>
+
+    <div class="chatbot-footer-note"><i class="fa fa-info-circle"></i> Veera provides general information only — not professional insurance or financial advice. Consult Sachin Kathuria for personalised guidance.</div>
+  </div>
+
+  <script src="chatbot.js"></script>
 </body>
 </html>

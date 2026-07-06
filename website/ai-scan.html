@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
+<!-- Designed & Developed by Aryan Raj Kathuria | github.com/aryanrajkathuria -->
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -443,7 +444,7 @@
   <div class="topbar">
     <div class="container topbar-inner">
       <span><i class="fa fa-phone"></i> 9013976999 / 8383813408</span>
-      <span><i class="fa fa-envelope"></i> sachin@policyraj.in</span>
+      <span><i class="fa fa-envelope"></i> sachin@policyraj.com</span>
       <span class="topbar-right">
         <a href="index.html#contact">Get a Free Quote</a>
         <a href="index.html#insurance">All Plans</a>
@@ -765,6 +766,38 @@
 
   <!-- TOAST -->
   <div class="scan-toast" id="scanToast"><i class="fa fa-check-circle"></i><span id="scanToastMsg">Done!</span></div>
+
+
+  <!-- AI CHATBOT WIDGET — RAKESH -->
+  <div class="chatbot-btn" id="chatbotBtn" onclick="toggleChat()" title="Chat with Veera – PolicyRaj AI">
+    <img src="rakesh-avatar.svg" alt="Veera AI" class="chatbot-btn-avatar" />
+    <span class="chatbot-badge" id="chatbotBadge" style="display:none">1</span>
+  </div>
+
+  <div class="chatbot-window" id="chatbotWindow">
+    <div class="chatbot-header">
+      <div class="chatbot-avatar-wrap">
+        <img src="rakesh-avatar.svg" alt="Veera" class="chatbot-header-avatar" />
+        <span class="chatbot-online-dot"></span>
+      </div>
+      <div class="chatbot-hinfo">
+        <span class="chatbot-name">Veera</span>
+        <span class="chatbot-status"><span class="pulse-dot"></span> AI Assistant · PolicyRaj</span>
+      </div>
+      <button class="chatbot-close-btn" onclick="toggleChat()" title="Close"><i class="fa fa-times"></i></button>
+    </div>
+
+    <div class="chatbot-messages" id="chatbotMessages"></div>
+
+    <div class="chatbot-quick-replies" id="chatbotQuickReplies"></div>
+
+    <div class="chatbot-input-row">
+      <input type="text" id="chatbotInput" placeholder="Ask Veera anything..." onkeydown="handleChatKey(event)" autocomplete="off" />
+      <button class="chatbot-send-btn" onclick="sendChatMessage()"><i class="fa fa-paper-plane"></i></button>
+    </div>
+
+    <div class="chatbot-footer-note"><i class="fa fa-info-circle"></i> Veera provides general information only — not professional insurance or financial advice. Consult Sachin Kathuria for personalised guidance.</div>
+  </div>
 
   <script src="script.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/tesseract.js@4/dist/tesseract.min.js"></script>
@@ -1540,5 +1573,6 @@ Rules:
     </div>
   </footer>
   <a href="https://wa.me/919013976999" target="_blank" class="whatsapp-float"><i class="fab fa-whatsapp"></i></a>
+  <script src="chatbot.js"></script>
 </body>
 </html>

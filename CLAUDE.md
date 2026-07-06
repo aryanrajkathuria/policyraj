@@ -520,7 +520,7 @@ These values are used throughout the codebase — always use exactly these:
 ```
 Advisor name:    Sachin Kathuria
 Phone:           9013976999 / 8383813408
-Email:           sachin@policyraj.in / aryanrajkathuria@gmail.com
+Email:           sachin@policyraj.com / aryanrajkathuria@gmail.com
 WhatsApp:        https://wa.me/919013976999
 Website:         https://policyraj.in/
 AI Bot name:     Veera
