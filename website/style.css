@@ -4719,18 +4719,20 @@ html, body { overflow-x: hidden; max-width: 100%; }
 .lp-header-ctas .btn-primary { padding: 10px 22px; font-size: 0.9rem; }
 .lp-header-ctas .btn-outline { padding: 9px 20px; font-size: 0.9rem; }
 
-.lp-hero-inner { max-width: 720px; margin: 0 auto; text-align: center; }
-.lp-hero-inner h1 { color: #fff; margin-bottom: 20px; }
+.lp-hero-inner { max-width: 880px; margin: 0 auto; text-align: center; }
+.lp-hero-inner h1 { color: #fff; margin-bottom: 20px; font-size: clamp(2rem, 4.6vw, 3.4rem); }
 .lp-hero-inner > p { color: rgba(255,255,255,0.78); font-size: 1.05rem; line-height: 1.7; max-width: 640px; margin: 0 auto; }
+.lp-hero-inner .hero-badge { display: inline-block; margin-bottom: 24px; }
 .lp-hero-logo {
   background: #fff;
-  border-radius: var(--radius-lg);
-  padding: 24px 40px;
-  display: inline-block;
-  margin-bottom: 28px;
+  border-radius: 16px;
+  padding: 14px 30px;
+  display: block;
+  width: fit-content;
+  margin: 0 auto 26px;
   box-shadow: var(--shadow-hover);
 }
-.lp-hero-logo img { height: 100px; }
+.lp-hero-logo img { height: 64px; }
 .lp-hero-inner .hero-btns { justify-content: center; margin-bottom: 20px; }
 .lp-trust-row {
   display: flex;
@@ -4839,8 +4841,8 @@ html, body { overflow-x: hidden; max-width: 100%; }
   .lp-cards-grid { grid-template-columns: 1fr; }
   .lp-dark-grid { grid-template-columns: 1fr; }
   .lp-benefits-grid { grid-template-columns: 1fr; }
-  .lp-hero-logo { padding: 18px 28px; }
-  .lp-hero-logo img { height: 76px; }
+  .lp-hero-logo { padding: 12px 22px; }
+  .lp-hero-logo img { height: 52px; }
   .lp-header-ctas .btn-outline { display: none; }
   .lp-quote-block { padding: 28px 22px; }
 }
@@ -4949,4 +4951,50 @@ section[class*="-section"] {
 .clc-logo:hover, .sp-cover-card:hover, .blog-card:hover {
   transform: translateY(-6px);
   box-shadow: var(--shadow-hover);
+}
+
+/* ── Photo bands — real-world ambience under a deep navy veil ── */
+.photo-band {
+  position: relative;
+  padding: clamp(84px, 10vw, 140px) 0;
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+}
+.photo-band::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, rgba(5, 7, 15, 0.84) 0%, rgba(12, 28, 78, 0.72) 100%);
+}
+.photo-band .container { position: relative; z-index: 1; max-width: 780px; }
+.photo-band--consult { background-image: url('consult-bg.webp'); }
+.photo-band--docs { background-image: url('docs-bg.webp'); }
+.photo-band .section-eyebrow { color: #F59E0B; }
+.photo-band h2 { color: #fff; margin-bottom: 14px; }
+.photo-band p { color: rgba(255, 255, 255, 0.80); font-size: 1.06rem; line-height: 1.75; margin-bottom: 30px; }
+
+/* ── Category hero photos — subject ambience under the navy veil ── */
+.sph--health   { background: linear-gradient(150deg, rgba(5,7,15,0.88) 0%, rgba(12,28,78,0.80) 60%, rgba(22,53,127,0.74) 100%), url('hero-health.webp') center/cover; }
+.sph--life     { background: linear-gradient(150deg, rgba(5,7,15,0.86) 0%, rgba(12,28,78,0.78) 60%, rgba(22,53,127,0.72) 100%), url('hero-life.webp') center/cover; }
+.sph--motor    { background: linear-gradient(150deg, rgba(5,7,15,0.88) 0%, rgba(12,28,78,0.80) 60%, rgba(22,53,127,0.74) 100%), url('hero-motor.webp') center/cover; }
+.sph--travel   { background: linear-gradient(150deg, rgba(5,7,15,0.84) 0%, rgba(12,28,78,0.76) 60%, rgba(22,53,127,0.70) 100%), url('hero-travel.webp') center/cover; }
+.sph--home     { background: linear-gradient(150deg, rgba(5,7,15,0.86) 0%, rgba(12,28,78,0.78) 60%, rgba(22,53,127,0.72) 100%), url('hero-home.webp') center/cover; }
+.sph--business { background: linear-gradient(150deg, rgba(5,7,15,0.86) 0%, rgba(12,28,78,0.78) 60%, rgba(22,53,127,0.72) 100%), url('hero-business.webp') center/cover; }
+
+/* ── Hero gradient-text readable on dark/photo heroes ── */
+.service-page-hero .gradient-text {
+  background: linear-gradient(135deg, #93c5fd 0%, #c4b5fd 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Landing page: access to the full website ── */
+.lp-explore-more { margin-top: 26px; color: rgba(255, 255, 255, 0.75); font-size: 0.95rem; text-align: center; }
+.lp-explore-more a { color: #93c5fd; font-weight: 700; transition: var(--transition); }
+.lp-explore-more a:hover, .lp-explore-more a:focus-visible { color: #fff; }
+@media (max-width: 768px) {
+  .lp-header-ctas .lp-explore-link { display: inline-flex; padding: 8px 12px; font-size: 0.75rem; white-space: nowrap; }
+  .lp-header-ctas .lp-explore-link i { display: none; }
 }
