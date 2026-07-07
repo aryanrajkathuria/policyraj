@@ -24,7 +24,9 @@
 ```
 policyraj-1/
 ├── website/                  ← ALL frontend files live here
-│   ├── index.html            ← Main landing page
+│   ├── index.html            ← Entry landing page (campaign pitch, front door)
+│   ├── home.html             ← Full main website (products, calculators, contact)
+│   ├── home-insurance.html   ← Home insurance guide page
 │   ├── style.css             ← Single global stylesheet
 │   ├── script.js             ← Page-level JS (navbar, calculators, forms)
 │   ├── chatbot.js            ← Veera AI chatbot (IIFE, 262 KB entries)
@@ -481,8 +483,8 @@ When creating a new HTML page (e.g., a new insurer page):
 ☐ Link to chatbot.js after script.js
 ☐ <title> tag with "PageName – PolicyRaj"
 ☐ SEO meta description
-☐ Navbar copied from index.html (same structure)
-☐ Chatbot widget HTML block copied from index.html
+☐ Navbar copied from home.html (same structure)
+☐ Chatbot widget HTML block copied from home.html
 ☐ WhatsApp float button
 ☐ Back to top button
 ☐ All section wrappers use .container
