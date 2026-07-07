@@ -77,7 +77,7 @@
     {
       id: 'preexisting',
       weight: 3,
-      patterns: ['pre existing','pre-existing','existing disease','diabetes insurance','bp insurance','thyroid insurance','heart condition insurance','waiting period','pre existing condition','preexisting disease','chronic illness insurance'],
+      patterns: ['pre existing','pre-existing','existing disease','diabetes insurance','bp insurance','thyroid insurance','heart condition insurance','waiting period','pre existing condition','preexisting disease','chronic illness insurance','diabetic patient','diabetic','insurance with diabetes'],
       response: () => `${greet()}<strong>🏥 Pre-Existing Diseases & Health Insurance</strong><br><br>Yes, you can still get health insurance even with conditions like diabetes, BP, thyroid, or heart issues! Here's how it works:<br><br><strong>Waiting Period for Pre-Existing Diseases (PED):</strong><br>• Usually <strong>2–4 years</strong> from policy start date<br>• After the waiting period → fully covered! ✅<br>• During waiting period → you pay for PED-related treatment yourself<br><br><strong>Important Tips:</strong><br>• <strong>Always disclose</strong> all health conditions honestly — hiding them = claim rejection<br>• Some insurers (Niva Bupa, HDFC Ergo) have shorter waiting periods<br>• Buy early! The longer you wait, the harder/costlier to get cover<br><br>💡 <em>Starting now means your waiting period is over sooner. 3 years from today, everything is covered.</em>`,
       quickReplies: ['Health insurance waiting periods','Which plan for diabetics?','Family floater vs individual','Get Health Quote']
     },
@@ -122,7 +122,7 @@
     {
       id: 'portability',
       weight: 2,
-      patterns: ['portability','port health insurance','switch insurer','change insurer','transfer health policy','migrate health plan','switch health plan','health insurance switch','policy portability'],
+      patterns: ['portability','port health insurance','switch insurer','change insurer','transfer health policy','migrate health plan','switch health plan','health insurance switch','policy portability','port my health insurance','port my policy','porting'],
       response: () => `${greet()}<strong>🔄 Health Insurance Portability — Switch Without Losing Benefits!</strong><br><br>IRDAI mandates that you can switch your health insurer while keeping your <strong>accumulated benefits</strong>.<br><br><strong>What carries over:</strong><br>• Waiting period credit (PED waiting period doesn't restart!)<br>• No-claim bonus accumulated<br>• Continuity benefits<br><br><strong>How to port:</strong><br>1. Apply to new insurer <strong>45–60 days before renewal date</strong><br>2. Fill portability form with policy details<br>3. New insurer can't reject portability unless medically unfit<br>4. New policy starts seamlessly<br><br><strong>When to consider porting:</strong><br>• Your current insurer has poor claim settlement<br>• You found a better plan elsewhere<br>• Premium increased too much at renewal<br><br>📞 <em>Sachin helps clients port their policies hassle-free. Call <strong>9013976999</strong>.</em>`,
       quickReplies: ['Best health insurers','Claim settlement ratio','Renewal tips','Speak to Sachin']
     },
@@ -221,7 +221,7 @@
     {
       id: 'travel',
       weight: 2,
-      patterns: ['travel insurance','travel','international travel','abroad','schengen','visa insurance','trip cancellation','baggage loss','flight delay','medical abroad','overseas insurance','tourist insurance','travel policy'],
+      patterns: ['travel insurance','travel','international travel','abroad','schengen','visa insurance','trip cancellation','baggage loss','flight delay','medical abroad','overseas insurance','tourist insurance','travel policy','health insurance valid abroad','insurance valid abroad','cover abroad','coverage outside india'],
       response: () => `${greet()}<strong>✈️ Travel Insurance</strong> — Don't leave home without it!<br><br><strong>What's covered:</strong><br>• Medical emergency abroad — up to $5,00,000<br>• Medical evacuation back to India<br>• Trip cancellation & curtailment<br>• Baggage loss, damage & delay<br>• Flight cancellation & delay<br>• Passport loss & emergency travel documents<br>• Personal accident cover<br>• Personal liability coverage<br><br><strong>Cost:</strong> As low as ₹300 per trip. Annual multi-trip plans from ₹2,500/year!<br><br>⚠️ <strong>Schengen visa REQUIRES</strong> travel insurance with minimum €30,000 medical cover.<br><br>💡 A 3-day hospital stay in the USA can cost <strong>₹25–40 lakh</strong>. Travel insurance for the same trip? ₹1,500. Do the math! 😊`,
       quickReplies: ['Schengen visa insurance','Annual multi-trip plan','Senior citizen travel insurance','Get Travel Quote']
     },
@@ -401,7 +401,7 @@
     {
       id: 'senior',
       weight: 2,
-      patterns: ['senior citizen','senior citizen insurance','senior citizen health','insurance for parents','parents insurance','elderly insurance','60 plus insurance','health for old age','age 60 insurance','retired person insurance'],
+      patterns: ['senior citizen','senior citizen insurance','senior citizen health','insurance for parents','parents insurance','elderly insurance','60 plus insurance','health for old age','age 60 insurance','retired person insurance','best for my parents','insurance for parents','health insurance for parents','plan for my parents'],
       response: () => `${greet()}<strong>👴👵 Senior Citizen Insurance — Special Plans for Your Parents</strong><br><br>Getting insurance for parents (60+) requires some special planning, but it's definitely possible!<br><br><strong>Best options:</strong><br>• <strong>Star Senior Citizen Red Carpet</strong> — Accepts up to age 75, minimal medical tests, covers pre-existing diseases after 1 year<br>• <strong>Niva Bupa ReAssure Senior</strong> — Comprehensive cover with co-pay option to reduce premium<br>• <strong>Care Senior</strong> — Good network, annual health check-ups included<br><br><strong>Key things to know:</strong><br>• Higher premiums than younger ages (natural due to higher risk)<br>• Co-pay of 10–20% common in senior plans<br>• Pre-existing disease waiting: 1–2 years (shorter than regular plans)<br>• Buy separately — don't add to your family floater (doubles premium)<br><br>📌 <strong>Buy ASAP</strong> — the older the applicant, the fewer options available and the more exclusions.`,
       quickReplies: ['Family floater vs individual','Pre-existing disease cover','Health insurance cost','Get Senior Citizen Quote']
     },
@@ -446,7 +446,7 @@
     {
       id: 'grievance',
       weight: 2,
-      patterns: ['complaint','grievance','ombudsman','irdai complaint','insurance complaint','file complaint','dispute insurer','insurance dispute','escalate claim','consumer forum insurance','unfair claim'],
+      patterns: ['complaint','grievance','ombudsman','irdai complaint','insurance complaint','file complaint','dispute insurer','insurance dispute','escalate claim','consumer forum insurance','unfair claim','insurance ombudsman','ombudsman'],
       response: () => `${greet()}<strong>⚖️ Insurance Complaints & Your Rights</strong><br><br>If your insurer isn't treating you fairly, you have powerful options!<br><br><strong>Step 1 — Insurer's Grievance Cell:</strong><br>• Every insurer has a grievance cell. Register online/phone.<br>• Must respond within 15 days (IRDAI mandate)<br><br><strong>Step 2 — IRDAI Bima Bharosa Portal:</strong><br>• bimabharosa.irdai.gov.in<br>• IRDAI's official consumer portal<br>• File complaints against any insurer<br><br><strong>Step 3 — Insurance Ombudsman:</strong><br>• Free, fast, binding dispute resolution<br>• 17 offices across India<br>• Handles claims up to ₹30 Lakh<br>• Decisions binding on insurers (not on you)<br><br><strong>Step 4 — Consumer Court:</strong><br>• For larger amounts or if Ombudsman fails<br><br>📞 <em>Sachin's team has successfully helped clients get wrongly rejected claims approved. Call <strong>9013976999</strong> before giving up!</em>`,
       quickReplies: ['Claim rejection reasons','Speak to Sachin','About Sachin Kathuria','Back']
     },
@@ -527,7 +527,7 @@
     {
       id: 'online_offline',
       weight: 2,
-      patterns: ['online insurance','offline insurance','buy online','direct insurance','online vs offline','buy direct','online plan cheaper','web plan insurance','online policy','digital insurance buying'],
+      patterns: ['online insurance','offline insurance','buy online','direct insurance','online vs offline','buy direct','online plan cheaper','web plan insurance','online policy','digital insurance buying','agent and broker','agent vs broker','broker or agent'],
       response: () => `${greet()}<strong>💻 Online vs Offline Insurance — Which is Better?</strong><br><br><strong>Online (Direct):</strong><br>✅ Usually 15–30% cheaper (no agent commission)<br>✅ Instant policy issuance<br>✅ Easy comparison on aggregator sites<br>❌ You're on your own during claims<br>❌ Need to understand terms yourself<br>❌ No personalised advice<br><br><strong>Offline (Through Advisor like Sachin):</strong><br>✅ Expert guidance — get the RIGHT policy, not just the cheapest<br>✅ Claims support — advisor fights for you during disputes<br>✅ Renewal reminders, policy review<br>✅ Explains what's covered & what's not<br>✅ End-to-end service: buying → renewal → claims<br>❌ Slight premium difference (often negligible for the value received)<br><br>📌 <strong>Veera's honest take:</strong> For a ₹500/year health policy, sure, go online. For major life, health, or business policies — having Sachin in your corner is priceless. Claims is where advisors earn their keep!`,
       quickReplies: ['Get free quote via Sachin','How to buy insurance','Claim support','Speak to Sachin']
     },
@@ -684,7 +684,7 @@
     {
       id: 'policy_surrender',
       weight: 2,
-      patterns: ['surrender policy','surrender value','policy surrender','cancel life insurance','break policy','stop premium','exit policy','surrender lic','withdraw from policy','close policy'],
+      patterns: ['surrender policy','surrender value','policy surrender','cancel life insurance','break policy','stop premium','exit policy','surrender lic','withdraw from policy','close policy','paid up value','paid up policy','make policy paid up'],
       response: () => `${greet()}<strong>⚠️ Surrendering a Policy — Think Twice!</strong><br><br>Surrendering means cancelling your life insurance policy before maturity and taking whatever money the insurer gives back. This is usually a bad financial decision — here's why:<br><br><strong>Surrender Value Types:</strong><br>• <strong>Guaranteed Surrender Value (GSV):</strong> 30% of premiums paid (after 3 years minimum)<br>• <strong>Special Surrender Value:</strong> May be higher depending on plan performance<br><br><strong>Example of the pain:</strong><br>You paid ₹1L/year for 5 years (₹5L total). Surrender value = ₹1.5L. You just lost ₹3.5L!<br><br><strong>Before surrendering, consider these alternatives:</strong><br>• <strong>Paid-Up:</strong> Stop premiums, policy continues at reduced sum insured<br>• <strong>Policy Loan:</strong> Borrow against policy value at low interest<br>• <strong>Assignment:</strong> Assign policy as loan collateral<br>• <strong>Premium Holiday:</strong> Some ULIPs allow temporary premium pause<br><br>📞 <em>Before surrendering any policy, talk to Sachin at <strong>9013976999</strong>. There's often a better way than surrendering at a loss.</em>`,
       quickReplies: ['Policy loan option','Paid-up policy explained','Renewal tips','Speak to Sachin']
     },
@@ -1155,7 +1155,7 @@
     {
       id: 'engine_protect',
       weight: 2,
-      patterns: ['engine protection insurance','engine cover motor','waterlogging engine damage','hydrostatic lock engine','engine add on','engine gear protect','engine damage flood'],
+      patterns: ['engine protection insurance','engine cover motor','waterlogging engine damage','hydrostatic lock engine','engine add on','engine gear protect','engine damage flood','hydrostatic lock','hydrostatic'],
       response: () => `${greet()}<strong>⚙️ Engine Protection Cover — Must-Have Add-On!</strong><br><br>Standard comprehensive motor insurance does NOT cover engine damage due to waterlogging or hydrostatic lock. Engine Protection Add-On fills this gap!<br><br><strong>What it covers:</strong><br>✅ Engine damage due to water ingression/flooding<br>✅ Hydrostatic lock (engine seized after driving in water)<br>✅ Gear box & differential damage<br>✅ Lubricant oil contamination<br><br><strong>What it does NOT cover:</strong><br>❌ Regular wear and tear<br>❌ Damage due to own negligence<br>❌ Mechanical/electrical breakdown<br><br><strong>Why it matters:</strong><br>Engine repairs cost ₹50,000–₹3,00,000+. Engine protection add-on costs just ₹500–₹2,000/year.<br><br>💡 <strong>Essential if you live in flood-prone cities</strong> like Mumbai, Chennai, Kolkata, Bangalore!<br><br>📱 Add it to your motor policy: <strong>9013976999</strong>`,
       quickReplies: ['Zero depreciation','Roadside assistance','Comprehensive motor','Get motor quote']
     },
@@ -1308,7 +1308,7 @@
     {
       id: 'shop_policy',
       weight: 2,
-      patterns: ['shop insurance','shopkeeper insurance','retail insurance','shop policy','small business insurance','grocery store insurance','shop fire theft insurance','shopskeeper policy'],
+      patterns: ['shop insurance','shopkeeper insurance','retail insurance','shop policy','small business insurance','grocery store insurance','shop fire theft insurance','shopskeeper policy','burglary insurance','burglary cover','burglary'],
       response: () => `${greet()}<strong>🏪 Shopkeeper's Package Insurance — One Policy, Full Protection!</strong><br><br>If you own a shop, one comprehensive Shopkeeper's Package Policy covers everything!<br><br><strong>What's typically included:</strong><br>✅ <strong>Building/structure</strong> against fire, flood, earthquake<br>✅ <strong>Stock & inventory</strong> against fire, flood, theft<br>✅ <strong>Money in safe/transit</strong><br>✅ <strong>Neon signs & board</strong><br>✅ <strong>Electronic equipment</strong> (computers, billing machines)<br>✅ <strong>Public liability</strong> (if customer injured in shop)<br>✅ <strong>Plate glass</strong> (shop front glass breakage)<br><br><strong>Premium:</strong> ~₹3,000–₹15,000/year depending on stock value and location<br><br><strong>Who needs it:</strong><br>🛒 Grocery stores, 💊 Pharmacies, 👗 Clothing shops, 📱 Mobile stores, 🍕 Restaurants<br><br>💡 <em>One fire or flood can wipe out years of savings — ₹5,000/year premium vs ₹20 lakh loss!</em><br><br>📱 Get your shop insured today: <strong>9013976999</strong>`,
       quickReplies: ['Business insurance','Fire insurance','Liability cover','Call Sachin']
     },
@@ -1542,7 +1542,7 @@
     {
       id: 'maturity_tax_10d',
       weight: 2,
-      patterns: ['section 10 10d','maturity amount tax','life insurance maturity tax free','ulip maturity tax','endowment maturity tax','policy maturity taxable','insurance proceeds tax'],
+      patterns: ['section 10 10d','maturity amount tax','life insurance maturity tax free','ulip maturity tax','endowment maturity tax','policy maturity taxable','insurance proceeds tax','tds on maturity','policy maturity amount','tds deducted'],
       response: () => `${greet()}<strong>💰 Section 10(10D) — Tax-Free Life Insurance Maturity!</strong><br><br>Life insurance maturity proceeds can be completely TAX FREE under Section 10(10D). Here's when:<br><br><strong>Tax-Free conditions (all must be met):</strong><br>✅ Annual premium ≤ 10% of Sum Assured (for policies issued after April 2012)<br>✅ Policy issued before April 1, 2012 → Just need premium ≤ 20% of SA<br>✅ ULIPs issued before Feb 1, 2021 → Also tax free under 10(10D)<br><br><strong>When is it TAXABLE:</strong><br>❌ ULIP premiums > ₹2.5L/year (post Feb 1, 2021 ULIPs) → taxed like equity MF<br>❌ Non-ULIP premiums > ₹5L/year (post April 1, 2023) → Maturity taxable<br>❌ Single premium plans where premium > 10% of SA<br><br><strong>Death claim:</strong><br>• ALWAYS tax free — regardless of premium amount ✅<br><br><strong>Important:</strong><br>💡 <em>Before buying a policy for tax purposes, verify the 10(10D) eligibility with your advisor!</em><br><br>📱 Tax-efficient insurance planning: <strong>9013976999</strong>`,
       quickReplies: ['Life insurance','ULIP tax','Tax saving guide','Call Sachin']
     },
@@ -2114,6 +2114,114 @@
     },
 
 
+
+    /* ─── KB AUDIT ADDITIONS (July 2026) ─────────────── */
+    {
+      id: 'mwp_act',
+      weight: 2,
+      patterns: ['mwp act','mwp','married womens property','married women property act','protect policy from creditors'],
+      response: () => `${greet()}<strong>👩‍👧 MWP Act — Ring-Fence Your Life Cover for Your Family</strong><br><br>Buying a term plan under the <strong>Married Womens Property Act, 1874</strong> creates a special trust so the claim money goes <strong>only to your wife and/or children</strong>.<br><br><strong>Why it matters:</strong><br>• Creditors and lenders <strong>cannot touch</strong> the payout — even if you have business loans<br>• Other family members cannot stake a claim<br>• Essential for businessmen and anyone with liabilities<br><br><strong>Key points:</strong><br>• Must be chosen <strong>at the time of buying</strong> — cannot be added later<br>• Beneficiaries cannot be changed after issue<br>• Zero extra cost — just a form (MWP addendum) at proposal stage<br><br>📞 <em>Sachin sets up MWP term plans for business owners regularly. Call <strong>9013976999</strong>.</em>`,
+      quickReplies: ['Term insurance', 'How much cover do I need?', 'Nominee rules', 'Speak to Sachin']
+    },
+    {
+      id: 'reversionary_bonus',
+      weight: 2,
+      patterns: ['reversionary bonus','terminal bonus','policy bonus','bonus in lic policy','bonus declared','what is bonus in insurance'],
+      response: () => `${greet()}<strong>🎁 Policy Bonuses — Decoded Simply</strong><br><br>Participating (with-profit) plans like endowment and money-back share the insurers profits with you as bonuses:<br><br><strong>1. Simple Reversionary Bonus</strong> — declared yearly as ₹ per ₹1,000 of sum assured; once declared it is <strong>guaranteed</strong> and paid at maturity/claim<br><strong>2. Compound Reversionary Bonus</strong> — bonus also earns bonus (rarer, better)<br><strong>3. Terminal Bonus</strong> — one-time loyalty bonus added at maturity or death claim<br><strong>4. Interim Bonus</strong> — if claim falls between two declarations<br><br><strong>Remember:</strong><br>• Bonuses are paid at the END, not yearly in hand<br>• Future bonuses are <strong>not guaranteed</strong> — they depend on insurer performance<br>• Term plans and ULIPs do not have bonuses<br><br>📞 <em>Want Sachin to project realistic maturity value of your policy? Call <strong>9013976999</strong>.</em>`,
+      quickReplies: ['Endowment policy', 'Money back policy', 'Surrender value', 'Speak to Sachin']
+    },
+    {
+      id: 'alcohol_disclosure',
+      weight: 2,
+      patterns: ['alcohol','drink alcohol','drinking habits','drinker insurance','alcohol disclosure','social drinker'],
+      response: () => `${greet()}<strong>🍷 Alcohol & Insurance — Honesty is Everything</strong><br><br>Yes, drinkers <strong>can</strong> get life and health insurance — insurers just price the risk.<br><br><strong>How it works:</strong><br>• <strong>Social/occasional drinker:</strong> usually standard premiums, simple declaration<br>• <strong>Regular/heavy drinker:</strong> possible premium loading or medical tests<br>• <strong>Alcohol-related illness history:</strong> case-by-case underwriting<br><br><strong>The golden rule:</strong> ALWAYS disclose honestly. If a claim investigation finds undisclosed alcohol habits, the claim can be <strong>rejected entirely</strong> — the premium you saved becomes meaningless.<br><br>💡 <em>Insurers rarely reject for moderate drinking — they reject for hiding it.</em><br><br>📞 <em>Unsure how to declare? Sachin guides you through the proposal honestly and optimally: <strong>9013976999</strong>.</em>`,
+      quickReplies: ['Smoker insurance', 'Term insurance', 'Why claims get rejected', 'Speak to Sachin']
+    },
+    {
+      id: 'modern_treatments',
+      weight: 3,
+      patterns: ['bariatric','bariatric surgery','robotic surgery','modern treatment','stem cell therapy','oral chemotherapy','deep brain stimulation','immunotherapy'],
+      response: () => `${greet()}<strong>🔬 Modern Treatments — Yes, Covered by IRDAI Mandate!</strong><br><br>Since Oct 2019, IRDAI requires health insurers to cover <strong>12 modern treatments</strong>, including:<br><br>• <strong>Robotic surgeries</strong><br>• <strong>Bariatric surgery</strong> (if medically necessary, not cosmetic)<br>• Oral chemotherapy & immunotherapy<br>• Stem cell therapy (approved uses)<br>• Deep brain stimulation<br>• Balloon sinuplasty, bronchial thermoplasty & more<br><br><strong>Watch the fine print:</strong><br>• Insurers may cap these at a % of sum insured (e.g., 50%)<br>• Bariatric surgery needs medical criteria (BMI thresholds, comorbidities)<br>• Cosmetic weight-loss surgery is NOT covered<br><br>📞 <em>Sachin can tell you exactly what your policy caps these treatments at — call <strong>9013976999</strong>.</em>`,
+      quickReplies: ['What health insurance covers', 'Day care procedures', 'Waiting periods', 'Speak to Sachin']
+    },
+    {
+      id: 'organ_donor_air_amb',
+      weight: 3,
+      patterns: ['organ donor','donor expenses','organ transplant','air ambulance','moratorium period','moratorium','ambulance','zone based','different cities','city wise premium','premium different in cities'],
+      response: () => `${greet()}<strong>🚁 Lesser-Known Health Insurance Benefits & Rules</strong><br><br><strong>🫀 Organ Donor Expenses:</strong> Most good policies cover the donors hospitalisation (harvesting surgery) when YOU are the recipient — check the sub-limit.<br><br><strong>🚁 Air Ambulance:</strong> Increasingly covered in premium plans (usually capped, e.g., ₹2.5–5L per year). Crucial for emergencies in smaller cities.<br><br><strong>🗺️ Zone-Based Pricing:</strong> Insurers price by city zones — Delhi/Mumbai (Zone A) premiums are higher than smaller cities. Moving cities? Update your zone to avoid claim deductions.<br><br><strong>⏳ Moratorium Rule (Big one!):</strong> After <strong>5 years of continuous coverage</strong>, the insurer cannot reject claims for non-disclosure except proven fraud. Your policy becomes nearly incontestable — one more reason never to let it lapse.<br><br>📞 <em>Want Sachin to check if your policy has these benefits? Call <strong>9013976999</strong>.</em>`,
+      quickReplies: ['What health insurance covers', 'Waiting periods', 'Claim rejection reasons', 'Speak to Sachin']
+    },
+    {
+      id: 'wellness_rewards',
+      weight: 3,
+      patterns: ['wellness discount','walking steps','step count','wellness rewards','fitness discount','healthy lifestyle discount','steps discount premium'],
+      response: () => `${greet()}<strong>🏃 Wellness Rewards — Get Paid to Stay Fit!</strong><br><br>Many modern health plans reward healthy habits:<br><br><strong>How it works:</strong><br>• Link your fitness tracker or app to the insurer<br>• Hit step/activity targets (e.g., 10,000 steps/day)<br>• Earn <strong>renewal premium discounts up to 30%</strong>, vouchers, or booster covers<br><br><strong>Examples of reward programs:</strong><br>• Aditya Birla Activ Health — up to 100% HealthReturns™<br>• Niva Bupa Health Pulse rewards<br>• HDFC ERGO wellness credits<br><br><strong>Also commonly rewarded:</strong> gym membership, health check-ups, no tobacco, controlled BMI.<br><br>📞 <em>Sachin can shortlist plans where your fitness actually cuts your premium — call <strong>9013976999</strong>.</em>`,
+      quickReplies: ['Health insurance', 'Free health checkup', 'No claim bonus', 'Speak to Sachin']
+    },
+    {
+      id: 'cng_kit',
+      weight: 3,
+      patterns: ['cng kit','cng car','lpg kit','cng endorsement','cng fitted car insurance','bifuel kit'],
+      response: () => `${greet()}<strong>⛽ CNG/LPG Kit & Car Insurance — Must Declare!</strong><br><br><strong>The rule:</strong> If your car has a CNG/LPG kit (factory-fitted or aftermarket), it MUST be:<br>1. Endorsed on your <strong>RC</strong> (registration certificate)<br>2. Declared to your <strong>insurer</strong> and added to the policy<br><br><strong>Cost:</strong> Small extra premium (~₹60 on third-party + ~2–4% of kit value on own damage).<br><br><strong>If you dont declare it:</strong><br>• Claims involving the kit are rejected<br>• Even a normal accident/fire claim can be rejected — kits change the risk profile<br>• Legal issues at renewal/transfer<br><br>💡 <em>Factory-fitted CNG cars usually come pre-declared — aftermarket kits are where people slip.</em><br><br>📞 <em>Adding a kit? Sachin will get your policy endorsed correctly: <strong>9013976999</strong>.</em>`,
+      quickReplies: ['Motor insurance', 'Zero depreciation', 'Engine protection', 'Speak to Sachin']
+    },
+    {
+      id: 'motor_addons_extra',
+      weight: 3,
+      patterns: ['key replacement','tyre protect','tyre cover','ncb protect addon','daily allowance car','loss of personal belongings','rim damage'],
+      response: () => `${greet()}<strong>🔑 Smart Motor Add-Ons Most People Miss</strong><br><br><strong>🔑 Key Replacement Cover</strong> — lost/stolen smart keys cost ₹15–40K to replace; this covers key + lockset<br><br><strong>🛞 Tyre Protect</strong> — covers tyre/rim damage WITHOUT an accident (potholes!) — normally excluded<br><br><strong>🛡️ NCB Protect</strong> — make 1–2 claims a year without losing your No Claim Bonus<br><br><strong>💼 Loss of Personal Belongings</strong> — laptop/bag stolen from car<br><br><strong>🏨 Daily Allowance</strong> — ₹500–1,000/day cab allowance while your car is in the garage<br><br><strong>Worth it?</strong> Each costs a few hundred rupees. For city driving with bad roads — tyre protect and NCB protect usually pay for themselves.<br><br>📞 <em>Sachin builds the right add-on stack for your car and usage: <strong>9013976999</strong>.</em>`,
+      quickReplies: ['Zero depreciation', 'Engine protection', 'Roadside assistance', 'Speak to Sachin']
+    },
+    {
+      id: 'pay_as_you_drive',
+      weight: 2,
+      patterns: ['pay as you drive','usage based insurance','pay per km','drive less pay less','telematics insurance','payd'],
+      response: () => `${greet()}<strong>🚗 Pay As You Drive (PAYD) — Insurance by the Kilometre</strong><br><br>Drive less? Pay less. IRDAI-approved usage-based motor insurance:<br><br><strong>How it works:</strong><br>• Choose a km slab (e.g., 2,500 / 5,000 / 7,500 km per year)<br>• Own-damage premium drops <strong>10–25%</strong> vs regular policies<br>• Usage tracked via odometer declaration or telematics app/device<br><br><strong>Perfect for:</strong><br>• Work-from-home professionals<br>• Second cars that mostly sit in parking<br>• Metro users who drive only on weekends<br><br><strong>Watch out:</strong> exceed your slab and claims may face deductions — top up the slab before you cross it.<br><br>📞 <em>Sachin can check if PAYD beats your current premium: <strong>9013976999</strong>.</em>`,
+      quickReplies: ['Motor insurance', 'IDV explained', 'No claim bonus', 'Speak to Sachin']
+    },
+    {
+      id: 'group_gratuity',
+      weight: 2,
+      patterns: ['gratuity','group gratuity','gratuity scheme','gratuity funding','gratuity liability'],
+      response: () => `${greet()}<strong>🏢 Group Gratuity Scheme — Fund It Smartly</strong><br><br>Gratuity is a <strong>statutory liability</strong> — every employee with 5+ years of service is entitled (15 days salary per year of service, up to ₹20L tax-free).<br><br><strong>Why fund it via a Group Gratuity Plan:</strong><br>• Company contributions are <strong>tax-deductible business expense</strong><br>• Fund grows tax-free with the insurer<br>• Built-in life cover for employees (future service gratuity paid even on death)<br>• Smooths cash flow — no sudden lump-sum hits when seniors retire<br><br><strong>Best for:</strong> Companies with 10+ employees, schools, hospitals, family businesses maturing into structured firms.<br><br>📞 <em>Sachin sets up group gratuity, group mediclaim and group term for businesses — call <strong>9013976999</strong>.</em>`,
+      quickReplies: ['Business insurance', 'Group mediclaim', 'Key person insurance', 'Speak to Sachin']
+    },
+    {
+      id: 'reverse_mortgage',
+      weight: 2,
+      patterns: ['reverse mortgage','loan against house for seniors','house pension scheme','rml scheme'],
+      response: () => `${greet()}<strong>🏠 Reverse Mortgage — Your House Pays You a Pension</strong><br><br>For seniors (60+) who own a house but need monthly income:<br><br><strong>How it works:</strong><br>• Bank values your self-occupied house<br>• Pays you a <strong>monthly income / lump sum</strong> against it (up to ~60% of value)<br>• You LIVE in the house for life — no repayment while alive<br>• After both spouses pass, heirs can repay the loan and keep the house, or the bank sells and returns the surplus<br><br><strong>Key facts:</strong><br>• The monthly payouts are <strong>not taxable</strong> (loan, not income)<br>• Tenure typically 10–20 years<br>• Available at SBI, PNB, LIC HFL and others<br><br>💡 <em>Best used AFTER annuities/pension are explored — it is a last-resort income tool, not a first choice.</em><br><br>📞 <em>Sachin helps seniors design complete retirement income — call <strong>9013976999</strong>.</em>`,
+      quickReplies: ['Annuity plans', 'Pension plans', 'Senior citizen insurance', 'Speak to Sachin']
+    },
+    {
+      id: 'underwriting_info',
+      weight: 2,
+      patterns: ['underwriting','underwriter','how insurers assess risk','risk assessment insurance','proposal assessment'],
+      response: () => `${greet()}<strong>🔍 Underwriting — How Insurers Decide Your Premium</strong><br><br>Underwriting is the insurers process of assessing YOUR risk before issuing a policy.<br><br><strong>What they look at:</strong><br>• <strong>Age & gender</strong> — biggest premium factors<br>• <strong>Health:</strong> medical history, BMI, existing conditions, family history<br>• <strong>Lifestyle:</strong> smoking, alcohol, adventure sports<br>• <strong>Occupation:</strong> hazardous jobs pay more<br>• <strong>Income:</strong> determines max life cover eligibility (usually 15–25x annual income)<br><br><strong>Possible outcomes:</strong><br>✅ Standard acceptance • 📈 Premium loading (higher rate) • 📋 Exclusions added • ❌ Postpone/decline<br><br>💡 <em>This is why buying insurance YOUNG and healthy locks in cheap premiums for life.</em><br><br>📞 <em>Sachin pre-screens your profile so your proposal sails through: <strong>9013976999</strong>.</em>`,
+      quickReplies: ['Medical tests', 'Why claims get rejected', 'Term insurance', 'Speak to Sachin']
+    },
+    {
+      id: 'reinsurance_info',
+      weight: 1,
+      patterns: ['reinsurance','reinsurer','insurance of insurers','gic re'],
+      response: () => `${greet()}<strong>🌐 Reinsurance — The Insurance Behind Your Insurance</strong><br><br>Reinsurance is how insurance companies insure <strong>themselves</strong>.<br><br><strong>Why it matters to YOU:</strong><br>• Your insurer passes part of every big risk to global reinsurers (GIC Re, Munich Re, Swiss Re)<br>• So even a catastrophe (floods, pandemics) cannot wipe out your insurer<br>• It is a big reason claims get paid even in disaster years<br><br><strong>Fun fact:</strong> When an insurer offers you a very large cover (₹5 Cr+ term plan), the reinsurers underwriting rules often apply too — that is why big covers need more medicals.<br><br>💡 <em>Combined with IRDAI solvency rules, this is why regulated Indian insurers are extremely safe.</em><br><br>📞 <em>Questions about insurer safety? Ask Sachin: <strong>9013976999</strong>.</em>`,
+      quickReplies: ['Is my insurer safe?', 'Claim settlement ratio', 'About IRDAI', 'Speak to Sachin']
+    },
+    {
+      id: 'solvency_ratio_info',
+      weight: 2,
+      patterns: ['solvency ratio','solvency','insurer financial strength','financially strong insurer','can insurer go bankrupt'],
+      response: () => `${greet()}<strong>🏦 Solvency Ratio — Can Your Insurer Actually Pay?</strong><br><br>The solvency ratio measures an insurers <strong>financial cushion</strong> — assets vs the claims it may have to pay.<br><br><strong>The rule:</strong> IRDAI requires every insurer to maintain a solvency ratio of at least <strong>1.5 (150%)</strong> at all times.<br><br><strong>How to use it:</strong><br>• Check the insurers latest solvency ratio (published quarterly, shown on IRDAI site)<br>• 1.5–2.0+ = comfortably safe<br>• Consistently near 1.5 = fine, but watch trends<br><br><strong>Along with solvency, check:</strong><br>• Claim Settlement Ratio (CSR) — % of claims paid<br>• Incurred Claim Ratio (ICR) — sustainability of pricing<br><br>💡 <em>No Indian life insurer has ever defaulted on valid claims — the regulatory system works.</em><br><br>📞 <em>Sachin compares insurers on ALL these metrics, not just price: <strong>9013976999</strong>.</em>`,
+      quickReplies: ['Claim settlement ratio', 'Compare insurers', 'About IRDAI', 'Speak to Sachin']
+    },
+    {
+      id: 'advisor_commission',
+      weight: 3,
+      patterns: ['commission','how much commission','agent commission','do you earn commission','your commission','why is advice free'],
+      response: () => `${greet()}<strong>💰 How PolicyRaj Earns — Complete Transparency</strong><br><br>Fair question, and we answer it openly!<br><br><strong>How it works:</strong><br>• Advisors earn a commission from the insurer, built into the premium by IRDAI-regulated rates<br>• <strong>You pay the SAME premium</strong> whether you buy through an advisor or directly from the insurer — the price is regulated<br>• So our advice, comparisons, claim support and lifetime service cost you <strong>nothing extra</strong><br><br><strong>Why choose an advisor then?</strong><br>• Direct buying = you are alone at claim time<br>• Through PolicyRaj = Sachin personally assists your claims, renewals and reviews for life<br><br><strong>Our promise:</strong> We recommend from multiple partner insurers based on YOUR fit — our 22-year reputation is worth more than any commission.<br><br>📞 <em>Ask Sachin anything about this directly: <strong>9013976999</strong>.</em>`,
+      quickReplies: ['About PolicyRaj', 'Why trust PolicyRaj?', 'Get a quote', 'Speak to Sachin']
+    },
+
     /* ─── THANKS ─────────────────────────────────────── */
     {
       id: 'thanks',
@@ -2173,20 +2281,20 @@
     // Context-aware follow-up
     if (bestScore < 8 && ctx.lastIntent) {
       const related = {
-        health: ['health_coverage','health_family','health_tax','preexisting','waitingperiod','top_up','cashless','copay','portability','day_care','health_ncb','restore_benefit','opd_cover','mental_health','newborn_cover','hospital_cash','health_checkup','ayush','domiciliary','group_individual','network_nonnetwork_health','pre_auth_surgery','dengue_ins','hospital_indemnity','cancer_ins','arogya_sanjeevani'],
-        life: ['life_howmuch','trop','riders','wholelife','mrta','lic_vs_private','limited_pay','single_premium','joint_life','self_employed','life_claim','group_term','homemaker_ins','premium_frequency','life_policy_loan','maturity_options','life_senior_ins','saral_jeevan','early_life_claim'],
-        motor: ['ncb','zero_dep','idv','return_invoice','electric_vehicle','new_car','bike_insurance','vehicle_transfer','engine_protect','roadside_assist','consumables_add','motor_theft_cl','motor_renew_tip','third_party_motor_cl','commercial_veh','motor_theft_claim2','natural_disaster_claim'],
+        health: ['modern_treatments','organ_donor_air_amb','wellness_rewards','health_coverage','health_family','health_tax','preexisting','waitingperiod','top_up','cashless','copay','portability','day_care','health_ncb','restore_benefit','opd_cover','mental_health','newborn_cover','hospital_cash','health_checkup','ayush','domiciliary','group_individual','network_nonnetwork_health','pre_auth_surgery','dengue_ins','hospital_indemnity','cancer_ins','arogya_sanjeevani'],
+        life: ['mwp_act','reversionary_bonus','alcohol_disclosure','life_howmuch','trop','riders','wholelife','mrta','lic_vs_private','limited_pay','single_premium','joint_life','self_employed','life_claim','group_term','homemaker_ins','premium_frequency','life_policy_loan','maturity_options','life_senior_ins','saral_jeevan','early_life_claim'],
+        motor: ['cng_kit','motor_addons_extra','pay_as_you_drive','ncb','zero_dep','idv','return_invoice','electric_vehicle','new_car','bike_insurance','vehicle_transfer','engine_protect','roadside_assist','consumables_add','motor_theft_cl','motor_renew_tip','third_party_motor_cl','commercial_veh','motor_theft_claim2','natural_disaster_claim'],
         tax: ['elss_ppf','nps','ppf','new_tax_regime','home_loan_tax','ltcg','hra','itr_insurance','sec_80g','sec_80e_edu','maturity_tax_10d','lta_exemption','nps_employer_80ccd','senior_tax_plan','tax_free_income_list','form_16_explained','elss_selection'],
-        pension: ['annuity','nps','atal_pension','pmvvy_scheme','scss_scheme','swp_plan','retirement_calc_inv'],
+        pension: ['reverse_mortgage','annuity','nps','atal_pension','pmvvy_scheme','scss_scheme','swp_plan','retirement_calc_inv'],
         investments: ['child','ulip','elss_ppf','sip_power','compounding','ppf','sukanya','fd_vs_insurance','swp_plan','balanced_funds','elss_selection','retirement_calc_inv','stp_plan','diversification_inv','asset_allocation'],
         claims: ['claim_rejection','grievance','tpa','life_claim','claim_documents','claim_time','motor_theft_claim2','network_nonnetwork_health','pre_auth_surgery','surveyor_ins_role','early_life_claim','multiple_policy_claim','natural_disaster_claim','consumer_court_ins'],
-        business: ['key_person','marine_cargo','event_insurance','liability','cyber','shop_policy','doctors_pi','it_insurance','directors_officers_ins','fidelity_ins','product_liability_ins','contractors_ar_ins','hotel_ins','startup_ins_check','ngo_ins'],
+        business: ['group_gratuity','key_person','marine_cargo','event_insurance','liability','cyber','shop_policy','doctors_pi','it_insurance','directors_officers_ins','fidelity_ins','product_liability_ins','contractors_ar_ins','hotel_ins','startup_ins_check','ngo_ins'],
         financial_planning: ['emergency_fund','health_vs_life','insurance_vs_investment','how_many_policies','portfolio_review','underinsurance','asset_allocation','diversification_inv','retirement_calc_inv'],
         personal_protection: ['critical_illness','personal_accident','pa_women_ins','pa_children_ins','group_pa_ins','disability_income_ins','cancer_ins','dengue_ins','hospital_indemnity','fracture_care','income_protection','high_risk_profession_ins','spine_back_ins','senior_pa_ins','accidental_death_benefit','vector_disease_ins'],
         travel_home: ['travel','home','schengen_ins','annual_travel_ins','senior_travel_ins','student_travel_ins','adventure_travel_ins','jewellery_ins','tenant_ins','home_contents','fire_ins_standalone','home_valuation','home_renovation_ins','pet_insurance','gadget_insurance','art_collectibles'],
         govt_schemes: ['pmjjby_pmsby','ayushman','atal_pension','sukanya','pmfby_crop','pmvvy_scheme','scss_scheme','epf_insurance_conn','esic_scheme','saral_jeevan','arogya_sanjeevani','railway_ins','state_health_schemes','jan_dhan_ins','kcc_insurance','nsc_kvp_schemes'],
         policy_mgmt: ['renewal','portability','digilocker','free_look','policy_surrender','policy_status','premium','nominee','assignment','update_details_ins','duplicate_policy_doc','auto_renewal_ins','payment_modes_ins','policy_schedule_understand','change_insurer','insurance_will_estate'],
-        about_policyraj: ['about','contact','partners','irdai','compare','quote','policyraj_services','policyraj_fees','policyraj_area','policyraj_claim_help','policyraj_annual_review','policyraj_nri','policyraj_business_clients','policyraj_success_stories','policyraj_get_started','sachin_biography','policyraj_compare_service'],
+        about_policyraj: ['advisor_commission','about','contact','partners','irdai','compare','quote','policyraj_services','policyraj_fees','policyraj_area','policyraj_claim_help','policyraj_annual_review','policyraj_nri','policyraj_business_clients','policyraj_success_stories','policyraj_get_started','sachin_biography','policyraj_compare_service'],
       };
       const rels = related[ctx.lastIntent] || [];
       for (const relId of rels) {

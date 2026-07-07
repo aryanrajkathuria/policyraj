@@ -8,11 +8,11 @@ const backToTop = document.getElementById('backToTop');
 
 window.addEventListener('scroll', () => {
   if (window.scrollY > 60) {
-    navbar.classList.add('scrolled');
-    backToTop.classList.add('visible');
+    if (navbar) navbar.classList.add('scrolled');
+    if (backToTop) backToTop.classList.add('visible');
   } else {
-    navbar.classList.remove('scrolled');
-    backToTop.classList.remove('visible');
+    if (navbar) navbar.classList.remove('scrolled');
+    if (backToTop) backToTop.classList.remove('visible');
   }
 });
 

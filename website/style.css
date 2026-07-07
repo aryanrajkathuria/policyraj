@@ -4998,3 +4998,49 @@ section[class*="-section"] {
   .lp-header-ctas .lp-explore-link { display: inline-flex; padding: 8px 12px; font-size: 0.75rem; white-space: nowrap; }
   .lp-header-ctas .lp-explore-link i { display: none; }
 }
+
+/* ── Explore Full Website — hero treatment for the site gateway ── */
+.lp-header-ctas .lp-explore-link {
+  background: linear-gradient(135deg, #1E3A8A 0%, #4338ca 55%, #6d28d9 100%);
+  background-size: 180% 180%;
+  color: #fff;
+  border: none;
+  padding: 11px 24px;
+  font-weight: 700;
+  box-shadow: 0 4px 18px rgba(67, 56, 202, 0.45);
+  position: relative;
+  overflow: hidden;
+  animation: lp-explore-drift 6s ease infinite;
+}
+.lp-header-ctas .lp-explore-link::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 55%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+  transform: skewX(-18deg);
+  animation: lp-explore-shine 3.2s ease infinite;
+}
+.lp-header-ctas .lp-explore-link i { color: #c4b5fd; }
+.lp-header-ctas .lp-explore-link:hover,
+.lp-header-ctas .lp-explore-link:focus-visible {
+  background: linear-gradient(135deg, #1E3A8A 0%, #4338ca 55%, #6d28d9 100%);
+  background-size: 180% 180%;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(67, 56, 202, 0.6);
+}
+@keyframes lp-explore-drift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+@keyframes lp-explore-shine {
+  0% { left: -100%; }
+  55%, 100% { left: 160%; }
+}
+
+/* Bottom explore link — arrow slides on hover */
+.lp-explore-more a { display: inline-flex; align-items: center; gap: 6px; }
+.lp-explore-more a i { transition: transform var(--transition); }
+.lp-explore-more a:hover i { transform: translateX(5px); }
