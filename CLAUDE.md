@@ -524,7 +524,7 @@ Advisor name:    Sachin Kathuria
 Phone:           9013976999 / 8383813408
 Email:           sachin@policyraj.com / aryanrajkathuria@gmail.com
 WhatsApp:        https://wa.me/919013976999
-Website:         https://policyraj.in/
+Website:         https://www.policyraj.com/
 AI Bot name:     Veera
 Bot avatar:      rakesh-avatar.svg
 Logo:            policyraj.png
