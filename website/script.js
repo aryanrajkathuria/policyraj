@@ -22,9 +22,11 @@ function toggleMenu() {
   navLinks.classList.toggle('open');
 }
 
-// Close menu when a link is clicked
+// Close menu when a link is clicked — but NOT when the tap is a
+// dropdown trigger (those open a submenu instead of navigating)
 document.querySelectorAll('.nav-links a').forEach(link => {
   link.addEventListener('click', () => {
+    if (link.classList.contains('nav-dropdown-trigger')) return;
     document.getElementById('navLinks').classList.remove('open');
   });
 });
