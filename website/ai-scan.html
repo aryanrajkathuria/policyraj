@@ -997,6 +997,12 @@
       showToast('Reverted to Tesseract OCR');
     }
 
+    /* Expose Gemini panel controls — script runs inside an IIFE, so
+       inline onclick handlers need these on window */
+    window.toggleGeminiPanel = toggleGeminiPanel;
+    window.saveGeminiKey = saveGeminiKey;
+    window.clearGeminiKey = clearGeminiKey;
+
     async function scanWithGemini(imgDataUrl, docType) {
       const docNames = {
         driving:'Driving License', aadhaar:'Aadhaar Card', pan:'PAN Card',
