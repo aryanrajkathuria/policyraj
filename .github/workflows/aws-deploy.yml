@@ -1,8 +1,11 @@
 name: AWS Deploy
 
+# Manual trigger only. This deploys the BACKEND container (ECS) which the
+# website does not use yet — the frontend deploys via the AWS-side pipeline
+# (S3 + CloudFront) on every push. Re-enable push trigger only after the
+# AWS secrets are configured and the backend goes live.
 on:
-  push:
-    branches: [main]
+  workflow_dispatch:
 
 jobs:
   deploy:
