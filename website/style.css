@@ -1650,8 +1650,8 @@ h4 { font-size: 1.1rem; font-weight: 600; }
   backdrop-filter: blur(8px);
 }
 .hero-stats { border-top-color: rgba(255,255,255,0.14); }
-.stat strong { color: #fff; }
-.stat span { color: rgba(255,255,255,0.65); }
+.hero .stat strong { color: #fff; }
+.hero .stat span { color: rgba(255,255,255,0.65); }
 .hero .btn-outline {
   background: rgba(255,255,255,0.08);
   border-color: rgba(255,255,255,0.60);
@@ -4679,8 +4679,8 @@ html, body { overflow-x: hidden; max-width: 100%; }
   /* WhatsApp float button — safe area */
   .whatsapp-float { bottom: max(20px, env(safe-area-inset-bottom) + 10px); }
 
-  /* Back to top — safe area */
-  .back-to-top { bottom: max(20px, env(safe-area-inset-bottom) + 10px); }
+  /* Back to top — sits ABOVE the WhatsApp float, not on top of it */
+  .back-to-top { bottom: max(88px, env(safe-area-inset-bottom) + 78px); }
 }
 
 @media (max-width: 480px) {
