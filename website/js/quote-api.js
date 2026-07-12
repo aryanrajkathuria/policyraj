@@ -1,8 +1,8 @@
 /**
  * PolicyRaj — Quote API
- * Paste your API Gateway URL here after running aws/lambda/quote/deploy.sh
+ * Live endpoint: Lambda Function URL for the "policyraj" quote/lead function (ap-south-1)
  */
-const QUOTE_API_URL = 'PASTE_YOUR_API_GATEWAY_URL_HERE';
+const QUOTE_API_URL = 'https://3apm6ym4xhgkbm3ds7ny6dwtue0skycw.lambda-url.ap-south-1.on.aws/';
 
 /**
  * Submit a quote lead to Lambda (email + WhatsApp to Sachin).
