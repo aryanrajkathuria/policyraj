@@ -200,7 +200,7 @@ function buildEmailHtml({ type, name, email, mobile, timestamp, ...rest }) {
     </a>
   </td></tr>
   <tr><td style="background:#f8fafc;padding:16px 32px;border-top:1px solid #e2e8f0">
-    <p style="margin:0;font-size:12px;color:#94a3b8;text-align:center">PolicyRaj™ · www.policyraj.com · sachin@policyraj.com</p>
+    <p style="margin:0;font-size:12px;color:#94a3b8;text-align:center">PolicyRaj™ · www.policyraj.com · sachin@policyraj.in</p>
   </td></tr>
 </table>
 </td></tr>
