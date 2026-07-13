@@ -576,14 +576,19 @@
       color: rgba(255,255,255,0.55);
     }
 
-    /* Newsletter box */
-    .newsletter-box {
+    /* Did You Know — insurance trivia box */
+    .dyk-box {
       background: var(--off-white);
       border: 1.5px solid var(--border);
       border-radius: var(--radius-lg);
       padding: 40px;
+      display: flex;
+      flex-direction: column;
     }
-    .newsletter-box-eyebrow {
+    .dyk-box-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 8px;
       font-size: 0.75rem;
       font-weight: 700;
       text-transform: uppercase;
@@ -591,40 +596,22 @@
       color: var(--primary);
       margin-bottom: 12px;
     }
-    .newsletter-box h3 {
+    .dyk-box h3 {
       font-family: 'Poppins', sans-serif;
       font-size: 1.4rem;
       font-weight: 700;
       color: var(--text);
-      margin-bottom: 10px;
+      margin-bottom: 14px;
       line-height: 1.35;
     }
-    .newsletter-box p {
+    .dyk-fact {
       color: var(--text-light);
-      font-size: 0.9rem;
-      line-height: 1.65;
-      margin-bottom: 24px;
+      font-size: 0.95rem;
+      line-height: 1.75;
+      margin: 0 0 28px;
+      flex: 1;
     }
-    .newsletter-form {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .newsletter-input {
-      width: 100%;
-      padding: 14px 18px;
-      border: 1.5px solid var(--border);
-      border-radius: var(--radius);
-      font-size: 1rem;
-      font-family: 'IBM Plex Sans', sans-serif;
-      color: var(--text);
-      background: var(--white);
-      transition: border-color var(--transition);
-      outline: none;
-    }
-    .newsletter-input:focus { border-color: var(--primary); }
-    .newsletter-input::placeholder { color: var(--gray); }
-    .newsletter-submit {
+    .dyk-cta {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -636,38 +623,22 @@
       padding: 14px 28px;
       font-size: 0.95rem;
       font-weight: 700;
+      text-decoration: none;
       cursor: pointer;
       transition: all var(--transition);
       font-family: 'IBM Plex Sans', sans-serif;
       touch-action: manipulation;
       min-height: 44px;
     }
-    .newsletter-submit:hover {
+    .dyk-cta:hover {
       transform: translateY(-2px);
       box-shadow: var(--shadow-hover);
     }
-    .newsletter-disclaimer {
+    .dyk-note {
       font-size: 0.76rem;
       color: var(--gray);
-      margin-top: 8px;
-    }
-    .newsletter-perks {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      margin-bottom: 24px;
-    }
-    .newsletter-perk {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.85rem;
-      color: var(--text-light);
-    }
-    .newsletter-perk i {
-      color: #059669;
-      font-size: 0.85rem;
-      width: 16px;
+      margin: 8px 0 0;
+      text-align: center;
     }
 
     /* ── RESPONSIVE ── */
@@ -691,7 +662,7 @@
     @media (max-width: 600px) {
       .article-grid { grid-template-columns: 1fr; }
       .blog-cta-grid { grid-template-columns: 1fr; }
-      .cta-ask-box, .newsletter-box { padding: 28px 22px; }
+      .cta-ask-box, .dyk-box { padding: 28px 22px; }
       .blog-filters { gap: 8px; }
       .blog-filter-btn { padding: 8px 14px; font-size: 0.82rem; }
       .blog-section-title { flex-direction: column; align-items: flex-start; }
@@ -1137,31 +1108,15 @@
           <p class="cta-consult-note">Or WhatsApp: <a href="https://wa.me/919013976999" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.75);text-decoration:underline;">+91 90139 76999</a></p>
         </div>
 
-        <!-- Newsletter -->
-        <div class="newsletter-box">
-          <div class="newsletter-box-eyebrow">Weekly Tips</div>
-          <h3>Get Weekly Insurance Insights</h3>
-          <p>Join 5,000+ readers who get practical insurance tips, claim alerts and policy updates every week — straight from Sachin's desk.</p>
-          <div class="newsletter-perks">
-            <div class="newsletter-perk"><i class="fa fa-check-circle" aria-hidden="true"></i> Your privacy respected — opt out anytime</div>
-            <div class="newsletter-perk"><i class="fa fa-check-circle" aria-hidden="true"></i> Practical tips you can act on</div>
-            <div class="newsletter-perk"><i class="fa fa-check-circle" aria-hidden="true"></i> Exclusive claim alert updates</div>
-          </div>
-          <form class="newsletter-form" onsubmit="handleNewsletterSubmit(event)" novalidate>
-            <label for="newsletterEmail" class="sr-only">Your email address</label>
-            <input
-              type="email"
-              id="newsletterEmail"
-              class="newsletter-input"
-              placeholder="Your email address"
-              required
-              autocomplete="email"
-            />
-            <button type="submit" class="newsletter-submit">
-              <i class="fa fa-envelope" aria-hidden="true"></i> Subscribe — It's Free
-            </button>
-          </form>
-          <p class="newsletter-disclaimer">By subscribing you agree to receive insurance tips from PolicyRaj. We respect your privacy.</p>
+        <!-- Did You Know -->
+        <div class="dyk-box">
+          <div class="dyk-box-eyebrow"><i class="fa fa-lightbulb" aria-hidden="true"></i> Insurance Trivia</div>
+          <h3>Did You Know?</h3>
+          <p class="dyk-fact" id="dykFact">Insurance is one of the oldest financial ideas in the world, dating back over 4,000 years.</p>
+          <a href="https://wa.me/919013976999?text=Hi%20Sachin%2C%20I%20read%20an%20interesting%20insurance%20fact%20on%20your%20blog%20and%20had%20a%20question." target="_blank" rel="noopener" class="dyk-cta">
+            <i class="fab fa-whatsapp" aria-hidden="true"></i> Ask Sachin About This
+          </a>
+          <p class="dyk-note">A new fact every time you visit</p>
         </div>
 
       </div>
@@ -1364,59 +1319,23 @@
       }
     }
 
-    /* Newsletter submit — calls AWS Lambda via API Gateway */
-    const NEWSLETTER_API_URL = 'PASTE_YOUR_API_GATEWAY_URL_HERE';
+    /* Did You Know — rotates a random insurance fact on each page load */
+    const INSURANCE_FACTS = [
+      'Insurance is over 4,000 years old. Ancient Babylonian merchants used a system where loans for sea voyages were forgiven entirely if the ship was lost, one of the first recorded forms of risk transfer.',
+      'The word premium comes from the Latin praemium, meaning reward. It originally meant the reward paid to someone willing to take on your risk.',
+      'Ancient traders split cargo across multiple ships, so losing one vessel meant losing only a fraction of the goods, the earliest version of spreading risk that insurance still relies on today.',
+      'Waiting periods exist to keep premiums fair. Without them, people could buy a policy only after falling sick, which would collapse the shared pool everyone else pays into.',
+      'Sum assured and sum insured are not the same. Sum assured is a fixed guaranteed payout used in life insurance, while sum insured is the maximum claimable for an actual loss in health or motor insurance.',
+      'A no-claim bonus is just statistics. Insurers reward policyholders who do not file claims because, mathematically, they are proven to be lower-risk customers.',
+      'Widespread fire insurance took off after the Great Fire of London in 1666 destroyed over 13,000 homes in four days, a disaster so large it made prepaid protection feel essential to ordinary people.',
+      'A grace period is not a courtesy, it is a legal requirement. Insurers must keep cover active for a set window, commonly 15 to 30 days, after a missed payment.'
+    ];
 
-    async function handleNewsletterSubmit(e) {
-      e.preventDefault();
-      const input  = document.getElementById('newsletterEmail');
-      const btn    = e.target.querySelector('.newsletter-submit');
-      const email  = (input.value || '').trim();
-      if (!email) return;
-
-      // Loading state
-      const originalHtml = btn.innerHTML;
-      btn.disabled  = true;
-      btn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Subscribing...';
-
-      try {
-        const res = await fetch(NEWSLETTER_API_URL, {
-          method:  'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body:    JSON.stringify({ email }),
-        });
-        const data = await res.json();
-
-        if (res.ok) {
-          input.value   = '';
-          btn.innerHTML = '<i class="fa fa-check-circle"></i> Subscribed!';
-          btn.style.background = 'linear-gradient(135deg,#059669,#10b981)';
-          const toast = document.getElementById('toast');
-          if (toast) {
-            toast.innerHTML = '<i class="fa fa-check-circle"></i> Subscribed! Check your inbox for a welcome email.';
-            toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 4000);
-          }
-          setTimeout(() => {
-            btn.disabled  = false;
-            btn.innerHTML = originalHtml;
-            btn.style.background = '';
-          }, 5000);
-        } else {
-          throw new Error(data.error || 'Subscription failed');
-        }
-      } catch (err) {
-        btn.disabled  = false;
-        btn.innerHTML = originalHtml;
-        const toast = document.getElementById('toast');
-        if (toast) {
-          toast.innerHTML = '<i class="fa fa-exclamation-circle"></i> Something went wrong. Please try again.';
-          toast.classList.add('show');
-          setTimeout(() => toast.classList.remove('show'), 3500);
-        }
-        console.error('Newsletter error:', err);
-      }
-    }
+    (function showRandomFact() {
+      const el = document.getElementById('dykFact');
+      if (!el) return;
+      el.textContent = INSURANCE_FACTS[Math.floor(Math.random() * INSURANCE_FACTS.length)];
+    })();
 
     /* Keyboard nav: featured article enter key (already inline, also here for robustness) */
     document.querySelectorAll('.article-card').forEach(function(card) {
