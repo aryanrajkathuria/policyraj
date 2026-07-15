@@ -799,9 +799,23 @@
             <div class="hip-row">
               <div class="hip-field">
                 <label class="hip-label">Height <span class="hip-req">*</span></label>
-                <div class="hip-input-unit">
+                <div class="hip-chip-group">
+                  <label class="hip-chip hip-chip--active"><input type="radio" name="hipHeightUnit" value="cm" checked onchange="setHeightUnit(this)" /> cm</label>
+                  <label class="hip-chip"><input type="radio" name="hipHeightUnit" value="ftin" onchange="setHeightUnit(this)" /> ft / in</label>
+                </div>
+                <div class="hip-input-unit" style="margin-top:8px">
                   <input type="number" class="hip-input" id="hipHeight" placeholder="e.g. 170" min="50" max="250" required />
                   <span class="hip-unit">cm</span>
+                </div>
+                <div id="hipHeightFtIn" style="display:none;gap:10px;margin-top:8px">
+                  <div class="hip-input-unit" style="flex:1">
+                    <input type="number" class="hip-input" id="hipHeightFt" placeholder="e.g. 5" min="1" max="8" oninput="calcHeightFromFtIn()" />
+                    <span class="hip-unit">ft</span>
+                  </div>
+                  <div class="hip-input-unit" style="flex:1">
+                    <input type="number" class="hip-input" id="hipHeightIn" placeholder="e.g. 7" min="0" max="11" oninput="calcHeightFromFtIn()" />
+                    <span class="hip-unit">in</span>
+                  </div>
                 </div>
               </div>
               <div class="hip-field">
@@ -919,39 +933,50 @@
           <div class="hip-card-head">
             <span class="hip-card-icon hip-card-icon--nominee"><i class="fa fa-user-shield"></i></span>
             <h3>Nominee Details</h3>
-            <span class="hip-card-badge">Required by IRDAI</span>
+            <span class="hip-card-badge">Optional</span>
           </div>
           <div class="hip-body">
 
-            <div class="hip-row">
-              <div class="hip-field">
-                <label class="hip-label">Nominee Full Name <span class="hip-req">*</span></label>
-                <input type="text" class="hip-input" id="hipNomName" placeholder="Nominee's full name" required />
+            <div class="hip-field" style="margin-bottom:20px">
+              <label class="hip-label">Add Nominee Details Now?</label>
+              <div class="hip-chip-group">
+                <label class="hip-chip"><input type="radio" name="hipAddNominee" value="Yes" onchange="toggleNominee(this)" /><i class="fa fa-check"></i> Yes, add now</label>
+                <label class="hip-chip"><input type="radio" name="hipAddNominee" value="No" onchange="toggleNominee(this)" /><i class="fa fa-times"></i> Skip for now</label>
               </div>
-              <div class="hip-field">
-                <label class="hip-label">Relationship <span class="hip-req">*</span></label>
-                <select class="hip-input hip-select" id="hipNomRelation" required>
-                  <option value="" disabled selected>Select relationship</option>
-                  <option>Spouse</option>
-                  <option>Son</option>
-                  <option>Daughter</option>
-                  <option>Father</option>
-                  <option>Mother</option>
-                  <option>Brother</option>
-                  <option>Sister</option>
-                  <option>Other</option>
-                </select>
-              </div>
+              <span class="hip-hint">Optional at this stage — Sachin can also collect this when he calls you</span>
             </div>
 
-            <div class="hip-row">
-              <div class="hip-field">
-                <label class="hip-label">Nominee Date of Birth <span class="hip-req">*</span></label>
-                <input type="date" class="hip-input" id="hipNomDob" onchange="calcAge('hipNomDob','hipNomAge')" required />
+            <div id="hipNomineeDetail" style="display:none">
+              <div class="hip-row">
+                <div class="hip-field">
+                  <label class="hip-label">Nominee Full Name <span class="hip-req">*</span></label>
+                  <input type="text" class="hip-input" id="hipNomName" placeholder="Nominee's full name" />
+                </div>
+                <div class="hip-field">
+                  <label class="hip-label">Relationship <span class="hip-req">*</span></label>
+                  <select class="hip-input hip-select" id="hipNomRelation">
+                    <option value="" disabled selected>Select relationship</option>
+                    <option>Spouse</option>
+                    <option>Son</option>
+                    <option>Daughter</option>
+                    <option>Father</option>
+                    <option>Mother</option>
+                    <option>Brother</option>
+                    <option>Sister</option>
+                    <option>Other</option>
+                  </select>
+                </div>
               </div>
-              <div class="hip-field">
-                <label class="hip-label">Nominee Age <span class="hip-req">*</span></label>
-                <input type="number" class="hip-input hip-readonly" id="hipNomAge" placeholder="Auto-filled from DOB" min="0" max="99" readonly />
+
+              <div class="hip-row">
+                <div class="hip-field">
+                  <label class="hip-label">Nominee Date of Birth <span class="hip-req">*</span></label>
+                  <input type="date" class="hip-input" id="hipNomDob" onchange="calcAge('hipNomDob','hipNomAge')" />
+                </div>
+                <div class="hip-field">
+                  <label class="hip-label">Nominee Age <span class="hip-req">*</span></label>
+                  <input type="number" class="hip-input hip-readonly" id="hipNomAge" placeholder="Auto-filled from DOB" min="0" max="99" readonly />
+                </div>
               </div>
             </div>
 
@@ -1182,6 +1207,36 @@
       if (radio.value !== 'Yes') document.getElementById('hipPEDText').value = '';
     }
 
+    function toggleNominee(radio) {
+      const show = radio.value === 'Yes';
+      document.getElementById('hipNomineeDetail').style.display = show ? 'block' : 'none';
+      ['hipNomName', 'hipNomRelation', 'hipNomDob'].forEach(id => {
+        document.getElementById(id).required = show;
+      });
+      if (!show) {
+        document.getElementById('hipNomName').value = '';
+        document.getElementById('hipNomRelation').value = '';
+        document.getElementById('hipNomDob').value = '';
+        document.getElementById('hipNomAge').value = '';
+      }
+    }
+
+    function setHeightUnit(radio) {
+      const isCm = radio.value === 'cm';
+      const cmInput = document.getElementById('hipHeight');
+      document.getElementById('hipHeightFtIn').style.display = isCm ? 'none' : 'flex';
+      cmInput.readOnly = !isCm;
+      cmInput.classList.toggle('hip-readonly', !isCm);
+      if (!isCm) calcHeightFromFtIn();
+    }
+
+    function calcHeightFromFtIn() {
+      const ft = parseFloat(document.getElementById('hipHeightFt').value) || 0;
+      const inch = parseFloat(document.getElementById('hipHeightIn').value) || 0;
+      const cm = Math.round(ft * 30.48 + inch * 2.54);
+      document.getElementById('hipHeight').value = cm > 0 ? cm : '';
+    }
+
     /* ── Chip toggle (select / deselect) ── */
     document.addEventListener('click', function(e) {
       if (e.target.type === 'radio') return; /* ignore synthetic radio clicks */
@@ -1236,8 +1291,7 @@
         `📞 Primary: +91 ${g('hipMobile1')}\n` +
         (g('hipMobile2') ? `📞 Secondary: +91 ${g('hipMobile2')}\n` : '') +
         `📧 Email: ${g('hipEmail')}\n\n` +
-        `*── NOMINEE ──*\n` +
-        `👥 ${g('hipNomName')} | ${g('hipNomRelation')} | Age ${g('hipNomAge')}\n\n` +
+        (g('hipNomName') ? `*── NOMINEE ──*\n👥 ${g('hipNomName')} | ${g('hipNomRelation')} | Age ${g('hipNomAge')}\n\n` : ``) +
         `_Please prepare a health insurance quote at the earliest._`;
 
       const btn = form.querySelector('.hip-submit-btn');
@@ -1267,6 +1321,11 @@
         document.getElementById('hipAge').value = '';
         document.getElementById('hipNomAge').value = '';
         document.getElementById('hipPEDDetail').style.display = 'none';
+        document.getElementById('hipNomineeDetail').style.display = 'none';
+        ['hipNomName', 'hipNomRelation', 'hipNomDob'].forEach(id => { document.getElementById(id).required = false; });
+        document.getElementById('hipHeightFtIn').style.display = 'none';
+        document.getElementById('hipHeight').readOnly = false;
+        document.getElementById('hipHeight').classList.remove('hip-readonly');
         form.querySelectorAll('.hip-chip').forEach(c => c.classList.remove('hip-chip--active'));
         setTimeout(() => { btn.innerHTML = '<i class="fa fa-paper-plane"></i> Submit Health Insurance Proposal'; btn.style.background = ''; }, 4000);
       });

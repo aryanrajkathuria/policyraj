@@ -384,34 +384,45 @@
           <div class="mip-card-head">
             <span class="mip-card-icon mip-card-icon--nominee"><i class="fa fa-user-friends"></i></span>
             <h3>Nominee Details</h3>
-            <span class="mip-card-badge">Claim Beneficiary</span>
+            <span class="mip-card-badge">Optional</span>
           </div>
           <div class="mip-body">
 
-            <div class="mip-row">
-              <div class="mip-field">
-                <label class="mip-label">Nominee Full Name <span class="mip-req">*</span></label>
-                <input type="text" class="mip-input" id="mipNomName" placeholder="Enter nominee's full name" required />
+            <div class="mip-field" style="margin-bottom:20px">
+              <label class="mip-label">Add Nominee Details Now?</label>
+              <div class="mip-chip-group">
+                <label class="mip-chip"><input type="radio" name="mipAddNominee" value="Yes" onchange="toggleMipNominee(this)" /><i class="fa fa-check"></i> Yes, add now</label>
+                <label class="mip-chip"><input type="radio" name="mipAddNominee" value="No" onchange="toggleMipNominee(this)" /><i class="fa fa-times"></i> Skip for now</label>
               </div>
-              <div class="mip-field">
-                <label class="mip-label">Relationship <span class="mip-req">*</span></label>
-                <select class="mip-input mip-select" id="mipNomRelation" required>
-                  <option value="">Select Relationship</option>
-                  <option>Spouse</option><option>Father</option><option>Mother</option>
-                  <option>Son</option><option>Daughter</option><option>Brother</option>
-                  <option>Sister</option><option>Other</option>
-                </select>
-              </div>
+              <span class="mip-hint">Optional at this stage — Sachin can also collect this when he calls you</span>
             </div>
 
-            <div class="mip-row">
-              <div class="mip-field">
-                <label class="mip-label">Nominee Date of Birth <span class="mip-req">*</span></label>
-                <input type="date" class="mip-input" id="mipNomDob" onchange="calcMipAge('mipNomDob','mipNomAge')" required />
+            <div id="mipNomineeDetail" style="display:none">
+              <div class="mip-row">
+                <div class="mip-field">
+                  <label class="mip-label">Nominee Full Name <span class="mip-req">*</span></label>
+                  <input type="text" class="mip-input" id="mipNomName" placeholder="Enter nominee's full name" />
+                </div>
+                <div class="mip-field">
+                  <label class="mip-label">Relationship <span class="mip-req">*</span></label>
+                  <select class="mip-input mip-select" id="mipNomRelation">
+                    <option value="">Select Relationship</option>
+                    <option>Spouse</option><option>Father</option><option>Mother</option>
+                    <option>Son</option><option>Daughter</option><option>Brother</option>
+                    <option>Sister</option><option>Other</option>
+                  </select>
+                </div>
               </div>
-              <div class="mip-field">
-                <label class="mip-label">Nominee Age</label>
-                <input type="number" class="mip-input mip-readonly" id="mipNomAge" placeholder="Auto-filled from DOB" readonly />
+
+              <div class="mip-row">
+                <div class="mip-field">
+                  <label class="mip-label">Nominee Date of Birth <span class="mip-req">*</span></label>
+                  <input type="date" class="mip-input" id="mipNomDob" onchange="calcMipAge('mipNomDob','mipNomAge')" />
+                </div>
+                <div class="mip-field">
+                  <label class="mip-label">Nominee Age</label>
+                  <input type="number" class="mip-input mip-readonly" id="mipNomAge" placeholder="Auto-filled from DOB" readonly />
+                </div>
               </div>
             </div>
 
@@ -595,6 +606,20 @@
       document.getElementById(ageId).value = age >= 0 ? age : '';
     }
 
+    function toggleMipNominee(radio) {
+      const show = radio.value === 'Yes';
+      document.getElementById('mipNomineeDetail').style.display = show ? 'block' : 'none';
+      ['mipNomName', 'mipNomRelation', 'mipNomDob'].forEach(id => {
+        document.getElementById(id).required = show;
+      });
+      if (!show) {
+        document.getElementById('mipNomName').value = '';
+        document.getElementById('mipNomRelation').value = '';
+        document.getElementById('mipNomDob').value = '';
+        document.getElementById('mipNomAge').value = '';
+      }
+    }
+
     /* ── Chip toggle (select / deselect) ── */
     document.addEventListener('click', function(e) {
       if (e.target.type === 'radio') return; /* ignore synthetic radio clicks */
@@ -658,8 +683,7 @@
         `📧 Email: ${g('mipEmail')}\n` +
         `🗓 DOB: ${g('mipOwnerDob')} (Age ${g('mipOwnerAge')})\n` +
         `⚧ Gender: ${r('mipGender')} | Marital: ${r('mipMarital')}\n\n` +
-        `*── NOMINEE ──*\n` +
-        `👥 ${g('mipNomName')} | ${g('mipNomRelation')} | Age ${g('mipNomAge')}\n\n` +
+        (g('mipNomName') ? `*── NOMINEE ──*\n👥 ${g('mipNomName')} | ${g('mipNomRelation')} | Age ${g('mipNomAge')}\n\n` : ``) +
         `_Please prepare a motor insurance quote at the earliest._`;
 
       const btn = form.querySelector('.mip-submit-btn');
@@ -687,6 +711,8 @@
         form.reset();
         document.getElementById('mipOwnerAge').value = '';
         document.getElementById('mipNomAge').value = '';
+        document.getElementById('mipNomineeDetail').style.display = 'none';
+        ['mipNomName', 'mipNomRelation', 'mipNomDob'].forEach(id => { document.getElementById(id).required = false; });
         form.querySelectorAll('.mip-chip').forEach(c => c.classList.remove('mip-chip--active'));
         document.querySelectorAll('.mip-type-chip').forEach((c,i) => { if(i===0) c.classList.add('mip-type-chip--active'); else c.classList.remove('mip-type-chip--active'); });
         setTimeout(() => { btn.innerHTML = '<i class="fa fa-paper-plane"></i> Submit Vehicle Insurance Proposal'; btn.style.background = ''; }, 4000);
