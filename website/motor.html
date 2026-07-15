@@ -351,7 +351,28 @@
             <div class="mip-row">
               <div class="mip-field">
                 <label class="mip-label">Date of Birth <span class="mip-req">*</span></label>
-                <input type="date" class="mip-input" id="mipOwnerDob" onchange="calcMipAge('mipOwnerDob','mipOwnerAge')" required />
+                <div style="display:flex;gap:8px">
+                  <select class="mip-input mip-select" id="mipOwnerDobDay" onchange="calcMipAge('mipOwnerDob','mipOwnerAge')" required>
+                    <option value="" disabled selected>Day</option>
+                    <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+                    <option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+                    <option>11</option><option>12</option><option>13</option><option>14</option><option>15</option>
+                    <option>16</option><option>17</option><option>18</option><option>19</option><option>20</option>
+                    <option>21</option><option>22</option><option>23</option><option>24</option><option>25</option>
+                    <option>26</option><option>27</option><option>28</option><option>29</option><option>30</option>
+                    <option>31</option>
+                  </select>
+                  <select class="mip-input mip-select" id="mipOwnerDobMonth" onchange="calcMipAge('mipOwnerDob','mipOwnerAge')" required>
+                    <option value="" disabled selected>Month</option>
+                    <option value="0">Jan</option><option value="1">Feb</option><option value="2">Mar</option>
+                    <option value="3">Apr</option><option value="4">May</option><option value="5">Jun</option>
+                    <option value="6">Jul</option><option value="7">Aug</option><option value="8">Sep</option>
+                    <option value="9">Oct</option><option value="10">Nov</option><option value="11">Dec</option>
+                  </select>
+                  <select class="mip-input mip-select" id="mipOwnerDobYear" onchange="calcMipAge('mipOwnerDob','mipOwnerAge')" required>
+                    <option value="" disabled selected>Year</option>
+                  </select>
+                </div>
               </div>
               <div class="mip-field">
                 <label class="mip-label">Age</label>
@@ -417,7 +438,28 @@
               <div class="mip-row">
                 <div class="mip-field">
                   <label class="mip-label">Nominee Date of Birth <span class="mip-req">*</span></label>
-                  <input type="date" class="mip-input" id="mipNomDob" onchange="calcMipAge('mipNomDob','mipNomAge')" />
+                  <div style="display:flex;gap:8px">
+                    <select class="mip-input mip-select" id="mipNomDobDay" onchange="calcMipAge('mipNomDob','mipNomAge')">
+                      <option value="" disabled selected>Day</option>
+                      <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+                      <option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+                      <option>11</option><option>12</option><option>13</option><option>14</option><option>15</option>
+                      <option>16</option><option>17</option><option>18</option><option>19</option><option>20</option>
+                      <option>21</option><option>22</option><option>23</option><option>24</option><option>25</option>
+                      <option>26</option><option>27</option><option>28</option><option>29</option><option>30</option>
+                      <option>31</option>
+                    </select>
+                    <select class="mip-input mip-select" id="mipNomDobMonth" onchange="calcMipAge('mipNomDob','mipNomAge')">
+                      <option value="" disabled selected>Month</option>
+                      <option value="0">Jan</option><option value="1">Feb</option><option value="2">Mar</option>
+                      <option value="3">Apr</option><option value="4">May</option><option value="5">Jun</option>
+                      <option value="6">Jul</option><option value="7">Aug</option><option value="8">Sep</option>
+                      <option value="9">Oct</option><option value="10">Nov</option><option value="11">Dec</option>
+                    </select>
+                    <select class="mip-input mip-select" id="mipNomDobYear" onchange="calcMipAge('mipNomDob','mipNomAge')">
+                      <option value="" disabled selected>Year</option>
+                    </select>
+                  </div>
                 </div>
                 <div class="mip-field">
                   <label class="mip-label">Nominee Age</label>
@@ -583,11 +625,30 @@
         o.value = y;
         dl.appendChild(o);
       }
-      /* Set DOB max = today */
-      const today = new Date().toISOString().split('T')[0];
-      document.getElementById('mipOwnerDob').max = today;
-      document.getElementById('mipNomDob').max = today;
     })();
+
+    /* Populate Year dropdowns for Day/Month/Year DOB pickers (avoids locale-ambiguous date inputs) */
+    (function() {
+      const currentYear = new Date().getFullYear();
+      ['mipOwnerDobYear', 'mipNomDobYear'].forEach(id => {
+        const sel = document.getElementById(id);
+        if (!sel) return;
+        for (let y = currentYear; y >= currentYear - 100; y--) {
+          const opt = document.createElement('option');
+          opt.value = y; opt.textContent = y;
+          sel.appendChild(opt);
+        }
+      });
+    })();
+
+    function getMipDob(prefix) {
+      const day = document.getElementById(prefix + 'Day').value;
+      const month = document.getElementById(prefix + 'Month').value;
+      const year = document.getElementById(prefix + 'Year').value;
+      if (day === '' || month === '' || year === '') return '';
+      const monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      return `${day} ${monthNames[Number(month)]} ${year}`;
+    }
 
     /* Vehicle type chip toggle */
     function setVehicleType(radio) {
@@ -596,26 +657,33 @@
     }
 
     /* Age auto-calculate */
-    function calcMipAge(dobId, ageId) {
-      const dob = new Date(document.getElementById(dobId).value);
-      if (isNaN(dob)) return;
+    function calcMipAge(prefix, ageId) {
+      const day = document.getElementById(prefix + 'Day').value;
+      const month = document.getElementById(prefix + 'Month').value;
+      const year = document.getElementById(prefix + 'Year').value;
+      const ageEl = document.getElementById(ageId);
+      if (day === '' || month === '' || year === '') { ageEl.value = ''; return; }
+      const dob = new Date(Number(year), Number(month), Number(day));
       const today = new Date();
+      if (dob.getMonth() !== Number(month) || dob > today) { ageEl.value = ''; return; }
       let age = today.getFullYear() - dob.getFullYear();
       const m = today.getMonth() - dob.getMonth();
       if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) age--;
-      document.getElementById(ageId).value = age >= 0 ? age : '';
+      ageEl.value = age >= 0 ? age : '';
     }
 
     function toggleMipNominee(radio) {
       const show = radio.value === 'Yes';
       document.getElementById('mipNomineeDetail').style.display = show ? 'block' : 'none';
-      ['mipNomName', 'mipNomRelation', 'mipNomDob'].forEach(id => {
+      ['mipNomName', 'mipNomRelation', 'mipNomDobDay', 'mipNomDobMonth', 'mipNomDobYear'].forEach(id => {
         document.getElementById(id).required = show;
       });
       if (!show) {
         document.getElementById('mipNomName').value = '';
         document.getElementById('mipNomRelation').value = '';
-        document.getElementById('mipNomDob').value = '';
+        document.getElementById('mipNomDobDay').value = '';
+        document.getElementById('mipNomDobMonth').value = '';
+        document.getElementById('mipNomDobYear').value = '';
         document.getElementById('mipNomAge').value = '';
       }
     }
@@ -667,6 +735,18 @@
       const g = id => (document.getElementById(id) || {}).value || '';
       const r = name => { const el = form.querySelector(`input[name="${name}"]:checked`); return el ? el.value : ''; };
 
+      if (!g('mipOwnerAge')) {
+        document.getElementById('mipOwnerDobYear').classList.add('mip-input--error');
+        document.getElementById('mipOwnerDobYear').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+      const mipNomineeOn = r('mipAddNominee') === 'Yes';
+      if (mipNomineeOn && !g('mipNomAge')) {
+        document.getElementById('mipNomDobYear').classList.add('mip-input--error');
+        document.getElementById('mipNomDobYear').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+
       const waMsg =
         `🚗 *New Motor Insurance Proposal — PolicyRaj*\n\n` +
         `*── VEHICLE DETAILS ──*\n` +
@@ -681,7 +761,7 @@
         `👤 Name: ${g('mipOwnerName')}\n` +
         `📞 Mobile: +91 ${g('mipMobile1')}\n` +
         `📧 Email: ${g('mipEmail')}\n` +
-        `🗓 DOB: ${g('mipOwnerDob')} (Age ${g('mipOwnerAge')})\n` +
+        `🗓 DOB: ${getMipDob('mipOwnerDob')} (Age ${g('mipOwnerAge')})\n` +
         `⚧ Gender: ${r('mipGender')} | Marital: ${r('mipMarital')}\n\n` +
         (g('mipNomName') ? `*── NOMINEE ──*\n👥 ${g('mipNomName')} | ${g('mipNomRelation')} | Age ${g('mipNomAge')}\n\n` : ``) +
         `_Please prepare a motor insurance quote at the earliest._`;
@@ -697,7 +777,7 @@
         make: g('mipMake'), model: g('mipModel'), year: g('mipYear'),
         fuel: r('mipFuel'), engineNo: g('mipEngine'), chassisNo: g('mipChassis'),
         coverType: r('mipCover'), policyExpired: r('mipExpired'),
-        dob: g('mipOwnerDob'), age: g('mipOwnerAge'),
+        dob: getMipDob('mipOwnerDob'), age: g('mipOwnerAge'),
         gender: r('mipGender'), marital: r('mipMarital'),
         nomineeName: g('mipNomName'), nomineeRelation: g('mipNomRelation'), nomineeAge: g('mipNomAge'),
       }).then(() => {
@@ -712,7 +792,7 @@
         document.getElementById('mipOwnerAge').value = '';
         document.getElementById('mipNomAge').value = '';
         document.getElementById('mipNomineeDetail').style.display = 'none';
-        ['mipNomName', 'mipNomRelation', 'mipNomDob'].forEach(id => { document.getElementById(id).required = false; });
+        ['mipNomName', 'mipNomRelation', 'mipNomDobDay', 'mipNomDobMonth', 'mipNomDobYear'].forEach(id => { document.getElementById(id).required = false; });
         form.querySelectorAll('.mip-chip').forEach(c => c.classList.remove('mip-chip--active'));
         document.querySelectorAll('.mip-type-chip').forEach((c,i) => { if(i===0) c.classList.add('mip-type-chip--active'); else c.classList.remove('mip-type-chip--active'); });
         setTimeout(() => { btn.innerHTML = '<i class="fa fa-paper-plane"></i> Submit Vehicle Insurance Proposal'; btn.style.background = ''; }, 4000);

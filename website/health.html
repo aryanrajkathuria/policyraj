@@ -761,7 +761,28 @@
             <div class="hip-row">
               <div class="hip-field">
                 <label class="hip-label">Date of Birth <span class="hip-req">*</span></label>
-                <input type="date" class="hip-input" id="hipDob" onchange="calcAge('hipDob','hipAge')" required />
+                <div style="display:flex;gap:8px">
+                  <select class="hip-input hip-select" id="hipDobDay" onchange="calcAge('hipDob','hipAge')" required>
+                    <option value="" disabled selected>Day</option>
+                    <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+                    <option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+                    <option>11</option><option>12</option><option>13</option><option>14</option><option>15</option>
+                    <option>16</option><option>17</option><option>18</option><option>19</option><option>20</option>
+                    <option>21</option><option>22</option><option>23</option><option>24</option><option>25</option>
+                    <option>26</option><option>27</option><option>28</option><option>29</option><option>30</option>
+                    <option>31</option>
+                  </select>
+                  <select class="hip-input hip-select" id="hipDobMonth" onchange="calcAge('hipDob','hipAge')" required>
+                    <option value="" disabled selected>Month</option>
+                    <option value="0">Jan</option><option value="1">Feb</option><option value="2">Mar</option>
+                    <option value="3">Apr</option><option value="4">May</option><option value="5">Jun</option>
+                    <option value="6">Jul</option><option value="7">Aug</option><option value="8">Sep</option>
+                    <option value="9">Oct</option><option value="10">Nov</option><option value="11">Dec</option>
+                  </select>
+                  <select class="hip-input hip-select" id="hipDobYear" onchange="calcAge('hipDob','hipAge')" required>
+                    <option value="" disabled selected>Year</option>
+                  </select>
+                </div>
               </div>
               <div class="hip-field">
                 <label class="hip-label">Age <span class="hip-req">*</span></label>
@@ -971,7 +992,28 @@
               <div class="hip-row">
                 <div class="hip-field">
                   <label class="hip-label">Nominee Date of Birth <span class="hip-req">*</span></label>
-                  <input type="date" class="hip-input" id="hipNomDob" onchange="calcAge('hipNomDob','hipNomAge')" />
+                  <div style="display:flex;gap:8px">
+                    <select class="hip-input hip-select" id="hipNomDobDay" onchange="calcAge('hipNomDob','hipNomAge')">
+                      <option value="" disabled selected>Day</option>
+                      <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+                      <option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+                      <option>11</option><option>12</option><option>13</option><option>14</option><option>15</option>
+                      <option>16</option><option>17</option><option>18</option><option>19</option><option>20</option>
+                      <option>21</option><option>22</option><option>23</option><option>24</option><option>25</option>
+                      <option>26</option><option>27</option><option>28</option><option>29</option><option>30</option>
+                      <option>31</option>
+                    </select>
+                    <select class="hip-input hip-select" id="hipNomDobMonth" onchange="calcAge('hipNomDob','hipNomAge')">
+                      <option value="" disabled selected>Month</option>
+                      <option value="0">Jan</option><option value="1">Feb</option><option value="2">Mar</option>
+                      <option value="3">Apr</option><option value="4">May</option><option value="5">Jun</option>
+                      <option value="6">Jul</option><option value="7">Aug</option><option value="8">Sep</option>
+                      <option value="9">Oct</option><option value="10">Nov</option><option value="11">Dec</option>
+                    </select>
+                    <select class="hip-input hip-select" id="hipNomDobYear" onchange="calcAge('hipNomDob','hipNomAge')">
+                      <option value="" disabled selected>Year</option>
+                    </select>
+                  </div>
                 </div>
                 <div class="hip-field">
                   <label class="hip-label">Nominee Age <span class="hip-req">*</span></label>
@@ -1182,23 +1224,42 @@
       if (!isOpen) item.classList.add('hi-faq-open');
     }
 
-    /* Set max date = today on all date fields */
+    /* Populate Year dropdowns for Day/Month/Year DOB pickers (avoids locale-ambiguous date inputs) */
     (function() {
-      const today = new Date().toISOString().split('T')[0];
-      ['hipDob','hipNomDob'].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.max = today;
+      const currentYear = new Date().getFullYear();
+      ['hipDobYear', 'hipNomDobYear'].forEach(id => {
+        const sel = document.getElementById(id);
+        if (!sel) return;
+        for (let y = currentYear; y >= currentYear - 100; y--) {
+          const opt = document.createElement('option');
+          opt.value = y; opt.textContent = y;
+          sel.appendChild(opt);
+        }
       });
     })();
 
-    function calcAge(dobId, ageId) {
-      const dob = new Date(document.getElementById(dobId).value);
-      if (isNaN(dob)) return;
+    function getDob(prefix) {
+      const day = document.getElementById(prefix + 'Day').value;
+      const month = document.getElementById(prefix + 'Month').value;
+      const year = document.getElementById(prefix + 'Year').value;
+      if (day === '' || month === '' || year === '') return '';
+      const monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      return `${day} ${monthNames[Number(month)]} ${year}`;
+    }
+
+    function calcAge(prefix, ageId) {
+      const day = document.getElementById(prefix + 'Day').value;
+      const month = document.getElementById(prefix + 'Month').value;
+      const year = document.getElementById(prefix + 'Year').value;
+      const ageEl = document.getElementById(ageId);
+      if (day === '' || month === '' || year === '') { ageEl.value = ''; return; }
+      const dob = new Date(Number(year), Number(month), Number(day));
       const today = new Date();
+      if (dob.getMonth() !== Number(month) || dob > today) { ageEl.value = ''; return; }
       let age = today.getFullYear() - dob.getFullYear();
       const m = today.getMonth() - dob.getMonth();
       if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) age--;
-      document.getElementById(ageId).value = age >= 0 ? age : '';
+      ageEl.value = age >= 0 ? age : '';
     }
 
     function togglePED(radio) {
@@ -1210,13 +1271,15 @@
     function toggleNominee(radio) {
       const show = radio.value === 'Yes';
       document.getElementById('hipNomineeDetail').style.display = show ? 'block' : 'none';
-      ['hipNomName', 'hipNomRelation', 'hipNomDob'].forEach(id => {
+      ['hipNomName', 'hipNomRelation', 'hipNomDobDay', 'hipNomDobMonth', 'hipNomDobYear'].forEach(id => {
         document.getElementById(id).required = show;
       });
       if (!show) {
         document.getElementById('hipNomName').value = '';
         document.getElementById('hipNomRelation').value = '';
-        document.getElementById('hipNomDob').value = '';
+        document.getElementById('hipNomDobDay').value = '';
+        document.getElementById('hipNomDobMonth').value = '';
+        document.getElementById('hipNomDobYear').value = '';
         document.getElementById('hipNomAge').value = '';
       }
     }
@@ -1276,11 +1339,23 @@
       const g = id => (document.getElementById(id) || {}).value || '';
       const r = name => { const el = form.querySelector(`input[name="${name}"]:checked`); return el ? el.value : ''; };
 
+      if (!g('hipAge')) {
+        document.getElementById('hipDobYear').classList.add('hip-input--error');
+        document.getElementById('hipDobYear').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+      const nomineeOn = r('hipAddNominee') === 'Yes';
+      if (nomineeOn && !g('hipNomAge')) {
+        document.getElementById('hipNomDobYear').classList.add('hip-input--error');
+        document.getElementById('hipNomDobYear').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+
       const waMsg =
         `🏥 *New Health Insurance Proposal — PolicyRaj*\n\n` +
         `*── INSURED DETAILS ──*\n` +
         `👤 Name: ${g('hipName')}\n` +
-        `🗓 DOB: ${g('hipDob')} (Age ${g('hipAge')})\n` +
+        `🗓 DOB: ${getDob('hipDob')} (Age ${g('hipAge')})\n` +
         `⚧ Gender: ${r('hipGender')} | Citizenship: ${r('hipCitizenship')} | Marital: ${r('hipMarital')}\n` +
         `📏 Height: ${g('hipHeight')} cm | Weight: ${g('hipWeight')} kg\n\n` +
         `*── HEALTH & LIFESTYLE ──*\n` +
@@ -1301,7 +1376,7 @@
       submitQuoteLead({
         type: 'health',
         name: g('hipName'), mobile: g('hipMobile1'), email: g('hipEmail'),
-        dob: g('hipDob'), age: g('hipAge'), gender: r('hipGender'),
+        dob: getDob('hipDob'), age: g('hipAge'), gender: r('hipGender'),
         citizenship: r('hipCitizenship'), marital: r('hipMarital'),
         height: g('hipHeight') + ' cm', weight: g('hipWeight') + ' kg',
         alcohol: r('hipAlcohol'), smoker: r('hipSmoker'),
@@ -1322,7 +1397,7 @@
         document.getElementById('hipNomAge').value = '';
         document.getElementById('hipPEDDetail').style.display = 'none';
         document.getElementById('hipNomineeDetail').style.display = 'none';
-        ['hipNomName', 'hipNomRelation', 'hipNomDob'].forEach(id => { document.getElementById(id).required = false; });
+        ['hipNomName', 'hipNomRelation', 'hipNomDobDay', 'hipNomDobMonth', 'hipNomDobYear'].forEach(id => { document.getElementById(id).required = false; });
         document.getElementById('hipHeightFtIn').style.display = 'none';
         document.getElementById('hipHeight').readOnly = false;
         document.getElementById('hipHeight').classList.remove('hip-readonly');
