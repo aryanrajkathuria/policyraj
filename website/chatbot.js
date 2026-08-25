@@ -428,7 +428,7 @@
     {
       id: 'digilocker',
       weight: 2,
-      patterns: ['digilocker','e insurance','digital insurance','paperless insurance','store policy','policy document','e-insurance account','keep insurance documents','insuratech','insurance app','digital policy'],
+      patterns: ['digilocker','digital insurance','paperless insurance','store policy','policy document','e-insurance account','keep insurance documents','insuratech','insurance app','digital policy'],
       response: () => `${greet()}<strong>📱 DigiLocker & E-Insurance — Go Paperless!</strong><br><br>Did you know you can store all your insurance policies digitally? Here's how:<br><br><strong>DigiLocker (Government of India):</strong><br>• Free app/web (digilocker.gov.in)<br>• Store Aadhaar, PAN, policy documents, RC, DL<br>• Legally valid — accepted everywhere<br>• Insurers can directly push your policy documents here<br><br><strong>E-Insurance Repositories (e-IA):</strong><br>• Centralised repository for all your policies<br>• NSDL, CAMS, Karvy (licensed e-IA providers)<br>• One login → see all your policies from all insurers<br>• e-KYC → faster policy issuance, no physical docs needed<br><br><strong>Benefits:</strong><br>✅ Never lose policy documents<br>✅ Easy for family to locate policies in case of claim<br>✅ Premium reminders & renewal alerts<br>✅ Faster claim processing with digital records<br><br>💡 <em>Always keep a digital copy of your policies and share the access with your spouse/family.</em>`,
       quickReplies: ['Documents needed','How to buy insurance','Nominee in insurance','Back']
     },
