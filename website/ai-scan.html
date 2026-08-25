@@ -483,7 +483,7 @@
         <a href="tel:9013976999" class="btn-nav-call"><i class="fa fa-phone"></i> Call Now</a>
         <a href="home.html#contact" class="btn-nav-quote" style="text-decoration:none;display:inline-flex;align-items:center;">Get Quote</a>
       </div>
-      <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <button class="hamburger" id="hamburger" aria-label="Menu" onclick="toggleMenu()">
         <i class="fa fa-bars"></i>
       </button>
     </div>
@@ -793,7 +793,7 @@
         <span class="chatbot-name">Veera</span>
         <span class="chatbot-status"><span class="pulse-dot"></span> AI Assistant · PolicyRaj</span>
       </div>
-      <button class="chatbot-close-btn" onclick="toggleChat()" title="Close"><i class="fa fa-times"></i></button>
+      <button class="chatbot-close-btn" onclick="toggleChat()" title="Close" aria-label="Close chat"><i class="fa fa-times"></i></button>
     </div>
 
     <div class="chatbot-messages" id="chatbotMessages"></div>
@@ -802,14 +802,14 @@
 
     <div class="chatbot-input-row">
       <input type="text" id="chatbotInput" placeholder="Ask Veera anything..." onkeydown="handleChatKey(event)" autocomplete="off" />
-      <button class="chatbot-send-btn" onclick="sendChatMessage()"><i class="fa fa-paper-plane"></i></button>
+      <button class="chatbot-send-btn" onclick="sendChatMessage()" aria-label="Send message"><i class="fa fa-paper-plane"></i></button>
     </div>
 
     <div class="chatbot-footer-note"><i class="fa fa-info-circle"></i> Veera provides general information only — not professional insurance or financial advice. Consult Sachin Kathuria for personalised guidance.</div>
   </div>
 
   <!-- BACK TO TOP -->
-  <button class="back-to-top" id="backToTop" onclick="scrollToTop()"><i class="fa fa-chevron-up"></i></button>
+  <button class="back-to-top" id="backToTop" onclick="scrollToTop()" aria-label="Back to top"><i class="fa fa-chevron-up"></i></button>
 
   <script src="script.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/tesseract.js@4/dist/tesseract.min.js"></script>
@@ -1694,7 +1694,7 @@ Rules:
       </div>
     </div>
   </footer>
-  <a href="https://wa.me/919013976999" target="_blank" class="whatsapp-float"><i class="fab fa-whatsapp"></i></a>
+  <a href="https://wa.me/919013976999" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
   <script src="chatbot.js"></script>
 </body>
 </html>

@@ -104,7 +104,7 @@
     {
       id: 'critical_illness',
       weight: 2,
-      patterns: ['critical illness','cancer insurance','heart attack insurance','stroke insurance','critical disease','ci plan','critical care','life threatening disease','kidney failure insurance','organ transplant'],
+      patterns: ['critical illness','heart attack insurance','stroke insurance','critical disease','ci plan','critical care','life threatening disease','kidney failure insurance','organ transplant'],
       response: () => `${greet()}<strong>🚨 Critical Illness Insurance — Lump Sum When You Need It Most</strong><br><br>Regular health insurance pays hospitals. Critical illness insurance pays <em>you directly</em> as a lump sum — for income replacement, recovery, lifestyle adjustments, and more.<br><br><strong>Covered conditions (typically 30–64 diseases):</strong><br>• Cancer (all stages covered in most plans)<br>• Heart attack, bypass surgery<br>• Stroke with permanent effects<br>• Kidney failure requiring dialysis<br>• Major organ transplant<br>• Paralysis, multiple sclerosis<br>• And many more<br><br><strong>How much to buy:</strong> Minimum 3–5× your annual income<br><br><strong>Cost:</strong> ₹25L cover at age 35 ≈ ₹5,000–8,000/year<br><br>💡 <em>Cancer treatment in India today costs ₹15–50 lakh. A critical illness plan ensures you can focus on recovery, not finances.</em>`,
       quickReplies: ['How much CI cover?','CI vs health insurance','Get CI quote','Back']
     },
@@ -248,7 +248,7 @@
     {
       id: 'business',
       weight: 2,
-      patterns: ['business insurance','office insurance','commercial insurance','shop insurance','group health','group mediclaim','employee insurance','workmen compensation','professional indemnity','fire insurance','business policy','startup insurance'],
+      patterns: ['business insurance','office insurance','commercial insurance','group health','group mediclaim','employee insurance','workmen compensation','professional indemnity','business policy'],
       response: () => `${greet()}<strong>🏢 Business Insurance</strong> — Protect your business from every risk.<br><br><strong>Key covers:</strong><br>• <strong>Group Health</strong> — Cover employees & families. Mandatory (ESI) for 20+ staff. 100% tax deductible.<br>• <strong>Fire & Property</strong> — Office, factory, stock, machinery<br>• <strong>Professional Indemnity</strong> — For doctors, CAs, IT firms, architects, consultants<br>• <strong>Workmen Compensation</strong> — Legal requirement for factories<br>• <strong>Marine/Transit</strong> — Goods in transport<br>• <strong>Cyber Insurance</strong> — Data breach, ransomware, online fraud<br>• <strong>Shop Package</strong> — All-in-one policy for small shops<br>• <strong>D&O Insurance</strong> — Directors & Officers liability<br><br>💡 <em>One uninsured fire loss can permanently shut a business. One employee injury claim can cost ₹50 lakh.</em>`,
       quickReplies: ['Group health for employees','Cyber insurance','Professional Indemnity','Get Business Quote']
     },
@@ -419,7 +419,7 @@
     {
       id: 'women',
       weight: 2,
-      patterns: ['women insurance','ladies insurance','women health insurance','maternity insurance','maternity cover','breast cancer insurance','cervical cancer insurance','pregnancy cover','women specific plan','female insurance'],
+      patterns: ['women insurance','ladies insurance','women health insurance','breast cancer insurance','cervical cancer insurance','pregnancy cover','women specific plan','female insurance'],
       response: () => `${greet()}<strong>👩 Insurance for Women — Tailored Protection</strong><br><br><strong>Key insurance needs for women:</strong><br><br><strong>🤱 Maternity Cover (Health Insurance):</strong><br>• Covers delivery expenses (normal & caesarean)<br>• Newborn baby cover from day 1<br>• Buy 2–3 years BEFORE planning pregnancy (waiting period!)<br>• Plans: Niva Bupa Aspire, HDFC Ergo Women Plan<br><br><strong>🎗️ Critical Illness — Women-Specific:</strong><br>• Breast cancer, cervical cancer, ovarian cancer<br>• Some plans cover female-specific conditions at higher sum insured<br><br><strong>💼 Term Insurance for Working Women:</strong><br>• Equal importance as for men if family depends on your income<br>• Lower premium than men of same age (women have longer life expectancy)<br>• Maternity riders on some term plans<br><br><strong>🏠 Sole Earner / Single Woman:</strong><br>Critical illness + term + health = complete protection package`,
       quickReplies: ['Maternity insurance details','Critical illness insurance','Term insurance for women','Get Quote']
     },
@@ -2342,7 +2342,11 @@
 
     const bubble = document.createElement('div');
     bubble.className = 'cb-bubble';
-    bubble.innerHTML = html;
+    if (sender === 'user') {
+      bubble.textContent = html;
+    } else {
+      bubble.innerHTML = html;
+    }
 
     const time = document.createElement('span');
     time.className = 'cb-time';

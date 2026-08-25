@@ -35,7 +35,7 @@
       <li><a href="home.html#contact">Contact</a></li>
     </ul>
     <div class="nav-cta"><a href="tel:9013976999" class="btn-nav-call"><i class="fa fa-phone"></i> Call Now</a><button class="btn-nav-quote" onclick="openModal()">Get Quote</button></div>
-    <button class="hamburger" id="hamburger" onclick="toggleMenu()"><i class="fa fa-bars"></i></button>
+    <button class="hamburger" id="hamburger" aria-label="Menu" onclick="toggleMenu()"><i class="fa fa-bars"></i></button>
   </div></nav>
 
   <section class="service-page-hero" style="background:linear-gradient(135deg,#065f46 0%,#059669 50%,#34d399 100%)">
@@ -129,7 +129,7 @@
 
   <footer class="footer"><div class="container footer-inner">
     <div class="footer-brand"><img src="policyraj.png" alt="PolicyRaj" class="footer-logo" loading="lazy" /><p>Your trusted partner for all insurance needs.</p>
-      <div class="social-links"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-x-twitter"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a></div>
+      <div class="social-links"><a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="#" aria-label="X (Twitter)"><i class="fab fa-x-twitter"></i></a><a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></div>
     </div>
     <div class="footer-links"><h5>Investments</h5><ul>
       <li><a href="child-plan.html">Child Plans</a></li><li><a href="pension-plan.html">Pension Plans</a></li>
@@ -151,7 +151,7 @@
   </footer>
 
   <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)"><div class="modal">
-    <button class="modal-close" onclick="closeModal()"><i class="fa fa-times"></i></button>
+    <button class="modal-close" onclick="closeModal()" aria-label="Close"><i class="fa fa-times"></i></button>
     <h3>Get Your Tax Saving Plan</h3><p>Tell us your income and current investments — we'll show you exactly how much tax you can save.</p>
     <form onsubmit="submitModal(event)">
       <input type="text" placeholder="Your Name" required /><input type="tel" placeholder="Mobile Number" required />
@@ -160,8 +160,8 @@
     </form>
   </div></div>
   <div class="toast" id="toast"><i class="fa fa-check-circle"></i> Thank you! We'll contact you shortly.</div>
-  <a href="https://wa.me/919013976999" target="_blank" class="whatsapp-float"><i class="fab fa-whatsapp"></i></a>
-  <button class="back-to-top" id="backToTop" onclick="scrollToTop()"><i class="fa fa-chevron-up"></i></button>
+  <a href="https://wa.me/919013976999" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+  <button class="back-to-top" id="backToTop" onclick="scrollToTop()" aria-label="Back to top"><i class="fa fa-chevron-up"></i></button>
 
   <!-- AI CHATBOT WIDGET — RAKESH -->
   <div class="chatbot-btn" id="chatbotBtn" onclick="toggleChat()" title="Chat with Veera – PolicyRaj AI">
@@ -179,7 +179,7 @@
         <span class="chatbot-name">Veera</span>
         <span class="chatbot-status"><span class="pulse-dot"></span> AI Assistant · PolicyRaj</span>
       </div>
-      <button class="chatbot-close-btn" onclick="toggleChat()" title="Close"><i class="fa fa-times"></i></button>
+      <button class="chatbot-close-btn" onclick="toggleChat()" title="Close" aria-label="Close chat"><i class="fa fa-times"></i></button>
     </div>
 
     <div class="chatbot-messages" id="chatbotMessages"></div>
@@ -188,7 +188,7 @@
 
     <div class="chatbot-input-row">
       <input type="text" id="chatbotInput" placeholder="Ask Veera anything..." onkeydown="handleChatKey(event)" autocomplete="off" />
-      <button class="chatbot-send-btn" onclick="sendChatMessage()"><i class="fa fa-paper-plane"></i></button>
+      <button class="chatbot-send-btn" onclick="sendChatMessage()" aria-label="Send message"><i class="fa fa-paper-plane"></i></button>
     </div>
 
     <div class="chatbot-footer-note"><i class="fa fa-info-circle"></i> Veera provides general information only — not professional insurance or financial advice. Consult Sachin Kathuria for personalised guidance.</div>

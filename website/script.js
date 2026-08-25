@@ -559,8 +559,6 @@ document.querySelectorAll('input[type="tel"]').forEach(input => {
   });
 });
 
-console.log('🛡️ PolicyRaj – Website Loaded Successfully');
-
 /* ── 3D ANIMATIONS ── */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -747,7 +745,7 @@ function askVeera(question) {
 function aqFilterCat(btn) {
   document.querySelectorAll('.aq-tab').forEach(function (t) { t.classList.remove('active'); });
   btn.classList.add('active');
-  var cat = btn.getAttribute('data-cat');
+  const cat = btn.getAttribute('data-cat');
   document.querySelectorAll('.aq-card').forEach(function (card) {
     if (cat === 'all' || card.getAttribute('data-cat') === cat) {
       card.style.display = '';
@@ -762,8 +760,8 @@ function aqFilterCat(btn) {
 
 // Search filter
 function aqFilterQuestions() {
-  var term = document.getElementById('aqSearch').value.toLowerCase().trim();
-  var clearBtn = document.getElementById('aqClearBtn');
+  const term = document.getElementById('aqSearch').value.toLowerCase().trim();
+  const clearBtn = document.getElementById('aqClearBtn');
   clearBtn.style.display = term ? 'flex' : 'none';
 
   if (!term) {
@@ -781,10 +779,10 @@ function aqFilterQuestions() {
   document.querySelectorAll('.aq-tab').forEach(function (t) { t.classList.remove('active'); });
   document.querySelector('.aq-tab[data-cat="all"]').classList.add('active');
 
-  var totalVisible = 0;
+  let totalVisible = 0;
   document.querySelectorAll('.aq-card').forEach(function (card) {
-    var lis = card.querySelectorAll('.aq-questions li');
-    var cardVisible = 0;
+    const lis = card.querySelectorAll('.aq-questions li');
+    let cardVisible = 0;
     lis.forEach(function (li) {
       if (li.textContent.toLowerCase().includes(term)) {
         li.style.display = '';
@@ -799,7 +797,7 @@ function aqFilterQuestions() {
     card.style.display = cardVisible > 0 ? '' : 'none';
   });
 
-  var noResults = document.getElementById('aqNoResults');
+  const noResults = document.getElementById('aqNoResults');
   if (totalVisible === 0) {
     document.getElementById('aqSearchTerm').textContent = term;
     noResults.style.display = 'block';
@@ -810,9 +808,9 @@ function aqFilterQuestions() {
 
 // Clear search
 function aqClearSearch() {
-  var input = document.getElementById('aqSearch');
+  const input = document.getElementById('aqSearch');
   if (input) input.value = '';
-  var clearBtn = document.getElementById('aqClearBtn');
+  const clearBtn = document.getElementById('aqClearBtn');
   if (clearBtn) clearBtn.style.display = 'none';
   document.querySelectorAll('.aq-questions li').forEach(function (li) {
     li.style.display = '';

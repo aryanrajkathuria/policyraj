@@ -26,7 +26,7 @@
       <li><a href="home.html#contact">Contact</a></li>
     </ul>
     <div class="nav-cta"><a href="tel:9013976999" class="btn-nav-call"><i class="fa fa-phone"></i> Call Now</a><button class="btn-nav-quote" onclick="openModal()">Get Quote</button></div>
-    <button class="hamburger" id="hamburger" onclick="toggleMenu()"><i class="fa fa-bars"></i></button>
+    <button class="hamburger" id="hamburger" aria-label="Menu" onclick="toggleMenu()"><i class="fa fa-bars"></i></button>
   </div></nav>
 
   <section class="service-page-hero" style="background:linear-gradient(135deg,#002A1C 0%,#004D30 40%,#006B45 100%)">
@@ -193,7 +193,7 @@
   </div></section>
 
   <section class="sp-section-alt"><div class="container"><div class="expert-block">
-    <div class="expert-avatar"><img src="founder.jpg" alt="Sachin Kathuria" onerror="this.src='policyraj.png'" /></div>
+    <div class="expert-avatar"><img src="founder.jpg" alt="Sachin Kathuria" loading="lazy" onerror="this.src='policyraj.png'" /></div>
     <div class="expert-content">
       <div class="expert-quote-icon"><i class="fa fa-quote-left"></i></div>
       <p class="expert-text">"Niva Bupa's ReAssure is the plan I recommend to anyone with a chronic illness, elderly parents, or a family history of serious disease. Unlimited restoration means if your parents both need cancer treatment in the same year, the cover keeps refilling. That's not possible with any other insurer I know. The Go Active plan is also excellent for young professionals who want OPD cover and wellness benefits."</p>
@@ -245,13 +245,13 @@
   </footer>
 
   <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)"><div class="modal">
-    <button class="modal-close" onclick="closeModal()"><i class="fa fa-times"></i></button>
+    <button class="modal-close" onclick="closeModal()" aria-label="Close"><i class="fa fa-times"></i></button>
     <h3>Get Niva Bupa Quote</h3><p>Sachin will help you choose the right health plan.</p>
     <form onsubmit="submitModal(event)"><input type="text" placeholder="Your Name" required /><input type="tel" placeholder="Mobile Number" required /><select required><option value="" disabled selected>Select Plan Type</option><option>ReAssure 2.0</option><option>Health Premia</option><option>Go Active</option><option>Senior Citizens Plan</option><option>Family Plan</option></select><button type="submit" class="btn-primary full-width">Get Free Quote <i class="fa fa-arrow-right"></i></button></form>
   </div></div>
   <div class="toast" id="toast"><i class="fa fa-check-circle"></i> Thank you! We'll contact you shortly.</div>
-  <a href="https://wa.me/919013976999" target="_blank" class="whatsapp-float"><i class="fab fa-whatsapp"></i></a>
-  <button class="back-to-top" id="backToTop" onclick="scrollToTop()"><i class="fa fa-chevron-up"></i></button>
+  <a href="https://wa.me/919013976999" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+  <button class="back-to-top" id="backToTop" onclick="scrollToTop()" aria-label="Back to top"><i class="fa fa-chevron-up"></i></button>
 
   <!-- AI CHATBOT WIDGET — RAKESH -->
   <div class="chatbot-btn" id="chatbotBtn" onclick="toggleChat()" title="Chat with Veera – PolicyRaj AI">
@@ -269,7 +269,7 @@
         <span class="chatbot-name">Veera</span>
         <span class="chatbot-status"><span class="pulse-dot"></span> AI Assistant · PolicyRaj</span>
       </div>
-      <button class="chatbot-close-btn" onclick="toggleChat()" title="Close"><i class="fa fa-times"></i></button>
+      <button class="chatbot-close-btn" onclick="toggleChat()" title="Close" aria-label="Close chat"><i class="fa fa-times"></i></button>
     </div>
 
     <div class="chatbot-messages" id="chatbotMessages"></div>
@@ -278,7 +278,7 @@
 
     <div class="chatbot-input-row">
       <input type="text" id="chatbotInput" placeholder="Ask Veera anything..." onkeydown="handleChatKey(event)" autocomplete="off" />
-      <button class="chatbot-send-btn" onclick="sendChatMessage()"><i class="fa fa-paper-plane"></i></button>
+      <button class="chatbot-send-btn" onclick="sendChatMessage()" aria-label="Send message"><i class="fa fa-paper-plane"></i></button>
     </div>
 
     <div class="chatbot-footer-note"><i class="fa fa-info-circle"></i> Veera provides general information only — not professional insurance or financial advice. Consult Sachin Kathuria for personalised guidance.</div>
