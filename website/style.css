@@ -3399,16 +3399,10 @@ a.partner-card:hover .partner-badge { color: var(--primary); }
   border-top: 1px solid rgba(30,58,138,0.06);
 }
 
-/* Mobile */
+/* Mobile — chatbot window itself goes full-screen via the .chatbot-window
+   rule inside the (max-width: 768px) block further down; this block only
+   resizes the floating toggle button. */
 @media (max-width: 480px) {
-  .chatbot-window {
-    right: 8px;
-    left: 8px;
-    width: auto;
-    bottom: 230px;
-    max-height: 68vh;
-    border-radius: 16px;
-  }
   .chatbot-btn {
     right: 16px;
     bottom: 156px;  /* above WhatsApp */
@@ -4660,14 +4654,27 @@ html, body { overflow-x: hidden; max-width: 100%; }
   /* Forms — full width on mobile */
   input, select, textarea { width: 100%; font-size: 16px; }
 
-  /* Chatbot — better mobile positioning */
+  /* Chatbot — full-screen app-style takeover on mobile */
   .chatbot-window {
-    width: calc(100vw - 24px) !important;
-    right: 12px !important;
-    left: 12px !important;
-    bottom: 70px !important;
-    max-height: 70dvh !important;
-    padding-bottom: max(16px, env(safe-area-inset-bottom));
+    top: 0 !important;
+    right: 0 !important;
+    left: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    border-radius: 0 !important;
+    transform: translateY(100%) !important;
+    transform-origin: center !important;
+  }
+  .chatbot-window.open {
+    transform: translateY(0) !important;
+  }
+  .chatbot-header {
+    padding-top: max(14px, env(safe-area-inset-top));
+  }
+  .chatbot-footer-note {
+    padding-bottom: max(6px, env(safe-area-inset-bottom));
   }
 
   /* Section headings — better mobile sizing */

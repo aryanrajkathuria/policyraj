@@ -2491,9 +2491,11 @@
     chatOpen = !chatOpen;
     const win = getEl('chatbotWindow');
     const btn = getEl('chatbotBtn');
+    const isMobile = window.innerWidth <= 768;
     if (chatOpen) {
       win.classList.add('open');
       btn.classList.add('active');
+      if (isMobile) document.body.style.overflow = 'hidden';
       getEl('chatbotBadge').style.display = 'none';
       badgeDone = true;
       if (!welcomed) {
@@ -2510,6 +2512,7 @@
     } else {
       win.classList.remove('open');
       btn.classList.remove('active');
+      if (isMobile) document.body.style.overflow = '';
     }
   };
 
