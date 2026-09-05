@@ -21,7 +21,7 @@ create_role() {
     aws iam create-role \
       --role-name "$role_name" \
       --assume-role-policy-document "file://$(aws_path "$DASH_DIR/iam/trust-policy.json")" \
-      --description "PolicyRaj dashboard — $label" \
+      --description "PolicyRaj dashboard - $label" \
       --tags Key=Project,Value=PolicyRaj Key=Component,Value=dashboard > /dev/null
     ok "role $role_name created"
   fi
