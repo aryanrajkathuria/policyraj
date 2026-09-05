@@ -1,0 +1,275 @@
+/* PolicyRaj dashboard — new authenticated section.
+   Design tokens come from the site stylesheet, which this build does not edit. */
+
+.dash-body {
+  background: var(--gray-light);
+  color: var(--text);
+  min-height: 100dvh;
+}
+
+.dash-header {
+  background: var(--gradient);
+  color: var(--white);
+  padding: 20px 0;
+}
+
+.dash-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.dash-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+}
+
+.dash-brand img { height: 36px; width: auto; display: block; }
+
+.dash-logo {
+  display: inline-flex;
+  align-items: center;
+  border-radius: var(--radius);
+  transition: var(--transition);
+}
+
+.dash-logo:focus-visible { outline: 2px solid var(--white); outline-offset: 3px; }
+.dash-logo:hover { opacity: 0.85; }
+
+.dash-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: max(14px, 0.88rem);
+}
+
+.dash-main { padding: 28px 0 64px; }
+
+.dash-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.dash-tab {
+  min-height: 44px;
+  padding: 10px 18px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--white);
+  color: var(--text-light);
+  font: inherit;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: var(--transition);
+}
+
+.dash-tab:hover,
+.dash-tab:focus-visible { border-color: var(--primary); color: var(--primary); }
+.dash-tab.active { background: var(--primary); border-color: var(--primary); color: var(--white); }
+
+.dash-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg, 20px);
+  box-shadow: var(--shadow);
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+.dash-card h2 {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(1.15rem, 2.5vw, 1.4rem);
+  margin: 0 0 4px;
+}
+
+.dash-card-sub {
+  color: var(--text-light);
+  font-size: max(14px, 0.88rem);
+  margin: 0 0 20px;
+}
+
+.dash-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 600px) {
+  .dash-grid { grid-template-columns: repeat(2, 1fr); }
+  .dash-grid .span-2 { grid-column: span 2; }
+}
+
+.dash-field { display: flex; flex-direction: column; gap: 6px; }
+
+.dash-field label {
+  font-size: max(14px, 0.85rem);
+  font-weight: 600;
+  color: var(--text-light);
+}
+
+.dash-field input,
+.dash-field select {
+  /* 16px keeps iOS Safari from zooming the viewport on focus. */
+  font-size: 16px;
+  font-family: inherit;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--white);
+  color: var(--text);
+  transition: var(--transition);
+}
+
+.dash-field input:focus,
+.dash-field select:focus { outline: 2px solid var(--primary); outline-offset: 1px; }
+
+.dash-check { flex-direction: row; align-items: center; gap: 10px; }
+.dash-check input { min-height: 22px; width: 22px; height: 22px; }
+
+.dash-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: var(--radius);
+  background: var(--primary);
+  color: var(--white);
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: var(--transition);
+}
+
+.dash-btn:hover,
+.dash-btn:focus-visible { background: var(--primary-dark, #102770); }
+.dash-btn[disabled] { opacity: 0.55; cursor: not-allowed; }
+
+.dash-btn.secondary { background: var(--white); color: var(--primary); border: 1px solid var(--border); }
+.dash-btn.danger { background: var(--secondary); }
+.dash-btn.small { min-height: 44px; padding: 8px 14px; font-size: max(14px, 0.85rem); }
+
+.dash-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
+
+.policy-list { display: grid; gap: 16px; grid-template-columns: 1fr; }
+
+@media (min-width: 900px) {
+  .policy-list { grid-template-columns: repeat(2, 1fr); }
+}
+
+.policy-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px;
+  background: var(--off-white);
+}
+
+.policy-card h3 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.05rem;
+  margin: 0 0 10px;
+}
+
+.policy-meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px 16px;
+  font-size: max(14px, 0.85rem);
+  color: var(--text-light);
+  margin-bottom: 14px;
+}
+
+.policy-meta span strong { display: block; color: var(--text); font-weight: 600; }
+
+.dash-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: max(12px, 0.75rem);
+  font-weight: 600;
+  background: var(--gray-light);
+  color: var(--text-light);
+}
+
+.dash-badge.active { background: #dcfce7; color: #166534; }
+.dash-badge.lapsed { background: #fee2e2; color: #991b1b; }
+
+.progress {
+  height: 8px;
+  border-radius: 999px;
+  background: var(--gray-light);
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.progress span { display: block; height: 100%; width: 0; background: var(--primary); transition: width 0.2s ease; }
+
+.dash-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+.dash-table { width: 100%; border-collapse: collapse; font-size: max(14px, 0.88rem); }
+.dash-table th,
+.dash-table td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--border); }
+.dash-table th { color: var(--text-light); font-weight: 600; white-space: nowrap; }
+.dash-table tbody tr:hover { background: var(--off-white); }
+
+.feed { display: flex; flex-direction: column; gap: 2px; }
+
+.feed-row {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.feed-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--primary);
+  margin-top: 6px;
+  flex-shrink: 0;
+}
+
+.feed-body { flex: 1; min-width: 0; }
+.feed-who { font-weight: 600; }
+.feed-what { color: var(--text-light); font-size: max(14px, 0.88rem); }
+.feed-when { color: var(--gray, #8896a5); font-size: max(12px, 0.78rem); white-space: nowrap; }
+
+.dash-note {
+  padding: 14px 16px;
+  border-radius: var(--radius);
+  font-size: max(14px, 0.88rem);
+  margin-bottom: 16px;
+}
+
+.dash-note.error { background: #fee2e2; color: #991b1b; }
+.dash-note.success { background: #dcfce7; color: #166534; }
+.dash-note.info {
+  background: var(--white);
+  color: var(--text-light);
+  border-left: 4px solid var(--primary);
+  box-shadow: var(--shadow);
+}
+
+.dash-empty { padding: 32px; text-align: center; color: var(--text-light); }
+
+.dash-gate { display: grid; place-items: center; min-height: 100dvh; padding: 24px; text-align: center; }
+.dash-gate .dash-card { max-width: 420px; }
+
+[hidden] { display: none !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}

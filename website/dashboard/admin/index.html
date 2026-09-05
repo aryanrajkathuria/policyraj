@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Owner Dashboard – PolicyRaj</title>
+  <meta name="description" content="PolicyRaj owner view — recent customer activity, customer list and policy documents. Read only." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../style.css" />
+  <link rel="stylesheet" href="../dashboard.css" />
+</head>
+<body class="dash-body">
+
+  <section class="dash-gate" id="gate">
+    <div class="dash-card">
+      <h2>Owner Dashboard</h2>
+      <p class="dash-card-sub" id="gateMessage">Checking your session…</p>
+      <button class="dash-btn" id="signInBtn" hidden>Sign in</button>
+    </div>
+  </section>
+
+  <div id="app" hidden>
+    <header class="dash-header">
+      <div class="container">
+        <div class="dash-brand">
+          <a class="dash-logo" href="../../home.html" aria-label="PolicyRaj home">
+            <img src="../../policyraj.png" alt="PolicyRaj" />
+          </a>
+          <span>Owner Dashboard</span>
+        </div>
+        <div class="dash-user">
+          <span id="userLabel"></span>
+          <a class="dash-btn secondary small" href="../../home.html">Back to site</a>
+          <button class="dash-btn secondary small" id="signOutBtn">Sign out</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="dash-main">
+      <div class="container">
+        <div id="notice" hidden></div>
+
+        <p class="dash-note info">This view is read only. Customers manage their own policies and documents from their dashboards.</p>
+
+        <nav class="dash-tabs" aria-label="Owner sections">
+          <button class="dash-tab active" data-panel="panelFeed">Recent activity</button>
+          <button class="dash-tab" data-panel="panelCustomers">Customers</button>
+        </nav>
+
+        <section id="panelFeed">
+          <div class="dash-card">
+            <h2>Recent activity</h2>
+            <p class="dash-card-sub">What customers have been doing on their dashboards, newest first.</p>
+            <div class="feed" id="activityFeed"></div>
+            <div class="dash-empty" id="feedEmpty" hidden>No customer activity yet.</div>
+          </div>
+        </section>
+
+        <section id="panelCustomers" hidden>
+          <div class="dash-card">
+            <h2>Customers</h2>
+            <p class="dash-card-sub">Search by name or email.</p>
+            <div class="dash-field">
+              <label for="customerSearch">Search</label>
+              <input type="search" id="customerSearch" placeholder="Name or email" />
+            </div>
+            <div class="dash-table-wrap">
+              <table class="dash-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Policies</th>
+                    <th scope="col">Last activity</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody id="customerRows"></tbody>
+              </table>
+            </div>
+            <div class="dash-empty" id="customerEmpty" hidden>No customers yet.</div>
+          </div>
+
+          <div class="dash-card" id="customerDetail" hidden>
+            <h2 id="detailName">Customer</h2>
+            <p class="dash-card-sub" id="detailContact"></p>
+            <div id="detailProfile" class="policy-meta"></div>
+            <h3 id="detailPoliciesHeading">Policies</h3>
+            <div class="policy-list" id="detailPolicies"></div>
+            <h3>Their recent activity</h3>
+            <div class="feed" id="detailActivity"></div>
+            <div class="dash-actions">
+              <button class="dash-btn secondary" id="closeDetail" type="button">Close</button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script src="../config.js"></script>
+  <script src="../auth.js"></script>
+  <script src="../api.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

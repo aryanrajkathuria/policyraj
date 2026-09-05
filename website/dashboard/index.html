@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Dashboard – PolicyRaj</title>
+  <meta name="description" content="View your PolicyRaj policies, upload policy documents and keep your profile and nominee details up to date." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="dashboard.css" />
+</head>
+<body class="dash-body">
+
+  <section class="dash-gate" id="gate">
+    <div class="dash-card">
+      <h2>PolicyRaj Dashboard</h2>
+      <p class="dash-card-sub" id="gateMessage">Checking your session…</p>
+      <button class="dash-btn" id="signInBtn" hidden>Sign in</button>
+    </div>
+  </section>
+
+  <div id="app" hidden>
+    <header class="dash-header">
+      <div class="container">
+        <div class="dash-brand">
+          <a class="dash-logo" href="../home.html" aria-label="PolicyRaj home">
+            <img src="../policyraj.png" alt="PolicyRaj" />
+          </a>
+          <span>My Dashboard</span>
+        </div>
+        <div class="dash-user">
+          <span id="userLabel"></span>
+          <a class="dash-btn secondary small" href="../home.html">Back to site</a>
+          <button class="dash-btn secondary small" id="signOutBtn">Sign out</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="dash-main">
+      <div class="container">
+        <div id="notice" hidden></div>
+
+        <nav class="dash-tabs" aria-label="Dashboard sections">
+          <button class="dash-tab active" id="tabPolicies" data-panel="panelPolicies">My policies</button>
+          <button class="dash-tab" id="tabProfile" data-panel="panelProfile">Profile &amp; nominee</button>
+        </nav>
+
+        <section id="panelPolicies">
+          <div class="dash-card">
+            <h2>My policies</h2>
+            <p class="dash-card-sub">Your policies and the documents you have uploaded against them.</p>
+            <div class="policy-list" id="policyList"></div>
+            <div class="dash-empty" id="policyEmpty" hidden>No policies yet. Add your first one below.</div>
+          </div>
+
+          <div class="dash-card">
+            <h2 id="policyFormTitle">Add a policy</h2>
+            <p class="dash-card-sub">Record a policy you hold, then attach its PDF.</p>
+            <form id="policyForm">
+              <input type="hidden" id="policyId" />
+              <div class="dash-grid">
+                <div class="dash-field">
+                  <label for="insurer">Insurer</label>
+                  <input type="text" id="insurer" required maxlength="80" />
+                </div>
+                <div class="dash-field">
+                  <label for="policyNumber">Policy number</label>
+                  <input type="text" id="policyNumber" required maxlength="60" />
+                </div>
+                <div class="dash-field">
+                  <label for="policyType">Policy type</label>
+                  <select id="policyType">
+                    <option value="Health">Health</option>
+                    <option value="Life">Life</option>
+                    <option value="Motor">Motor</option>
+                    <option value="Home">Home</option>
+                    <option value="Travel">Travel</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+                <div class="dash-field">
+                  <label for="status">Status</label>
+                  <select id="status">
+                    <option value="active">Active</option>
+                    <option value="lapsed">Lapsed</option>
+                    <option value="matured">Matured</option>
+                  </select>
+                </div>
+                <div class="dash-field">
+                  <label for="sumAssured">Sum assured (₹)</label>
+                  <input type="number" id="sumAssured" min="0" step="1000" inputmode="numeric" />
+                </div>
+                <div class="dash-field">
+                  <label for="premium">Premium (₹)</label>
+                  <input type="number" id="premium" min="0" step="100" inputmode="numeric" />
+                </div>
+                <div class="dash-field">
+                  <label for="premiumFrequency">Premium frequency</label>
+                  <select id="premiumFrequency">
+                    <option value="yearly">Yearly</option>
+                    <option value="half-yearly">Half-yearly</option>
+                    <option value="quarterly">Quarterly</option>
+                    <option value="monthly">Monthly</option>
+                    <option value="single">Single premium</option>
+                  </select>
+                </div>
+                <div class="dash-field">
+                  <label for="startDate">Start date</label>
+                  <input type="date" id="startDate" />
+                </div>
+                <div class="dash-field">
+                  <label for="renewalDate">Renewal date</label>
+                  <input type="date" id="renewalDate" />
+                </div>
+              </div>
+              <div class="dash-actions">
+                <button type="submit" class="dash-btn" id="policySubmit">Save policy</button>
+                <button type="button" class="dash-btn secondary" id="policyCancel" hidden>Cancel edit</button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <section id="panelProfile" hidden>
+          <div class="dash-card">
+            <h2>Profile &amp; nominee</h2>
+            <p class="dash-card-sub">Sachin uses these details when reviewing your cover. Your email comes from your sign-in and cannot be edited here.</p>
+            <form id="profileForm">
+              <div class="dash-grid">
+                <div class="dash-field">
+                  <label for="fullName">Full name</label>
+                  <input type="text" id="fullName" maxlength="80" />
+                </div>
+                <div class="dash-field">
+                  <label for="phone">Phone</label>
+                  <input type="tel" id="phone" maxlength="15" inputmode="tel" />
+                </div>
+                <div class="dash-field span-2">
+                  <label for="address">Address</label>
+                  <input type="text" id="address" maxlength="160" />
+                </div>
+                <div class="dash-field">
+                  <label for="city">City</label>
+                  <input type="text" id="city" maxlength="60" />
+                </div>
+                <div class="dash-field">
+                  <label for="pincode">PIN code</label>
+                  <input type="text" id="pincode" maxlength="6" inputmode="numeric" />
+                </div>
+                <div class="dash-field">
+                  <label for="nomineeName">Nominee name</label>
+                  <input type="text" id="nomineeName" maxlength="80" />
+                </div>
+                <div class="dash-field">
+                  <label for="nomineeRelation">Nominee relation</label>
+                  <input type="text" id="nomineeRelation" maxlength="40" />
+                </div>
+                <div class="dash-field">
+                  <label for="nomineeDob">Nominee date of birth</label>
+                  <input type="date" id="nomineeDob" />
+                </div>
+                <div class="dash-field dash-check span-2">
+                  <input type="checkbox" id="reminderOptIn" />
+                  <label for="reminderOptIn">Send me renewal reminders</label>
+                </div>
+              </div>
+              <div class="dash-actions">
+                <button type="submit" class="dash-btn">Save profile</button>
+              </div>
+            </form>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="auth.js"></script>
+  <script src="api.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
