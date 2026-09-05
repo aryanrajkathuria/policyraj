@@ -14,6 +14,7 @@
 
   <section class="dash-gate" id="gate">
     <div class="dash-card">
+      <img class="dash-gate-logo" src="../policyraj.png" alt="PolicyRaj" />
       <h2>PolicyRaj Dashboard</h2>
       <p class="dash-card-sub" id="gateMessage">Checking your session…</p>
       <button class="dash-btn" id="signInBtn" hidden>Sign in</button>
@@ -48,72 +49,101 @@
 
         <section id="panelPolicies">
           <div class="dash-card">
+            <span class="dash-eyebrow">Your cover</span>
             <h2>My policies</h2>
             <p class="dash-card-sub">Your policies and the documents you have uploaded against them.</p>
             <div class="policy-list" id="policyList"></div>
-            <div class="dash-empty" id="policyEmpty" hidden>No policies yet. Add your first one below.</div>
+            <div class="dash-empty" id="policyEmpty" hidden>
+              <div class="dash-empty-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2 4 5.5v6c0 5 3.4 9.4 8 10.5 4.6-1.1 8-5.5 8-10.5v-6L12 2Z" />
+                  <path d="m9 11.5 2 2 4-4" />
+                </svg>
+              </div>
+              <h3 class="dash-empty-title">No policies yet</h3>
+              <p class="dash-empty-text">Add the policies you already hold, then attach each one&rsquo;s PDF so everything sits in one place at renewal time.</p>
+              <a class="dash-btn" href="#policyFormTitle">Add your first policy</a>
+            </div>
           </div>
 
           <div class="dash-card">
+            <span class="dash-eyebrow">Policy record</span>
             <h2 id="policyFormTitle">Add a policy</h2>
             <p class="dash-card-sub">Record a policy you hold, then attach its PDF.</p>
             <form id="policyForm">
               <input type="hidden" id="policyId" />
-              <div class="dash-grid">
-                <div class="dash-field">
-                  <label for="insurer">Insurer</label>
-                  <input type="text" id="insurer" required maxlength="80" />
+
+              <fieldset class="dash-fieldset">
+                <legend class="dash-legend">Policy details<span>Who issued it and what it covers.</span></legend>
+                <div class="dash-grid">
+                  <div class="dash-field">
+                    <label for="insurer">Insurer</label>
+                    <input type="text" id="insurer" required maxlength="80" />
+                  </div>
+                  <div class="dash-field">
+                    <label for="policyNumber">Policy number</label>
+                    <input type="text" id="policyNumber" required maxlength="60" />
+                  </div>
+                  <div class="dash-field">
+                    <label for="policyType">Policy type</label>
+                    <select id="policyType">
+                      <option value="Health">Health</option>
+                      <option value="Life">Life</option>
+                      <option value="Motor">Motor</option>
+                      <option value="Home">Home</option>
+                      <option value="Travel">Travel</option>
+                      <option value="Other">Other</option>
+                    </select>
+                  </div>
+                  <div class="dash-field">
+                    <label for="status">Status</label>
+                    <select id="status">
+                      <option value="active">Active</option>
+                      <option value="lapsed">Lapsed</option>
+                      <option value="matured">Matured</option>
+                    </select>
+                  </div>
                 </div>
-                <div class="dash-field">
-                  <label for="policyNumber">Policy number</label>
-                  <input type="text" id="policyNumber" required maxlength="60" />
+              </fieldset>
+
+              <fieldset class="dash-fieldset">
+                <legend class="dash-legend">Cover &amp; premium<span>Leave blank if you are not sure &mdash; you can add it later.</span></legend>
+                <div class="dash-grid">
+                  <div class="dash-field">
+                    <label for="sumAssured">Sum assured (₹)</label>
+                    <input type="number" id="sumAssured" min="0" step="1000" inputmode="numeric" />
+                  </div>
+                  <div class="dash-field">
+                    <label for="premium">Premium (₹)</label>
+                    <input type="number" id="premium" min="0" step="100" inputmode="numeric" />
+                  </div>
+                  <div class="dash-field span-2">
+                    <label for="premiumFrequency">Premium frequency</label>
+                    <select id="premiumFrequency">
+                      <option value="yearly">Yearly</option>
+                      <option value="half-yearly">Half-yearly</option>
+                      <option value="quarterly">Quarterly</option>
+                      <option value="monthly">Monthly</option>
+                      <option value="single">Single premium</option>
+                    </select>
+                  </div>
                 </div>
-                <div class="dash-field">
-                  <label for="policyType">Policy type</label>
-                  <select id="policyType">
-                    <option value="Health">Health</option>
-                    <option value="Life">Life</option>
-                    <option value="Motor">Motor</option>
-                    <option value="Home">Home</option>
-                    <option value="Travel">Travel</option>
-                    <option value="Other">Other</option>
-                  </select>
+              </fieldset>
+
+              <fieldset class="dash-fieldset">
+                <legend class="dash-legend">Dates<span>The renewal date is what drives your reminders.</span></legend>
+                <div class="dash-grid">
+                  <div class="dash-field">
+                    <label for="startDate">Start date</label>
+                    <input type="date" id="startDate" />
+                  </div>
+                  <div class="dash-field">
+                    <label for="renewalDate">Renewal date</label>
+                    <input type="date" id="renewalDate" />
+                  </div>
                 </div>
-                <div class="dash-field">
-                  <label for="status">Status</label>
-                  <select id="status">
-                    <option value="active">Active</option>
-                    <option value="lapsed">Lapsed</option>
-                    <option value="matured">Matured</option>
-                  </select>
-                </div>
-                <div class="dash-field">
-                  <label for="sumAssured">Sum assured (₹)</label>
-                  <input type="number" id="sumAssured" min="0" step="1000" inputmode="numeric" />
-                </div>
-                <div class="dash-field">
-                  <label for="premium">Premium (₹)</label>
-                  <input type="number" id="premium" min="0" step="100" inputmode="numeric" />
-                </div>
-                <div class="dash-field">
-                  <label for="premiumFrequency">Premium frequency</label>
-                  <select id="premiumFrequency">
-                    <option value="yearly">Yearly</option>
-                    <option value="half-yearly">Half-yearly</option>
-                    <option value="quarterly">Quarterly</option>
-                    <option value="monthly">Monthly</option>
-                    <option value="single">Single premium</option>
-                  </select>
-                </div>
-                <div class="dash-field">
-                  <label for="startDate">Start date</label>
-                  <input type="date" id="startDate" />
-                </div>
-                <div class="dash-field">
-                  <label for="renewalDate">Renewal date</label>
-                  <input type="date" id="renewalDate" />
-                </div>
-              </div>
+              </fieldset>
+
               <div class="dash-actions">
                 <button type="submit" class="dash-btn" id="policySubmit">Save policy</button>
                 <button type="button" class="dash-btn secondary" id="policyCancel" hidden>Cancel edit</button>
@@ -124,47 +154,65 @@
 
         <section id="panelProfile" hidden>
           <div class="dash-card">
+            <span class="dash-eyebrow">Your details</span>
             <h2>Profile &amp; nominee</h2>
             <p class="dash-card-sub">Sachin uses these details when reviewing your cover. Your email comes from your sign-in and cannot be edited here.</p>
             <form id="profileForm">
-              <div class="dash-grid">
-                <div class="dash-field">
-                  <label for="fullName">Full name</label>
-                  <input type="text" id="fullName" maxlength="80" />
+
+              <fieldset class="dash-fieldset">
+                <legend class="dash-legend">Contact<span>How Sachin reaches you about a renewal or a claim.</span></legend>
+                <div class="dash-grid">
+                  <div class="dash-field">
+                    <label for="fullName">Full name</label>
+                    <input type="text" id="fullName" maxlength="80" />
+                  </div>
+                  <div class="dash-field">
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone" maxlength="15" inputmode="tel" />
+                  </div>
+                  <div class="dash-field span-2">
+                    <label for="address">Address</label>
+                    <input type="text" id="address" maxlength="160" />
+                  </div>
+                  <div class="dash-field">
+                    <label for="city">City</label>
+                    <input type="text" id="city" maxlength="60" />
+                  </div>
+                  <div class="dash-field">
+                    <label for="pincode">PIN code</label>
+                    <input type="text" id="pincode" maxlength="6" inputmode="numeric" />
+                  </div>
                 </div>
-                <div class="dash-field">
-                  <label for="phone">Phone</label>
-                  <input type="tel" id="phone" maxlength="15" inputmode="tel" />
+              </fieldset>
+
+              <fieldset class="dash-fieldset">
+                <legend class="dash-legend">Nominee<span>Who receives the benefit on a life or personal accident policy.</span></legend>
+                <div class="dash-grid">
+                  <div class="dash-field">
+                    <label for="nomineeName">Nominee name</label>
+                    <input type="text" id="nomineeName" maxlength="80" />
+                  </div>
+                  <div class="dash-field">
+                    <label for="nomineeRelation">Nominee relation</label>
+                    <input type="text" id="nomineeRelation" maxlength="40" />
+                  </div>
+                  <div class="dash-field span-2">
+                    <label for="nomineeDob">Nominee date of birth</label>
+                    <input type="date" id="nomineeDob" />
+                  </div>
                 </div>
-                <div class="dash-field span-2">
-                  <label for="address">Address</label>
-                  <input type="text" id="address" maxlength="160" />
+              </fieldset>
+
+              <fieldset class="dash-fieldset">
+                <legend class="dash-legend">Reminders</legend>
+                <div class="dash-grid">
+                  <div class="dash-field dash-check span-2">
+                    <input type="checkbox" id="reminderOptIn" />
+                    <label for="reminderOptIn">Send me renewal reminders</label>
+                  </div>
                 </div>
-                <div class="dash-field">
-                  <label for="city">City</label>
-                  <input type="text" id="city" maxlength="60" />
-                </div>
-                <div class="dash-field">
-                  <label for="pincode">PIN code</label>
-                  <input type="text" id="pincode" maxlength="6" inputmode="numeric" />
-                </div>
-                <div class="dash-field">
-                  <label for="nomineeName">Nominee name</label>
-                  <input type="text" id="nomineeName" maxlength="80" />
-                </div>
-                <div class="dash-field">
-                  <label for="nomineeRelation">Nominee relation</label>
-                  <input type="text" id="nomineeRelation" maxlength="40" />
-                </div>
-                <div class="dash-field">
-                  <label for="nomineeDob">Nominee date of birth</label>
-                  <input type="date" id="nomineeDob" />
-                </div>
-                <div class="dash-field dash-check span-2">
-                  <input type="checkbox" id="reminderOptIn" />
-                  <label for="reminderOptIn">Send me renewal reminders</label>
-                </div>
-              </div>
+              </fieldset>
+
               <div class="dash-actions">
                 <button type="submit" class="dash-btn">Save profile</button>
               </div>

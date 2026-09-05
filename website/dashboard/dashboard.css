@@ -1,23 +1,86 @@
-/* PolicyRaj dashboard — new authenticated section.
-   Design tokens come from the site stylesheet, which this build does not edit. */
+/* PolicyRaj dashboard — authenticated section.
+   Every colour, font, radius and shadow below resolves to a token defined in
+   ../style.css. Nothing here invents a new brand value.
+
+   Structural note: the policy cards, feed rows, table rows and the badge
+   markup are built in app.js / admin.js, which this build does not edit. The
+   rules for those classes therefore style the DOM as that code emits it —
+   `.policy-card` is laid out as a grid so the title and status badge share a
+   row without the script needing to wrap them. */
+
+/* ── PAGE SHELL ────────────────────────────────────────────────────────── */
 
 .dash-body {
+  /* A soft wash off the top rather than a flat grey field — the same indigo
+     tint the marketing pages use behind their light sections. */
   background: var(--gray-light);
+  background-image: linear-gradient(180deg, #eef2ff 0%, rgba(238, 242, 255, 0) 320px);
+  background-repeat: no-repeat;
   color: var(--text);
   min-height: 100dvh;
 }
 
+.dash-main { padding: 24px 0 56px; }
+
+/* ── SIGN-IN GATE ──────────────────────────────────────────────────────── */
+
+.dash-gate {
+  display: grid;
+  place-items: center;
+  min-height: 100dvh;
+  padding: 24px;
+  text-align: center;
+  background: var(--gradient-hero);
+}
+
+.dash-gate .dash-card {
+  max-width: 420px;
+  width: 100%;
+  padding: 36px 28px;
+  margin-bottom: 0;
+  box-shadow: 0 24px 64px rgba(5, 7, 15, 0.45);
+}
+
+.dash-gate-logo {
+  height: 40px;
+  width: auto;
+  display: block;
+  margin: 0 auto 20px;
+}
+
+.dash-gate .dash-card h2 { margin-bottom: 8px; }
+.dash-gate .dash-card-sub { margin-bottom: 22px; }
+.dash-gate .dash-btn { width: 100%; }
+
+/* ── HEADER ────────────────────────────────────────────────────────────── */
+
 .dash-header {
-  background: var(--gradient);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--gradient-hero);
   color: var(--white);
-  padding: 20px 0;
+  padding: 14px 0;
+  box-shadow: 0 4px 24px rgba(5, 7, 15, 0.22);
+}
+
+/* Gold hairline — the same accent the marketing pages use under section
+   headings and on the primary CTA. */
+.dash-header::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: var(--gradient-gold);
 }
 
 .dash-header .container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 14px;
   flex-wrap: wrap;
 }
 
@@ -27,15 +90,26 @@
   gap: 12px;
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
+  font-size: max(15px, 0.98rem);
+  letter-spacing: 0.01em;
+  min-width: 0;
 }
 
-.dash-brand img { height: 36px; width: auto; display: block; }
+.dash-brand img { height: 34px; width: auto; display: block; }
+
+/* Divider between the logo and the section name. */
+.dash-brand > span {
+  padding-left: 12px;
+  border-left: 1px solid rgba(255, 255, 255, 0.24);
+  white-space: nowrap;
+}
 
 .dash-logo {
   display: inline-flex;
   align-items: center;
   border-radius: var(--radius);
   transition: var(--transition);
+  flex-shrink: 0;
 }
 
 .dash-logo:focus-visible { outline: 2px solid var(--white); outline-offset: 3px; }
@@ -44,74 +118,232 @@
 .dash-user {
   display: flex;
   align-items: center;
-  gap: 12px;
-  font-size: max(14px, 0.88rem);
+  gap: 10px;
+  font-size: max(14px, 0.86rem);
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
-.dash-main { padding: 28px 0 64px; }
+#userLabel {
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #dbe4ff;
+  font-weight: 600;
+  max-width: 40vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#userLabel:empty { display: none; }
+
+/* On the dark header the secondary button reads as glass, not as a white
+   block fighting the gradient. */
+.dash-header .dash-btn.secondary {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.28);
+  color: var(--white);
+}
+
+.dash-header .dash-btn.secondary:hover,
+.dash-header .dash-btn.secondary:focus-visible {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* ── TABS (segmented control) ──────────────────────────────────────────── */
 
 .dash-tabs {
-  display: flex;
-  gap: 8px;
+  display: inline-flex;
+  gap: 4px;
   flex-wrap: wrap;
-  margin-bottom: 24px;
+  margin-bottom: 18px;
+  padding: 4px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  box-shadow: var(--shadow);
+  max-width: 100%;
 }
 
 .dash-tab {
   min-height: 44px;
-  padding: 10px 18px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: var(--white);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
   color: var(--text-light);
   font: inherit;
+  font-weight: 600;
+  font-size: max(14px, 0.88rem);
   cursor: pointer;
   touch-action: manipulation;
   transition: var(--transition);
+  white-space: nowrap;
 }
 
 .dash-tab:hover,
-.dash-tab:focus-visible { border-color: var(--primary); color: var(--primary); }
-.dash-tab.active { background: var(--primary); border-color: var(--primary); color: var(--white); }
+.dash-tab:focus-visible { color: var(--primary); background: #eef2ff; }
+
+.dash-tab.active {
+  background: var(--primary);
+  color: var(--white);
+  box-shadow: 0 4px 14px rgba(30, 58, 138, 0.28);
+}
+
+/* ── CARDS ─────────────────────────────────────────────────────────────── */
 
 .dash-card {
   background: var(--white);
   border: 1px solid var(--border);
-  border-radius: var(--radius-lg, 20px);
+  border-radius: var(--radius-lg);
   box-shadow: var(--shadow);
   padding: 24px;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 .dash-card h2 {
   font-family: 'Poppins', sans-serif;
   font-size: clamp(1.15rem, 2.5vw, 1.4rem);
+  font-weight: 700;
   margin: 0 0 4px;
+  line-height: 1.3;
+}
+
+.dash-card h3 {
+  font-family: 'Poppins', sans-serif;
+  font-size: max(15px, 1rem);
+  font-weight: 700;
+  margin: 22px 0 12px;
+}
+
+/* The header is sticky, so anything the scripts scroll to needs clearance.
+   app.js targets #policyFormTitle, admin.js targets #customerDetail, and the
+   empty-state button links to #policyFormTitle. */
+#policyFormTitle,
+#customerDetail { scroll-margin-top: 92px; }
+
+/* Small gold label above a card title — matches .section-eyebrow on the
+   marketing pages. */
+.dash-eyebrow {
+  display: block;
+  color: var(--cta-gold);
+  font-size: max(11px, 0.7rem);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
 }
 
 .dash-card-sub {
   color: var(--text-light);
   font-size: max(14px, 0.88rem);
-  margin: 0 0 20px;
+  margin: 0 0 18px;
+  max-width: 68ch;
+}
+
+/* ── EMPTY STATES ──────────────────────────────────────────────────────── */
+
+/* Base has to stand on its own: admin.js injects a bare
+   `<div class="dash-empty">No policies recorded.</div>` with no children. */
+.dash-empty {
+  padding: 32px 24px;
+  text-align: center;
+  color: var(--text-light);
+  font-size: max(14px, 0.9rem);
+  background: var(--gradient-soft);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-lg);
+}
+
+.dash-empty-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 16px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--white);
+  color: var(--primary);
+  box-shadow: 0 6px 20px rgba(30, 58, 138, 0.16);
+}
+
+.dash-empty-icon svg { width: 30px; height: 30px; display: block; }
+
+.dash-empty-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: max(16px, 1.05rem);
+  font-weight: 700;
+  color: var(--text);
+  margin: 0 0 6px;
+}
+
+.dash-empty-text {
+  margin: 0 auto 20px;
+  max-width: 46ch;
+  font-size: max(14px, 0.9rem);
+  color: var(--text-light);
+}
+
+.dash-empty .dash-btn { text-decoration: none; }
+
+/* ── FORMS ─────────────────────────────────────────────────────────────── */
+
+/* Grouped field sets. `min-width: 0` is required — a fieldset's default
+   min-content width otherwise stops the grid inside it from shrinking. */
+.dash-fieldset {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 0;
+  padding: 18px 0 0;
+  min-width: 0;
+}
+
+.dash-fieldset + .dash-fieldset { margin-top: 20px; }
+.dash-fieldset:first-of-type { border-top: none; padding-top: 0; }
+
+.dash-legend {
+  display: block;
+  float: left;
+  width: 100%;
+  padding: 0;
+  margin-bottom: 14px;
+  font-family: 'Poppins', sans-serif;
+  font-size: max(14px, 0.92rem);
+  font-weight: 700;
+  color: var(--text);
+}
+
+.dash-legend span {
+  display: block;
+  font-family: 'IBM Plex Sans', 'Inter', sans-serif;
+  font-size: max(13px, 0.82rem);
+  font-weight: 400;
+  color: var(--text-light);
+  margin-top: 2px;
 }
 
 .dash-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 16px;
+  gap: 14px;
+  clear: both;
 }
 
 @media (min-width: 600px) {
-  .dash-grid { grid-template-columns: repeat(2, 1fr); }
+  .dash-grid { grid-template-columns: repeat(2, 1fr); gap: 14px 16px; }
   .dash-grid .span-2 { grid-column: span 2; }
 }
 
-.dash-field { display: flex; flex-direction: column; gap: 6px; }
+.dash-field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
 
 .dash-field label {
-  font-size: max(14px, 0.85rem);
+  font-size: max(13px, 0.82rem);
   font-weight: 600;
   color: var(--text-light);
+  letter-spacing: 0.01em;
 }
 
 .dash-field input,
@@ -120,110 +352,301 @@
   font-size: 16px;
   font-family: inherit;
   min-height: 44px;
-  padding: 10px 12px;
+  width: 100%;
+  padding: 10px 14px;
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  background: var(--white);
+  background: var(--off-white);
   color: var(--text);
   transition: var(--transition);
 }
 
-.dash-field input:focus,
-.dash-field select:focus { outline: 2px solid var(--primary); outline-offset: 1px; }
+.dash-field input:hover,
+.dash-field select:hover { border-color: var(--gray); }
 
-.dash-check { flex-direction: row; align-items: center; gap: 10px; }
-.dash-check input { min-height: 22px; width: 22px; height: 22px; }
+.dash-field input:focus,
+.dash-field select:focus {
+  outline: none;
+  background: var(--white);
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.14);
+}
+
+.dash-field input:focus-visible,
+.dash-field select:focus-visible { outline: 2px solid transparent; }
+
+/* The label extends the checkbox hit area to a full 44px row. */
+.dash-check {
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  min-height: 44px;
+  padding: 8px 14px;
+  background: var(--off-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.dash-check input {
+  min-height: 22px;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  accent-color: var(--primary);
+  cursor: pointer;
+}
+
+.dash-check label {
+  color: var(--text);
+  cursor: pointer;
+  flex: 1;
+  padding: 10px 0;
+}
+
+/* Search / filter row above a table. Constrained so a lone search box does
+   not stretch the full card width on a desktop. */
+.dash-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.dash-toolbar .dash-field { flex: 1 1 260px; max-width: 360px; }
+
+/* ── BUTTONS ───────────────────────────────────────────────────────────── */
 
 .dash-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 8px;
   min-height: 44px;
   padding: 12px 24px;
-  border: none;
-  border-radius: var(--radius);
+  border: 1px solid transparent;
+  border-radius: 999px;
   background: var(--primary);
   color: var(--white);
   font: inherit;
   font-weight: 600;
+  font-size: max(14px, 0.9rem);
   text-decoration: none;
   cursor: pointer;
   touch-action: manipulation;
   transition: var(--transition);
+  white-space: nowrap;
 }
 
 .dash-btn:hover,
-.dash-btn:focus-visible { background: var(--primary-dark, #102770); }
-.dash-btn[disabled] { opacity: 0.55; cursor: not-allowed; }
+.dash-btn:focus-visible {
+  background: var(--primary-dark);
+  box-shadow: 0 4px 14px rgba(30, 58, 138, 0.28);
+}
 
-.dash-btn.secondary { background: var(--white); color: var(--primary); border: 1px solid var(--border); }
-.dash-btn.danger { background: var(--secondary); }
-.dash-btn.small { min-height: 44px; padding: 8px 14px; font-size: max(14px, 0.85rem); }
+.dash-btn:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+.dash-btn[disabled] { opacity: 0.55; cursor: not-allowed; box-shadow: none; }
 
-.dash-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
+.dash-btn.secondary {
+  background: var(--white);
+  color: var(--primary);
+  border-color: var(--border);
+}
 
-.policy-list { display: grid; gap: 16px; grid-template-columns: 1fr; }
+.dash-btn.secondary:hover,
+.dash-btn.secondary:focus-visible {
+  background: #eef2ff;
+  border-color: var(--primary);
+  box-shadow: none;
+}
+
+/* Destructive, but it should not outweigh the primary action sitting next to
+   it. Same fill-on-hover inversion the site's .btn-outline uses. */
+.dash-btn.danger {
+  background: var(--white);
+  color: var(--secondary);
+  border-color: #fecaca;
+}
+
+.dash-btn.danger:hover,
+.dash-btn.danger:focus-visible {
+  background: var(--secondary);
+  color: var(--white);
+  border-color: var(--secondary);
+  box-shadow: 0 4px 14px rgba(230, 57, 70, 0.3);
+}
+
+.dash-btn.small {
+  min-height: 44px;
+  padding: 8px 16px;
+  font-size: max(13px, 0.84rem);
+}
+
+.dash-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
+
+/* ── POLICY CARDS ──────────────────────────────────────────────────────── */
+
+.policy-list { display: grid; gap: 14px; grid-template-columns: 1fr; }
 
 @media (min-width: 900px) {
   .policy-list { grid-template-columns: repeat(2, 1fr); }
 }
 
+/* app.js appends h3, badge, meta, actions as flat siblings. The grid puts the
+   title and badge on one row and lets everything else run full width, in
+   whatever order the script emits it. */
 .policy-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-content: start;
   border: 1px solid var(--border);
+  border-left: 3px solid var(--gray);
   border-radius: var(--radius);
   padding: 18px;
-  background: var(--off-white);
+  background: var(--white);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+  transition: var(--transition);
 }
 
-.policy-card h3 {
+.policy-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+  border-color: var(--gray);
+}
+
+.policy-card > * { grid-column: 1 / -1; min-width: 0; }
+
+.policy-card > h3 {
+  grid-column: 1;
+  grid-row: 1;
   font-family: 'Poppins', sans-serif;
-  font-size: 1.05rem;
-  margin: 0 0 10px;
+  font-size: max(15px, 1.02rem);
+  font-weight: 700;
+  line-height: 1.35;
+  margin: 0;
 }
 
+.policy-card > .dash-badge {
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: end;
+  align-self: start;
+  margin-left: 10px;
+}
+
+/* Status accent on the card edge. Progressive enhancement: browsers without
+   :has() simply keep the neutral grey edge. */
+.policy-card:has(.dash-badge.active) { border-left-color: #166534; }
+.policy-card:has(.dash-badge.lapsed) { border-left-color: var(--secondary); }
+.policy-card:has(.dash-badge.matured) { border-left-color: var(--cta-gold); }
+
+/* The admin card uses this for "No document uploaded." */
+.policy-card > p.feed-what { margin: 14px 0 0; font-style: italic; }
+
+.policy-card .dash-actions {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  gap: 8px;
+}
+
+/* ── POLICY META ───────────────────────────────────────────────────────── */
+
+/* The script emits `<span><strong>Label</strong>value</span>`, so the span
+   carries the value and the strong carries the label. The label is the
+   quieter of the two. */
 .policy-meta {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 8px 16px;
-  font-size: max(14px, 0.85rem);
-  color: var(--text-light);
-  margin-bottom: 14px;
+  gap: 12px 16px;
+  font-size: max(14px, 0.88rem);
+  margin-top: 14px;
 }
 
-.policy-meta span strong { display: block; color: var(--text); font-weight: 600; }
+.policy-meta span {
+  color: var(--text);
+  font-weight: 600;
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+
+.policy-meta span strong {
+  display: block;
+  color: var(--gray);
+  font-size: max(11px, 0.68rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+/* ── BADGES ────────────────────────────────────────────────────────────── */
 
 .dash-badge {
   display: inline-block;
-  padding: 3px 10px;
+  padding: 4px 11px;
   border-radius: 999px;
-  font-size: max(12px, 0.75rem);
-  font-weight: 600;
+  font-size: max(11px, 0.68rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
   background: var(--gray-light);
   color: var(--text-light);
+  border: 1px solid transparent;
 }
 
-.dash-badge.active { background: #dcfce7; color: #166534; }
-.dash-badge.lapsed { background: #fee2e2; color: #991b1b; }
+.dash-badge.active { background: #dcfce7; color: #166534; border-color: #bbf7d0; }
+.dash-badge.lapsed { background: #fee2e2; color: #991b1b; border-color: #fecaca; }
+.dash-badge.matured { background: #fef3c7; color: #92400E; border-color: #fde68a; }
+
+/* ── UPLOAD PROGRESS ───────────────────────────────────────────────────── */
 
 .progress {
   height: 8px;
   border-radius: 999px;
   background: var(--gray-light);
   overflow: hidden;
-  margin-top: 10px;
+  margin-top: 12px;
 }
 
-.progress span { display: block; height: 100%; width: 0; background: var(--primary); transition: width 0.2s ease; }
+.progress span {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--gradient);
+  transition: width 0.2s ease;
+}
 
-.dash-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+/* ── TABLE ─────────────────────────────────────────────────────────────── */
+
+.dash-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
 
 .dash-table { width: 100%; border-collapse: collapse; font-size: max(14px, 0.88rem); }
+
 .dash-table th,
 .dash-table td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--border); }
-.dash-table th { color: var(--text-light); font-weight: 600; white-space: nowrap; }
+
+.dash-table thead th {
+  background: var(--off-white);
+  color: var(--gray);
+  font-size: max(11px, 0.7rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.dash-table tbody tr:last-child td { border-bottom: none; }
 .dash-table tbody tr:hover { background: var(--off-white); }
 
-.feed { display: flex; flex-direction: column; gap: 2px; }
+/* ── ACTIVITY FEED ─────────────────────────────────────────────────────── */
+
+.feed { display: flex; flex-direction: column; }
 
 .feed-row {
   display: flex;
@@ -233,29 +656,36 @@
   border-bottom: 1px solid var(--border);
 }
 
+.feed-row:last-child { border-bottom: none; }
+
 .feed-dot {
   width: 10px;
   height: 10px;
   border-radius: 50%;
   background: var(--primary);
-  margin-top: 6px;
+  margin-top: 7px;
   flex-shrink: 0;
+  box-shadow: 0 0 0 4px rgba(30, 58, 138, 0.1);
 }
 
 .feed-body { flex: 1; min-width: 0; }
-.feed-who { font-weight: 600; }
+.feed-who { font-weight: 600; color: var(--text); }
 .feed-what { color: var(--text-light); font-size: max(14px, 0.88rem); }
-.feed-when { color: var(--gray, #8896a5); font-size: max(12px, 0.78rem); white-space: nowrap; }
+.feed-when { color: var(--gray); font-size: max(12px, 0.76rem); white-space: nowrap; }
+
+/* ── NOTICES ───────────────────────────────────────────────────────────── */
 
 .dash-note {
   padding: 14px 16px;
   border-radius: var(--radius);
   font-size: max(14px, 0.88rem);
   margin-bottom: 16px;
+  border: 1px solid transparent;
 }
 
-.dash-note.error { background: #fee2e2; color: #991b1b; }
-.dash-note.success { background: #dcfce7; color: #166534; }
+.dash-note.error { background: #fee2e2; color: #991b1b; border-color: #fecaca; }
+.dash-note.success { background: #dcfce7; color: #166534; border-color: #bbf7d0; }
+
 .dash-note.info {
   background: var(--white);
   color: var(--text-light);
@@ -263,13 +693,38 @@
   box-shadow: var(--shadow);
 }
 
-.dash-empty { padding: 32px; text-align: center; color: var(--text-light); }
-
-.dash-gate { display: grid; place-items: center; min-height: 100dvh; padding: 24px; text-align: center; }
-.dash-gate .dash-card { max-width: 420px; }
-
 [hidden] { display: none !important; }
+
+/* ── MOBILE ────────────────────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .dash-header { padding: 12px 0; }
+  .dash-header .container { gap: 10px; }
+  .dash-brand { font-size: max(14px, 0.92rem); }
+  .dash-brand img { height: 30px; }
+  .dash-user { width: 100%; justify-content: flex-start; }
+  #userLabel { max-width: 100%; }
+
+  .dash-main { padding: 20px 0 44px; }
+  .dash-card { padding: 20px 18px; border-radius: var(--radius); }
+  .dash-gate .dash-card { padding: 28px 22px; }
+
+  .dash-tabs { display: flex; width: 100%; }
+  .dash-tab { flex: 1; padding: 10px 12px; text-align: center; }
+
+  .policy-card { padding: 16px; }
+  .dash-empty { padding: 28px 18px; }
+}
+
+@media (max-width: 480px) {
+  .dash-brand > span { padding-left: 10px; }
+  .policy-meta { gap: 10px 12px; }
+  .dash-actions { gap: 8px; }
+  /* Full-width action buttons read better than a ragged wrap on a phone. */
+  .dash-empty .dash-btn { width: 100%; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  .policy-card:hover { transform: none; }
 }

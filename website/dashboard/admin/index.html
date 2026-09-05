@@ -14,6 +14,7 @@
 
   <section class="dash-gate" id="gate">
     <div class="dash-card">
+      <img class="dash-gate-logo" src="../../policyraj.png" alt="PolicyRaj" />
       <h2>Owner Dashboard</h2>
       <p class="dash-card-sub" id="gateMessage">Checking your session…</p>
       <button class="dash-btn" id="signInBtn" hidden>Sign in</button>
@@ -50,20 +51,32 @@
 
         <section id="panelFeed">
           <div class="dash-card">
+            <span class="dash-eyebrow">Live view</span>
             <h2>Recent activity</h2>
             <p class="dash-card-sub">What customers have been doing on their dashboards, newest first.</p>
             <div class="feed" id="activityFeed"></div>
-            <div class="dash-empty" id="feedEmpty" hidden>No customer activity yet.</div>
+            <div class="dash-empty" id="feedEmpty" hidden>
+              <div class="dash-empty-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 12h4l3-8 4 16 3-8h4" />
+                </svg>
+              </div>
+              <h3 class="dash-empty-title">No customer activity yet</h3>
+              <p class="dash-empty-text">Once customers sign in and start adding policies, everything they do appears here in order.</p>
+            </div>
           </div>
         </section>
 
         <section id="panelCustomers" hidden>
           <div class="dash-card">
+            <span class="dash-eyebrow">Directory</span>
             <h2>Customers</h2>
             <p class="dash-card-sub">Search by name or email.</p>
-            <div class="dash-field">
-              <label for="customerSearch">Search</label>
-              <input type="search" id="customerSearch" placeholder="Name or email" />
+            <div class="dash-toolbar">
+              <div class="dash-field">
+                <label for="customerSearch">Search</label>
+                <input type="search" id="customerSearch" placeholder="Name or email" />
+              </div>
             </div>
             <div class="dash-table-wrap">
               <table class="dash-table">
@@ -80,10 +93,21 @@
                 <tbody id="customerRows"></tbody>
               </table>
             </div>
-            <div class="dash-empty" id="customerEmpty" hidden>No customers yet.</div>
+            <div class="dash-empty" id="customerEmpty" hidden>
+              <div class="dash-empty-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                  <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+                </svg>
+              </div>
+              <h3 class="dash-empty-title">No customers to show</h3>
+              <p class="dash-empty-text">Nobody matches that search. Clear the box to see everyone who has signed in.</p>
+            </div>
           </div>
 
           <div class="dash-card" id="customerDetail" hidden>
+            <span class="dash-eyebrow">Customer</span>
             <h2 id="detailName">Customer</h2>
             <p class="dash-card-sub" id="detailContact"></p>
             <div id="detailProfile" class="policy-meta"></div>
