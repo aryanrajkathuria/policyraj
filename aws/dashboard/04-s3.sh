@@ -51,7 +51,7 @@ cat > "$TMP/cors.json" <<EOF
 }
 EOF
 
-aws s3api put-bucket-cors --bucket "$BUCKET_NAME" --cors-configuration "file://$TMP/cors.json"
+aws s3api put-bucket-cors --bucket "$BUCKET_NAME" --cors-configuration "file://$(aws_path "$TMP/cors.json")"
 ok "$ALLOWED_ORIGIN and $ALLOWED_ORIGIN_WWW"
 
 step 6/6 "Lifecycle — Standard-IA after 90 days"
@@ -69,7 +69,7 @@ cat > "$TMP/lifecycle.json" <<'EOF'
 EOF
 
 aws s3api put-bucket-lifecycle-configuration \
-  --bucket "$BUCKET_NAME" --lifecycle-configuration "file://$TMP/lifecycle.json"
+  --bucket "$BUCKET_NAME" --lifecycle-configuration "file://$(aws_path "$TMP/lifecycle.json")"
 ok "transition rule applied"
 
 cat <<EOF

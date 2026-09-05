@@ -61,7 +61,7 @@ deploy_fn() {
   if aws lambda get-function --region "$AWS_REGION" --function-name "$name" > /dev/null 2>&1; then
     handle_existing "Lambda $name" "already deployed"
     aws lambda update-function-code --region "$AWS_REGION" --function-name "$name" \
-      --zip-file "fileb://$BUILD_DIR/$src.zip" > /dev/null
+      --zip-file "fileb://$(aws_path "$BUILD_DIR/$src.zip")" > /dev/null
     aws lambda wait function-updated --region "$AWS_REGION" --function-name "$name"
     aws lambda update-function-configuration --region "$AWS_REGION" --function-name "$name" \
       --timeout "$timeout" --memory-size 256 --environment "$ENV_VARS" > /dev/null
@@ -73,7 +73,7 @@ deploy_fn() {
       --runtime nodejs20.x \
       --handler index.handler \
       --role "$role_arn" \
-      --zip-file "fileb://$BUILD_DIR/$src.zip" \
+      --zip-file "fileb://$(aws_path "$BUILD_DIR/$src.zip")" \
       --timeout "$timeout" \
       --memory-size 256 \
       --environment "$ENV_VARS" \

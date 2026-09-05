@@ -52,8 +52,8 @@ EOF
       --pool-name "$POOL_NAME" \
       --username-attributes email \
       --auto-verified-attributes email \
-      --password-policy "file://$TMP/password.json" \
-      --schema "file://$TMP/schema.json" \
+      --password-policy "file://$(aws_path "$TMP/password.json")" \
+      --schema "file://$(aws_path "$TMP/schema.json")" \
       --email-configuration EmailSendingAccount=COGNITO_DEFAULT \
       --user-pool-tags Project=PolicyRaj,Component=dashboard \
       "$@" \

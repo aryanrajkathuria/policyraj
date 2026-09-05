@@ -57,13 +57,13 @@ EOF
 
 aws budgets create-budget \
   --account-id "$ACCOUNT_ID" \
-  --budget "file://$TMP/budget.json" \
-  --notifications-with-subscribers "file://$TMP/notifications.json" \
+  --budget "file://$(aws_path "$TMP/budget.json")" \
+  --notifications-with-subscribers "file://$(aws_path "$TMP/notifications.json")" \
   --region us-east-1
 
 ok "budget $BUDGET_NAME created at $BUDGET_AMOUNT $BUDGET_CURRENCY/month"
 log "alerts to $BUDGET_EMAIL at 80% actual and 100% forecast"
 save_state BUDGET_CREATED "yes"
 
-printf '\nIf this account bills in USD, the INR unit will have been rejected.\n'
-printf 'Set BUDGET_AMOUNT=6 BUDGET_CURRENCY=USD in config.env and re-run.\n\n'
+printf '\nThis is an account-wide cost budget, so it measures all spend in the\n'
+printf 'account, not just the dashboard. Existing spend counts against it.\n\n'

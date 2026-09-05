@@ -30,6 +30,13 @@ save_state() {
   log "saved ${key} to .state.env"
 }
 
+# The AWS CLI on Windows is a native binary and cannot resolve the POSIX paths
+# Git Bash produces, so every file:// argument has to be converted back to a
+# native path first. No-op on Linux and macOS.
+aws_path() {
+  if command -v cygpath > /dev/null 2>&1; then cygpath -m "$1"; else printf '%s' "$1"; fi
+}
+
 require_aws() {
   command -v aws >/dev/null 2>&1 || die "AWS CLI not found on PATH. Install it and run 'aws configure' first."
 

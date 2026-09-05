@@ -20,7 +20,7 @@ create_role() {
   else
     aws iam create-role \
       --role-name "$role_name" \
-      --assume-role-policy-document "file://$DASH_DIR/iam/trust-policy.json" \
+      --assume-role-policy-document "file://$(aws_path "$DASH_DIR/iam/trust-policy.json")" \
       --description "PolicyRaj dashboard — $label" \
       --tags Key=Project,Value=PolicyRaj Key=Component,Value=dashboard > /dev/null
     ok "role $role_name created"
@@ -31,7 +31,7 @@ create_role() {
   aws iam put-role-policy \
     --role-name "$role_name" \
     --policy-name "${role_name}-inline" \
-    --policy-document "file://$TMP/$policy_file"
+    --policy-document "file://$(aws_path "$TMP/$policy_file")"
   ok "inline policy attached from iam/$policy_file"
 
   aws iam attach-role-policy --role-name "$role_name" --policy-arn "$BASIC_EXEC"
