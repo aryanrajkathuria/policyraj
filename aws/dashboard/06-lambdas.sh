@@ -12,6 +12,8 @@ require_aws
 
 BUILD_DIR="$DASH_DIR/build"
 SRC_DIR="$DASH_DIR/lambda"
+TMP="$(mktemp -d)"
+trap 'rm -rf "$TMP"' EXIT
 ENV_VARS="Variables={USER_POOL_ID=$POOL_ID,APP_CLIENT_ID=$APP_CLIENT_ID,TABLE_NAME=$TABLE_NAME,BUCKET_NAME=$BUCKET_NAME,ALLOWED_ORIGIN=$ALLOWED_ORIGIN}"
 
 FN_CORS="$(cat <<EOF
@@ -94,21 +96,33 @@ deploy_fn() {
       --auth-type NONE \
       --cors "$FN_CORS" \
       --query FunctionUrl --output text)"
-
-    # AuthType NONE still needs an explicit resource policy to be reachable.
-    aws lambda add-permission \
-      --region "$AWS_REGION" \
-      --function-name "$name" \
-      --statement-id FunctionURLAllowPublicAccess \
-      --action lambda:InvokeFunctionUrl \
-      --principal "*" \
-      --function-url-auth-type NONE > /dev/null
     ok "function URL created"
   else
     aws lambda update-function-url-config --region "$AWS_REGION" --function-name "$name" \
       --auth-type NONE --cors "$FN_CORS" > /dev/null
     ok "function URL config refreshed"
   fi
+
+  # A public function URL needs BOTH statements. InvokeFunctionUrl alone returns
+  # 403 at the URL layer, because running the function is a separate action gated
+  # by lambda:InvokedViaFunctionUrl -- not by the URL's auth type. add-permission
+  # cannot express that condition, so the whole policy is written at once.
+  local arn="arn:aws:lambda:${AWS_REGION}:${ACCOUNT_ID}:function:${name}"
+  cat > "$TMP/policy-${name}.json" <<EOF
+{"Version":"2012-10-17","Id":"default","Statement":[
+  {"Sid":"FunctionURLAllowPublicAccess","Effect":"Allow","Principal":"*",
+   "Action":"lambda:InvokeFunctionUrl","Resource":"$arn",
+   "Condition":{"StringEquals":{"lambda:FunctionUrlAuthType":"NONE"}}},
+  {"Sid":"FunctionURLAllowInvokeAction","Effect":"Allow","Principal":"*",
+   "Action":"lambda:InvokeFunction","Resource":"$arn",
+   "Condition":{"Bool":{"lambda:InvokedViaFunctionUrl":"true"}}}
+]}
+EOF
+  aws lambda put-resource-policy \
+    --resource-arn "$arn" \
+    --region "$AWS_REGION" \
+    --policy "file://$(aws_path "$TMP/policy-${name}.json")" > /dev/null
+  ok "public invoke policy applied"
 
   printf '    %s\n' "$url"
   save_state "$state_key" "$url"
