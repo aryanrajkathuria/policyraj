@@ -26,47 +26,41 @@ else
   TMP="$(mktemp -d)"
   trap 'rm -rf "$TMP"' EXIT
 
+  # Only email is Required, per section 3. Required flags are fixed for the life
+  # of the pool — changing one later means recreating the pool and every user.
   cat > "$TMP/schema.json" <<'EOF'
 [
   {"Name":"email","AttributeDataType":"String","Mutable":true,"Required":true},
-  {"Name":"name","AttributeDataType":"String","Mutable":true,"Required":true},
+  {"Name":"name","AttributeDataType":"String","Mutable":true,"Required":false},
   {"Name":"phone_number","AttributeDataType":"String","Mutable":true,"Required":false},
   {"Name":"pan","AttributeDataType":"String","Mutable":true,"Required":false,
    "StringAttributeConstraints":{"MinLength":"0","MaxLength":"20"}}
 ]
 EOF
 
-  cat > "$TMP/password.json" <<'EOF'
+  cat > "$TMP/policies.json" <<'EOF'
 {
-  "MinimumLength": 8,
-  "RequireUppercase": true,
-  "RequireNumbers": true,
-  "RequireLowercase": false,
-  "RequireSymbols": false
+  "PasswordPolicy": {
+    "MinimumLength": 8,
+    "RequireUppercase": true,
+    "RequireNumbers": true,
+    "RequireLowercase": false,
+    "RequireSymbols": false
+  }
 }
 EOF
 
-  create_pool() {
-    aws cognito-idp create-user-pool \
-      --region "$AWS_REGION" \
-      --pool-name "$POOL_NAME" \
-      --username-attributes email \
-      --auto-verified-attributes email \
-      --password-policy "file://$(aws_path "$TMP/password.json")" \
-      --schema "file://$(aws_path "$TMP/schema.json")" \
-      --email-configuration EmailSendingAccount=COGNITO_DEFAULT \
-      --user-pool-tags Project=PolicyRaj,Component=dashboard \
-      "$@" \
-      --query 'UserPool.Id' --output text
-  }
-
-  # --user-pool-tier needs a recent CLI; fall back rather than fail the build.
-  POOL_ID="$(create_pool --user-pool-tier LITE 2>/dev/null || true)"
-  if [ -z "$POOL_ID" ] || [ "$POOL_ID" = "None" ]; then
-    warn "--user-pool-tier unsupported by this CLI; creating without it"
-    warn "set the pool to the Lite tier in the console afterwards"
-    POOL_ID="$(create_pool)"
-  fi
+  POOL_ID="$(aws cognito-idp create-user-pool \
+    --region "$AWS_REGION" \
+    --pool-name "$POOL_NAME" \
+    --username-attributes email \
+    --auto-verified-attributes email \
+    --policies "file://$(aws_path "$TMP/policies.json")" \
+    --schema "file://$(aws_path "$TMP/schema.json")" \
+    --email-configuration EmailSendingAccount=COGNITO_DEFAULT \
+    --user-pool-tags Project=PolicyRaj,Component=dashboard \
+    --user-pool-tier LITE \
+    --query 'UserPool.Id' --output text)"
   ok "user pool $POOL_ID"
 fi
 
