@@ -273,7 +273,7 @@
               <div class="mip-field">
                 <label class="mip-label">Manufacturing Year <span class="mip-req">*</span></label>
                 <input type="number" class="mip-input" id="mipYear" list="mipYearList"
-                  placeholder="e.g. 2020" min="1990" required autocomplete="off" />
+                  placeholder="e.g. 2020" min="1980" required autocomplete="off" />
                 <datalist id="mipYearList"></datalist>
               </div>
               <div class="mip-field">
@@ -620,8 +620,8 @@
     (function() {
       const dl = document.getElementById('mipYearList');
       const cur = new Date().getFullYear();
-      document.getElementById('mipYear').max = cur;
-      for (let y = cur; y >= 1990; y--) {
+      document.getElementById('mipYear').max = cur + 1;
+      for (let y = cur + 1; y >= 1980; y--) {
         const o = document.createElement('option');
         o.value = y;
         dl.appendChild(o);

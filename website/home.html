@@ -866,7 +866,7 @@
           <form class="calculator-form" onsubmit="calculateEMI(event)">
             <div class="form-group">
               <label for="loanAmount">Loan Amount (₹)</label>
-              <input id="loanAmount" type="number" min="1000" step="1" placeholder="Enter loan amount" required />
+              <input id="loanAmount" type="number" min="100" step="1" placeholder="Enter loan amount" required />
             </div>
             <div class="form-group">
               <label for="interestRate">Interest Rate (%) per annum</label>
@@ -938,7 +938,7 @@
             <form class="calculator-form" onsubmit="calculateSIP(event)">
               <div class="form-group">
                 <label for="sipAmount">Monthly SIP Amount (₹)</label>
-                <input id="sipAmount" type="number" min="500" step="1" placeholder="Enter monthly amount" required />
+                <input id="sipAmount" type="number" min="100" step="1" placeholder="Enter monthly amount" required />
               </div>
               <div class="form-group">
                 <label for="sipRate">Expected Annual Return (%)</label>
@@ -963,7 +963,7 @@
             <form class="calculator-form" onsubmit="calculateNPS(event)">
               <div class="form-group">
                 <label for="npsAmount">Monthly Contribution (₹)</label>
-                <input id="npsAmount" type="number" min="500" step="1" placeholder="Enter monthly amount" required />
+                <input id="npsAmount" type="number" min="100" step="1" placeholder="Enter monthly amount" required />
               </div>
               <div class="form-group">
                 <label for="npsRate">Expected Annual Return (%)</label>
@@ -1254,7 +1254,7 @@
               </div>
               <div class="form-group">
                 <label for="loanCalcTenure">Loan Tenure (years)</label>
-                <input id="loanCalcTenure" type="number" min="1" max="30" step="1" placeholder="e.g. 5" required />
+                <input id="loanCalcTenure" type="number" min="1" max="40" step="1" placeholder="e.g. 5" required />
               </div>
               <button class="btn-primary" type="submit">Calculate EMI</button>
             </form>
@@ -1271,7 +1271,7 @@
             <form class="calculator-form" onsubmit="calculateStudentLoan(event)">
               <div class="form-group">
                 <label for="studLoanAmount">Total Education Loan (₹)</label>
-                <input id="studLoanAmount" type="number" min="10000" step="1" placeholder="e.g. 1000000" required />
+                <input id="studLoanAmount" type="number" min="1000" step="1" placeholder="e.g. 1000000" required />
               </div>
               <div class="form-group">
                 <label for="studLoanRate">Annual Interest Rate (%)</label>
@@ -1283,7 +1283,7 @@
               </div>
               <div class="form-group">
                 <label for="studRepayment">Repayment Tenure (years)</label>
-                <input id="studRepayment" type="number" min="1" max="15" step="1" placeholder="e.g. 7" required />
+                <input id="studRepayment" type="number" min="1" max="25" step="1" placeholder="e.g. 7" required />
               </div>
               <button class="btn-primary" type="submit">Calculate</button>
             </form>
