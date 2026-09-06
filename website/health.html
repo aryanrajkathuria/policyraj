@@ -826,7 +826,7 @@
                   <label class="hip-chip"><input type="radio" name="hipHeightUnit" value="ftin" onchange="setHeightUnit(this)" /> ft / in</label>
                 </div>
                 <div class="hip-input-unit" style="margin-top:8px">
-                  <input type="number" class="hip-input" id="hipHeight" placeholder="e.g. 170" min="50" max="250" required />
+                  <input type="number" class="hip-input" id="hipHeight" placeholder="e.g. 170" min="50" max="250" step="0.01" required />
                   <span class="hip-unit">cm</span>
                 </div>
                 <div id="hipHeightFtIn" style="display:none;gap:10px;margin-top:8px">
@@ -843,7 +843,7 @@
               <div class="hip-field">
                 <label class="hip-label">Weight <span class="hip-req">*</span></label>
                 <div class="hip-input-unit">
-                  <input type="number" class="hip-input" id="hipWeight" placeholder="e.g. 70" min="10" max="300" required />
+                  <input type="number" class="hip-input" id="hipWeight" placeholder="e.g. 70" min="10" max="300" step="0.01" required />
                   <span class="hip-unit">kg</span>
                 </div>
               </div>
