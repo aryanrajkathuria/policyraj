@@ -129,7 +129,22 @@
 
   const startEdit = (policy) => {
     $('policyId').value = policy.policyId;
-    $('insurer').value = policy.insurer || '';
+
+    // The insurer dropdown cannot list every value already saved against a
+    // policy — anything recorded before the dropdown existed, or entered as
+    // free text, may match no option, and a select silently blanks a value it
+    // has no option for. Carry the saved value in as a temporary option so
+    // opening a policy for editing never rewrites its insurer. The cleanup on
+    // the first line keeps these from piling up across successive edits.
+    const insurer = $('insurer');
+    insurer.querySelectorAll('option[data-saved]').forEach((opt) => opt.remove());
+    insurer.value = policy.insurer || '';
+    if (policy.insurer && insurer.value !== policy.insurer) {
+      const carried = new Option(policy.insurer, policy.insurer, false, true);
+      carried.dataset.saved = 'true';
+      insurer.add(carried);
+    }
+
     $('policyNumber').value = policy.policyNumber || '';
     $('policyType').value = policy.policyType || 'Health';
     $('status').value = policy.status || 'active';
@@ -145,6 +160,7 @@
 
   const resetPolicyForm = () => {
     $('policyForm').reset();
+    $('insurer').querySelectorAll('option[data-saved]').forEach((opt) => opt.remove());
     $('policyId').value = '';
     $('policyFormTitle').textContent = 'Add a policy';
     $('policyCancel').hidden = true;
