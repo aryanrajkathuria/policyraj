@@ -1,0 +1,21 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": ["dynamodb:Scan", "dynamodb:UpdateItem"],
+      "Resource": "arn:aws:dynamodb:ap-south-1:__ACCOUNT_ID__:table/policyraj-dashboard"
+    },
+    {
+      "Effect": "Allow",
+      "Action": ["ses:SendEmail"],
+      "Resource": [
+        "arn:aws:ses:ap-south-1:__ACCOUNT_ID__:identity/sachin@policyraj.in",
+        "arn:aws:ses:ap-south-1:__ACCOUNT_ID__:identity/policyraj.in"
+      ],
+      "Condition": {
+        "StringEquals": { "ses:FromAddress": "sachin@policyraj.in" }
+      }
+    }
+  ]
+}
